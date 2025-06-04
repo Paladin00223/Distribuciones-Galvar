@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    font-family: roboto;
+    scrollbar-width: none;
+}
+html {
+    margin: 0;
+}
+button {
+    width: 6rem;
+    padding: 0.5rem;
+    margin: 1rem;
+    border-radius: 1rem;
+    background-color: rgb(121, 255, 121);
+    text-align: center center;
+    font-size: 1rem;
+}
+form button {
+    width: 8rem;
+    background-color: rgb(0, 162, 255);
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(211, 252, 252);
+}
+h1 {
+    background-color: rgb(138, 102, 211);
+    width: 100vw;
+    padding: 2rem;
+    font-size: 4rem;
+    color: rgb(121, 255, 121);
+    margin: 0;
+}
+h2 {
+    margin-top: 4rem;
+    font-size: 2.5rem;
+    text-align: center;
+    color: rgb(0, 162, 255) ;
+}
+form {
+    margin: 10rem;
+    padding: 2rem;
+}
+footer {
+    background-color:  rgb(138, 102, 211);
+    margin-left: 0rem;
+    padding-left: 6rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
+    color: aliceblue;
+}
+.admin {
+    float: right;
+    background-color: rgb(138, 102, 211);
+    width: 1rem;
+}
