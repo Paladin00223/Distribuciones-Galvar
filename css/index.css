@@ -55,11 +55,16 @@ header section {
 }
 header div {
     text-align: center;
-    padding: 1rem;
-    margin-left: 0;
+    background-color: #4cf9ff;
+    margin: 0rem 15rem;
+    border-radius: 4rem;
+    color: rgb(138, 102, 211);
 }
-h1, h2 {
+h1 {
     font-size: 3rem;
+}
+h2 {
+    font-size: 5rem;
 }
 .cabeza {
     font-size: 2rem;
@@ -68,21 +73,44 @@ main {
     margin-left: 8rem;
     background-color:rgb(211, 252, 252);
 }
+input {
+    height: 2.5rem;
+    width: 20rem;
+    font-size: 1.2rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+    margin-left: 1rem;
+}
 div {
     padding: 1rem;
     text-align: center;
 }
+select {
+    height: 2.5rem;
+    font-size: 1.2rem;
+    border: 2px solid black;
+    border-radius: 1rem;
+}
+
 main section {
     display: flex;
 }
 article {
     padding: 1rem;
-    border: 0.5rem;
+    border: 1rem;
     display: flex;
     flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    margin: 0.5rem;
 }
 article button {
     background-color: rgb(121, 255, 121);
+}
+article select {
+    width: 10rem;
+}
+article input {
+    width: 3rem;
 }
 footer {
     background-color:  rgb(138, 102, 211);
