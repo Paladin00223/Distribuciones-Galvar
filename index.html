@@ -57,31 +57,31 @@
 
         <select id="productos">
 
-        	<option value="todo">Todos los productos</option>
-        	<option value="aseo">Aseo</option>
-        	<option value="cacharro">Cacharrería</option>
-        	<option value="descechable">Descechables</optio>
-        	<option value="detalle">Detalles</option>
-        	<option value="ferreteria">Ferretería</option>
-        	<option value="hogar">Hogar</option>
-        	<option value="Papeleria">Papelería</option>
+          <option value="todo">Todos los productos</option>
+          <option value="aseo">Aseo</option>
+          <option value="cacharro">Cacharrería</option>
+          <option value="descechable">Descechables</option>
+          <option value="detalle">Detalles</option>
+          <option value="ferreteria">Ferretería</option>
+          <option value="hogar">Hogar</option>
+          <option value="Papeleria">Papelería</option>
 
-		    </select>
+        </select>
 
         <label for="buscar"></label>
         <input type="search" id="buscar" placeholder="Buscar producto" />
-        <button type="submit">buscar</button>
+        <button type="submit" onclick="filtrarProductos()">Buscar</button>
 
       </div>
 
       <section>
 
-        <article>
+        <article data-categoria="descechable">
 
-          <img src="img/J1.jpeg" alt="J1" class="descechable">
+          <img src="img/Portacomida-J1.jpg" alt="J1">
           <h3>Portacomida J1</h3>
 
-		  	  <select id="precio">
+		  	  <select class="precio">
 
             <option value="unidad">Unidad</option>
 				    <option value="paquete">Paquete x 20</option>
@@ -89,10 +89,10 @@
 
 	  	    </select>
 
-          <b>Valor: <span>$1000000000.00</span></b><br>
+          <b>Valor: <span>$0.00</span></b><br>
           
-          <label for="cant C1"><b>cantidad</b></label>
-          <input id="cant C1" name="cantidad">
+          <label for="cant-C1"><b>Cantidad</b></label>
+          <input id="cant-C1" name="cantidad" type="number" min="1" step="1" placeholder="Cantidad">
 
           <br>
           <b>Total = <span>$0.00</span></b>
@@ -102,43 +102,21 @@
 
         </article>
 
-        <article>
-
-       	  <img src="img/Matamoscas-Mano.jpg" alt="Matamoscas-Mano" class="cacharro">
-        	<h3>Matamoscas-Mano</h3>
-
-       		<select id="precio">
-
-            <option value="unidad">Unidad - Verde</option>
-            <option value="unidad">Unidad - Azul</option>
-
-			    </select>
-
-          <b>Valor: <span>$1000000000.00</span></b><br>
-        
-          <label for="cant matamoscas mano"><b>cantidad</b></label>
-          <input id="cant matamoscas mano" name="cantidad">
-
-          <br>
-          <b>Total = <span>$0.00</span></b>
-          <b>Acumulas = <span>$0.00</span></b>
-
-         	<button>Añadir al carrito</button>
-
-        </article>
-
       </section>
     </main>
 
     <footer>
 
       <h2 class="center" style="color: yellow;">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
-      <button>Volver Al Inicio</button>
+      <p style="color: yellow; font-size: 2rem;">¡La fidelización por puntos aún está en mantenimiento!<br>¡Muy Pronto!</p>
+      <a href="#top"><button>Volver Al Inicio</button></a>
       <button>Contacto</button>
       <button class="admin"></button>
       <br>
       &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
     </footer>
+
+    <script src="js/index.js"></script>
 
   </body>
 
