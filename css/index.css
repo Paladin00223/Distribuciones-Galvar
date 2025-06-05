@@ -94,6 +94,7 @@ select {
 
 main section {
     display: flex;
+    flex-wrap: wrap;
 }
 article {
     padding: 1rem;
