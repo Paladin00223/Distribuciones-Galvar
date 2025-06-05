@@ -1,30 +1,3 @@
-const contenedor = document.getElementById('contenedor');
-
-let html = `<article data-categoria="descechable">
-  <img src="img/Portacomida-J1.jpg" alt="J1" class="descechable">
-  <h3>Portacomida J1</h3>
-  <select class="precio">
-    <option value="unidad">Unidad</option>
-    <option value="paquete">Paquete x 20</option>
-    <option value="caja">Paca x 200</option>
-  </select>
-  <b>Valor: <span>$0.00</span></b><br>
-  <label for="cant-C1"><b>Cantidad</b></label>
-  <input id="cant-C1" name="cantidad" type="number" min="1" step="1" placeholder="Cantidad">
-  <br>
-  <b>Total = <span>$0.00</span></b>
-  <b>Acumulas = <span>$0.00</span></b>
-  <button>Añadir al carrito</button>
-</article>`;
-
-let productos = '';
-
-for (let i = 0; i < 175; i++) {
-    productos = productos + html;
-}
-
-contenedor.innerHTML = productos;
-
 // Filtros y lógica de precios
 const filtro = document.getElementById('productos');
 const buscarInput = document.getElementById('buscar');
