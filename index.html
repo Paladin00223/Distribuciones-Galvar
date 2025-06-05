@@ -22,7 +22,7 @@
       <button>Referir</button>
       <button>Retirar</button>
         
-      <button class="cerrar">Cerrar Sesión</button>
+      <a href="login.html"><button class="cerrar">Cerrar Sesión</button></a>
 
     </nav>
     <aside>
@@ -74,7 +74,7 @@
 
       </div>
 
-      <section>
+      <section id="contenedor">
 
         <article data-categoria="descechable">
 
@@ -102,6 +102,31 @@
 
         </article>
 
+        <article>
+
+       	  <img src="img/Matamoscas-Mano.jpg" alt="Matamoscas-Mano" class="cacharro">
+        	<h3>Matamoscas-Mano</h3>
+
+       		<select class="precio">
+
+            <option value="unidad">Unidad - Verde</option>
+            <option value="unidad">Unidad - Azul</option>
+
+			    </select>
+
+          <b>Valor: <span>$1000000000.00</span></b><br>
+        
+          <label for="cant matamoscas mano"><b>cantidad</b></label>
+          <input id="cant matamoscas mano" name="cantidad">
+
+          <br>
+          <b>Total = <span>$0.00</span></b>
+          <b>Acumulas = <span>$0.00</span></b>
+
+         	<button>Añadir al carrito</button>
+
+        </article>
+
       </section>
     </main>
 
@@ -116,8 +141,7 @@
       &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
     </footer>
 
-    <script src="js/index.js"></script>
-
+    <script src="js/app.js"></script>
   </body>
 
 </html>
