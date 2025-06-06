@@ -1,0 +1,74 @@
+[
+    {
+        "nombre": "Afiche Gracias Madre",
+        "imagen": "../img/Afiche-Gracias-Madre.jpg",
+        "unidad": 1000,
+        "cantidad": 1,
+        "categoria": "detalle",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "gigio",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Afiche Madre María",
+        "imagen": "../img/Afiche-Madre-María.jpg",
+        "unidad": 1000,
+        "cantidad": 1,
+        "categoria": "detalle",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "gigio",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Afiche Madre",
+        "imagen": "../img/Afiche-Madre.jpg",
+        "unidad": 1000,
+        "cantidad": 1,
+        "categoria": "detalle",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "gigio",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Afiche Mamita Linda",
+        "imagen": "../img/Afiche-Mamita-Linda.jpg",
+        "unidad": 1000,
+        "cantidad": 1,
+        "categoria": "detalle",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "gigio",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Balacas Tela",
+        "imagen": "../img/Balacas-Tela.jpg",
+        "unidad": 1000,
+        "cantidad": 3,
+        "categoria": "accesorio",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Base Hamburguesa",
+        "imagen": "../img/Base-Hamburguesa.jpg",
+        "paquete_x50": 8400,
+        "cantidad": 1,
+        "categoria": "salsamentaria",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    }
+]
