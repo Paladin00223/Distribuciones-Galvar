@@ -82,5 +82,14 @@
             "nombre": "",
             "telefono": ""
         }
+    },
+    {
+        "nombre": "Portacomida J1",
+        "imagen": "../img/Portacomida-J1.jpg",
+        "precios": {
+            "unidad": 700,
+            "paquete": 7800,
+            "caja": 77000
+        }
     }
 ]
