@@ -41,7 +41,7 @@ const traer_datos = async () => {
     llenar_contenedor(datos);
 
     } catch (error) {
-    alert('Ups! Algo salió mal');
+    alert('La página no está disponible, por favor intente más tarde.');
     console.log(error);
   }
 };
