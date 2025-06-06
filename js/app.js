@@ -9,22 +9,40 @@ const llenar_contenedor = (datos) => {
   const precios = {};
 
   for (const item of datos) {
-    // Construye las opciones del select
     let opciones = '';
-    precios[item.nombre] = {};
-    for (const presentacion in item.precios) {
-      opciones += `<option value="${presentacion}">${presentacion.charAt(0).toUpperCase() + presentacion.slice(1)}</option>`;
-      precios[item.nombre][presentacion] = item.precios[presentacion];
+    let precioInicial = 0;
+    let nombre = item.nombre || 'Sin nombre';
+
+    if (item.precios) {
+      precios[nombre] = {};
+      for (const presentacion in item.precios) {
+        opciones += `<option value="${presentacion}">${presentacion.charAt(0).toUpperCase() + presentacion.slice(1)}</option>`;
+        precios[nombre][presentacion] = item.precios[presentacion];
+      }
+      // Si tiene unidad, úsala, si no, toma el primer precio
+      precioInicial = item.precios.unidad ?? Object.values(item.precios)[0];
+    } else if (item.unidad) {
+      opciones = `<option value="unidad">Unidad</option>`;
+      precios[nombre] = { unidad: item.unidad };
+      precioInicial = item.unidad;
+    } else if (item.paquete_x50) {
+      opciones = `<option value="paquete_x50">Paquete x 50</option>`;
+      precios[nombre] = { paquete_x50: item.paquete_x50 };
+      precioInicial = item.paquete_x50;
+    } else {
+      opciones = `<option value="sin_precio">Sin precio</option>`;
+      precios[nombre] = { sin_precio: 0 };
+      precioInicial = 0;
     }
 
     let html = `
-    <article data-categoria="descechable">
+    <article data-categoria="${item.categoria || ''}">
       <img src="${item.imagen}">
-      <h3>${item.nombre}</h3>
+      <h3>${nombre}</h3>
       <select class="precio">
         ${opciones}
       </select>
-      <b>Valor: <span>$${item.precios.unidad.toLocaleString('es-CO')}</span></b><br>
+      <b>Valor: <span>$${(precioInicial ?? 0).toLocaleString('es-CO')}</span></b><br>
       <label><b>Cantidad</b></label>
       <input name="cantidad" type="number" min="1" step="1" placeholder="Cantidad">
       <br>
@@ -33,11 +51,10 @@ const llenar_contenedor = (datos) => {
       <button>Añadir al carrito</button>
     </article>`;
     productos += html;
-  } // <-- Aquí debe cerrar el for
+  }
 
   contenedor.innerHTML = productos;
 
-  // Ahora sí, agrega los listeners a los artículos recién creados
   document.querySelectorAll('article').forEach(article => {
     const select = article.querySelector('.precio');
     const valorSpan = article.querySelector('b > span');
@@ -47,7 +64,8 @@ const llenar_contenedor = (datos) => {
 
     function actualizarPrecioYTotal() {
       const opcion = select.value;
-      const precio = precios[nombre][opcion] || 0;
+      // Siempre verifica que exista el precio antes de usarlo
+      const precio = (precios[nombre] && precios[nombre][opcion]) ? precios[nombre][opcion] : 0;
       valorSpan.textContent = `$${precio.toLocaleString('es-CO')}`;
       const cantidad = parseInt(cantidadInput.value, 10) || 0;
       const total = precio * cantidad;
@@ -63,7 +81,7 @@ const llenar_contenedor = (datos) => {
 
 const traer_datos = async () => {
   try {
-    const respuesta = await fetch('../datos.json');
+    const respuesta = await fetch('datos.json'); // Ajusta la ruta según tu estructura
     const datos = await respuesta.json();
     llenar_contenedor(datos);
     aplicarFiltros(); // Filtra los artículos generados
