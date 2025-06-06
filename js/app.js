@@ -4,8 +4,6 @@ const contenedor = document.getElementById('contenedor');
 
 //trae los datos de datos.json
 
-
-
 const llenar_contenedor = (datos) => {
 
   let productos = '';
