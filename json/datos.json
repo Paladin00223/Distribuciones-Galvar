@@ -70,5 +70,17 @@
             "nombre": "",
             "telefono": ""
         }
+    },
+    {
+        "nombre": "Base Pizza",
+        "imagen": "../img/Base-Pizza.jpg",
+        "paquete_x50": 8400,
+        "cantidad": 1,
+        "categoria": "salsamentaria",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
     }
 ]
