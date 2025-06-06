@@ -1,83 +1,296 @@
 [
     {
-        "nombre": "Afiche Gracias Madre",
-        "imagen": "../img/Afiche-Gracias-Madre.jpg",
-        "unidad": 1000,
-        "cantidad": 1,
-        "categoria": "detalle",
+        "nombre": "Bisturí Grande",
+        "imagen": "img/Bisturí-Grande.jpg",
+        "unidad": 3000,
+        "inventario": 5,
+        "categoria": "papelería",
         "puntos": "false",
         "vendedor": {
-            "nombre": "gigio",
+            "nombre": "papelería medellín",
             "telefono": ""
         }
     },
     {
-        "nombre": "Afiche Madre María",
-        "imagen": "../img/Afiche-Madre-María.jpg",
-        "unidad": 1000,
-        "cantidad": 1,
-        "categoria": "detalle",
+        "nombre": "Bisturí Pequeño",
+        "imagen": "img/Bisturí-Pequeño.webp",
+        "unidad": 2000,
+        "inventario": 5,
+        "categoria": "papelería",
         "puntos": "false",
         "vendedor": {
-            "nombre": "gigio",
+            "nombre": "papelería medellín",
             "telefono": ""
         }
     },
     {
-        "nombre": "Afiche Madre",
-        "imagen": "../img/Afiche-Madre.jpg",
-        "unidad": 1000,
-        "cantidad": 1,
-        "categoria": "detalle",
+        "nombre": "Block Bond Octavo",
+        "imagen": "img/Block-Bond-Octavo.jpg",
+        "unidad": 3000,
+        "inventario": 5,
+        "categoria": "papelería",
         "puntos": "false",
         "vendedor": {
-            "nombre": "gigio",
+            "nombre": "papelería medellín",
             "telefono": ""
         }
     },
     {
-        "nombre": "Afiche Mamita Linda",
-        "imagen": "../img/Afiche-Mamita-Linda.jpg",
-        "unidad": 1000,
-        "cantidad": 1,
-        "categoria": "detalle",
+        "nombre": "Block Iris",
+        "imagen": "img/Block-Iris.jpg",
+        "unidad": 2000,
+        "inventario": 2,
+        "categoria": "papelería",
         "puntos": "false",
         "vendedor": {
-            "nombre": "gigio",
+            "nombre": "papelería medellín",
             "telefono": ""
         }
     },
     {
-        "nombre": "Balacas Tela",
-        "imagen": "../img/Balacas-Tela.jpg",
-        "unidad": 1000,
-        "cantidad": 3,
-        "categoria": "accesorio",
+        "nombre": "Bolsa Aluminio L-17 x Paquete",
+        "imagen": "img/Bolsa-Aluminio.jpg",
+        "unidad": 1700,
+        "inventario": 10,
+        "categoria": "descechable",
         "puntos": "false",
         "vendedor": {
-            "nombre": "",
+            "nombre": "todoplásticos",
             "telefono": ""
         }
     },
     {
-        "nombre": "Base Hamburguesa",
-        "imagen": "../img/Base-Hamburguesa.jpg",
-        "paquete_x50": 8400,
-        "cantidad": 1,
-        "categoria": "salsamentaria",
+        "nombre": "Bolsa Manigueta 1.5kl x100 Blanco",
+        "imagen": "img/Bolsa-Manigueta-1.5kl-Blanco.jpg",
+        "unidad": 2500,
+        "inventario": 8,
+        "categoria": "descechable",
         "puntos": "false",
         "vendedor": {
-            "nombre": "",
+            "nombre": "todoplásticos",
             "telefono": ""
         }
     },
     {
-        "nombre": "Portacomida J1",
-        "imagen": "../img/Portacomida-J1.jpg",
-        "precios": {
-            "unidad": 700,
-            "paquete": 7800,
-            "caja": 77000
+        "nombre": "Bolsa Manigueta 1.5kl x100 Negro",
+        "imagen": "img/Bolsa-Manigueta-1.5kl-Negro.jpg",
+        "unidad": 2500,
+        "inventario": 10,
+        "categoria":"descechable",
+        "puntos":"false",
+        "vendedor": {
+            "nombre": "todoplásticos",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Bolsa Manigueta 3kl x100 Blanco",
+        "imagen": "img/Bolsa-Manigueta-3kl-Blanco.jpg",
+        "unidad": 3500,
+        "inventario": 10,
+        "categoria": "descechable",
+        "puntos":"false",
+        "vendedor": {
+            "nombre": "todoplásticos",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Bolsa Manigueta 3kl x100 Negro",
+        "imagen": "img/Bolsa-Manigueta-3kl-Negro.jpg",
+        "unidad": 3500,
+        "inventario": 10,
+        "categoria":"descechable",
+        "puntos":"false",
+        "vendedor":{
+            "nombre":"todoplásticos",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre":"Bolsa Manigueta 3kl x100 Azul",
+        "imagen":"img/Bolsa-Manigueta-3kl-Azul.jpg",
+        "unidad": 3500,
+        "inventario": 2,
+        "categoria": "descechable",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "todoplásticos",
+            "telefono":""
+        }
+    },
+    {
+        "nombre":"Bolsa Manigueta 5kl x100 Blanco",
+        "imagen":"Bolsa-Manigueta-5kl-Blanco",
+        "unidad": 4800,
+        "inventario": 10,
+        "categoria":"descechable",
+        "puntos":"false",
+        "vendedor": {
+            "nombre": "todoplásticos",
+            "telefono":""
+        }
+    },
+    {
+        "nombre":"Bolsa Manigueta 5kl x100 Negro",
+        "imagen":"img/Bolsa-Manigueta-5kl-Negro.jpg",
+        "unidad": 4800,
+        "inventario": 10,
+        "categoria":"descechable",
+        "puntos":"false",
+        "vendedor": {
+            "nombre": "todoplásticos",
+            "telefono":""
+        }
+    },
+    {
+        "nombre":"Bolsa Manigueta 10kl x100 Blanco",
+        "imagen":"img/Bolsa-Manigueta-10kl-Blanco.jpg",
+        "unidad": 6300,
+        "inventario": 7,
+        "categoria":"descechable",
+        "puntos":"false",
+        "vendedor": {
+            "nombre": "todoplásticos",
+            "telefono":""
+        }
+    },
+    {
+        "nombre":"Bolsa Manigueta 10kl x100 Negro",
+        "imagen":"img/Bolsa-Manigueta-10kl-Negro",
+        "unidad": 6300,
+        "inventario": 10,
+        "categoria":"descechable",
+        "puntos":"false",
+        "vendedor": {
+            "nombre": "todoplásticos",
+            "telefono":""
+        }
+    },
+    {
+        "nombre":"Carpteta de Hilo Carta",
+        "imagen": "img/Carpeta-Hilo.jpg",
+        "unidad": 3000,
+        "inventario": 6,
+        "categoria": "papelería",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "papelería medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Cinta Enmascarar 20m 3/4''",
+        "imagen": "img/Cinta-Enmascarar.jpg",
+        "unidad": 3000,
+        "inventario": 2,
+        "categoria": "papelería",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Todoplásticos",
+            "telefono":""
+        }
+    },
+    {
+        "nombre": "Compas 2506",
+        "imagen": "img/Compas-2506.jpg",
+        "unidad": 2000,
+        "inventario": 1,
+        "categoria": "papelería",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre":"Contenedor 8oz x50",
+        "imagen": "img/Contenedor-8oz.jpg",
+        "unidad": 7500,
+        "inventario": 22,
+        "categoria": "descechable",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Contenedor 12oz x50",
+        "imagen": "img/Contenedor-12oz.jpg",
+        "unidad": 7600,
+        "inventario": 9,
+        "categoria": "descechable",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Contenedor 16oz x50",
+        "imagen": "img/Contenedor-16oz.jpg",
+        "unidad": 7500,
+        "inventario": 1521,
+        "categoria": "descechable",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Contenedor 24oz x50",
+        "imagen": "img/Contenedor-24oz.jpg",
+        "unidad": 7800,
+        "inventario": 1,
+        "categoria": "descechable",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Corrector Lápiz 8ml",
+        "imagen": "img/Corrector.jpg",
+        "unidad": 1500,
+        "inventario": 7,
+        "categoria": "papelería",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre":"Crayón Estandar x12 GIGO GS-0065",
+        "imagen": "img/Crayones.jpg",
+        "unidad": 3500,
+        "inventario": 1,
+        "categoria": "papelería",
+        "puntos": "false",
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre":"Cristaflex "
+    },
+    {
+        "nombre":"Portacomida J1 x20 Paca x200",
+        "imagen":"img/Portacomida-J1.jpg",
+        "precios":{
+            "unidad": 7800,
+            "paca": 77000
+        },
+        "inventario": 30,
+        "categoria":"descechable",
+        "puntos":"false",
+        "vendedor":{
+            "nombre":"Darnel",
+            "telefono":""
         }
     }
 ]
