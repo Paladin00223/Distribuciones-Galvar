@@ -61,7 +61,7 @@
     },
     {
         "nombre": "Bolsa Manigueta 1.5kl x100 Blanco",
-        "imagen": "img/Bolsa-Manigueta-1.5kl-Blanco.jpg",
+        "imagen": "img/Bolsa-Manigueta-1,5kl-Blanco.webp",
         "unidad": 2500,
         "inventario": 8,
         "categoria": "descechable",
@@ -73,7 +73,7 @@
     },
     {
         "nombre": "Bolsa Manigueta 1.5kl x100 Negro",
-        "imagen": "img/Bolsa-Manigueta-1.5kl-Negro.jpg",
+        "imagen": "img/Bolsa-Manigueta-1,5kl-Negro.webp",
         "unidad": 2500,
         "inventario": 10,
         "categoria":"descechable",
@@ -85,7 +85,7 @@
     },
     {
         "nombre": "Bolsa Manigueta 3kl x100 Blanco",
-        "imagen": "img/Bolsa-Manigueta-3kl-Blanco.jpg",
+        "imagen": "img/Bolsa-Manigueta-3kl-Blanco.webp",
         "unidad": 3500,
         "inventario": 10,
         "categoria": "descechable",
@@ -97,7 +97,7 @@
     },
     {
         "nombre": "Bolsa Manigueta 3kl x100 Negro",
-        "imagen": "img/Bolsa-Manigueta-3kl-Negro.jpg",
+        "imagen": "img/Bolsa-Manigueta-3kl-Negro.webp",
         "unidad": 3500,
         "inventario": 10,
         "categoria":"descechable",
@@ -109,7 +109,7 @@
     },
     {
         "nombre":"Bolsa Manigueta 3kl x100 Azul",
-        "imagen":"img/Bolsa-Manigueta-3kl-Azul.jpg",
+        "imagen":"img/Bolsa-Manigueta-3kl-Azul.webp",
         "unidad": 3500,
         "inventario": 2,
         "categoria": "descechable",
@@ -121,7 +121,7 @@
     },
     {
         "nombre":"Bolsa Manigueta 5kl x100 Blanco",
-        "imagen":"Bolsa-Manigueta-5kl-Blanco",
+        "imagen":"Bolsa-Manigueta-5kl-Blanco.webp",
         "unidad": 4800,
         "inventario": 10,
         "categoria":"descechable",
@@ -133,7 +133,7 @@
     },
     {
         "nombre":"Bolsa Manigueta 5kl x100 Negro",
-        "imagen":"img/Bolsa-Manigueta-5kl-Negro.jpg",
+        "imagen":"img/Bolsa-Manigueta-5kl-Negro.webp",
         "unidad": 4800,
         "inventario": 10,
         "categoria": "descechable",
@@ -145,7 +145,7 @@
     },
     {
         "nombre": "Bolsa Manigueta 10kl x100 Blanco",
-        "imagen": "img/Bolsa-Manigueta-10kl-Blanco.jpg",
+        "imagen": "img/Bolsa-Manigueta-10kl-Blanco.webp",
         "unidad": 6300,
         "inventario": 7,
         "categoria": "descechable",
@@ -157,7 +157,7 @@
     },
     {
         "nombre": "Bolsa Manigueta 10kl x100 Negro",
-        "imagen": "img/Bolsa-Manigueta-10kl-Negro",
+        "imagen": "img/Bolsa-Manigueta-10kl-Negro.webp",
         "unidad": 6300,
         "inventario": 10,
         "categoria": "descechable",
