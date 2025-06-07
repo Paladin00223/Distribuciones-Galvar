@@ -39,7 +39,7 @@ const llenar_contenedor = (datos) => {
 
     let html = `
     <article data-categoria="${item.categoria || ''}">
-      <img src="${item.imagen}">
+      <img src="${item.imagen}" alt="${item.nombre}">
       <h3>${nombre}</h3>
       <select class="precio">
         ${opciones}

@@ -208,4 +208,8 @@ span {
         padding-left: 0;
         text-align: center;
     }
+    .producto {
+        width: 90%;
+        margin-bottom: 20px;
+    }
 }
