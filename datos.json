@@ -412,7 +412,7 @@
         "imagen": "img/L'Bel-Perfume-Fleur.jpg",
         "unidad": 130000,
         "inventario": 1,
-        "categoría": "cosmeticos",
+        "categoria": "cosmeticos",
         "puntos": true,
         "vendedor": {
             "nombre": "L'BEL",
@@ -517,7 +517,15 @@
     },
     {
         "nombre": "Palillos El Sol",
-        "imagen": "img/Palillos-Sol"
+        "imagen": "img/Palillos-Sol.png",
+        "unidad": 1000,
+        "inventario": 1,
+        "categoria": "descechable",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
     },
     {
         "nombre":"Portacomida J1 x20 Paca x200",
