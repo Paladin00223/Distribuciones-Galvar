@@ -337,7 +337,7 @@
     },
     {
         "nombre": "Escuadra 60 grados",
-        "imagen": "img/Escuadra-65jpg",
+        "imagen": "img/Escuadra-65.jpg",
         "unidad": 1800,
         "inventario": 1,
         "categoria": "papeleria",

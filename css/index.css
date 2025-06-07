@@ -5,7 +5,7 @@
     scrollbar-width: none;
 }
 button {
-    width: 6rem;
+    width: 8rem;
     padding: 0.5rem;
     margin: 1rem;
     border-radius: 1rem;
@@ -14,8 +14,8 @@ button {
     font-size: 1rem;
 }
 img {
-    width: 14rem;
-    height: 14rem;
+    width: 10rem;
+    height: 10rem;
 }
 body {
     margin: 0;
@@ -28,9 +28,13 @@ nav {
     width: 100vw;
     background-color:  rgb(138, 102, 211);
 }
+.nav-buttons {
+    float: left;
+    padding: 0;
+}
 aside {
     height: 100vh;
-    width: 8rem;
+    width: 9.5rem;
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -70,7 +74,7 @@ h2 {
     font-size: 2rem;
 }
 main {
-    margin-left: 8rem;
+    margin-left: 9.5rem;
     background-color:rgb(211, 252, 252);
 }
 input {
@@ -97,6 +101,7 @@ main section {
     flex-wrap: wrap;
 }
 article {
+    width: 10rem;
     padding: 1rem;
     border: 1rem;
     display: flex;
@@ -116,7 +121,7 @@ article input {
 footer {
     background-color:  rgb(138, 102, 211);
     margin-left: 0rem;
-    padding-left: 9rem;
+    padding-left: 9.5rem;
     padding-top: 1rem;
     padding-bottom: 2rem;
     color: aliceblue;
@@ -124,10 +129,11 @@ footer {
 .cerrar {
     float: right;
     background-color: rgb(245, 93, 93);
-    width: 8rem
+    width: 10rem
 }
 .center {
     text-align: center;
+
 }
 .admin {
     float: right;
@@ -212,4 +218,61 @@ span {
         width: 90%;
         margin-bottom: 20px;
     }
+    .contact-button {
+        width: 20rem;
+    }
+}
+
+/* Estilos para mensajes de carga y error */
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  min-height: 300px;
+  background: var(--background-color);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.loading-container i,
+.error-container i {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.loading-container i {
+  color: var(--primary-color);
+}
+
+.error-container i {
+  color: #dc3545;
+}
+
+.error-container h2 {
+  color: #dc3545;
+  margin-bottom: 0.5rem;
+}
+
+.error-container p {
+  color: var(--text-color);
+  margin-bottom: 1.5rem;
+}
+
+.error-container button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.error-container button:hover {
+  background-color: var(--secondary-color);
 }

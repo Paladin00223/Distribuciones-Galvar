@@ -2,13 +2,58 @@
 
 const contenedor = document.getElementById('contenedor');
 
-//trae los datos de datos.json
+// Función para mostrar mensaje de error
+const mostrarError = (mensaje) => {
+  console.error('Error mostrado:', mensaje);
+  contenedor.innerHTML = `
+    <div class="error-container">
+      <i class="fas fa-exclamation-circle"></i>
+      <h2>Lo sentimos</h2>
+      <p>${mensaje}</p>
+      <button onclick="traer_datos()">Reintentar</button>
+    </div>
+  `;
+};
 
+// Función para validar y corregir datos
+const validarDatos = (datos) => {
+  console.log('Datos recibidos para validar:', datos);
+  return datos.map(item => {
+    // Corregir rutas de imágenes
+    if (item.imagen && !item.imagen.startsWith('img/')) {
+      item.imagen = `img/${item.imagen}`;
+    }
+    
+    // Asegurar que los precios sean números
+    if (item.unidad) {
+      item.unidad = Number(item.unidad);
+    }
+    
+    // Asegurar que el inventario sea un número
+    if (item.inventario) {
+      item.inventario = Number(item.inventario);
+    }
+    
+    return item;
+  });
+};
+
+//trae los datos de datos.json
 const llenar_contenedor = (datos) => {
+  console.log('Intentando llenar contenedor con datos:', datos);
+  
+  if (!datos || !Array.isArray(datos) || datos.length === 0) {
+    mostrarError('No hay productos disponibles en este momento.');
+    return;
+  }
+
+  // Validar y corregir datos
+  datos = validarDatos(datos);
+  console.log('Datos validados:', datos);
+
   let productos = '';
   const precios = {};
-
-  let puntos = {};
+  const puntos = {};
 
   for (const item of datos) {
     let opciones = '';
@@ -37,9 +82,12 @@ const llenar_contenedor = (datos) => {
       precioInicial = 0;
     }
 
+    // Calcular puntos iniciales si el producto tiene puntos (1 por cada 1000)
+    const puntosIniciales = item.puntos ? Math.floor(precioInicial / 1000) : 0;
+
     let html = `
-    <article data-categoria="${item.categoria || ''}">
-      <img src="${item.imagen}" alt="${item.nombre}">
+    <article data-categoria="${item.categoria || ''}" data-puntos="${item.puntos || false}">
+      <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='img/placeholder.jpg'">
       <h3>${nombre}</h3>
       <select class="precio">
         ${opciones}
@@ -49,12 +97,13 @@ const llenar_contenedor = (datos) => {
       <input name="cantidad" type="number" min="1" step="1" placeholder="Cantidad">
       <br>
       <b>Total = <span>$0.00</span></b>
-      <b>Acumulas = <span>$0.00</span></b>
+      <b>Acumulas = <span>$${puntosIniciales.toLocaleString('es-CO')}</span></b>
       <button>Añadir al carrito</button>
     </article>`;
     productos += html;
   }
 
+  console.log('HTML generado:', productos);
   contenedor.innerHTML = productos;
 
   document.querySelectorAll('article').forEach(article => {
@@ -62,7 +111,9 @@ const llenar_contenedor = (datos) => {
     const valorSpan = article.querySelector('b > span');
     const cantidadInput = article.querySelector('input[name="cantidad"]');
     const totalSpan = article.querySelectorAll('b > span')[1];
+    const puntosSpan = article.querySelectorAll('b > span')[2];
     const nombre = article.querySelector('h3').textContent.trim();
+    const tienePuntos = article.dataset.puntos === 'true';
 
     function actualizarPrecioYTotal() {
       const opcion = select.value;
@@ -72,6 +123,14 @@ const llenar_contenedor = (datos) => {
       const cantidad = parseInt(cantidadInput.value, 10) || 0;
       const total = precio * cantidad;
       totalSpan.textContent = `$${total.toLocaleString('es-CO')}`;
+      
+      // Calcular puntos en COP si el producto tiene puntos habilitados
+      if (tienePuntos) {
+        const puntos = Math.floor(total / 1000);
+        puntosSpan.textContent = `$${puntos.toLocaleString('es-CO')}`;
+      } else {
+        puntosSpan.textContent = '$0';
+      }
     }
 
     select.addEventListener('change', actualizarPrecioYTotal);
@@ -80,20 +139,44 @@ const llenar_contenedor = (datos) => {
   });
 }
 
-
 const traer_datos = async () => {
   try {
-    const respuesta = await fetch('datos.json'); // Ajusta la ruta según tu estructura
+    console.log('Iniciando carga de datos...');
+    contenedor.innerHTML = `
+      <div class="loading-container">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Cargando productos...</p>
+      </div>
+    `;
+
+    console.log('Intentando cargar datos.json...');
+    const respuesta = await fetch('./datos.json');
+    console.log('Respuesta recibida:', respuesta);
+    
+    if (!respuesta.ok) {
+      throw new Error(`Error HTTP: ${respuesta.status}`);
+    }
+
     const datos = await respuesta.json();
+    console.log('Datos cargados:', datos);
+    
+    if (!datos || !Array.isArray(datos)) {
+      throw new Error('Formato de datos inválido');
+    }
+
     llenar_contenedor(datos);
-    aplicarFiltros(); // Filtra los artículos generados
+    aplicarFiltros();
   } catch (error) {
-    alert('La página no está disponible, por favor intente más tarde.');
-    console.log(error);
+    console.error('Error al cargar los datos:', error);
+    mostrarError('La página no está disponible en este momento. Por favor, intente más tarde.');
   }
 };
 
-traer_datos();
+// Asegurarse de que el DOM esté cargado antes de ejecutar
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('DOM cargado, iniciando aplicación...');
+  traer_datos();
+});
 
 // Filtros y lógica de precios
 const filtro = document.getElementById('productos');

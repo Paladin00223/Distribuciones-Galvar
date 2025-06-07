@@ -9,6 +9,7 @@
     <title>Distribuciones Galvar</title>
 
     <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
   </head>
 
@@ -16,23 +17,23 @@
 
     <nav>
 
-
-      <a href="html/buy.html"><button>Comprar</button></a>
-      <a href="html/level.html"><button>Nivelar</button></a>
-      <button>Referir</button>
-      <a href="html/withdraw.html"><button>Retirar</button></a>
-        
-      <a href="html/login.html"><button class="cerrar">Cerrar Sesión</button></a>
+      <div class="nav-buttons">
+        <a href="html/buy.html"><button><i class="fas fa-shopping-cart"></i> Comprar</button></a>
+        <a href="html/level.html"><button><i class="fas fa-chart-line"></i> Nivelar</button></a>
+        <button><i class="fas fa-user-plus"></i> Referir</button>
+        <a href="html/withdraw.html"><button><i class="fas fa-money-bill-wave"></i> Retirar</button></a>
+      </div>
+      <a href="html/login.html"><button class="cerrar"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></a>
 
     </nav>
     <aside>
 
-      <a href="html/compras.html"><button>Compras</button></a>
-      <a href="html/ganancias.html"><button>Ganancias</button></a>
-      <a href="html/retiros.html"><button>Retiros</button></a>
-      <a href="html/fidelidad.html"><button>Fidelidad</button></a>
-      <a href="html/perfil.html"><button>Perfil</button></a>
-      <a href="#top"><button>Volver Al Inicio</button></a>
+      <a href="html/compras.html"><button><i class="fas fa-shopping-bag"></i> Compras</button></a>
+      <a href="html/ganancias.html"><button><i class="fas fa-coins"></i> Ganancias</button></a>
+      <a href="html/retiros.html"><button><i class="fas fa-wallet"></i> Retiros</button></a>
+      <a href="html/fidelidad.html"><button><i class="fas fa-star"></i> Fidelidad</button></a>
+      <a href="html/perfil.html"><button><i class="fas fa-user"></i> Perfil</button></a>
+      <a href="#top"><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a>
 
     </aside>
     <header>
@@ -54,7 +55,7 @@
 
     <main>
 
-      <div>
+      <div class="search-container">
 
         <select id="productos">
 
@@ -72,9 +73,12 @@
 
         </select>
 
-        <label for="buscar"></label>
-        <input type="search" id="buscar" placeholder="Buscar Producto" />
-        <button type="button" onclick="aplicarFiltros()">Buscar</button>
+        <div class="search-box">
+          <input type="search" id="buscar" placeholder="Buscar Producto" />
+          <button type="button" onclick="aplicarFiltros()">
+            <i class="fas fa-search"></i> Buscar
+          </button>
+        </div>
 
       </div>
 
@@ -85,15 +89,21 @@
 
     <footer>
 
-      <h2 class="center" style="color: yellow;">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
-      <p style="color: yellow; font-size: 2rem;">¡La fidelización por puntos aún está en mantenimiento!<br>¡Muy Pronto!</p>
-      <button>Contacto</button>
+      <h2 class="center">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
+      <p class="maintenance-message">
+        <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está en mantenimiento!<br>
+        ¡Muy Pronto!
+      </p>
+      <button class="contact-button">
+        <i class="fab fa-whatsapp"></i> Contacto: 320 818 6026
+      </button>
       <button class="admin"></button>
       <br>
       &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
     </footer>
 
     <script src="js/app.js"></script>
+    <script src="js/contacto.js"></script>
   </body>
 
 </html>
