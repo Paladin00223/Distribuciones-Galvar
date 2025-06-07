@@ -4,10 +4,10 @@
         "imagen": "img/Bisturí-Grande.jpg",
         "unidad": 3000,
         "inventario": 5,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
-            "nombre": "papelería medellín",
+            "nombre": "Papelería Medellín",
             "telefono": ""
         }
     },
@@ -16,10 +16,10 @@
         "imagen": "img/Bisturí-Pequeño.webp",
         "unidad": 2000,
         "inventario": 5,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
-            "nombre": "papelería medellín",
+            "nombre": "Papelería Medellín",
             "telefono": ""
         }
     },
@@ -28,10 +28,10 @@
         "imagen": "img/Block-Bond-Octavo.jpg",
         "unidad": 3000,
         "inventario": 5,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
-            "nombre": "papelería medellín",
+            "nombre": "Papelería Medellín",
             "telefono": ""
         }
     },
@@ -40,10 +40,10 @@
         "imagen": "img/Block-Iris.jpg",
         "unidad": 2000,
         "inventario": 2,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
-            "nombre": "papelería medellín",
+            "nombre": "Papelería Medellín",
             "telefono": ""
         }
     },
@@ -53,9 +53,9 @@
         "unidad": 1700,
         "inventario": 10,
         "categoria": "descechable",
-        "puntos": "false",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono": ""
         }
     },
@@ -65,9 +65,9 @@
         "unidad": 2500,
         "inventario": 8,
         "categoria": "descechable",
-        "puntos": "false",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono": ""
         }
     },
@@ -77,9 +77,9 @@
         "unidad": 2500,
         "inventario": 10,
         "categoria":"descechable",
-        "puntos":"false",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono": ""
         }
     },
@@ -89,9 +89,9 @@
         "unidad": 3500,
         "inventario": 10,
         "categoria": "descechable",
-        "puntos":"false",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono": ""
         }
     },
@@ -101,9 +101,9 @@
         "unidad": 3500,
         "inventario": 10,
         "categoria":"descechable",
-        "puntos":"false",
+        "puntos": false,
         "vendedor":{
-            "nombre":"todoplásticos",
+            "nombre":"Todoplásticos",
             "telefono": ""
         }
     },
@@ -113,9 +113,9 @@
         "unidad": 3500,
         "inventario": 2,
         "categoria": "descechable",
-        "puntos": "false",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono":""
         }
     },
@@ -125,9 +125,9 @@
         "unidad": 4800,
         "inventario": 10,
         "categoria":"descechable",
-        "puntos":"false",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono":""
         }
     },
@@ -136,35 +136,35 @@
         "imagen":"img/Bolsa-Manigueta-5kl-Negro.jpg",
         "unidad": 4800,
         "inventario": 10,
-        "categoria":"descechable",
-        "puntos":"false",
+        "categoria": "descechable",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono":""
         }
     },
     {
-        "nombre":"Bolsa Manigueta 10kl x100 Blanco",
-        "imagen":"img/Bolsa-Manigueta-10kl-Blanco.jpg",
+        "nombre": "Bolsa Manigueta 10kl x100 Blanco",
+        "imagen": "img/Bolsa-Manigueta-10kl-Blanco.jpg",
         "unidad": 6300,
         "inventario": 7,
-        "categoria":"descechable",
-        "puntos":"false",
+        "categoria": "descechable",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
+            "nombre": "Todoplásticos",
             "telefono":""
         }
     },
     {
-        "nombre":"Bolsa Manigueta 10kl x100 Negro",
-        "imagen":"img/Bolsa-Manigueta-10kl-Negro",
+        "nombre": "Bolsa Manigueta 10kl x100 Negro",
+        "imagen": "img/Bolsa-Manigueta-10kl-Negro",
         "unidad": 6300,
         "inventario": 10,
-        "categoria":"descechable",
-        "puntos":"false",
+        "categoria": "descechable",
+        "puntos": false,
         "vendedor": {
-            "nombre": "todoplásticos",
-            "telefono":""
+            "nombre": "Todoplásticos",
+            "telefono": ""
         }
     },
     {
@@ -172,10 +172,10 @@
         "imagen": "img/Carpeta-Hilo.jpg",
         "unidad": 3000,
         "inventario": 6,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
-            "nombre": "papelería medellín",
+            "nombre": "Papelería Medellín",
             "telefono": ""
         }
     },
@@ -184,8 +184,8 @@
         "imagen": "img/Cinta-Enmascarar.jpg",
         "unidad": 3000,
         "inventario": 2,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
             "nombre": "Todoplásticos",
             "telefono":""
@@ -196,8 +196,8 @@
         "imagen": "img/Compas-2506.jpg",
         "unidad": 2000,
         "inventario": 1,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
             "nombre": "Papelería Medellín",
             "telefono": ""
@@ -209,7 +209,7 @@
         "unidad": 7500,
         "inventario": 22,
         "categoria": "descechable",
-        "puntos": "false",
+        "puntos": false,
         "vendedor": {
             "nombre": "Darnel",
             "telefono": ""
@@ -221,7 +221,7 @@
         "unidad": 7600,
         "inventario": 9,
         "categoria": "descechable",
-        "puntos": "false",
+        "puntos": false,
         "vendedor": {
             "nombre": "Darnel",
             "telefono": ""
@@ -233,7 +233,7 @@
         "unidad": 7500,
         "inventario": 1521,
         "categoria": "descechable",
-        "puntos": "false",
+        "puntos": false,
         "vendedor": {
             "nombre": "Darnel",
             "telefono": ""
@@ -245,7 +245,7 @@
         "unidad": 7800,
         "inventario": 1,
         "categoria": "descechable",
-        "puntos": "false",
+        "puntos": false,
         "vendedor": {
             "nombre": "Darnel",
             "telefono": ""
@@ -256,27 +256,268 @@
         "imagen": "img/Corrector.jpg",
         "unidad": 1500,
         "inventario": 7,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
             "nombre": "Papelería Medellín",
             "telefono": ""
         }
     },
     {
-        "nombre":"Crayón Estandar x12 GIGO GS-0065",
+        "nombre": "Crayón Estandar x12 GIGO GS-0065",
         "imagen": "img/Crayones.jpg",
         "unidad": 3500,
         "inventario": 1,
-        "categoria": "papelería",
-        "puntos": "false",
+        "categoria": "papeleria",
+        "puntos": false,
         "vendedor": {
             "nombre": "Papelería Medellín",
             "telefono": ""
         }
     },
     {
-        "nombre":"Cristaflex "
+        "nombre": "Cuchara 6-PP x100",
+        "imagen": "img/Cuchara-6-PP.jpg",
+        "unidad": 4900,
+        "inventario": 1,
+        "categoria": "descechable",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Cyzone Girlink Colonia 50ml",
+        "imagen": "img/Cyzone-Girlink.jpg",
+        "unidad": 30000,
+        "inventario": 1,
+        "categoria": "cosmeticos",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Cyzone",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Cyzone InLove Colonia 50ml",
+        "imagen": "img/Cyzone-InLove.jpg",
+        "unidad": 30000,
+        "inventario": 1,
+        "categoria": "cosmeticos",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Cyzone",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Cyzone Sweet Black Perfume 50ml",
+        "imagen": "img/Cyzone-Sweet-Black.jpg",
+        "unidad": 30000,
+        "inventario": 1,
+        "categoria": "cosmeticos",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Cyzone",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Escuadra 45 grados",
+        "imagen": "img/Escuadra-45.jpg",
+        "unidad": 2100,
+        "inventario": 1,
+        "categoria": "papeleria",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Escuadra 60 grados",
+        "imagen": "img/Escuadra-65",
+        "unidad": 1800,
+        "inventario": 1,
+        "categoria": "papeleria",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Ésika Desodorante Roll On Expression",
+        "imagen": "img/Esika-Desodorante.jpg",
+        "unidad": 4000,
+        "inventario": 1,
+        "categoria": "cosmeticos",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Ésika",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Espejo de bolsillo",
+        "imagen": "img/Espejo.jpg",
+        "unidad": 1000,
+        "inventario": 1,
+        "categoria": "cacharro",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Grapadora Corona ST207",
+        "imagen": "img/Grapadora-Corona-ST-207.webp",
+        "unidad": 0,
+        "inventario": 1,
+        "categoria": "papeleria",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Juego de Escalera",
+        "imagen": "img/Juego-Escalera.jpg",
+        "unidad": 1000,
+        "inventario": 1,
+        "categoria": "juego",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "L'BEL Perfume Mithyka 50ml",
+        "imagen": "img/L'Bel-Mithyka.jpg",
+        "unidad": 50000,
+        "inventario": 1,
+        "categoria": "cosmeticos",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "L'BEL",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "L'BEL Perfume Fleur 50ml",
+        "imagen": "img/L'Bel-Perfume-Fleur.jpg",
+        "unidad": 130000,
+        "inventario": 1,
+        "categoría": "cosmeticos",
+        "puntos": true,
+        "vendedor": {
+            "nombre": "L'BEL",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Lápiz HB caja x 12",
+        "imagen": "img/Lápiz-HB.jpg",
+        "unidad": 10000,
+        "inventario": 1,
+        "categoria": "papeleria",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Lápiz HB2 caja x 12",
+        "imagen": "img/Lápiz-HB2.webp",
+        "unidad": 10000,
+        "inventario": 1,
+        "categoria": "papeleria",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Lápiz HB Negro x12",
+        "imagen": "img/Lápiz-Negro.webp",
+        "unidad": 10000,
+        "inventario": 1,
+        "categoria": "papeleria",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Letra Cambio Libreta",
+        "imagen": "img/Libreta.jpg",
+        "unidad": 0,
+        "inventario": 1,
+        "categoria": "papeleria",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Papelería Medellín",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Matamoscas en forma de Mano",
+        "imagen": "img/Matamoscas-Mano.jpg",
+        "unidad": 2500,
+        "inventario": 2,
+        "categoria": "cacharro",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Mechera Macao con Linterna",
+        "imagen": "img/Mechera-Macao.jpg",
+        "unidad": 1000,
+        "inventario": 20,
+        "categoria": "cacharro",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Colventas",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Mezcladores Colombianito x100",
+        "imagen": "img/Mezcladores-Colombianito.jpg",
+        "unidad": 1200,
+        "inventario": 1,
+        "categoria": "descechable",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Molde de Aluminio x125",
+        "imagen": "img/Molde-Aluminio.jpg",
+        "unidad": 27800,
+        "inventario": 3,
+        "categoria": "descechable",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Palillos El Sol",
+        "imagen": "img/Palillos-Sol"
     },
     {
         "nombre":"Portacomida J1 x20 Paca x200",
@@ -287,10 +528,10 @@
         },
         "inventario": 30,
         "categoria":"descechable",
-        "puntos":"false",
-        "vendedor":{
-            "nombre":"Darnel",
-            "telefono":""
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Darnel",
+            "telefono": ""
         }
     }
 ]

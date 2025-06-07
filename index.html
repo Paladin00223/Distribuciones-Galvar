@@ -60,48 +60,25 @@
           <option value="todo">Todos los productos</option>
           <option value="aseo">Aseo</option>
           <option value="cacharro">Cacharrería</option>
+          <option value="cosmeticos">Cosméticos</option>
           <option value="descechable">Descechables</option>
           <option value="detalle">Detalles</option>
           <option value="ferreteria">Ferretería</option>
           <option value="hogar">Hogar</option>
+          <option value="juego">Juegos</option>
           <option value="papeleria">Papelería</option>
+          
 
         </select>
 
         <label for="buscar"></label>
-        <input type="search" id="buscar" placeholder="Buscar producto" />
+        <input type="search" id="buscar" placeholder="Buscar Producto" />
         <button type="button" onclick="aplicarFiltros()">Buscar</button>
 
       </div>
 
       <section id="contenedor">
-
-        <article data-categoria="descechable">
-
-          <img src="img/Portacomida-J1.jpg" alt="J1">
-          <h3>Portacomida J1</h3>
-
-		  	  <select class="precio">
-
-            <option value="unidad">Unidad</option>
-				    <option value="paquete">Paquete x 20</option>
-				    <option value="caja">Paca x 200</option>
-
-	  	    </select>
-
-          <b>Valor: <span>$0.00</span></b><br>
-          
-          <label for="cant-J1"><b>Cantidad</b></label>
-          <input id="cant-J1" name="cantidad" type="number" min="1" step="1" placeholder="Cantidad">
-
-          <br>
-          <b>Total = <span>$0.00</span></b>
-          <b>Acumulas = <span>$0.00</span></b>
-
-    		  <button>Añadir al carrito</button>
-
-        </article>
-        
+        <!-- Los artículos se llenan dinámicamente con JS -->
       </section>
     </main>
 

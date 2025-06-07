@@ -8,6 +8,8 @@ const llenar_contenedor = (datos) => {
   let productos = '';
   const precios = {};
 
+  let puntos = {};
+
   for (const item of datos) {
     let opciones = '';
     let precioInicial = 0;
