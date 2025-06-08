@@ -3,9 +3,226 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Comprar</title>
+    <title>Comprar - Distribuciones Galvar</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <style>
+        .buy-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .cart-table th, .cart-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .cart-table th {
+            background-color: #f5f5f5;
+        }
+        .quantity-input {
+            width: 60px;
+            padding: 5px;
+            text-align: center;
+        }
+        .remove-btn {
+            background-color: #ff4444;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        .shipping-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .total-section {
+            text-align: right;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        .checkout-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            float: right;
+        }
+        .checkout-btn:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
-    <label for=""></label>
+    <div class="buy-container">
+        <h1>Carrito de Compras</h1>
+        
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Los items del carrito se cargarán dinámicamente -->
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            <p>Total: $<span id="total-amount">0</span></p>
+        </div>
+
+        <div class="shipping-form">
+            <h2>Información de Envío</h2>
+            <div class="form-group">
+                <label for="name">Nombre completo:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" required>
+            </div>
+        </div>
+
+        <button class="checkout-btn" onclick="processCheckout()">Confirmar Compra</button>
+    </div>
+
+    <script>
+        // Cargar productos del carrito desde localStorage
+        function loadCart() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            let total = 0;
+
+            cartItemsContainer.innerHTML = '';
+            
+            cart.forEach((item, index) => {
+                const row = document.createElement('tr');
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+
+                row.innerHTML = `
+                    <td>${item.name}</td>
+                    <td>$${item.price}</td>
+                    <td>
+                        <input type="number" class="quantity-input" 
+                               value="${item.quantity}" min="1" 
+                               onchange="updateQuantity(${index}, this.value)">
+                    </td>
+                    <td>$${subtotal}</td>
+                    <td>
+                        <button class="remove-btn" onclick="removeItem(${index})">Eliminar</button>
+                    </td>
+                `;
+                cartItemsContainer.appendChild(row);
+            });
+
+            document.getElementById('total-amount').textContent = total;
+        }
+
+        // Actualizar cantidad de un producto
+        function updateQuantity(index, newQuantity) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart[index].quantity = parseInt(newQuantity);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Eliminar producto del carrito
+        function removeItem(index) {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            loadCart();
+        }
+
+        // Procesar la compra
+        function processCheckout() {
+            const name = document.getElementById('name').value;
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            if (!name || !address || !phone || !email) {
+                alert('Por favor complete todos los campos del formulario');
+                return;
+            }
+
+            // Obtener el carrito actual
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert('El carrito está vacío');
+                return;
+            }
+
+            // Crear el registro de compra
+            const compra = {
+                id: 'COMP-' + Date.now(),
+                fecha: new Date().toISOString(),
+                productos: cart,
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                estado: 'Pendiente',
+                cliente: {
+                    nombre: name,
+                    direccion: address,
+                    telefono: phone,
+                    email: email
+                }
+            };
+
+            // Guardar en el historial de compras
+            const historialCompras = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            historialCompras.push(compra);
+            localStorage.setItem('historialCompras', JSON.stringify(historialCompras));
+
+            // Limpiar el carrito
+            localStorage.removeItem('cart');
+
+            // Mostrar mensaje de éxito
+            alert('¡Gracias por su compra! Recibirá un correo con los detalles de su pedido.');
+            
+            // Redirigir a la página de compras
+            window.location.href = 'compras.html';
+        }
+
+        // Cargar el carrito al iniciar la página
+        window.onload = loadCart;
+    </script>
 </body>
 </html>

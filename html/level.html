@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Niveles - Distribuciones Galvar</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .level-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .level-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .level-header h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .level-header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .nivel-actual {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .nivel-actual h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .nivel-actual .nivel-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 20px;
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+
+        .nivel-actual .beneficios {
+            margin-top: 15px;
+            color: #666;
+        }
+
+        .niveles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .nivel-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .nivel-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .nivel-card.bloqueado {
+            opacity: 0.7;
+            position: relative;
+        }
+
+        .nivel-card.bloqueado::after {
+            content: '🔒';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+        }
+
+        .nivel-card h3 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nivel-card .precio {
+            font-size: 1.5em;
+            color: #2ecc71;
+            margin: 15px 0;
+            font-weight: bold;
+        }
+
+        .nivel-card .beneficios {
+            margin: 15px 0;
+            color: #666;
+        }
+
+        .nivel-card .beneficios ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .nivel-card .beneficios li {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nivel-card .beneficios i {
+            color: #3498db;
+        }
+
+        .btn-comprar {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            transition: background-color 0.3s;
+        }
+
+        .btn-comprar:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-comprar.bloqueado {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .referidos-info {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        .referidos-info h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .referidos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .referido-card {
+            background-color: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .referido-card h4 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .referido-card p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 20px;
+            width: 90%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            right: 20px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="level-container">
+        <div class="level-header">
+            <h1>Sistema de Niveles</h1>
+            <p>Compra niveles para aumentar tus beneficios y ganancias</p>
+        </div>
+
+        <div class="nivel-actual">
+            <h2>Tu Nivel Actual</h2>
+            <div class="nivel-badge" id="nivel-actual-badge">Nivel 0</div>
+            <div class="beneficios" id="beneficios-actuales">
+                No tienes beneficios activos
+            </div>
+        </div>
+
+        <div class="niveles-grid" id="niveles-grid">
+            <!-- Los niveles se cargarán dinámicamente -->
+        </div>
+
+        <div class="referidos-info">
+            <h2>Tu Red de Referidos</h2>
+            <div class="referidos-grid" id="referidos-grid">
+                <!-- Los referidos se cargarán dinámicamente -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación de compra -->
+    <div id="compra-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Confirmar Compra de Nivel</h2>
+            <div id="modal-contenido">
+                <!-- El contenido se cargará dinámicamente -->
+            </div>
+            <button class="btn-comprar" id="confirmar-compra">Confirmar Compra</button>
+        </div>
+    </div>
+
+    <script>
+        // Datos de los niveles
+        const niveles = [
+            {
+                id: 1,
+                nombre: "Nivel 1",
+                precio: 50000,
+                beneficios: [
+                    "Puedes referir personas",
+                    "Ganas puntos de tus referidos directos"
+                ]
+            },
+            {
+                id: 2,
+                nombre: "Nivel 2",
+                precio: 100000,
+                beneficios: [
+                    "Ganas puntos de tus referidos directos",
+                    "Ganas puntos de los referidos de tus referidos"
+                ]
+            },
+            {
+                id: 3,
+                nombre: "Nivel 3",
+                precio: 150000,
+                beneficios: [
+                    "Ganas puntos de tus referidos directos",
+                    "Ganas puntos de los referidos de tus referidos",
+                    "Ganas puntos de la tercera línea de referidos"
+                ]
+            },
+            // ... Agregar más niveles hasta el 15
+        ];
+
+        // Cargar datos del usuario
+        function cargarDatosUsuario() {
+            const usuario = JSON.parse(localStorage.getItem('usuario')) || {
+                nivel: 0,
+                puntos: 0,
+                referidos: []
+            };
+
+            // Actualizar nivel actual
+            document.getElementById('nivel-actual-badge').textContent = `Nivel ${usuario.nivel}`;
+            
+            // Actualizar beneficios actuales
+            const beneficiosActuales = document.getElementById('beneficios-actuales');
+            if (usuario.nivel === 0) {
+                beneficiosActuales.innerHTML = 'No tienes beneficios activos';
+            } else {
+                const nivelActual = niveles[usuario.nivel - 1];
+                beneficiosActuales.innerHTML = `
+                    <h3>Beneficios Activos:</h3>
+                    <ul>
+                        ${nivelActual.beneficios.map(beneficio => 
+                            `<li><i class="fas fa-check"></i> ${beneficio}</li>`
+                        ).join('')}
+                    </ul>
+                `;
+            }
+
+            return usuario;
+        }
+
+        // Cargar niveles disponibles
+        function cargarNiveles() {
+            const usuario = JSON.parse(localStorage.getItem('usuario')) || { nivel: 0 };
+            const grid = document.getElementById('niveles-grid');
+
+            grid.innerHTML = niveles.map((nivel, index) => `
+                <div class="nivel-card ${index + 1 <= usuario.nivel ? 'comprado' : index + 1 === usuario.nivel + 1 ? '' : 'bloqueado'}">
+                    <h3>
+                        <i class="fas fa-layer-group"></i>
+                        ${nivel.nombre}
+                    </h3>
+                    <div class="precio">$${nivel.precio.toLocaleString('es-CO')}</div>
+                    <div class="beneficios">
+                        <ul>
+                            ${nivel.beneficios.map(beneficio => 
+                                `<li><i class="fas fa-check-circle"></i> ${beneficio}</li>`
+                            ).join('')}
+                        </ul>
+                    </div>
+                    <button class="btn-comprar ${index + 1 <= usuario.nivel ? 'bloqueado' : ''}" 
+                            onclick="mostrarModalCompra(${nivel.id})"
+                            ${index + 1 <= usuario.nivel ? 'disabled' : ''}>
+                        ${index + 1 <= usuario.nivel ? 'Comprado' : 'Comprar Nivel'}
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        // Cargar referidos
+        function cargarReferidos() {
+            const usuario = JSON.parse(localStorage.getItem('usuario')) || { referidos: [] };
+            const grid = document.getElementById('referidos-grid');
+
+            if (usuario.referidos.length === 0) {
+                grid.innerHTML = '<p>No tienes referidos aún</p>';
+                return;
+            }
+
+            grid.innerHTML = usuario.referidos.map(referido => `
+                <div class="referido-card">
+                    <h4>${referido.nombre}</h4>
+                    <p><i class="fas fa-calendar"></i> Fecha: ${new Date(referido.fecha).toLocaleDateString()}</p>
+                    <p><i class="fas fa-coins"></i> Puntos generados: ${referido.puntos}</p>
+                </div>
+            `).join('');
+        }
+
+        // Mostrar modal de compra
+        function mostrarModalCompra(nivelId) {
+            const nivel = niveles.find(n => n.id === nivelId);
+            const modal = document.getElementById('compra-modal');
+            const contenido = document.getElementById('modal-contenido');
+
+            contenido.innerHTML = `
+                <p>¿Deseas comprar el ${nivel.nombre}?</p>
+                <p>Precio: $${nivel.precio.toLocaleString('es-CO')}</p>
+                <h3>Beneficios:</h3>
+                <ul>
+                    ${nivel.beneficios.map(beneficio => 
+                        `<li><i class="fas fa-check"></i> ${beneficio}</li>`
+                    ).join('')}
+                </ul>
+            `;
+
+            document.getElementById('confirmar-compra').onclick = () => confirmarCompra(nivelId);
+            modal.style.display = 'block';
+        }
+
+        // Confirmar compra de nivel
+        function confirmarCompra(nivelId) {
+            const usuario = JSON.parse(localStorage.getItem('usuario')) || { nivel: 0 };
+            const nivel = niveles.find(n => n.id === nivelId);
+
+            // Aquí iría la lógica de pago
+            // Por ahora solo actualizamos el nivel
+            usuario.nivel = nivelId;
+            localStorage.setItem('usuario', JSON.stringify(usuario));
+
+            // Actualizar la interfaz
+            cargarDatosUsuario();
+            cargarNiveles();
+            cargarReferidos();
+
+            // Cerrar modal
+            document.getElementById('compra-modal').style.display = 'none';
+
+            alert(`¡Felicidades! Has adquirido el ${nivel.nombre}`);
+        }
+
+        // Cerrar modal
+        document.querySelector('.close-modal').onclick = function() {
+            document.getElementById('compra-modal').style.display = 'none';
+        }
+
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            const modal = document.getElementById('compra-modal');
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Cargar datos al iniciar la página
+        document.addEventListener('DOMContentLoaded', () => {
+            cargarDatosUsuario();
+            cargarNiveles();
+            cargarReferidos();
+        });
+    </script>
+</body>
+</html>

@@ -94,11 +94,11 @@ const llenar_contenedor = (datos) => {
       </select>
       <b>Valor: <span>$${(precioInicial ?? 0).toLocaleString('es-CO')}</span></b><br>
       <label><b>Cantidad</b></label>
-      <input name="cantidad" type="number" min="1" step="1" placeholder="Cantidad">
+      <input name="cantidad" type="number" min="1" step="1" value="1" placeholder="Cantidad">
       <br>
       <b>Total = <span>$0.00</span></b>
       <b>Acumulas = <span>$${puntosIniciales.toLocaleString('es-CO')}</span></b>
-      <button>Añadir al carrito</button>
+      <button onclick="addToCart(this)">Añadir al carrito</button>
     </article>`;
     productos += html;
   }
@@ -196,3 +196,100 @@ function aplicarFiltros() {
 
 filtro.addEventListener('change', aplicarFiltros);
 buscarInput.addEventListener('input', aplicarFiltros);
+
+// Función para añadir al carrito
+function addToCart(button) {
+    const article = button.closest('article');
+    const nombre = article.querySelector('h3').textContent;
+    const select = article.querySelector('.precio');
+    const precio = parseFloat(select.value);
+    const cantidad = parseInt(article.querySelector('input[name="cantidad"]').value) || 1;
+    const total = parseFloat(article.querySelectorAll('b > span')[1].textContent.replace('$', '').replace(/,/g, ''));
+
+    if (cantidad < 1) {
+        alert('Por favor, seleccione una cantidad válida');
+        return;
+    }
+
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Verificar si el producto ya está en el carrito
+    const existingProductIndex = cart.findIndex(item => item.name === nombre);
+    
+    if (existingProductIndex !== -1) {
+        // Si el producto ya existe, actualizar la cantidad
+        cart[existingProductIndex].quantity += cantidad;
+    } else {
+        // Si es un producto nuevo, añadirlo al carrito
+        cart.push({
+            name: nombre,
+            price: precio,
+            quantity: cantidad
+        });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    
+    // Mostrar confirmación con un mensaje más visible
+    const mensaje = document.createElement('div');
+    mensaje.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4CAF50;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 5px;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    `;
+    mensaje.textContent = `¡${cantidad} ${nombre} añadido(s) al carrito!`;
+    document.body.appendChild(mensaje);
+
+    // Eliminar el mensaje después de 3 segundos
+    setTimeout(() => {
+        mensaje.remove();
+    }, 3000);
+
+    // Actualizar el contador del carrito si existe
+    updateCartCount();
+}
+
+// Función para actualizar el contador del carrito
+function updateCartCount() {
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    
+    // Buscar el botón del carrito y actualizar su contador
+    const cartButton = document.querySelector('a[href="html/buy.html"] button');
+    if (cartButton) {
+        // Crear o actualizar el contador
+        let counter = cartButton.querySelector('.cart-counter');
+        if (!counter) {
+            counter = document.createElement('span');
+            counter.className = 'cart-counter';
+            counter.style.cssText = `
+                position: absolute;
+                top: -8px;
+                right: -8px;
+                background-color: #ff4444;
+                color: white;
+                border-radius: 50%;
+                padding: 2px 6px;
+                font-size: 12px;
+                min-width: 18px;
+                text-align: center;
+            `;
+            cartButton.style.position = 'relative';
+            cartButton.appendChild(counter);
+        }
+        counter.textContent = totalItems;
+    }
+}
+
+// Llamar a updateCartCount cuando se carga la página
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM cargado, iniciando aplicación...');
+    traer_datos();
+    updateCartCount();
+});
