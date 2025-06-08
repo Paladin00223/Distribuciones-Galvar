@@ -287,6 +287,24 @@
                 );
             }
 
+            // Si el estado es "completado", sumar puntos al acumulado
+            if (estado === 'completado') {
+                const usuario = JSON.parse(localStorage.getItem('usuario')) || { puntos: 0 };
+                let puntosTotales = 0;
+
+                comprasFiltradas.forEach(compra => {
+                    if (compra.estado.toLowerCase() === 'completado') {
+                        // Calcular puntos basados en el total de la compra (1 punto por cada 1000)
+                        const puntosCompra = Math.floor(compra.total / 1000);
+                        puntosTotales += puntosCompra;
+                    }
+                });
+
+                // Actualizar puntos del usuario
+                usuario.puntos = (usuario.puntos || 0) + puntosTotales;
+                localStorage.setItem('usuario', JSON.stringify(usuario));
+            }
+
             const tbody = document.getElementById('compras-body');
             tbody.innerHTML = '';
 
