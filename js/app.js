@@ -63,21 +63,22 @@ const llenar_contenedor = (datos) => {
     if (item.precios) {
       precios[nombre] = {};
       for (const presentacion in item.precios) {
-        opciones += `<option value="${presentacion}">${presentacion.charAt(0).toUpperCase() + presentacion.slice(1)}</option>`;
-        precios[nombre][presentacion] = item.precios[presentacion];
+        const precio = item.precios[presentacion];
+        opciones += `<option value="${precio}">${presentacion.charAt(0).toUpperCase() + presentacion.slice(1)}</option>`;
+        precios[nombre][presentacion] = precio;
       }
       // Si tiene unidad, úsala, si no, toma el primer precio
       precioInicial = item.precios.unidad ?? Object.values(item.precios)[0];
     } else if (item.unidad) {
-      opciones = `<option value="unidad">Unidad</option>`;
+      opciones = `<option value="${item.unidad}">Unidad</option>`;
       precios[nombre] = { unidad: item.unidad };
       precioInicial = item.unidad;
     } else if (item.paquete_x50) {
-      opciones = `<option value="paquete_x50">Paquete x 50</option>`;
+      opciones = `<option value="${item.paquete_x50}">Paquete x 50</option>`;
       precios[nombre] = { paquete_x50: item.paquete_x50 };
       precioInicial = item.paquete_x50;
     } else {
-      opciones = `<option value="sin_precio">Sin precio</option>`;
+      opciones = `<option value="0">Sin precio</option>`;
       precios[nombre] = { sin_precio: 0 };
       precioInicial = 0;
     }
@@ -116,9 +117,7 @@ const llenar_contenedor = (datos) => {
     const tienePuntos = article.dataset.puntos === 'true';
 
     function actualizarPrecioYTotal() {
-      const opcion = select.value;
-      // Siempre verifica que exista el precio antes de usarlo
-      const precio = (precios[nombre] && precios[nombre][opcion]) ? precios[nombre][opcion] : 0;
+      const precio = parseFloat(select.value);
       valorSpan.textContent = `$${precio.toLocaleString('es-CO')}`;
       const cantidad = parseInt(cantidadInput.value, 10) || 0;
       const total = precio * cantidad;
@@ -204,7 +203,6 @@ function addToCart(button) {
     const select = article.querySelector('.precio');
     const precio = parseFloat(select.value);
     const cantidad = parseInt(article.querySelector('input[name="cantidad"]').value) || 1;
-    const total = parseFloat(article.querySelectorAll('b > span')[1].textContent.replace('$', '').replace(/,/g, ''));
 
     if (cantidad < 1) {
         alert('Por favor, seleccione una cantidad válida');

@@ -63,6 +63,109 @@
             margin-top: 30px;
         }
 
+        .level-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .level-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .level-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .level-title {
+            font-size: 1.5em;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .level-price {
+            font-size: 1.3em;
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .level-benefits {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .level-benefits li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            display: flex;
+            align-items: center;
+        }
+
+        .level-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .level-benefits li i {
+            color: #27ae60;
+            margin-right: 10px;
+        }
+
+        .upgrade-btn {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1.1em;
+            width: 100%;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        .upgrade-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .upgrade-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .current-level {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .current-level h2 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .current-level p {
+            color: #7f8c8d;
+            margin: 0;
+        }
+
+        .level-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
         .nivel-card {
             background-color: white;
             border-radius: 10px;
@@ -214,6 +317,20 @@
         .close-modal:hover {
             color: #333;
         }
+
+        .level-filters {
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .level-filters select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            min-width: 150px;
+        }
     </style>
 </head>
 <body>
@@ -223,15 +340,21 @@
             <p>Compra niveles para aumentar tus beneficios y ganancias</p>
         </div>
 
-        <div class="nivel-actual">
+        <div class="current-level">
             <h2>Tu Nivel Actual</h2>
-            <div class="nivel-badge" id="nivel-actual-badge">Nivel 0</div>
-            <div class="beneficios" id="beneficios-actuales">
-                No tienes beneficios activos
-            </div>
+            <p id="current-level-display">Nivel 0</p>
         </div>
 
-        <div class="niveles-grid" id="niveles-grid">
+        <div class="level-filters">
+            <select id="level-filter" onchange="filterLevels()">
+                <option value="all">Todos los Niveles</option>
+                <option value="basic">Niveles Básicos (1-5)</option>
+                <option value="medium">Niveles Medios (6-10)</option>
+                <option value="premium">Niveles Premium (11-15)</option>
+            </select>
+        </div>
+
+        <div class="level-grid" id="level-grid">
             <!-- Los niveles se cargarán dinámicamente -->
         </div>
 
@@ -256,38 +379,114 @@
     </div>
 
     <script>
-        // Datos de los niveles
-        const niveles = [
-            {
-                id: 1,
-                nombre: "Nivel 1",
-                precio: 50000,
-                beneficios: [
-                    "Puedes referir personas",
-                    "Ganas puntos de tus referidos directos"
-                ]
-            },
-            {
-                id: 2,
-                nombre: "Nivel 2",
-                precio: 100000,
-                beneficios: [
-                    "Ganas puntos de tus referidos directos",
-                    "Ganas puntos de los referidos de tus referidos"
-                ]
-            },
-            {
-                id: 3,
-                nombre: "Nivel 3",
-                precio: 150000,
-                beneficios: [
-                    "Ganas puntos de tus referidos directos",
-                    "Ganas puntos de los referidos de tus referidos",
-                    "Ganas puntos de la tercera línea de referidos"
-                ]
-            },
-            // ... Agregar más niveles hasta el 15
-        ];
+        const levelPrices = {
+            0: 0,
+            1: 1000,
+            2: 2000,
+            3: 5000,
+            4: 10000,
+            5: 20000,
+            6: 50000,
+            7: 100000,
+            8: 200000,
+            9: 500000,
+            10: 1000000,
+            11: 2000000,
+            12: 5000000,
+            13: 10000000,
+            14: 20000000,
+            15: 50000000
+        };
+
+        function createLevelCard(level) {
+            return `
+                <div class="level-card" data-level="${level}">
+                    <div class="level-header">
+                        <h3 class="level-title">Nivel ${level}</h3>
+                        <span class="level-price">${level === 0 ? 'Gratis' : '$' + levelPrices[level].toLocaleString('es-CO')}</span>
+                    </div>
+                    <ul class="level-benefits">
+                        <!-- Los beneficios se agregarán después -->
+                    </ul>
+                    <button class="upgrade-btn" onclick="upgradeLevel(${level})">${level === 0 ? 'Nivel Inicial' : 'Mejorar a Nivel ' + level}</button>
+                </div>
+            `;
+        }
+
+        function loadLevels() {
+            const grid = document.getElementById('level-grid');
+            grid.innerHTML = '';
+            
+            for (let level = 0; level <= 15; level++) {
+                grid.innerHTML += createLevelCard(level);
+            }
+            
+            updateButtons();
+        }
+
+        function filterLevels() {
+            const filter = document.getElementById('level-filter').value;
+            const cards = document.querySelectorAll('.level-card');
+            
+            cards.forEach(card => {
+                const level = parseInt(card.dataset.level);
+                if (filter === 'all' ||
+                    (filter === 'basic' && level <= 5) ||
+                    (filter === 'medium' && level > 5 && level <= 10) ||
+                    (filter === 'premium' && level > 10)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function updateButtons() {
+            const user = JSON.parse(localStorage.getItem('currentUser')) || {};
+            const currentLevel = user.nivel || 0;
+            
+            document.querySelectorAll('.upgrade-btn').forEach((btn, index) => {
+                const level = index;
+                if (level < currentLevel) {
+                    btn.textContent = 'Nivel Anterior';
+                    btn.disabled = true;
+                } else if (level === currentLevel) {
+                    btn.textContent = 'Nivel Actual';
+                    btn.disabled = true;
+                }
+            });
+        }
+
+        function upgradeLevel(newLevel) {
+            const user = JSON.parse(localStorage.getItem('currentUser')) || {};
+            const currentLevel = user.nivel || 0;
+            
+            if (newLevel <= currentLevel) {
+                alert('Ya tienes este nivel o uno superior');
+                return;
+            }
+
+            const price = levelPrices[newLevel];
+            if (price === undefined) {
+                alert('Nivel no válido');
+                return;
+            }
+
+            if (confirm(`¿Deseas mejorar a Nivel ${newLevel} por $${price.toLocaleString('es-CO')}?`)) {
+                user.nivel = newLevel;
+                localStorage.setItem('currentUser', JSON.stringify(user));
+                document.getElementById('current-level-display').textContent = `Nivel ${newLevel}`;
+                updateButtons();
+                alert(`¡Felicidades! Ahora eres Nivel ${newLevel}`);
+            }
+        }
+
+        // Cargar niveles al iniciar la página
+        window.onload = () => {
+            loadLevels();
+            const user = JSON.parse(localStorage.getItem('currentUser')) || {};
+            document.getElementById('current-level-display').textContent = `Nivel ${user.nivel || 0}`;
+        };
 
         // Cargar datos del usuario
         function cargarDatosUsuario() {
@@ -298,18 +497,18 @@
             };
 
             // Actualizar nivel actual
-            document.getElementById('nivel-actual-badge').textContent = `Nivel ${usuario.nivel}`;
+            document.getElementById('current-level-display').textContent = `Nivel ${usuario.nivel}`;
             
             // Actualizar beneficios actuales
             const beneficiosActuales = document.getElementById('beneficios-actuales');
             if (usuario.nivel === 0) {
                 beneficiosActuales.innerHTML = 'No tienes beneficios activos';
             } else {
-                const nivelActual = niveles[usuario.nivel - 1];
+                const nivelActual = levelBenefits[usuario.nivel];
                 beneficiosActuales.innerHTML = `
                     <h3>Beneficios Activos:</h3>
                     <ul>
-                        ${nivelActual.beneficios.map(beneficio => 
+                        ${nivelActual.map(beneficio => 
                             `<li><i class="fas fa-check"></i> ${beneficio}</li>`
                         ).join('')}
                     </ul>
@@ -317,34 +516,6 @@
             }
 
             return usuario;
-        }
-
-        // Cargar niveles disponibles
-        function cargarNiveles() {
-            const usuario = JSON.parse(localStorage.getItem('usuario')) || { nivel: 0 };
-            const grid = document.getElementById('niveles-grid');
-
-            grid.innerHTML = niveles.map((nivel, index) => `
-                <div class="nivel-card ${index + 1 <= usuario.nivel ? 'comprado' : index + 1 === usuario.nivel + 1 ? '' : 'bloqueado'}">
-                    <h3>
-                        <i class="fas fa-layer-group"></i>
-                        ${nivel.nombre}
-                    </h3>
-                    <div class="precio">$${nivel.precio.toLocaleString('es-CO')}</div>
-                    <div class="beneficios">
-                        <ul>
-                            ${nivel.beneficios.map(beneficio => 
-                                `<li><i class="fas fa-check-circle"></i> ${beneficio}</li>`
-                            ).join('')}
-                        </ul>
-                    </div>
-                    <button class="btn-comprar ${index + 1 <= usuario.nivel ? 'bloqueado' : ''}" 
-                            onclick="mostrarModalCompra(${nivel.id})"
-                            ${index + 1 <= usuario.nivel ? 'disabled' : ''}>
-                        ${index + 1 <= usuario.nivel ? 'Comprado' : 'Comprar Nivel'}
-                    </button>
-                </div>
-            `).join('');
         }
 
         // Cargar referidos
@@ -368,17 +539,17 @@
 
         // Mostrar modal de compra
         function mostrarModalCompra(nivelId) {
-            const nivel = niveles.find(n => n.id === nivelId);
+            const nivel = levelBenefits[nivelId];
             const modal = document.getElementById('compra-modal');
             const contenido = document.getElementById('modal-contenido');
 
             contenido.innerHTML = `
-                <p>¿Deseas comprar el ${nivel.nombre}?</p>
-                <p>Precio: $${nivel.precio.toLocaleString('es-CO')}</p>
+                <p>¿Deseas comprar el Nivel ${nivelId}?</p>
+                <p>Precio: $${levelPrices[nivelId].toLocaleString('es-CO')}</p>
                 <h3>Beneficios:</h3>
                 <ul>
-                    ${nivel.beneficios.map(beneficio => 
-                        `<li><i class="fas fa-check"></i> ${beneficio}</li>`
+                    ${nivel.map(benefit => 
+                        `<li><i class="fas fa-check"></i> ${benefit}</li>`
                     ).join('')}
                 </ul>
             `;
@@ -390,7 +561,7 @@
         // Confirmar compra de nivel
         function confirmarCompra(nivelId) {
             const usuario = JSON.parse(localStorage.getItem('usuario')) || { nivel: 0 };
-            const nivel = niveles.find(n => n.id === nivelId);
+            const nivel = levelBenefits[nivelId];
 
             // Aquí iría la lógica de pago
             // Por ahora solo actualizamos el nivel
@@ -399,13 +570,13 @@
 
             // Actualizar la interfaz
             cargarDatosUsuario();
-            cargarNiveles();
+            loadLevels();
             cargarReferidos();
 
             // Cerrar modal
             document.getElementById('compra-modal').style.display = 'none';
 
-            alert(`¡Felicidades! Has adquirido el ${nivel.nombre}`);
+            alert(`¡Felicidades! Has adquirido el Nivel ${nivelId}`);
         }
 
         // Cerrar modal
@@ -420,13 +591,6 @@
                 modal.style.display = 'none';
             }
         }
-
-        // Cargar datos al iniciar la página
-        document.addEventListener('DOMContentLoaded', () => {
-            cargarDatosUsuario();
-            cargarNiveles();
-            cargarReferidos();
-        });
     </script>
 </body>
 </html>
