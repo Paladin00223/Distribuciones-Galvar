@@ -157,6 +157,9 @@
     <div class="compras-container">
         <div class="compras-header">
             <h1>Historial de Compras</h1>
+            <button id="borrarHistorial" class="btn" style="background-color: #e74c3c;">
+                <i class="fas fa-trash"></i> Borrar Historial
+            </button>
         </div>
 
         <div class="filtros">
@@ -225,9 +228,14 @@
                     <td>$${compra.total.toLocaleString('es-CO')}</td>
                     <td><span class="estado-${compra.estado.toLowerCase()}">${compra.estado}</span></td>
                     <td>
-                        <button class="detalles-btn" onclick="mostrarDetalles('${compra.id}')">
-                            Ver Detalles
-                        </button>
+                        ${compra.estado === 'Pendiente' 
+                            ? `<button class="detalles-btn" style="background-color: #e74c3c;" onclick="cancelarCompra('${compra.id}')">
+                                Cancelar Compra
+                               </button>`
+                            : `<button class="detalles-btn" onclick="mostrarDetalles('${compra.id}')">
+                                Ver Detalles
+                               </button>`
+                        }
                     </td>
                 `;
                 tbody.appendChild(row);
@@ -275,27 +283,38 @@
             modal.style.display = 'block';
         }
 
-        function cancelarCompra() {
-            if (!compraActual) {
-                alert('No hay una compra seleccionada para cancelar');
+        function cancelarCompra(idCompra) {
+            const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            const compra = compras.find(c => c.id === idCompra);
+            
+            if (!compra) {
+                alert('No se encontró la compra');
                 return;
             }
 
-            if (compraActual.estado !== 'Pendiente') {
+            if (compra.estado !== 'Pendiente') {
                 alert('Solo se pueden cancelar compras pendientes');
                 return;
             }
 
+            // Verificar si la compra está en el historial
+            const fechaCompra = new Date(compra.fecha);
+            const ahora = new Date();
+            const diferenciaHoras = (ahora - fechaCompra) / (1000 * 60 * 60);
+
+            if (diferenciaHoras > 24) {
+                alert('No se pueden cancelar compras que tienen más de 24 horas en el historial');
+                return;
+            }
+
             if (confirm('¿Estás seguro de que deseas cancelar esta compra?')) {
-                const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
-                const compraIndex = compras.findIndex(c => c.id === compraActual.id);
+                const compraIndex = compras.findIndex(c => c.id === idCompra);
                 
                 if (compraIndex !== -1) {
                     compras[compraIndex].estado = 'Cancelado';
                     localStorage.setItem('historialCompras', JSON.stringify(compras));
                     
                     cargarCompras();
-                    document.getElementById('detallesModal').style.display = 'none';
                     alert('Compra cancelada exitosamente');
                 }
             }
@@ -321,6 +340,15 @@
             // Agregar filtros
             document.getElementById('filtro-estado').addEventListener('change', filtrarCompras);
             document.getElementById('filtro-fecha').addEventListener('change', filtrarCompras);
+
+            // Agregar evento para borrar historial
+            document.getElementById('borrarHistorial').addEventListener('click', function() {
+                if (confirm('¿Estás seguro de que deseas borrar todo el historial de compras? Esta acción no se puede deshacer.')) {
+                    localStorage.removeItem('historialCompras');
+                    cargarCompras();
+                    alert('Historial de compras borrado exitosamente');
+                }
+            });
         };
 
         function filtrarCompras() {
@@ -368,9 +396,14 @@
                     <td>$${compra.total.toLocaleString('es-CO')}</td>
                     <td><span class="estado-${compra.estado.toLowerCase()}">${compra.estado}</span></td>
                     <td>
-                        <button class="detalles-btn" onclick="mostrarDetalles('${compra.id}')">
-                            Ver Detalles
-                        </button>
+                        ${compra.estado === 'Pendiente' 
+                            ? `<button class="detalles-btn" style="background-color: #e74c3c;" onclick="cancelarCompra('${compra.id}')">
+                                Cancelar Compra
+                               </button>`
+                            : `<button class="detalles-btn" onclick="mostrarDetalles('${compra.id}')">
+                                Ver Detalles
+                               </button>`
+                        }
                     </td>
                 `;
                 tbody.appendChild(row);
