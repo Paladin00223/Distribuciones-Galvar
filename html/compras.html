@@ -109,7 +109,7 @@
             position: relative;
         }
 
-        .close-modal {
+        .close {
             position: absolute;
             right: 20px;
             top: 10px;
@@ -118,7 +118,7 @@
             color: #666;
         }
 
-        .close-modal:hover {
+        .close:hover {
             color: #333;
         }
 
@@ -132,6 +132,24 @@
             font-size: 48px;
             margin-bottom: 20px;
             color: #ddd;
+        }
+
+        .cancel-btn {
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background-color 0.3s;
+        }
+        .cancel-btn:hover {
+            background-color: #c0392b;
+        }
+        .cancel-btn:disabled {
+            background-color: #95a5a6;
+            cursor: not-allowed;
         }
     </style>
 </head>
@@ -168,18 +186,18 @@
     </div>
 
     <!-- Modal para detalles de compra -->
-    <div id="detalles-modal" class="modal">
+    <div id="detallesModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close">&times;</span>
             <h2>Detalles de la Compra</h2>
-            <div id="detalles-contenido">
-                <!-- Los detalles se cargarán dinámicamente -->
-            </div>
+            <div id="detallesContenido"></div>
+            <button id="cancelarCompra" class="cancel-btn" onclick="cancelarCompra()">Cancelar Compra</button>
         </div>
     </div>
 
     <script>
-        // Función para cargar el historial de compras
+        let compraActual = null;
+
         function cargarCompras() {
             const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
             const tbody = document.getElementById('compras-body');
@@ -216,98 +234,117 @@
             });
         }
 
-        // Función para mostrar detalles de una compra
         function mostrarDetalles(idCompra) {
             const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
-            const compra = compras.find(c => c.id === idCompra);
+            compraActual = compras.find(c => c.id === idCompra);
             
-            if (!compra) return;
+            if (!compraActual) return;
 
-            const modal = document.getElementById('detalles-modal');
-            const contenido = document.getElementById('detalles-contenido');
+            const modal = document.getElementById('detallesModal');
+            const contenido = document.getElementById('detallesContenido');
+            const cancelarBtn = document.getElementById('cancelarCompra');
             
-            let productosHTML = '';
-            compra.productos.forEach(producto => {
-                productosHTML += `
-                    <div style="margin-bottom: 10px; padding: 10px; border-bottom: 1px solid #eee;">
-                        <p><strong>${producto.name}</strong></p>
-                        <p>Cantidad: ${producto.quantity}</p>
-                        <p>Precio unitario: $${producto.price.toLocaleString('es-CO')}</p>
-                        <p>Subtotal: $${(producto.price * producto.quantity).toLocaleString('es-CO')}</p>
-                    </div>
+            let detallesHTML = `
+                <p><strong>ID de Compra:</strong> ${compraActual.id}</p>
+                <p><strong>Fecha:</strong> ${new Date(compraActual.fecha).toLocaleString()}</p>
+                <p><strong>Estado:</strong> ${compraActual.estado}</p>
+                <p><strong>Total:</strong> $${compraActual.total.toLocaleString('es-CO')}</p>
+                <h3>Productos:</h3>
+                <ul>
+            `;
+            
+            compraActual.productos.forEach(producto => {
+                detallesHTML += `
+                    <li>
+                        ${producto.name} - Cantidad: ${producto.quantity} - 
+                        Precio: $${producto.price.toLocaleString('es-CO')}
+                    </li>
                 `;
             });
-
-            contenido.innerHTML = `
-                <div style="margin-bottom: 20px;">
-                    <p><strong>ID de Compra:</strong> ${compra.id}</p>
-                    <p><strong>Fecha:</strong> ${new Date(compra.fecha).toLocaleString()}</p>
-                    <p><strong>Estado:</strong> ${compra.estado}</p>
-                    <p><strong>Total:</strong> $${compra.total.toLocaleString('es-CO')}</p>
-                </div>
-                <h3>Productos:</h3>
-                ${productosHTML}
-            `;
-
+            
+            detallesHTML += '</ul>';
+            contenido.innerHTML = detallesHTML;
+            
+            // Mostrar u ocultar el botón de cancelar según el estado
+            if (compraActual.estado === 'Pendiente') {
+                cancelarBtn.style.display = 'block';
+            } else {
+                cancelarBtn.style.display = 'none';
+            }
+            
             modal.style.display = 'block';
         }
 
+        function cancelarCompra() {
+            if (!compraActual) {
+                alert('No hay una compra seleccionada para cancelar');
+                return;
+            }
+
+            if (compraActual.estado !== 'Pendiente') {
+                alert('Solo se pueden cancelar compras pendientes');
+                return;
+            }
+
+            if (confirm('¿Estás seguro de que deseas cancelar esta compra?')) {
+                const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
+                const compraIndex = compras.findIndex(c => c.id === compraActual.id);
+                
+                if (compraIndex !== -1) {
+                    compras[compraIndex].estado = 'Cancelado';
+                    localStorage.setItem('historialCompras', JSON.stringify(compras));
+                    
+                    cargarCompras();
+                    document.getElementById('detallesModal').style.display = 'none';
+                    alert('Compra cancelada exitosamente');
+                }
+            }
+        }
+
         // Cerrar modal
-        document.querySelector('.close-modal').onclick = function() {
-            document.getElementById('detalles-modal').style.display = 'none';
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('detallesModal').style.display = 'none';
         }
 
         // Cerrar modal al hacer clic fuera
         window.onclick = function(event) {
-            const modal = document.getElementById('detalles-modal');
+            const modal = document.getElementById('detallesModal');
             if (event.target == modal) {
                 modal.style.display = 'none';
             }
         }
 
-        // Filtrar compras
-        document.getElementById('filtro-estado').addEventListener('change', filtrarCompras);
-        document.getElementById('filtro-fecha').addEventListener('change', filtrarCompras);
+        // Cargar compras al iniciar la página
+        window.onload = function() {
+            cargarCompras();
+            
+            // Agregar filtros
+            document.getElementById('filtro-estado').addEventListener('change', filtrarCompras);
+            document.getElementById('filtro-fecha').addEventListener('change', filtrarCompras);
+        };
 
         function filtrarCompras() {
-            const estado = document.getElementById('filtro-estado').value;
-            const fecha = document.getElementById('filtro-fecha').value;
+            const estadoFiltro = document.getElementById('filtro-estado').value;
+            const fechaFiltro = document.getElementById('filtro-fecha').value;
             const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            const tbody = document.getElementById('compras-body');
             
             let comprasFiltradas = compras;
-
-            if (estado !== 'todos') {
-                comprasFiltradas = comprasFiltradas.filter(c => c.estado.toLowerCase() === estado);
-            }
-
-            if (fecha) {
-                const fechaFiltro = new Date(fecha).toDateString();
+            
+            if (estadoFiltro !== 'todos') {
                 comprasFiltradas = comprasFiltradas.filter(c => 
-                    new Date(c.fecha).toDateString() === fechaFiltro
+                    c.estado.toLowerCase() === estadoFiltro.toLowerCase()
                 );
             }
-
-            // Si el estado es "completado", sumar puntos al acumulado
-            if (estado === 'completado') {
-                const usuario = JSON.parse(localStorage.getItem('usuario')) || { puntos: 0 };
-                let puntosTotales = 0;
-
-                comprasFiltradas.forEach(compra => {
-                    if (compra.estado.toLowerCase() === 'completado') {
-                        // Calcular puntos basados en el total de la compra (1 punto por cada 1000)
-                        const puntosCompra = Math.floor(compra.total / 1000);
-                        puntosTotales += puntosCompra;
-                    }
+            
+            if (fechaFiltro) {
+                const fechaFiltroObj = new Date(fechaFiltro);
+                comprasFiltradas = comprasFiltradas.filter(c => {
+                    const fechaCompra = new Date(c.fecha);
+                    return fechaCompra.toDateString() === fechaFiltroObj.toDateString();
                 });
-
-                // Actualizar puntos del usuario
-                usuario.puntos = (usuario.puntos || 0) + puntosTotales;
-                localStorage.setItem('usuario', JSON.stringify(usuario));
             }
-
-            const tbody = document.getElementById('compras-body');
-            tbody.innerHTML = '';
-
+            
             if (comprasFiltradas.length === 0) {
                 tbody.innerHTML = `
                     <tr>
@@ -321,7 +358,8 @@
                 `;
                 return;
             }
-
+            
+            tbody.innerHTML = '';
             comprasFiltradas.forEach(compra => {
                 const row = document.createElement('tr');
                 row.innerHTML = `
@@ -338,9 +376,6 @@
                 tbody.appendChild(row);
             });
         }
-
-        // Cargar compras al iniciar la página
-        document.addEventListener('DOMContentLoaded', cargarCompras);
     </script>
 </body>
 </html>
