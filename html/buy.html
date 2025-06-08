@@ -191,13 +191,18 @@
                 return;
             }
 
+            // Calcular el total y los puntos
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const puntosGanados = Math.floor(total / 1000);
+
             // Crear el registro de compra
             const compra = {
                 id: 'COMP-' + Date.now(),
                 fecha: new Date().toISOString(),
                 productos: cart,
-                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                total: total,
                 estado: 'Pendiente',
+                puntosGanados: puntosGanados,
                 cliente: {
                     nombre: name,
                     direccion: address,
@@ -214,8 +219,8 @@
             // Limpiar el carrito
             localStorage.removeItem('cart');
 
-            // Mostrar mensaje de éxito
-            alert('¡Gracias por su compra! Recibirá un correo con los detalles de su pedido.');
+            // Mostrar mensaje de éxito con los puntos ganados
+            alert(`¡Gracias por su compra! Recibirá un correo con los detalles de su pedido.\nPuntos ganados: ${puntosGanados}`);
             
             // Redirigir a la página de compras
             window.location.href = 'compras.html';
