@@ -192,6 +192,18 @@
         }
     },
     {
+        "nombre": "Colador Pequeño",
+        "imagen": "img/Colador-Pequeño.webp",
+        "unidad": 3500,
+        "inventario": 2,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Plastired",
+            "telefono": "601 534 3861"
+        }
+    },
+    {
         "nombre": "Compas 2506",
         "imagen": "img/Compas-2506.jpg",
         "unidad": 2000,
