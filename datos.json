@@ -1,5 +1,41 @@
 [
     {
+        "nombre": "Bandeja Kendy",
+        "imagen": "img/Bandeja-Kendy.jpg",
+        "unidad": 800,
+        "inventario": 6,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Bandeja Persal",
+        "imagen": "img/Bandeja-Persal.jpg",
+        "unidad": 4900,
+        "inventario": 4,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Bandeja Royal",
+        "imagen": "img/Bandeja-Royal",
+        "unidad": 1900,
+        "inventario": 6,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
         "nombre": "Bisturí Grande",
         "imagen": "img/Bisturí-Grande.jpg",
         "unidad": 3000,
@@ -204,6 +240,30 @@
         }
     },
     {
+        "nombre": "Colador Mediano",
+        "imagen": "img/Colador-Mediano.jpg",
+        "unidad": 4500,
+        "inventario": 2,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Plastired",
+            "telefono":"601 534 3861"
+        }
+    },
+    {
+        "nombre": "Colador Grande",
+        "imagen": "img/Colador-Grande",
+        "unidad": 6500,
+        "inventario": 2,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "Plastired",
+            "telefono":"601 534 3861"
+        }
+    },
+    {
         "nombre": "Compas 2506",
         "imagen": "img/Compas-2506.jpg",
         "unidad": 2000,
@@ -384,6 +444,41 @@
         }
     },
     {
+        "nombre": "Jarra Kendy",
+        "imagen": "img/Jarra-Kendy.jpg",
+        "unidad": 7900,
+        "inventario": 2,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Jarra Persal",
+        "imagen": "img/Jarra-Persal.jpg",
+        "unidad": 5900,
+        "inventario": 6,
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Jarra Royal",
+        "imagen": "img/Jarra-Royal.jpg",
+        "unidad": 5500,
+        "inventario": 6,
+        "categoria": "hogar",
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
+            "telefono": ""
+        }
+    },
+    {
         "nombre": "Grapadora Corona ST207",
         "imagen": "img/Grapadora-Corona-ST-207.webp",
         "unidad": 0,
@@ -551,6 +646,16 @@
         "puntos": false,
         "vendedor": {
             "nombre": "Darnel",
+            "telefono": ""
+        }
+    },
+    {
+        "nombre": "Tazas para Agua",
+        "imagen": "img.Tazas-Agua.jpg",
+        "unidad": 2500,
+        "puntos": false,
+        "vendedor": {
+            "nombre": "",
             "telefono": ""
         }
     }
