@@ -173,6 +173,101 @@
             margin: 0;
             font-size: 1.1em;
         }
+
+        .paquete-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .opciones-pago {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #dee2e6;
+        }
+
+        .opciones-pago p {
+            margin: 0 0 0.5rem 0;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .opciones-pago ul {
+            margin: 0;
+            padding-left: 1.5rem;
+        }
+
+        .opciones-pago li {
+            color: #6c757d;
+            margin-bottom: 0.25rem;
+        }
+
+        .opciones-pago li:last-child {
+            margin-bottom: 0;
+        }
+
+        .opciones-pago-modal {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .btn-pago {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+        }
+
+        .btn-pago:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .btn-pago h3 {
+            margin: 0 0 0.5rem 0;
+            color: #495057;
+        }
+
+        .btn-pago p {
+            margin: 0;
+            color: #6c757d;
+        }
+
+        .datos-consignacion {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        .datos-consignacion p {
+            margin: 0.5rem 0;
+        }
+
+        .nota-consignacion {
+            font-size: 0.9em;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        .swal-pago-container {
+            z-index: 9999;
+        }
+
+        .paquete-card.deshabilitado {
+            opacity: 0.7;
+            filter: grayscale(50%);
+        }
+
+        .paquete-card.deshabilitado .btn-comprar {
+            background-color: #6c757d;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -245,9 +340,16 @@
         ];
 
         let paqueteSeleccionado = null;
+        let usuario = null;
+
+        function cargarUsuario() {
+            const usuarioStr = localStorage.getItem('usuario');
+            if (usuarioStr) {
+                usuario = JSON.parse(usuarioStr);
+            }
+        }
 
         function cargarPaqueteUsuario() {
-            const usuario = JSON.parse(localStorage.getItem('usuarioActual')) || { paquete: 0 };
             const paqueteActual = paquetes.find(p => p.id === usuario.paquete);
             
             document.getElementById('paqueteActual').textContent = paqueteActual ? paqueteActual.nombre : 'Gratis';
@@ -259,7 +361,7 @@
             const esBloqueado = paquete.id < usuario.paquete;
 
             const card = document.createElement('div');
-            card.className = `paquete-card ${esActivo ? 'activo' : ''}`;
+            card.className = `paquete-card ${esActivo ? 'activo' : ''} ${esBloqueado ? 'deshabilitado' : ''}`;
             
             let beneficios = [];
             if (paquete.id === 0) {
@@ -272,55 +374,64 @@
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '1 punto por cada $1.000 en compras de primera línea de referidos',
-                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
-                    '(solo recibes el 50% de primera línea, independiente del paquete que compren tus referidos)',
+                    '- 5% de segunda línea',
+                    '- 7% de tercera línea',
+                    '- 10% de cuarta línea',
+                    '- 25% de quinta línea',
+                    '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 1)',
                     'Acceso a todos los productos'
                 ];
             } else if (paquete.id === 2) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '1 punto por cada $1.000 en compras de primera y segunda línea de referidos',
-                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
-                    '(solo recibes hasta segunda línea, independiente del paquete que compren tus referidos)',
+                    '- 7% de tercera línea',
+                    '- 10% de cuarta línea',
+                    '- 25% de quinta línea',
+                    '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 2)',
                     'Acceso a todos los productos'
                 ];
             } else if (paquete.id === 3) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '1 punto por cada $1.000 en compras de primera, segunda y tercera línea de referidos',
-                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
                     '- 7% de tercera línea',
-                    '(solo recibes hasta tercera línea, independiente del paquete que compren tus referidos)',
+                    '- 10% de cuarta línea',
+                    '- 25% de quinta línea',
+                    '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 3)',
                     'Acceso a todos los productos'
                 ];
             } else if (paquete.id === 4) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '1 punto por cada $1.000 en compras de primera a cuarta línea de referidos',
-                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
                     '- 7% de tercera línea',
                     '- 10% de cuarta línea',
-                    '(solo recibes hasta cuarta línea, independiente del paquete que compren tus referidos)',
+                    '- 25% de quinta línea',
+                    '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 4)',
                     'Acceso a todos los productos'
                 ];
             } else if (paquete.id === 15) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '1 punto por cada $1.000 en compras de todas las líneas de referidos (1-15)',
-                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
                     '- 7% de tercera línea',
                     '- 10% de cuarta línea',
                     '- 25% de quinta línea',
-                    '(recibes todas las bonificaciones, independiente del paquete que compren tus referidos)',
                     'Acceso a todos los productos',
                     'Beneficios exclusivos del paquete 15'
                 ];
@@ -328,13 +439,13 @@
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     `1 punto por cada $1.000 en compras de primera a ${paquete.id} línea de referidos`,
-                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
                     '- 7% de tercera línea',
                     '- 10% de cuarta línea',
                     '- 25% de quinta línea',
-                    '(recibes todas las bonificaciones, independiente del paquete que compren tus referidos)',
+                    `(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete ${paquete.id})`,
                     'Acceso a todos los productos',
                     `Beneficios exclusivos del paquete ${paquete.id}`
                 ];
@@ -348,12 +459,23 @@
                         ${beneficios.map(beneficio => `<li>${beneficio}</li>`).join('')}
                     </ul>
                 </div>
-                ${!esActivo ? 
-                    `<button class="btn-comprar" onclick="seleccionarPaquete(${paquete.id})">
-                        Comprar Paquete
-                    </button>` : 
-                    '<button class="btn-comprar" disabled>Paquete Actual</button>'
-                }
+                <div class="paquete-actions">
+                    ${esBloqueado ? 
+                        '<button class="btn-comprar" disabled>Paquete Menor al Actual</button>' :
+                        esActivo ? 
+                            '<button class="btn-comprar" disabled>Paquete Actual</button>' :
+                            `<button class="btn-comprar" onclick="comprarPaquete(${paquete.id})">
+                                Comprar Paquete
+                            </button>`
+                    }
+                    <div class="opciones-pago">
+                        <p>Precio:</p>
+                        <ul>
+                            <li>${paquete.precio} puntos</li>
+                            <li>$${paquete.precio.toLocaleString('es-CO')} COP</li>
+                        </ul>
+                    </div>
+                </div>
             `;
 
             return card;
@@ -385,63 +507,74 @@
             modal.style.display = 'block';
         }
 
-        async function comprarPaquete(paqueteId) {
-            try {
-                const paquete = paquetes.find(p => p.id === paqueteId);
-                if (!paquete) return;
+        function comprarPaquete(paqueteId) {
+            const paquete = paquetes.find(p => p.id === paqueteId);
+            if (!paquete) return;
 
-                const confirmacion = await Swal.fire({
-                    title: '¿Comprar Paquete?',
-                    text: `¿Estás seguro de que deseas comprar el ${paquete.nombre} por ${paquete.precio.toLocaleString()} puntos?`,
+            if (!usuario) {
+                Swal.fire('Error', 'Debes iniciar sesión para comprar un paquete', 'error');
+                return;
+            }
+            
+            if (usuario.paquete && usuario.paquete > paqueteId) {
+                Swal.fire('Error', 'No puedes comprar un paquete menor al que ya tienes', 'error');
+                return;
+            }
+
+            const tienePuntosSuficientes = usuario.puntos >= paquete.precio;
+
+            if (tienePuntosSuficientes) {
+                Swal.fire({
+                    title: 'Confirmar Compra',
+                    html: `
+                        <div class="datos-compra">
+                            <p><strong>Paquete:</strong> ${paquete.nombre}</p>
+                            <p><strong>Puntos a descontar:</strong> ${paquete.precio}</p>
+                            <p><strong>Puntos disponibles:</strong> ${usuario.puntos}</p>
+                        </div>
+                    `,
                     icon: 'question',
                     showCancelButton: true,
-                    confirmButtonText: 'Sí, comprar',
+                    confirmButtonText: 'Comprar',
                     cancelButtonText: 'Cancelar'
-                });
-
-                if (confirmacion.isConfirmed) {
-                    const response = await fetch('/api/usuarios/comprar-paquete', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({
-                            paqueteId: paqueteId,
-                            puntos: paquete.precio
-                        })
-                    });
-
-                    if (response.ok) {
-                        const data = await response.json();
-                        
-                        // Calcular puntos de bonificación (50% del paquete 1)
-                        const puntosBonificacion = Math.floor(paquetes[1].precio * 0.5);
-                        
-                        // Actualizar puntos del usuario
-                        if (data.usuario) {
-                            data.usuario.puntos += puntosBonificacion;
-                            localStorage.setItem('usuario', JSON.stringify(data.usuario));
-                        }
-
-                        await Swal.fire({
-                            title: '¡Compra Exitosa!',
-                            text: `Has comprado el ${paquete.nombre}. Has recibido ${puntosBonificacion} puntos de bonificación.`,
-                            icon: 'success'
-                        });
-
-                        // Actualizar la interfaz
-                        actualizarInterfaz();
-                    } else {
-                        const error = await response.json();
-                        throw new Error(error.mensaje || 'Error al comprar el paquete');
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire('¡Éxito!', 'Paquete comprado con puntos', 'success');
                     }
-                }
-            } catch (error) {
-                console.error('Error:', error);
+                });
+            } else {
+                const puntosFaltantes = paquete.precio - usuario.puntos;
                 Swal.fire({
-                    title: 'Error',
-                    text: error.message || 'Error al comprar el paquete',
-                    icon: 'error'
+                    title: 'Puntos Insuficientes',
+                    html: `
+                        <div class="datos-consignacion">
+                            <p>No tienes suficientes puntos para comprar este paquete.</p>
+                            <p><strong>Puntos necesarios:</strong> ${paquete.precio}</p>
+                            <p><strong>Puntos disponibles:</strong> ${usuario.puntos}</p>
+                            <p><strong>Puntos faltantes:</strong> ${puntosFaltantes}</p>
+                        </div>
+                    `,
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Ver Datos de Consignación',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: 'Datos para Consignación',
+                            html: `
+                                <div class="datos-consignacion">
+                                    <p><strong>Banco:</strong> Banco Estado</p>
+                                    <p><strong>Cuenta Corriente:</strong> 12345678</p>
+                                    <p><strong>RUT:</strong> 12.345.678-9</p>
+                                    <p><strong>Monto a Consignar:</strong> $${paquete.precio.toLocaleString('es-CO')} COP</p>
+                                    <p><strong>Asunto:</strong> Compra Paquete ${paqueteId}</p>
+                                </div>
+                                <p class="nota-consignacion">Una vez realizada la consignación, envíanos el comprobante para activar tu paquete.</p>
+                            `,
+                            confirmButtonText: 'Entendido'
+                        });
+                    }
                 });
             }
         }
@@ -464,10 +597,8 @@
             paqueteSeleccionado = null;
         }
 
-        // Event Listeners
         document.getElementById('filtroPaquete').addEventListener('change', cargarPaquetes);
 
-        // Cerrar modal al hacer clic fuera
         window.onclick = function(event) {
             const modal = document.getElementById('confirmModal');
             if (event.target == modal) {
@@ -475,8 +606,8 @@
             }
         }
 
-        // Cargar datos al iniciar
         window.onload = function() {
+            cargarUsuario();
             cargarPaqueteUsuario();
             cargarPaquetes();
         };
