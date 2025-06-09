@@ -272,16 +272,71 @@
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '1 punto por cada $1.000 en compras de primera línea de referidos',
-                    '50% de bonificación por compra de paquete de referidos',
+                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    '- 50% de primera línea',
+                    '(solo recibes el 50% de primera línea, independiente del paquete que compren tus referidos)',
                     'Acceso a todos los productos'
+                ];
+            } else if (paquete.id === 2) {
+                beneficios = [
+                    '1 punto por cada $1.000 en compras propias',
+                    '1 punto por cada $1.000 en compras de primera y segunda línea de referidos',
+                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    '- 50% de primera línea',
+                    '- 5% de segunda línea',
+                    '(solo recibes hasta segunda línea, independiente del paquete que compren tus referidos)',
+                    'Acceso a todos los productos'
+                ];
+            } else if (paquete.id === 3) {
+                beneficios = [
+                    '1 punto por cada $1.000 en compras propias',
+                    '1 punto por cada $1.000 en compras de primera, segunda y tercera línea de referidos',
+                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    '- 50% de primera línea',
+                    '- 5% de segunda línea',
+                    '- 7% de tercera línea',
+                    '(solo recibes hasta tercera línea, independiente del paquete que compren tus referidos)',
+                    'Acceso a todos los productos'
+                ];
+            } else if (paquete.id === 4) {
+                beneficios = [
+                    '1 punto por cada $1.000 en compras propias',
+                    '1 punto por cada $1.000 en compras de primera a cuarta línea de referidos',
+                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    '- 50% de primera línea',
+                    '- 5% de segunda línea',
+                    '- 7% de tercera línea',
+                    '- 10% de cuarta línea',
+                    '(solo recibes hasta cuarta línea, independiente del paquete que compren tus referidos)',
+                    'Acceso a todos los productos'
+                ];
+            } else if (paquete.id === 15) {
+                beneficios = [
+                    '1 punto por cada $1.000 en compras propias',
+                    '1 punto por cada $1.000 en compras de todas las líneas de referidos (1-15)',
+                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    '- 50% de primera línea',
+                    '- 5% de segunda línea',
+                    '- 7% de tercera línea',
+                    '- 10% de cuarta línea',
+                    '- 25% de quinta línea',
+                    '(recibes todas las bonificaciones, independiente del paquete que compren tus referidos)',
+                    'Acceso a todos los productos',
+                    'Beneficios exclusivos del paquete 15'
                 ];
             } else {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
-                    '1 punto por cada $1.000 en compras de primera línea de referidos',
-                    '50% de bonificación por compra de paquete de referidos',
+                    `1 punto por cada $1.000 en compras de primera a ${paquete.id} línea de referidos`,
+                    'Bonificaciones por compra de paquetes de las 5 primeras líneas:',
+                    '- 50% de primera línea',
+                    '- 5% de segunda línea',
+                    '- 7% de tercera línea',
+                    '- 10% de cuarta línea',
+                    '- 25% de quinta línea',
+                    '(recibes todas las bonificaciones, independiente del paquete que compren tus referidos)',
                     'Acceso a todos los productos',
-                    'Beneficios exclusivos del paquete ' + paquete.id
+                    `Beneficios exclusivos del paquete ${paquete.id}`
                 ];
             }
             
