@@ -69,7 +69,8 @@
         }
 
         .paquete-card.activo {
-            border: 2px solid #3498db;
+            border-color: #4CAF50;
+            background-color: #f0f9f0;
         }
 
         .paquete-card h3 {
@@ -157,36 +158,59 @@
         .close:hover {
             color: #333;
         }
+
+        .aviso-puntos {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .aviso-puntos p {
+            margin: 0;
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
-    <div class="paquetes-container">
-        <div class="paquetes-header">
-            <h1>Paquetes Disponibles</h1>
+    <div class="container">
+        <h1>Niveles de Membresía</h1>
+        
+        <div class="aviso-puntos">
+            <p>⚠️ Importante: No todos los productos generan puntos. Revisa la descripción de cada producto para ver si aplica.</p>
         </div>
 
-        <div class="paquete-actual">
-            <div class="paquete-info">
-                <div class="paquete-icon">
-                    <i class="fas fa-box"></i>
-                </div>
-                <div class="paquete-details">
-                    <h2>Tu Paquete Actual: <span id="paqueteActual">Cargando...</span></h2>
+        <div class="paquetes-container">
+            <div class="paquetes-header">
+                <h1>Paquetes Disponibles</h1>
+            </div>
+
+            <div class="paquete-actual">
+                <div class="paquete-info">
+                    <div class="paquete-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="paquete-details">
+                        <h2>Tu Paquete Actual: <span id="paqueteActual">Cargando...</span></h2>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="filtros">
-            <select id="filtroPaquete">
-                <option value="todos">Todos los paquetes</option>
-                <option value="basico">Básicos</option>
-                <option value="medio">Medios</option>
-                <option value="premium">Premium</option>
-            </select>
-        </div>
+            <div class="filtros">
+                <select id="filtroPaquete">
+                    <option value="todos">Todos los paquetes</option>
+                    <option value="basico">Básicos</option>
+                    <option value="medio">Medios</option>
+                    <option value="premium">Premium</option>
+                </select>
+            </div>
 
-        <div class="paquetes-grid" id="paquetesGrid">
-            <!-- Los paquetes se cargarán dinámicamente -->
+            <div class="paquetes-grid" id="paquetesGrid">
+                <!-- Los paquetes se cargarán dinámicamente -->
+            </div>
         </div>
     </div>
 
@@ -237,14 +261,36 @@
             const card = document.createElement('div');
             card.className = `paquete-card ${esActivo ? 'activo' : ''}`;
             
+            let beneficios = [];
+            if (paquete.id === 0) {
+                beneficios = [
+                    'Acceso básico a la plataforma',
+                    'Visualización de productos',
+                    '1 punto por cada $1.000 en compras propias'
+                ];
+            } else if (paquete.id === 1) {
+                beneficios = [
+                    '1 punto por cada $1.000 en compras propias',
+                    '1 punto por cada $1.000 en compras de primera línea de referidos',
+                    '50% de bonificación por compra de paquete de referidos',
+                    'Acceso a todos los productos'
+                ];
+            } else {
+                beneficios = [
+                    '1 punto por cada $1.000 en compras propias',
+                    '1 punto por cada $1.000 en compras de primera línea de referidos',
+                    '50% de bonificación por compra de paquete de referidos',
+                    'Acceso a todos los productos',
+                    'Beneficios exclusivos del paquete ' + paquete.id
+                ];
+            }
+            
             card.innerHTML = `
                 <h3>${paquete.nombre}</h3>
                 <p class="precio">$${paquete.precio.toLocaleString('es-CO')}</p>
                 <div class="beneficios">
                     <ul>
-                        <li>Beneficios exclusivos</li>
-                        <li>Descuentos especiales</li>
-                        <li>Acceso a eventos VIP</li>
+                        ${beneficios.map(beneficio => `<li>${beneficio}</li>`).join('')}
                     </ul>
                 </div>
                 ${!esActivo ? 
@@ -282,6 +328,67 @@
             
             mensaje.textContent = `¿Estás seguro de que deseas comprar el paquete ${paquete.nombre} por $${paquete.precio.toLocaleString('es-CO')}?`;
             modal.style.display = 'block';
+        }
+
+        async function comprarPaquete(paqueteId) {
+            try {
+                const paquete = paquetes.find(p => p.id === paqueteId);
+                if (!paquete) return;
+
+                const confirmacion = await Swal.fire({
+                    title: '¿Comprar Paquete?',
+                    text: `¿Estás seguro de que deseas comprar el ${paquete.nombre} por ${paquete.precio.toLocaleString()} puntos?`,
+                    icon: 'question',
+                    showCancelButton: true,
+                    confirmButtonText: 'Sí, comprar',
+                    cancelButtonText: 'Cancelar'
+                });
+
+                if (confirmacion.isConfirmed) {
+                    const response = await fetch('/api/usuarios/comprar-paquete', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            paqueteId: paqueteId,
+                            puntos: paquete.precio
+                        })
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        
+                        // Calcular puntos de bonificación (50% del paquete 1)
+                        const puntosBonificacion = Math.floor(paquetes[1].precio * 0.5);
+                        
+                        // Actualizar puntos del usuario
+                        if (data.usuario) {
+                            data.usuario.puntos += puntosBonificacion;
+                            localStorage.setItem('usuario', JSON.stringify(data.usuario));
+                        }
+
+                        await Swal.fire({
+                            title: '¡Compra Exitosa!',
+                            text: `Has comprado el ${paquete.nombre}. Has recibido ${puntosBonificacion} puntos de bonificación.`,
+                            icon: 'success'
+                        });
+
+                        // Actualizar la interfaz
+                        actualizarInterfaz();
+                    } else {
+                        const error = await response.json();
+                        throw new Error(error.mensaje || 'Error al comprar el paquete');
+                    }
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                Swal.fire({
+                    title: 'Error',
+                    text: error.message || 'Error al comprar el paquete',
+                    icon: 'error'
+                });
+            }
         }
 
         function confirmarCompra() {
