@@ -99,10 +99,13 @@
             document.getElementById('registerForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
+                const nombre = document.getElementById('nombre').value;
                 const cedula = document.getElementById('cedula').value;
                 const documento = document.getElementById('documento').files[0];
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                const referido = document.getElementById('referido').value;
 
                 if (password !== confirmPassword) {
                     alert('Las contraseñas no coinciden');
@@ -119,8 +122,36 @@
                     return;
                 }
 
-                // Aquí iría el código para enviar los datos al servidor
-                console.log('Formulario enviado');
+                // Obtener usuarios existentes
+                const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+                // Verificar si la cédula ya está registrada
+                if (usuarios.some(u => u.cedula === cedula)) {
+                    alert('Esta cédula ya está registrada');
+                    return;
+                }
+
+                // Crear nuevo usuario
+                const nuevoUsuario = {
+                    nombre,
+                    cedula,
+                    email,
+                    password,
+                    referido,
+                    puntos: 0,
+                    estado: 'pendiente',
+                    fechaRegistro: new Date().toISOString()
+                };
+
+                // Agregar usuario a la lista
+                usuarios.push(nuevoUsuario);
+
+                // Guardar en localStorage
+                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+                // Redirigir a login
+                alert('Registro exitoso. Por favor inicie sesión.');
+                window.location.href = 'login.html';
             });
         </script>
 
