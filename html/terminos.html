@@ -1,0 +1,14 @@
+<script>
+    document.getElementById('aceptarTerminos').addEventListener('click', function() {
+        const usuario = JSON.parse(localStorage.getItem('usuario'));
+        if (usuario) {
+            usuario.terminosAceptados = true;
+            localStorage.setItem('usuario', JSON.stringify(usuario));
+            window.location.href = 'level.html';
+        }
+    });
+
+    document.getElementById('rechazarTerminos').addEventListener('click', function() {
+        window.location.href = 'index.html';
+    });
+</script> 

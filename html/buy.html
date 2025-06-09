@@ -105,12 +105,32 @@
             font-size: 48px;
             margin-bottom: 20px;
         }
+        .puntos-info {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            text-align: center;
+        }
+        .puntos-info h2 {
+            color: #495057;
+            font-size: 1.2em;
+            margin: 0;
+        }
+        .puntos-info span {
+            color: #28a745;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <div class="buy-container">
         <h1>Carrito de Compras</h1>
         
+        <div class="puntos-info">
+            <h2>Puntos disponibles: <span id="puntos-usuario">0</span></h2>
+        </div>
+
         <table class="cart-table">
             <thead>
                 <tr>
@@ -278,28 +298,21 @@
         // Cargar el carrito al iniciar la página
         window.onload = loadCart;
 
-        // Función para actualizar los puntos del usuario en la interfaz
+        // Función para actualizar los puntos del usuario
         function actualizarPuntosUsuario() {
             const puntosElement = document.getElementById('puntos-usuario');
+            const usuario = JSON.parse(localStorage.getItem('usuario'));
             if (puntosElement && usuario) {
                 puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
             }
         }
 
-        // Función para cargar el usuario
-        function cargarUsuario() {
-            const usuarioStr = localStorage.getItem('usuario');
-            if (usuarioStr) {
-                usuario = JSON.parse(usuarioStr);
-                actualizarPuntosUsuario(); // Actualizar puntos al cargar usuario
-            }
-        }
-
         // Inicializar
-        cargarUsuario();
-
-        // Actualizar puntos cada 30 segundos
-        setInterval(actualizarPuntosUsuario, 30000);
+        document.addEventListener('DOMContentLoaded', () => {
+            actualizarPuntosUsuario();
+            // Actualizar puntos cada 30 segundos
+            setInterval(actualizarPuntosUsuario, 30000);
+        });
     </script>
 </body>
 </html>

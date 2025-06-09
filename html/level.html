@@ -268,6 +268,25 @@
             background-color: #6c757d;
             cursor: not-allowed;
         }
+
+        .puntos-disponibles {
+            text-align: center;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .puntos-disponibles p {
+            margin: 0;
+            color: #495057;
+        }
+
+        .puntos-disponibles span {
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
     </style>
 </head>
 <body>
@@ -276,6 +295,10 @@
         
         <div class="aviso-puntos">
             <p>⚠️ Importante: No todos los productos generan puntos. Revisa la descripción de cada producto para ver si aplica.</p>
+        </div>
+
+        <div class="puntos-disponibles">
+            <p>Puntos disponibles: <span id="puntos-usuario">0</span></p>
         </div>
 
         <div class="paquetes-container">
@@ -342,9 +365,25 @@
         let paqueteSeleccionado = null;
         let usuario = null;
 
-        // Función para actualizar los puntos del usuario en la interfaz
+        // Verificación de términos y condiciones
+        document.addEventListener('DOMContentLoaded', function() {
+            const usuario = JSON.parse(localStorage.getItem('usuario'));
+            if (!usuario || !usuario.terminosAceptados) {
+                // Redirigir a la página de términos y condiciones
+                window.location.href = 'terminos.html';
+                return;
+            }
+
+            // Si los términos están aceptados, continuar con la carga normal
+            actualizarPuntosUsuario();
+            // Actualizar puntos cada 30 segundos
+            setInterval(actualizarPuntosUsuario, 30000);
+        });
+
+        // Función para actualizar los puntos del usuario
         function actualizarPuntosUsuario() {
             const puntosElement = document.getElementById('puntos-usuario');
+            const usuario = JSON.parse(localStorage.getItem('usuario'));
             if (puntosElement && usuario) {
                 puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
             }
@@ -629,9 +668,6 @@
             cargarPaqueteUsuario();
             cargarPaquetes();
         };
-
-        // Actualizar puntos cada 30 segundos
-        setInterval(actualizarPuntosUsuario, 30000);
     </script>
 </body>
 </html>

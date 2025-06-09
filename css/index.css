@@ -135,11 +135,6 @@ footer {
     text-align: center;
 
 }
-.admin {
-    float: right;
-    background-color: rgb(138, 102, 211);
-    width: 1rem;
-}
 span {
     color: rgb(5, 187, 5);
 }

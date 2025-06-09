@@ -398,40 +398,17 @@
     </div>
 
     <script>
-        // Datos de ejemplo
-        const referidos = [
-            {
-                id: 1,
-                nombre: "Juan Pérez",
-                nivel: 1,
-                estado: "activo",
-                fecha: "2024-03-15",
-                compras: 5,
-                ganancias: 25000
-            },
-            {
-                id: 2,
-                nombre: "María García",
-                nivel: 2,
-                estado: "activo",
-                fecha: "2024-03-10",
-                compras: 3,
-                ganancias: 15000
-            },
-            {
-                id: 3,
-                nombre: "Carlos López",
-                nivel: 1,
-                estado: "inactivo",
-                fecha: "2024-03-05",
-                compras: 0,
-                ganancias: 0
-            }
-        ];
+        // Datos de ejemplo (esto vendría de tu backend)
+        const referidos = [];
+        const ganancias = [];
+
+        function formatearFecha(fecha) {
+            // ... existing code ...
+        }
 
         function cargarEstadisticas() {
             const totalReferidos = referidos.length;
-            const gananciasTotales = referidos.reduce((sum, ref) => sum + ref.ganancias, 0);
+            const gananciasTotales = ganancias.reduce((sum, g) => sum + g, 0);
             
             document.getElementById('totalReferidos').textContent = totalReferidos;
             document.getElementById('gananciasTotales').textContent = `$${gananciasTotales.toLocaleString('es-CO')}`;

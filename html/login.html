@@ -64,6 +64,29 @@
 
         <script src="../js/login.js"></script>
         <script src="../js/contacto.js"></script>
+        <script>
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('user').value;
+                const password = document.getElementById('password').value;
+
+                // Validación de administrador
+                if (email === 'jdvargas223@gmail.com' && password === 'JDv@rgA$223#') {
+                    // Guardar información de administrador
+                    localStorage.setItem('usuario', JSON.stringify({
+                        email: email,
+                        nombre: 'Administrador',
+                        esAdmin: true
+                    }));
+                    window.location.href = 'admin.html';
+                    return;
+                }
+
+                // Aquí iría la validación normal de usuarios
+                console.log('Inicio de sesión normal');
+            });
+        </script>
 
     </body>
 

@@ -162,29 +162,7 @@
 
     <script>
         // Datos de ejemplo (esto vendría de tu backend)
-        const historialGanancias = [
-            {
-                fecha: '2024-03-20',
-                tipo: 'compra',
-                descripcion: 'Compra de producto - Línea 1',
-                puntos: 100,
-                linea: 1
-            },
-            {
-                fecha: '2024-03-19',
-                tipo: 'paquete',
-                descripcion: 'Compra de paquete - Línea 2',
-                puntos: 500,
-                linea: 2
-            },
-            {
-                fecha: '2024-03-18',
-                tipo: 'referido',
-                descripcion: 'Nuevo referido - Línea 1',
-                puntos: 200,
-                linea: 1
-            }
-        ];
+        const historialGanancias = [];
 
         function formatearFecha(fecha) {
             return new Date(fecha).toLocaleDateString('es-CO', {
