@@ -38,10 +38,11 @@
     </aside>
     <header>
       <section>
-
         <h1>¡Nos alegra volver a darte la bienvenida!</h1>
-        <b class="cabeza">Tienes acumulado: <span>$0.00</span></b>
-
+        <div class="puntos-info">
+          <b class="cabeza">Puntos acumulados: <span id="puntos-usuario">0</span></b>
+          <p class="nota-puntos">Estos puntos son generados por tus compras de productos y paquetes</p>
+        </div>
       </section>
 
       <div>
@@ -97,13 +98,37 @@
       <button class="contact-button">
         <i class="fab fa-whatsapp"></i> Contacto: 320 818 6026
       </button>
-      <button class="admin"></button>
+      <a href="html/admin.html"><button class="admin"></button></a>
       <br>
       &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
     </footer>
 
     <script src="js/app.js"></script>
     <script src="js/contacto.js"></script>
+    <script>
+      // Función para actualizar los puntos del usuario en la interfaz
+      function actualizarPuntosUsuario() {
+          const puntosElement = document.getElementById('puntos-usuario');
+          if (puntosElement && usuario) {
+              puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
+          }
+      }
+
+      // Función para cargar el usuario
+      function cargarUsuario() {
+          const usuarioStr = localStorage.getItem('usuario');
+          if (usuarioStr) {
+              usuario = JSON.parse(usuarioStr);
+              actualizarPuntosUsuario(); // Actualizar puntos al cargar usuario
+          }
+      }
+
+      // Inicializar
+      cargarUsuario();
+
+      // Actualizar puntos cada 30 segundos
+      setInterval(actualizarPuntosUsuario, 30000);
+    </script>
   </body>
 
 </html>

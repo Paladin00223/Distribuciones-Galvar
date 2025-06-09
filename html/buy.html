@@ -277,6 +277,29 @@
 
         // Cargar el carrito al iniciar la página
         window.onload = loadCart;
+
+        // Función para actualizar los puntos del usuario en la interfaz
+        function actualizarPuntosUsuario() {
+            const puntosElement = document.getElementById('puntos-usuario');
+            if (puntosElement && usuario) {
+                puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
+            }
+        }
+
+        // Función para cargar el usuario
+        function cargarUsuario() {
+            const usuarioStr = localStorage.getItem('usuario');
+            if (usuarioStr) {
+                usuario = JSON.parse(usuarioStr);
+                actualizarPuntosUsuario(); // Actualizar puntos al cargar usuario
+            }
+        }
+
+        // Inicializar
+        cargarUsuario();
+
+        // Actualizar puntos cada 30 segundos
+        setInterval(actualizarPuntosUsuario, 30000);
     </script>
 </body>
 </html>

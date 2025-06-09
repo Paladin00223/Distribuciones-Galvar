@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - Distribuciones Galvar</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .admin-titulo {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        .admin-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .admin-tab {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            background-color: #f8f9fa;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .admin-tab.activo {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .admin-tab:hover:not(.activo) {
+            background-color: #e9ecef;
+        }
+
+        .admin-content {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .admin-table th {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .admin-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #dee2e6;
+            color: #6c757d;
+        }
+
+        .admin-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .estado-pedido {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .estado-pendiente {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .estado-procesado {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .estado-cancelado {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .btn-accion {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s;
+        }
+
+        .btn-ver {
+            background-color: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .btn-editar {
+            background-color: #fff3e0;
+            color: #f57c00;
+        }
+
+        .btn-eliminar {
+            background-color: #f8d7da;
+            color: #dc3545;
+        }
+
+        .btn-accion:hover {
+            opacity: 0.8;
+        }
+
+        .filtros {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filtro-input {
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            flex: 1;
+        }
+
+        .paginacion {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn-pagina {
+            padding: 0.5rem 1rem;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            background-color: white;
+            color: #495057;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-pagina:hover {
+            background-color: #f8f9fa;
+        }
+
+        .btn-pagina.activo {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .sin-registros {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1 class="admin-titulo">Panel de Administración</h1>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="admin-tab activo" data-tab="usuarios">Usuarios</button>
+            <button class="admin-tab" data-tab="pedidos">Pedidos</button>
+        </div>
+
+        <div class="admin-content">
+            <!-- Sección de Usuarios -->
+            <div id="usuarios-content" class="tab-content">
+                <div class="filtros">
+                    <input type="text" class="filtro-input" placeholder="Buscar usuario por nombre, email o ID...">
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th>Paquete</th>
+                            <th>Puntos</th>
+                            <th>Fecha Registro</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usuarios-tabla">
+                        <!-- Los usuarios se cargarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Sección de Pedidos -->
+            <div id="pedidos-content" class="tab-content" style="display: none;">
+                <div class="filtros">
+                    <input type="text" class="filtro-input" placeholder="Buscar pedido por ID o usuario...">
+                    <select class="filtro-input">
+                        <option value="todos">Todos los estados</option>
+                        <option value="pendiente">Pendiente</option>
+                        <option value="procesado">Procesado</option>
+                        <option value="cancelado">Cancelado</option>
+                    </select>
+                </div>
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID Pedido</th>
+                            <th>Usuario</th>
+                            <th>Tipo</th>
+                            <th>Monto</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pedidos-tabla">
+                        <!-- Los pedidos se cargarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Datos de ejemplo (esto vendría de tu backend)
+        const usuarios = [
+            {
+                id: 1,
+                nombre: 'Juan Pérez',
+                email: 'juan@ejemplo.com',
+                paquete: 'Paquete 1',
+                puntos: 1000,
+                fechaRegistro: '2024-03-01'
+            },
+            {
+                id: 2,
+                nombre: 'María García',
+                email: 'maria@ejemplo.com',
+                paquete: 'Paquete 2',
+                puntos: 2500,
+                fechaRegistro: '2024-03-15'
+            }
+        ];
+
+        const pedidos = [
+            {
+                id: 1,
+                usuario: 'Juan Pérez',
+                tipo: 'Producto',
+                monto: 50000,
+                fecha: '2024-03-20',
+                estado: 'pendiente'
+            },
+            {
+                id: 2,
+                usuario: 'María García',
+                tipo: 'Paquete',
+                monto: 100000,
+                fecha: '2024-03-19',
+                estado: 'procesado'
+            }
+        ];
+
+        function formatearFecha(fecha) {
+            return new Date(fecha).toLocaleDateString('es-CO', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function formatearMoneda(monto) {
+            return new Intl.NumberFormat('es-CO', {
+                style: 'currency',
+                currency: 'COP'
+            }).format(monto);
+        }
+
+        function obtenerClaseEstado(estado) {
+            switch(estado) {
+                case 'pendiente': return 'estado-pendiente';
+                case 'procesado': return 'estado-procesado';
+                case 'cancelado': return 'estado-cancelado';
+                default: return '';
+            }
+        }
+
+        function mostrarUsuarios() {
+            const tbody = document.getElementById('usuarios-tabla');
+            tbody.innerHTML = usuarios.map(usuario => `
+                <tr>
+                    <td>${usuario.id}</td>
+                    <td>${usuario.nombre}</td>
+                    <td>${usuario.email}</td>
+                    <td>${usuario.paquete}</td>
+                    <td>${usuario.puntos.toLocaleString('es-CO')}</td>
+                    <td>${formatearFecha(usuario.fechaRegistro)}</td>
+                    <td>
+                        <button class="btn-accion btn-ver" onclick="verUsuario(${usuario.id})">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-accion btn-editar" onclick="editarUsuario(${usuario.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-accion btn-eliminar" onclick="eliminarUsuario(${usuario.id})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function mostrarPedidos() {
+            const tbody = document.getElementById('pedidos-tabla');
+            tbody.innerHTML = pedidos.map(pedido => `
+                <tr>
+                    <td>#${pedido.id}</td>
+                    <td>${pedido.usuario}</td>
+                    <td>${pedido.tipo}</td>
+                    <td>${formatearMoneda(pedido.monto)}</td>
+                    <td>${formatearFecha(pedido.fecha)}</td>
+                    <td>
+                        <span class="estado-pedido ${obtenerClaseEstado(pedido.estado)}">
+                            ${pedido.estado.charAt(0).toUpperCase() + pedido.estado.slice(1)}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="btn-accion btn-ver" onclick="verPedido(${pedido.id})">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-accion btn-editar" onclick="editarPedido(${pedido.id})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Funciones de acción (estas se implementarían según tus necesidades)
+        function verUsuario(id) {
+            console.log('Ver usuario:', id);
+        }
+
+        function editarUsuario(id) {
+            console.log('Editar usuario:', id);
+        }
+
+        function eliminarUsuario(id) {
+            console.log('Eliminar usuario:', id);
+        }
+
+        function verPedido(id) {
+            console.log('Ver pedido:', id);
+        }
+
+        function editarPedido(id) {
+            console.log('Editar pedido:', id);
+        }
+
+        // Manejo de pestañas
+        document.querySelectorAll('.admin-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remover clase activo de todas las pestañas
+                document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('activo'));
+                // Agregar clase activo a la pestaña clickeada
+                tab.classList.add('activo');
+
+                // Ocultar todos los contenidos
+                document.querySelectorAll('.tab-content').forEach(content => content.style.display = 'none');
+                // Mostrar el contenido correspondiente
+                document.getElementById(`${tab.dataset.tab}-content`).style.display = 'block';
+            });
+        });
+
+        // Inicializar
+        document.addEventListener('DOMContentLoaded', () => {
+            mostrarUsuarios();
+            mostrarPedidos();
+        });
+    </script>
+</body>
+</html> 
