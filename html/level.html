@@ -174,6 +174,21 @@
             font-size: 1.1em;
         }
 
+        .aviso-espera {
+            background-color: #e8f4f8;
+            border: 1px solid #b8daff;
+            color: #004085;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .aviso-espera p {
+            margin: 0;
+            font-size: 1.1em;
+        }
+
         .paquete-actions {
             display: flex;
             flex-direction: column;
@@ -304,6 +319,10 @@
         <div class="paquetes-container">
             <div class="paquetes-header">
                 <h1>Paquetes Disponibles</h1>
+            </div>
+
+            <div class="aviso-espera">
+                <p><strong>Importante:</strong> Los beneficios de los paquetes se entregarán después de un período de espera de 5 días hábiles, según lo establecido en los términos y condiciones de paquetes y reembolsos.</p>
             </div>
 
             <div class="paquete-actual">
@@ -588,6 +607,9 @@
                             <p><strong>Paquete:</strong> ${paquete.nombre}</p>
                             <p><strong>Puntos a descontar:</strong> ${paquete.precio}</p>
                             <p><strong>Puntos disponibles:</strong> ${usuario.puntos}</p>
+                            <div class="aviso-espera" style="margin-top: 15px;">
+                                <p><strong>Importante:</strong> Los beneficios y la repartición de porcentajes se activarán después de un período de espera de 5 días hábiles, según lo establecido en los términos y condiciones.</p>
+                            </div>
                         </div>
                     `,
                     icon: 'question',
@@ -596,7 +618,26 @@
                     cancelButtonText: 'Cancelar'
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        Swal.fire('¡Éxito!', 'Paquete comprado con puntos', 'success');
+                        // Guardar la fecha de compra para calcular el período de espera
+                        const fechaCompra = new Date();
+                        const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual')) || {};
+                        usuarioActual.paquete = paqueteId;
+                        usuarioActual.fechaCompraPaquete = fechaCompra.toISOString();
+                        usuarioActual.paquetePendiente = true;
+                        localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
+
+                        Swal.fire({
+                            title: '¡Compra Exitosa!',
+                            html: `
+                                <p>Tu paquete ha sido adquirido correctamente.</p>
+                                <p><strong>Fecha de activación:</strong> ${calcularFechaActivacion(fechaCompra)}</p>
+                                <p>Los beneficios y la repartición de porcentajes se activarán automáticamente después del período de espera.</p>
+                            `,
+                            icon: 'success'
+                        });
+
+                        cargarPaqueteUsuario();
+                        cargarPaquetes();
                     }
                 });
             } else {
@@ -609,6 +650,9 @@
                             <p><strong>Puntos necesarios:</strong> ${paquete.precio}</p>
                             <p><strong>Puntos disponibles:</strong> ${usuario.puntos}</p>
                             <p><strong>Puntos faltantes:</strong> ${puntosFaltantes}</p>
+                            <div class="aviso-espera" style="margin-top: 15px;">
+                                <p><strong>Importante:</strong> Los beneficios y la repartición de porcentajes se activarán después de un período de espera de 5 días hábiles, según lo establecido en los términos y condiciones.</p>
+                            </div>
                         </div>
                     `,
                     icon: 'warning',
@@ -628,11 +672,57 @@
                                     <p><strong>Asunto:</strong> Compra Paquete ${paqueteId}</p>
                                 </div>
                                 <p class="nota-consignacion">Una vez realizada la consignación, envíanos el comprobante para activar tu paquete.</p>
+                                <div class="aviso-espera" style="margin-top: 15px;">
+                                    <p><strong>Importante:</strong> Los beneficios y la repartición de porcentajes se activarán después de un período de espera de 5 días hábiles, según lo establecido en los términos y condiciones.</p>
+                                </div>
                             `,
                             confirmButtonText: 'Entendido'
                         });
                     }
                 });
+            }
+        }
+
+        // Función para calcular la fecha de activación (5 días hábiles después)
+        function calcularFechaActivacion(fechaCompra) {
+            let fecha = new Date(fechaCompra);
+            let diasHabiles = 0;
+            
+            while (diasHabiles < 5) {
+                fecha.setDate(fecha.getDate() + 1);
+                // 0 es domingo, 6 es sábado
+                if (fecha.getDay() !== 0 && fecha.getDay() !== 6) {
+                    diasHabiles++;
+                }
+            }
+            
+            return fecha.toLocaleDateString('es-CO', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        // Función para verificar si el paquete está activo
+        function verificarEstadoPaquete() {
+            const usuario = JSON.parse(localStorage.getItem('usuarioActual'));
+            if (usuario && usuario.paquetePendiente && usuario.fechaCompraPaquete) {
+                const fechaCompra = new Date(usuario.fechaCompraPaquete);
+                const fechaActual = new Date();
+                const diasTranscurridos = Math.floor((fechaActual - fechaCompra) / (1000 * 60 * 60 * 24));
+                
+                if (diasTranscurridos >= 5) {
+                    usuario.paquetePendiente = false;
+                    localStorage.setItem('usuarioActual', JSON.stringify(usuario));
+                    
+                    // Mostrar notificación de activación
+                    Swal.fire({
+                        title: '¡Paquete Activado!',
+                        text: 'Tu paquete ha sido activado y los beneficios ya están disponibles.',
+                        icon: 'success'
+                    });
+                }
             }
         }
 
@@ -667,6 +757,7 @@
             cargarUsuario();
             cargarPaqueteUsuario();
             cargarPaquetes();
+            verificarEstadoPaquete();
         };
     </script>
 </body>
