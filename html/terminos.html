@@ -10,14 +10,14 @@
             max-width: 800px;
             margin: 2rem auto;
             padding: 2rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .terminos-titulo {
-            color: #333;
             text-align: center;
+            color: #333;
             margin-bottom: 2rem;
         }
 
@@ -26,25 +26,26 @@
         }
 
         .terminos-seccion h2 {
-            color: #007bff;
+            color: #333;
             margin-bottom: 1rem;
         }
 
-        .terminos-seccion p {
-            color: #495057;
+        .terminos-seccion p, .terminos-seccion li {
+            color: #666;
             line-height: 1.6;
-            margin-bottom: 1rem;
         }
 
         .terminos-seccion ul {
             list-style-type: disc;
-            margin-left: 2rem;
-            margin-bottom: 1rem;
+            padding-left: 2rem;
         }
 
-        .terminos-seccion li {
-            color: #495057;
-            margin-bottom: 0.5rem;
+        .importante {
+            background-color: #fff3cd;
+            border: 1px solid #ffeeba;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
         }
 
         .terminos-botones {
@@ -55,12 +56,12 @@
         }
 
         .btn-terminos {
-            padding: 0.75rem 1.5rem;
+            padding: 0.8rem 2rem;
             border: none;
-            border-radius: 4px;
+            border-radius: 0.5rem;
             cursor: pointer;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-weight: bold;
+            transition: all 0.3s;
         }
 
         .btn-aceptar {
@@ -74,23 +75,15 @@
         }
 
         .btn-terminos:hover {
-            opacity: 0.9;
-        }
-
-        .importante {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
     <div class="terminos-container">
         <h1 class="terminos-titulo">Términos y Condiciones del Programa de Fidelización</h1>
-
+        
         <div class="terminos-seccion">
             <h2>1. Introducción</h2>
             <p>Bienvenido al Programa de Fidelización de Distribuciones Galvar. Al participar en este programa, usted acepta cumplir con los siguientes términos y condiciones, los cuales están regidos por las leyes colombianas, especialmente la Ley 1480 de 2011 (Estatuto del Consumidor) y sus modificaciones.</p>
@@ -162,6 +155,16 @@
             <p>La empresa puede terminar o suspender su participación en el programa en caso de fraude, incumplimiento de estos términos o conducta inapropiada.</p>
         </div>
 
+        <div class="terminos-seccion">
+            <h2>10. Política de Cuentas Inactivas</h2>
+            <ul>
+                <li>Las cuentas que no muestren actividad durante un período de un año serán eliminadas automáticamente del sistema.</li>
+                <li>Se considera actividad cualquier inicio de sesión o transacción realizada en la plataforma.</li>
+                <li>Antes de la eliminación, se enviará una notificación al correo electrónico registrado.</li>
+                <li>Los puntos y beneficios acumulados se perderán al eliminar la cuenta.</li>
+            </ul>
+        </div>
+
         <div class="terminos-botones">
             <button id="aceptarTerminos" class="btn-terminos btn-aceptar">Aceptar Términos</button>
             <button id="rechazarTerminos" class="btn-terminos btn-rechazar">Rechazar</button>
@@ -170,16 +173,11 @@
 
     <script>
         document.getElementById('aceptarTerminos').addEventListener('click', function() {
-            const usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (usuario) {
-                usuario.terminosAceptados = true;
-                localStorage.setItem('usuario', JSON.stringify(usuario));
-                window.location.href = 'level.html';
-            }
+            window.location.href = 'login.html';
         });
 
         document.getElementById('rechazarTerminos').addEventListener('click', function() {
-            window.location.href = 'index.html';
+            window.location.href = 'login.html';
         });
     </script>
 </body>
