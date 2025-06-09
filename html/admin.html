@@ -25,6 +25,25 @@
             color: #333;
         }
 
+        .btn-ir-tienda {
+            padding: 0.75rem 1.5rem;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-ir-tienda:hover {
+            background-color: #218838;
+            transform: translateY(-2px);
+        }
+
         .admin-tabs {
             display: flex;
             gap: 1rem;
@@ -187,6 +206,10 @@
     <div class="admin-container">
         <div class="admin-header">
             <h1 class="admin-titulo">Panel de Administración</h1>
+            <a href="../index.html" class="btn-ir-tienda">
+                <i class="fas fa-store"></i>
+                Ir a la Tienda
+            </a>
         </div>
 
         <div class="admin-tabs">
