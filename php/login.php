@@ -12,12 +12,12 @@ function eliminarCuentasInactivas($conn) {
 eliminarCuentasInactivas($conn);
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $usuario = $_POST['usuario'];
+    $email = $_POST['email'];
     $password = $_POST['password'];
     
-    $sql = "SELECT * FROM usuarios WHERE usuario = ?";
+    $sql = "SELECT * FROM usuarios WHERE email = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $usuario);
+    $stmt->bind_param("s", $email);
     $stmt->execute();
     $result = $stmt->get_result();
     
@@ -25,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if (password_verify($password, $row['password'])) {
             // Actualizar último acceso
-            $update_sql = "UPDATE usuarios SET ultimo_acceso = NOW() WHERE usuario = ?";
+            $update_sql = "UPDATE usuarios SET ultimo_acceso = NOW() WHERE email = ?";
             $update_stmt = $conn->prepare($update_sql);
-            $update_stmt->bind_param("s", $usuario);
+            $update_stmt->bind_param("s", $email);
             $update_stmt->execute();
             
-            $_SESSION['usuario'] = $usuario;
+            $_SESSION['usuario'] = $email;
             $_SESSION['tipo'] = $row['tipo'];
             header("Location: ../html/index.html");
         } else {
