@@ -106,53 +106,53 @@
 
         .estado-pedido {
             display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.875rem;
-            font-weight: 500;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: bold;
         }
 
         .estado-pendiente {
-            background-color: #fff3cd;
-            color: #856404;
+            background-color: #f39c12;
+            color: white;
         }
 
-        .estado-procesado {
-            background-color: #d4edda;
-            color: #155724;
+        .estado-completado {
+            background-color: #27ae60;
+            color: white;
         }
 
         .estado-cancelado {
-            background-color: #f8d7da;
-            color: #721c24;
+            background-color: #e74c3c;
+            color: white;
         }
 
         .btn-accion {
-            padding: 0.25rem 0.5rem;
+            padding: 5px 10px;
+            margin: 0 2px;
             border: none;
             border-radius: 4px;
             cursor: pointer;
-            font-size: 0.875rem;
-            transition: all 0.2s;
+            font-size: 14px;
         }
 
         .btn-ver {
-            background-color: #e3f2fd;
-            color: #1976d2;
+            background-color: #3498db;
+            color: white;
         }
 
         .btn-editar {
-            background-color: #fff3e0;
-            color: #f57c00;
+            background-color: #2ecc71;
+            color: white;
         }
 
         .btn-eliminar {
-            background-color: #f8d7da;
-            color: #dc3545;
+            background-color: #e74c3c;
+            color: white;
         }
 
         .btn-accion:hover {
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
         .filtros {
@@ -246,12 +246,12 @@
             <!-- Sección de Pedidos -->
             <div id="pedidos-content" class="tab-content" style="display: none;">
                 <div class="filtros">
-                    <input type="text" class="filtro-input" placeholder="Buscar pedido por ID o usuario...">
-                    <select class="filtro-input">
+                    <input type="text" id="buscarPedido" class="filtro-input" placeholder="Buscar pedido por ID o usuario...">
+                    <select id="filtroEstado" class="filtro-input">
                         <option value="todos">Todos los estados</option>
-                        <option value="pendiente">Pendiente</option>
-                        <option value="procesado">Procesado</option>
-                        <option value="cancelado">Cancelado</option>
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Procesado">Procesado</option>
+                        <option value="Cancelado">Cancelado</option>
                     </select>
                 </div>
                 <table class="admin-table">
@@ -286,148 +286,160 @@
 
             // Mostrar nombre del administrador
             document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${usuario.nombre}`;
+            
+            // Cargar pedidos al iniciar
+            cargarPedidos();
+            
+            // Agregar event listeners para los filtros
+            document.getElementById('buscarPedido').addEventListener('input', filtrarPedidos);
+            document.getElementById('filtroEstado').addEventListener('change', filtrarPedidos);
         });
 
-        // Datos de ejemplo (esto vendría de tu backend)
-        const usuarios = [];
-        const pedidos = [];
-
-        function formatearFecha(fecha) {
-            return new Date(fecha).toLocaleDateString('es-CO', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
+        // Función para cargar los pedidos
+        function cargarPedidos() {
+            const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            mostrarPedidos(pedidos);
         }
 
-        function formatearMoneda(monto) {
-            return new Intl.NumberFormat('es-CO', {
-                style: 'currency',
-                currency: 'COP'
-            }).format(monto);
-        }
-
-        function obtenerClaseEstado(estado) {
-            switch(estado) {
-                case 'pendiente': return 'estado-pendiente';
-                case 'aprobado': return 'estado-procesado';
-                case 'rechazado': return 'estado-cancelado';
-                default: return '';
-            }
-        }
-
-        function mostrarUsuarios() {
-            const tbody = document.getElementById('usuarios-tabla');
-            tbody.innerHTML = usuarios.map(usuario => `
-                <tr>
-                    <td>${usuario.id}</td>
-                    <td>${usuario.nombre}</td>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.cedula}</td>
-                    <td>
-                        <button class="btn-accion btn-ver" onclick="verDocumento('${usuario.documento}')">
-                            <i class="fas fa-id-card"></i> Ver documento
-                        </button>
-                    </td>
-                    <td>${usuario.paquete}</td>
-                    <td>${usuario.puntos.toLocaleString('es-CO')}</td>
-                    <td>
-                        <span class="estado-pedido ${obtenerClaseEstado(usuario.estado)}">
-                            ${usuario.estado.charAt(0).toUpperCase() + usuario.estado.slice(1)}
-                        </span>
-                    </td>
-                    <td>
-                        ${usuario.estado === 'pendiente' ? `
-                            <button class="btn-accion btn-editar" onclick="aprobarUsuario(${usuario.id})">
-                                <i class="fas fa-check"></i>
-                            </button>
-                            <button class="btn-accion btn-eliminar" onclick="rechazarUsuario(${usuario.id})">
-                                <i class="fas fa-times"></i>
-                            </button>
-                        ` : ''}
-                        <button class="btn-accion btn-ver" onclick="verUsuario(${usuario.id})">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </td>
-                </tr>
-            `).join('');
-        }
-
-        function mostrarPedidos() {
+        // Función para mostrar los pedidos en la tabla
+        function mostrarPedidos(pedidos) {
             const tbody = document.getElementById('pedidos-tabla');
             tbody.innerHTML = pedidos.map(pedido => `
                 <tr>
-                    <td>#${pedido.id}</td>
-                    <td>${pedido.usuario}</td>
+                    <td>${pedido.id}</td>
+                    <td>${pedido.cliente.nombre}</td>
                     <td>
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            ${pedido.productos.map(producto => `
-                                <li style="margin-bottom: 0.5rem;">
-                                    ${producto.nombre} x${producto.cantidad} - ${formatearMoneda(producto.precio)}
-                                </li>
-                            `).join('')}
-                        </ul>
+                        <button class="btn-accion btn-ver" onclick="verDetallesProductos('${pedido.id}')">
+                            <i class="fas fa-box"></i> Ver productos
+                        </button>
                     </td>
-                    <td>
-                        <div style="font-size: 0.9rem;">
-                            <div>${pedido.direccion.calle}</div>
-                            <div>${pedido.direccion.ciudad}, ${pedido.direccion.departamento}</div>
-                            <div>${pedido.direccion.codigoPostal}</div>
-                        </div>
-                    </td>
-                    <td>${formatearMoneda(pedido.monto)}</td>
-                    <td>${formatearFecha(pedido.fecha)}</td>
+                    <td>${pedido.cliente.direccion}</td>
+                    <td>$${pedido.total.toLocaleString('es-CO')}</td>
+                    <td>${new Date(pedido.fecha).toLocaleDateString('es-CO')}</td>
                     <td>
                         <span class="estado-pedido ${obtenerClaseEstado(pedido.estado)}">
-                            ${pedido.estado.charAt(0).toUpperCase() + pedido.estado.slice(1)}
+                            ${pedido.estado}
                         </span>
                     </td>
                     <td>
-                        <button class="btn-accion btn-ver" onclick="verPedido(${pedido.id})">
+                        ${pedido.estado === 'Pendiente' ? `
+                            <button class="btn-accion btn-editar" onclick="procesarPedido('${pedido.id}')">
+                                <i class="fas fa-check"></i> Procesar
+                            </button>
+                            <button class="btn-accion btn-eliminar" onclick="cancelarPedido('${pedido.id}')">
+                                <i class="fas fa-times"></i> Cancelar
+                            </button>
+                        ` : ''}
+                        <button class="btn-accion btn-ver" onclick="verPedido('${pedido.id}')">
                             <i class="fas fa-eye"></i>
-                        </button>
-                        <button class="btn-accion btn-editar" onclick="editarPedido(${pedido.id})">
-                            <i class="fas fa-edit"></i>
                         </button>
                     </td>
                 </tr>
             `).join('');
         }
 
-        // Funciones de acción (estas se implementarían según tus necesidades)
-        function verUsuario(id) {
-            console.log('Ver usuario:', id);
+        // Función para filtrar pedidos
+        function filtrarPedidos() {
+            const busqueda = document.getElementById('buscarPedido').value.toLowerCase();
+            const estadoFiltro = document.getElementById('filtroEstado').value;
+            const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            
+            const pedidosFiltrados = pedidos.filter(pedido => {
+                const coincideBusqueda = pedido.id.toLowerCase().includes(busqueda) ||
+                                       pedido.cliente.nombre.toLowerCase().includes(busqueda);
+                const coincideEstado = estadoFiltro === 'todos' || pedido.estado === estadoFiltro;
+                
+                return coincideBusqueda && coincideEstado;
+            });
+            
+            mostrarPedidos(pedidosFiltrados);
         }
 
-        function editarUsuario(id) {
-            console.log('Editar usuario:', id);
+        // Función para procesar un pedido
+        function procesarPedido(idPedido) {
+            const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            const pedidoIndex = pedidos.findIndex(p => p.id === idPedido);
+            
+            if (pedidoIndex !== -1) {
+                pedidos[pedidoIndex].estado = 'Procesado';
+                localStorage.setItem('historialCompras', JSON.stringify(pedidos));
+                cargarPedidos();
+                alert('Pedido procesado exitosamente');
+            }
         }
 
-        function eliminarUsuario(id) {
-            console.log('Eliminar usuario:', id);
+        // Función para cancelar un pedido
+        function cancelarPedido(idPedido) {
+            if (confirm('¿Está seguro de que desea cancelar este pedido?')) {
+                const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
+                const pedidoIndex = pedidos.findIndex(p => p.id === idPedido);
+                
+                if (pedidoIndex !== -1) {
+                    pedidos[pedidoIndex].estado = 'Cancelado';
+                    localStorage.setItem('historialCompras', JSON.stringify(pedidos));
+                    cargarPedidos();
+                    alert('Pedido cancelado exitosamente');
+                }
+            }
         }
 
-        function verPedido(id) {
-            console.log('Ver pedido:', id);
+        // Función para ver detalles de productos
+        function verDetallesProductos(idPedido) {
+            console.log('verDetallesProductos llamado con idPedido:', idPedido); // Debug log
+            const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            console.log('Historial de compras cargado:', pedidos); // Debug log
+            const pedido = pedidos.find(p => p.id === idPedido);
+            console.log('Pedido encontrado:', pedido); // Debug log
+            
+            if (pedido) {
+                if (pedido.productos && Array.isArray(pedido.productos) && pedido.productos.length > 0) {
+                    const detalles = pedido.productos.map(p =>
+                        `${p.nombre} - Cantidad: ${p.cantidad} - Precio: $${p.precio.toLocaleString('es-CO')}`
+                    ).join('\n');
+
+                    console.log('Detalles generados:', detalles); // Debug log
+                    alert(`Detalles del pedido ${idPedido}:\n\n${detalles}`);
+                } else {
+                    console.warn('Pedido encontrado pero sin productos:', pedido); // Debug log
+                    alert(`El pedido ${idPedido} no tiene productos registrados.`);
+                }
+            } else {
+                console.error('Pedido no encontrado con ID:', idPedido); // Debug log
+                alert(`No se encontró el pedido con ID ${idPedido}.`);
+            }
         }
 
-        function editarPedido(id) {
-            console.log('Editar pedido:', id);
+
+        // Función para ver detalles completos del pedido
+        function verPedido(idPedido) {
+            const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
+            const pedido = pedidos.find(p => p.id === idPedido);
+            
+            if (pedido) {
+                const detalles = `
+                    ID: ${pedido.id}
+                    Cliente: ${pedido.cliente.nombre}
+                    Email: ${pedido.cliente.email}
+                    Teléfono: ${pedido.cliente.telefono}
+                    Dirección: ${pedido.cliente.direccion}
+                    Fecha: ${new Date(pedido.fecha).toLocaleString('es-CO')}
+                    Estado: ${pedido.estado}
+                    Total: $${pedido.total.toLocaleString('es-CO')}
+                    Puntos ganados: ${pedido.puntosGanados}
+                `;
+                
+                alert(detalles);
+            }
         }
 
-        function verDocumento(ruta) {
-            // Aquí se implementaría la lógica para mostrar el documento
-            console.log('Ver documento:', ruta);
-        }
-
-        function aprobarUsuario(id) {
-            // Aquí se implementaría la lógica para aprobar al usuario
-            console.log('Aprobar usuario:', id);
-        }
-
-        function rechazarUsuario(id) {
-            // Aquí se implementaría la lógica para rechazar al usuario
-            console.log('Rechazar usuario:', id);
+        // Función para obtener la clase CSS según el estado
+        function obtenerClaseEstado(estado) {
+            switch(estado) {
+                case 'Pendiente': return 'estado-pendiente';
+                case 'Procesado': return 'estado-completado';
+                case 'Cancelado': return 'estado-cancelado';
+                default: return '';
+            }
         }
 
         // Manejo de pestañas
@@ -443,12 +455,6 @@
                 // Mostrar el contenido correspondiente
                 document.getElementById(`${tab.dataset.tab}-content`).style.display = 'block';
             });
-        });
-
-        // Inicializar
-        document.addEventListener('DOMContentLoaded', () => {
-            mostrarUsuarios();
-            mostrarPedidos();
         });
     </script>
 </body>
