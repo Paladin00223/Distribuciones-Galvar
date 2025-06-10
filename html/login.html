@@ -50,39 +50,59 @@
         <script src="../js/login.js"></script>
         <script src="../js/contacto.js"></script>
         <script>
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
+            document.addEventListener('DOMContentLoaded', function() {
+                const loginForm = document.getElementById('loginForm');
                 
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
+                loginForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value;
 
-                // Validación de administrador
-                if (email === 'jdvargas223@gmail.com' && password === 'JDv@rgA$223#') {
-                    localStorage.setItem('usuario', JSON.stringify({
-                        email: email,
-                        nombre: 'Administrador',
-                        esAdmin: true
+                    // Validaciones básicas
+                    if (!email || !password) {
+                        alert('Por favor complete todos los campos');
+                        return;
+                    }
+
+                    try {
+                        // Obtener usuarios
+                        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+                        
+                        // Buscar usuario
+                        const usuario = usuarios.find(u => u.email === email && u.password === password);
+                        
+                        if (usuario) {
+                            // Guardar sesión
+                            sessionStorage.setItem('usuarioActual', JSON.stringify({
+                                nombre: usuario.nombre,
+                                email: usuario.email,
+                                puntos: usuario.puntos
+                            }));
+
+                            // Mostrar mensaje de éxito
+                            alert('¡Inicio de sesión exitoso!');
+                            
+                            // Redirigir a la página principal
+                            window.location.href = '../index.html';
+                        } else {
+                            alert('Correo electrónico o contraseña incorrectos');
+                        }
+                    } catch (error) {
+                        console.error('Error en el inicio de sesión:', error);
+                        alert('Hubo un error al iniciar sesión. Por favor intente nuevamente.');
+                    }
+                        // Validación de administrador
+                    if (email === 'jdvargas223@gmail.com' && password === 'JDv@rgA$223#') {
+                        localStorage.setItem('usuario', JSON.stringify({
+                            email: email,
+                            nombre: 'Administrador',
+                            esAdmin: true
                     }));
                     window.location.href = 'admin.html';
                     return;
                 }
-
-                // Obtener usuarios registrados
-                const usuariosRegistrados = JSON.parse(localStorage.getItem('usuarios')) || [];
-                
-                // Buscar usuario por correo electrónico
-                const usuario = usuariosRegistrados.find(u => u.email === email);
-                
-                if (usuario && usuario.password === password) {
-                    // Guardar información del usuario
-                    localStorage.setItem('usuario', JSON.stringify({
-                        ...usuario,
-                        esAdmin: false
-                    }));
-                    window.location.href = 'index.html';
-                } else {
-                    alert('Correo electrónico o contraseña incorrectos');
-                }
+                });
             });
         </script>
 

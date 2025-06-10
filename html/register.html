@@ -65,67 +65,78 @@
         </style>
 
         <script>
-            // Función para mostrar la vista previa de la imagen
-            document.getElementById('documento').addEventListener('change', function(e) {
-                const preview = document.getElementById('preview');
-                const file = e.target.files[0];
+            document.addEventListener('DOMContentLoaded', function() {
+                const registerForm = document.getElementById('registerForm');
                 
-                if (file) {
-                    const reader = new FileReader();
-                    reader.onload = function(e) {
-                        preview.src = e.target.result;
-                        preview.style.display = 'block';
+                registerForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const nombre = document.getElementById('nombre').value.trim();
+                    const email = document.getElementById('email').value.trim();
+                    const password = document.getElementById('password').value;
+                    const confirmPassword = document.getElementById('confirmPassword').value;
+                    const referido = document.getElementById('referido').value.trim();
+
+                    // Validaciones básicas
+                    if (!nombre || !email || !password || !confirmPassword) {
+                        alert('Por favor complete todos los campos obligatorios');
+                        return;
                     }
-                    reader.readAsDataURL(file);
-                } else {
-                    preview.style.display = 'none';
-                }
-            });
 
-            // Validación del formulario
-            document.getElementById('registerForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const nombre = document.getElementById('nombre').value;
-                const email = document.getElementById('email').value;
-                const password = document.getElementById('password').value;
-                const confirmPassword = document.getElementById('confirmPassword').value;
-                const referido = document.getElementById('referido').value;
+                    if (password !== confirmPassword) {
+                        alert('Las contraseñas no coinciden');
+                        return;
+                    }
 
-                if (password !== confirmPassword) {
-                    alert('Las contraseñas no coinciden');
-                    return;
-                }
+                    if (password.length < 6) {
+                        alert('La contraseña debe tener al menos 6 caracteres');
+                        return;
+                    }
 
-                // Obtener usuarios existentes
-                const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+                    // Validar formato de email
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailRegex.test(email)) {
+                        alert('Por favor ingrese un correo electrónico válido');
+                        return;
+                    }
 
-                // Verificar si el email ya está registrado
-                if (usuarios.some(u => u.email === email)) {
-                    alert('Este correo electrónico ya está registrado');
-                    return;
-                }
+                    try {
+                        // Obtener usuarios existentes
+                        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-                // Crear nuevo usuario
-                const nuevoUsuario = {
-                    nombre,
-                    email,
-                    password,
-                    referido,
-                    puntos: 0,
-                    estado: 'activo',
-                    fechaRegistro: new Date().toISOString()
-                };
+                        // Verificar si el email ya está registrado
+                        if (usuarios.some(u => u.email === email)) {
+                            alert('Este correo electrónico ya está registrado');
+                            return;
+                        }
 
-                // Agregar usuario a la lista
-                usuarios.push(nuevoUsuario);
+                        // Crear nuevo usuario
+                        const nuevoUsuario = {
+                            nombre,
+                            email,
+                            password,
+                            referido: referido || null,
+                            puntos: 0,
+                            estado: 'activo',
+                            fechaRegistro: new Date().toISOString()
+                        };
 
-                // Guardar en localStorage
-                localStorage.setItem('usuarios', JSON.stringify(usuarios));
+                        // Agregar usuario a la lista
+                        usuarios.push(nuevoUsuario);
 
-                // Redirigir a login
-                alert('Registro exitoso. Por favor inicie sesión.');
-                window.location.href = 'login.html';
+                        // Guardar en localStorage
+                        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+                        // Mostrar mensaje de éxito
+                        alert('¡Registro exitoso! Será redirigido a la página de inicio de sesión.');
+                        
+                        // Redirigir a login
+                        window.location.href = 'login.html';
+                    } catch (error) {
+                        console.error('Error en el registro:', error);
+                        alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
+                    }
+                });
             });
         </script>
 

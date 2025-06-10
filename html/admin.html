@@ -394,7 +394,8 @@
             if (pedido) {
                 if (pedido.productos && Array.isArray(pedido.productos) && pedido.productos.length > 0) {
                     const detalles = pedido.productos.map(p =>
-                        `${p.nombre} - Cantidad: ${p.cantidad} - Precio: $${p.precio.toLocaleString('es-CO')}`
+                        // Usar p.price en lugar de p.precio y verificar que sea un número
+                        `${p.nombre} - Cantidad: ${p.cantidad} - Precio: $${(typeof p.price === 'number' ? p.price.toLocaleString('es-CO') : 'N/A')}`
                     ).join('\n');
 
                     console.log('Detalles generados:', detalles); // Debug log

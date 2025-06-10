@@ -220,10 +220,10 @@ function addToCart(button) {
     } else {
         // Si es un producto nuevo, añadirlo al carrito
         cart.push({
-            name: nombre,
-            price: precio,
-            quantity: cantidad
-        });
+        name: nombre,
+        price: precio, // Se guarda como 'price'
+        quantity: cantidad
+});
     }
 
     localStorage.setItem('cart', JSON.stringify(cart));
@@ -251,6 +251,8 @@ function addToCart(button) {
 
     // Actualizar el contador del carrito si existe
     updateCartCount();
+
+
 }
 
 // Función para actualizar el contador del carrito
