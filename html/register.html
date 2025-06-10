@@ -22,19 +22,6 @@
                 <input type="text" id="nombre" name="nombre" required>
             </div>
             <div class="form-group">
-                <label for="cedula">Número de cédula</label>
-                <input type="text" id="cedula" name="cedula" pattern="[0-9]{8,10}" title="Ingrese un número de cédula válido (8-10 dígitos)" required>
-            </div>
-            <div class="form-group">
-                <label for="documento">Foto de la cédula</label>
-                <div class="file-upload">
-                    <input type="file" id="documento" name="documento" accept="image/*" required>
-                    <div class="file-preview">
-                        <img id="preview" src="#" alt="Vista previa" style="display: none; max-width: 100%; margin-top: 10px;">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
                 <label for="email">Correo electrónico</label>
                 <input type="email" id="email" name="email" required>
             </div>
@@ -100,8 +87,6 @@
                 e.preventDefault();
                 
                 const nombre = document.getElementById('nombre').value;
-                const cedula = document.getElementById('cedula').value;
-                const documento = document.getElementById('documento').files[0];
                 const email = document.getElementById('email').value;
                 const password = document.getElementById('password').value;
                 const confirmPassword = document.getElementById('confirmPassword').value;
@@ -112,34 +97,23 @@
                     return;
                 }
 
-                if (!/^[0-9]{8,10}$/.test(cedula)) {
-                    alert('Por favor ingrese un número de cédula válido (8-10 dígitos)');
-                    return;
-                }
-
-                if (!documento) {
-                    alert('Por favor suba una foto de su cédula');
-                    return;
-                }
-
                 // Obtener usuarios existentes
                 const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
 
-                // Verificar si la cédula ya está registrada
-                if (usuarios.some(u => u.cedula === cedula)) {
-                    alert('Esta cédula ya está registrada');
+                // Verificar si el email ya está registrado
+                if (usuarios.some(u => u.email === email)) {
+                    alert('Este correo electrónico ya está registrado');
                     return;
                 }
 
                 // Crear nuevo usuario
                 const nuevoUsuario = {
                     nombre,
-                    cedula,
                     email,
                     password,
                     referido,
                     puntos: 0,
-                    estado: 'pendiente',
+                    estado: 'activo',
                     fechaRegistro: new Date().toISOString()
                 };
 
