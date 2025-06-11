@@ -1,32 +1,37 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito de Compras - Distribuciones Galvar</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <style>
         .buy-container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
         }
+
         .cart-table {
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 30px;
             background-color: white;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
-        .cart-table th, .cart-table td {
+
+        .cart-table th,
+        .cart-table td {
             padding: 15px;
             text-align: left;
             border-bottom: 1px solid #ddd;
         }
+
         .cart-table th {
             background-color: #f8f9fa;
             font-weight: bold;
         }
+
         .quantity-input {
             width: 70px;
             padding: 8px;
@@ -34,6 +39,7 @@
             border: 1px solid #ddd;
             border-radius: 4px;
         }
+
         .remove-btn {
             background-color: #dc3545;
             color: white;
@@ -43,25 +49,30 @@
             border-radius: 4px;
             transition: background-color 0.3s;
         }
+
         .remove-btn:hover {
             background-color: #c82333;
         }
+
         .shipping-form {
             background-color: #f8f9fa;
             padding: 25px;
             border-radius: 8px;
             margin-bottom: 30px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
             color: #333;
         }
+
         .form-group input {
             width: 100%;
             padding: 10px;
@@ -69,11 +80,13 @@
             border-radius: 4px;
             font-size: 16px;
         }
+
         .form-group input:focus {
             outline: none;
             border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
         }
+
         .total-section {
             text-align: right;
             font-size: 1.3em;
@@ -82,6 +95,7 @@
             background-color: #f8f9fa;
             border-radius: 8px;
         }
+
         .checkout-btn {
             background-color: #28a745;
             color: white;
@@ -93,18 +107,22 @@
             float: right;
             transition: background-color 0.3s;
         }
+
         .checkout-btn:hover {
             background-color: #218838;
         }
+
         .empty-cart {
             text-align: center;
             padding: 40px;
             color: #6c757d;
         }
+
         .empty-cart i {
             font-size: 48px;
             margin-bottom: 20px;
         }
+
         .puntos-info {
             background: #f8f9fa;
             padding: 1rem;
@@ -112,21 +130,24 @@
             margin: 1rem 0;
             text-align: center;
         }
+
         .puntos-info h2 {
             color: #495057;
             font-size: 1.2em;
             margin: 0;
         }
+
         .puntos-info span {
             color: #28a745;
             font-weight: bold;
         }
     </style>
 </head>
+
 <body>
     <div class="buy-container">
         <h1>Carrito de Compras</h1>
-        
+
         <div class="puntos-info">
             <h2>Puntos disponibles: <span id="puntos-usuario">0</span></h2>
         </div>
@@ -181,7 +202,7 @@
             let total = 0;
 
             cartItemsContainer.innerHTML = '';
-            
+
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = `
                     <tr>
@@ -194,7 +215,7 @@
                 document.getElementById('total-amount').textContent = '0';
                 return;
             }
-            
+
             cart.forEach((item, index) => {
                 const row = document.createElement('tr');
                 const subtotal = item.price * item.quantity;
@@ -240,14 +261,7 @@
                 loadCart();
             }
         }
-        // Calcular el total y los puntos
-        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
-        // Validar el tope de compra
-        if (total < 30000) {
-            alert('El total de la compra mínima es de $30.000. Por favor, ajusta tu carrito.');
-            return;
-        }
         // Procesar la compra
         function processCheckout() {
             const name = document.getElementById('name').value;
@@ -297,7 +311,7 @@
 
             // Mostrar mensaje de éxito con los puntos ganados
             alert(`¡Gracias por su compra! Recibirá un correo con los detalles de su pedido.\nPuntos ganados: ${puntosGanados}`);
-            
+
             // Redirigir a la página de compras
             window.location.href = 'compras.html';
         }
@@ -309,8 +323,10 @@
         function actualizarPuntosUsuario() {
             const puntosElement = document.getElementById('puntos-usuario');
             const usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (puntosElement && usuario) {
+            if (puntosElement && usuario && typeof usuario.puntos === 'number') {
                 puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
+            } else if (puntosElement) {
+                puntosElement.textContent = '0';
             }
         }
 
@@ -322,4 +338,5 @@
         });
     </script>
 </body>
+
 </html>
