@@ -302,6 +302,17 @@
             font-weight: bold;
             font-size: 1.1em;
         }
+
+        .aviso-riesgo {
+            background-color: #f8d7da;
+            border: 1px solid #f5c2c7;
+            color: #a94442;
+            padding: 15px;
+            margin: 20px 0 0 0;
+            border-radius: 5px;
+            text-align: center;
+            font-weight: bold;
+        }
     </style>
 </head>
 
@@ -322,7 +333,9 @@
             <div class="paquetes-header">
                 <h1>Paquetes Disponibles</h1>
             </div>
-
+            <div class="aviso-riesgo">
+                <strong>⚠️ Compra paquetes bajo tu propio riesgo.</strong>
+            </div>
             <div class="aviso-espera">
                 <p><strong>Importante:</strong> Los beneficios de los paquetes se entregarán después de un período de
                     espera de 5 días hábiles, según lo establecido en los términos y condiciones de paquetes y
@@ -467,8 +480,7 @@
                 ];
             } else if (paqueteId === 1) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y 2 puntos en primera línea de referidos',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -479,9 +491,7 @@
                 ];
             } else if (paqueteId === 2) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '3 puntos por cada $1.000 en compras de segunda línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y hasta 3 puntos en referidos (hasta segunda línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -492,10 +502,7 @@
                 ];
             } else if (paqueteId === 3) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '3 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '4 puntos por cada $1.000 en compras de tercera línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y hasta 4 puntos en referidos (hasta tercera línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -506,11 +513,7 @@
                 ];
             } else if (paqueteId === 4) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '3 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '4 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '5 puntos por cada $1.000 en compras de cuarta línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y hasta 5 puntos en referidos (hasta cuarta línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -521,12 +524,7 @@
                 ];
             } else if (paqueteId === 5) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '3 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '4 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '5 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '6 puntos por cada $1.000 en compras de quinta línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y hasta 6 puntos en referidos (hasta quinta línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -537,13 +535,7 @@
                 ];
             } else if (paqueteId === 6) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '3 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '4 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '5 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '6 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '7 puntos por cada $1.000 en compras de sexta línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y hasta 7 puntos en referidos (hasta sexta línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -554,14 +546,7 @@
                 ];
             } else if (paqueteId === 7) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '3 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '4 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '5 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '6 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '7 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '8 puntos por cada $1.000 en compras de septima línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y hasta 8 puntos en referidos (hasta séptima línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -572,35 +557,18 @@
                 ];
             } else if (paqueteId === 8) {
                 beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    '2 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '3 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '4 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '5 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '6 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '7 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '8 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '9 puntos por cada $1.000 en compras de octava línea de referidos',
+                    '1 punto por cada $1.000 en compras propias y hasta 9 puntos en referidos (hasta octava línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
                     '- 7% de tercera línea',
                     '- 10% de cuarta línea',
                     '- 25% de quinta línea',
-                    '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 8)',
+                    '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 8)'
                 ];
             } else if (paqueteId === 9) {
                 beneficios = [
-                    '2 puntos por cada $1.000 en compras propias',
-                    '3 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '4 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '5 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '6 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '7 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '8 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '9 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de octava línea de referidos',
-                    '10 puntos por cada $1.000 en compras de novena línea de referidos',
+                    '2 puntos por cada $1.000 en compras propias y hasta 10 puntos en referidos (hasta novena línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -611,17 +579,7 @@
                 ];
             } else if (paqueteId === 10) {
                 beneficios = [
-                    '3 puntos por cada $1.000 en compras propias',
-                    '4 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '5 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '6 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '7 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '8 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '9 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de octava línea de referidos',
-                    '10 puntos por cada $1.000 en compras de novena línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decima línea de referidos',
+                    '3 puntos por cada $1.000 en compras propias y hasta 10 puntos en referidos (hasta décima línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -632,18 +590,7 @@
                 ];
             } else if (paqueteId === 11) {
                 beneficios = [
-                    '4 puntos por cada $1.000 en compras propias',
-                    '5 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '6 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '7 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '8 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '9 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de octava línea de referidos',
-                    '10 puntos por cada $1.000 en compras de novena línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo primera línea de referidos',
+                    '4 puntos por cada $1.000 en compras propias y hasta 10 puntos en referidos (hasta onceava línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -654,19 +601,7 @@
                 ];
             } else if (paqueteId === 12) {
                 beneficios = [
-                    '5 puntos por cada $1.000 en compras propias',
-                    '6 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '7 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '8 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '9 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de octava línea de referidos',
-                    '10 puntos por cada $1.000 en compras de novena línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo primera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo segunda línea de referidos',
+                    '5 puntos por cada $1.000 en compras propias y hasta 10 puntos en referidos (hasta doceava línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -677,20 +612,7 @@
                 ];
             } else if (paqueteId === 13) {
                 beneficios = [
-                    '6 puntos por cada $1.000 en compras propias',
-                    '7 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '8 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '9 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de octava línea de referidos',
-                    '10 puntos por cada $1.000 en compras de novena línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo primera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo segunda línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo tercera línea de referidos',
+                    '6 puntos por cada $1.000 en compras propias y hasta 10 puntos en referidos (hasta treceava línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -701,21 +623,7 @@
                 ];
             } else if (paqueteId === 14) {
                 beneficios = [
-                    '7 puntos por cada $1.000 en compras propias',
-                    '8 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '9 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '10 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de octava línea de referidos',
-                    '10 puntos por cada $1.000 en compras de novena línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo primera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo segunda línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo tercera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo cuarta línea de referidos',
+                    '7 puntos por cada $1.000 en compras propias y hasta 10 puntos en referidos (hasta catorceava línea)',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
@@ -726,28 +634,13 @@
                 ];
             } else if (paqueteId === 15) {
                 beneficios = [
-                    '10 puntos por cada $1.000 en compras propias',
-                    '10 puntos por cada $1.000 en compras de primera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de segunda línea de referidos',
-                    '10 puntos por cada $1.000 en compras de tercera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de cuarta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de quinta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de sexta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de septima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de octava línea de referidos',
-                    '10 puntos por cada $1.000 en compras de novena línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decima línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo primera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo segunda línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo tercera línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo cuarta línea de referidos',
-                    '10 puntos por cada $1.000 en compras de decimo quinta línea de referidos',
+                    '10 puntos por cada $1.000 en compras propias y de hasta 15 líneas de referidos',
                     'Bonificaciones por compra de paquetes:',
                     '- 50% de primera línea',
                     '- 5% de segunda línea',
                     '- 7% de tercera línea',
                     '- 10% de cuarta línea',
-                    '- 25% de quinta línea',
+                    '- 25% de quinta línea'
                 ];
             } else ('');
             return beneficios;

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panel de Administración - Distribuciones Galvar</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .admin-container {
@@ -72,7 +72,7 @@
         .admin-content {
             background-color: white;
             border-radius: 8px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
         }
 
@@ -202,6 +202,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="admin-container">
         <div class="admin-header">
@@ -246,7 +247,8 @@
             <!-- Sección de Pedidos -->
             <div id="pedidos-content" class="tab-content" style="display: none;">
                 <div class="filtros">
-                    <input type="text" id="buscarPedido" class="filtro-input" placeholder="Buscar pedido por ID o usuario...">
+                    <input type="text" id="buscarPedido" class="filtro-input"
+                        placeholder="Buscar pedido por ID o usuario...">
                     <select id="filtroEstado" class="filtro-input">
                         <option value="todos">Todos los estados</option>
                         <option value="Pendiente">Pendiente</option>
@@ -277,7 +279,7 @@
 
     <script>
         // Verificación de acceso de administrador
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const usuario = JSON.parse(localStorage.getItem('usuario'));
             if (!usuario || !usuario.esAdmin) {
                 window.location.href = 'login.html';
@@ -286,14 +288,45 @@
 
             // Mostrar nombre del administrador
             document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${usuario.nombre}`;
-            
+
             // Cargar pedidos al iniciar
             cargarPedidos();
-            
+
             // Agregar event listeners para los filtros
             document.getElementById('buscarPedido').addEventListener('input', filtrarPedidos);
             document.getElementById('filtroEstado').addEventListener('change', filtrarPedidos);
         });
+
+        // Función para cargar los usuarios
+        function cargarUsuarios() {
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+            const tbody = document.getElementById('usuarios-tabla');
+            if (!tbody) return;
+            if (usuarios.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="9" class="sin-registros">No hay usuarios registrados.</td></tr>`;
+                return;
+            }
+            tbody.innerHTML = usuarios.map(usuario => `
+        <tr>
+            <td>${usuario.id || ''}</td>
+            <td>${usuario.nombre || ''}</td>
+            <td>${usuario.email || ''}</td>
+            <td>${usuario.cedula || ''}</td>
+            <td>${usuario.documento || ''}</td>
+            <td>${usuario.paquete || ''}</td>
+            <td>${usuario.puntos != null ? usuario.puntos : ''}</td>
+            <td>${usuario.estado || ''}</td>
+            <td>
+                <!-- Aquí puedes agregar botones de acción si lo deseas -->
+            </td>
+        </tr>
+    `).join('');
+        }
+        // Llama a cargarUsuarios al cargar la página
+        document.addEventListener('DOMContentLoaded', function () {
+            cargarUsuarios();
+        });
+
 
         // Función para cargar los pedidos
         function cargarPedidos() {
@@ -343,15 +376,15 @@
             const busqueda = document.getElementById('buscarPedido').value.toLowerCase();
             const estadoFiltro = document.getElementById('filtroEstado').value;
             const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
-            
+
             const pedidosFiltrados = pedidos.filter(pedido => {
                 const coincideBusqueda = pedido.id.toLowerCase().includes(busqueda) ||
-                                       pedido.cliente.nombre.toLowerCase().includes(busqueda);
+                    pedido.cliente.nombre.toLowerCase().includes(busqueda);
                 const coincideEstado = estadoFiltro === 'todos' || pedido.estado === estadoFiltro;
-                
+
                 return coincideBusqueda && coincideEstado;
             });
-            
+
             mostrarPedidos(pedidosFiltrados);
         }
 
@@ -359,7 +392,7 @@
         function procesarPedido(idPedido) {
             const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
             const pedidoIndex = pedidos.findIndex(p => p.id === idPedido);
-            
+
             if (pedidoIndex !== -1) {
                 pedidos[pedidoIndex].estado = 'Procesado';
                 localStorage.setItem('historialCompras', JSON.stringify(pedidos));
@@ -373,7 +406,7 @@
             if (confirm('¿Está seguro de que desea cancelar este pedido?')) {
                 const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
                 const pedidoIndex = pedidos.findIndex(p => p.id === idPedido);
-                
+
                 if (pedidoIndex !== -1) {
                     pedidos[pedidoIndex].estado = 'Cancelado';
                     localStorage.setItem('historialCompras', JSON.stringify(pedidos));
@@ -390,7 +423,7 @@
             console.log('Historial de compras cargado:', pedidos); // Debug log
             const pedido = pedidos.find(p => p.id === idPedido);
             console.log('Pedido encontrado:', pedido); // Debug log
-            
+
             if (pedido) {
                 if (pedido.productos && Array.isArray(pedido.productos) && pedido.productos.length > 0) {
                     const detalles = pedido.productos.map(p =>
@@ -415,7 +448,7 @@
         function verPedido(idPedido) {
             const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
             const pedido = pedidos.find(p => p.id === idPedido);
-            
+
             if (pedido) {
                 const detalles = `
                     ID: ${pedido.id}
@@ -428,14 +461,14 @@
                     Total: $${pedido.total.toLocaleString('es-CO')}
                     Puntos ganados: ${pedido.puntosGanados}
                 `;
-                
+
                 alert(detalles);
             }
         }
 
         // Función para obtener la clase CSS según el estado
         function obtenerClaseEstado(estado) {
-            switch(estado) {
+            switch (estado) {
                 case 'Pendiente': return 'estado-pendiente';
                 case 'Procesado': return 'estado-completado';
                 case 'Cancelado': return 'estado-cancelado';
@@ -459,4 +492,5 @@
         });
     </script>
 </body>
-</html> 
+
+</html>

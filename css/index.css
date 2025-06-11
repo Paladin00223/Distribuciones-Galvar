@@ -271,3 +271,31 @@ span {
 .error-container button:hover {
   background-color: var(--secondary-color);
 }
+@media (max-width: 700px) {
+    aside {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 100vw;
+        height: 3.5rem;
+        gap: 0.5rem;
+        /* Scrollbar visible en móviles */
+        scrollbar-width: thin;
+        scrollbar-color: #ccc #f9f9f9;
+    }
+    aside button {
+        min-width: 120px;
+        flex: 0 0 auto;
+        margin: 0 0.2rem;
+    }
+    aside::-webkit-scrollbar {
+        height: 6px;
+    }
+    aside::-webkit-scrollbar-thumb {
+        background: #ccc;
+        border-radius: 3px;
+    }
+}
