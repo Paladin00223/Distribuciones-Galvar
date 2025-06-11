@@ -240,7 +240,14 @@
                 loadCart();
             }
         }
+        // Calcular el total y los puntos
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
+        // Validar el tope de compra
+        if (total < 30000) {
+            alert('El total de la compra mínima es de $30.000. Por favor, ajusta tu carrito.');
+            return;
+        }
         // Procesar la compra
         function processCheckout() {
             const name = document.getElementById('name').value;
