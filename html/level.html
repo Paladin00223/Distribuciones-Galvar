@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paquetes - Distribuciones Galvar</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .paquetes-container {
@@ -408,8 +407,10 @@
         function actualizarPuntosUsuario() {
             const puntosElement = document.getElementById('puntos-usuario');
             const usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (puntosElement && usuario) {
+            if (puntosElement && usuario && typeof usuario.puntos === 'number') {
                 puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
+            } else if (puntosElement) {
+                puntosElement.textContent = '0';
             }
         }
 
@@ -459,12 +460,12 @@
 
         function obtenerBeneficios(paqueteId) {
 
-            if (paquete.id === 0) {
+            if (paqueteId === 0) {
                 beneficios = [
                     'Acceso a todos los productos',
                     '1 punto por cada $1.000 en compras propias'
                 ];
-            } else if (paquete.id === 1) {
+            } else if (paqueteId === 1) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -476,7 +477,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 1)'
                 ];
-            } else if (paquete.id === 2) {
+            } else if (paqueteId === 2) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -489,7 +490,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 2)'
                 ];
-            } else if (paquete.id === 3) {
+            } else if (paqueteId === 3) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -503,7 +504,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 3)'
                 ];
-            } else if (paquete.id === 4) {
+            } else if (paqueteId === 4) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -518,7 +519,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 4)'
                 ];
-            } else if (paquete.id === 5) {
+            } else if (paqueteId === 5) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -534,7 +535,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 5)'
                 ];
-                } else if (paquete.id === 6) {
+            } else if (paqueteId === 6) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -551,7 +552,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 6)'
                 ];
-                } else if (paquete.id === 7) {
+            } else if (paqueteId === 7) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -569,7 +570,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 7)'
                 ];
-                } else if (paquete.id === 8) {
+            } else if (paqueteId === 8) {
                 beneficios = [
                     '1 punto por cada $1.000 en compras propias',
                     '2 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -588,7 +589,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 8)',
                 ];
-                } else if (paquete.id === 9) {
+            } else if (paqueteId === 9) {
                 beneficios = [
                     '2 puntos por cada $1.000 en compras propias',
                     '3 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -608,7 +609,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 9)'
                 ];
-                } else if (paquete.id === 10) {
+            } else if (paqueteId === 10) {
                 beneficios = [
                     '3 puntos por cada $1.000 en compras propias',
                     '4 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -629,7 +630,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 10)'
                 ];
-                } else if (paquete.id === 11) {
+            } else if (paqueteId === 11) {
                 beneficios = [
                     '4 puntos por cada $1.000 en compras propias',
                     '5 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -651,7 +652,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 11)'
                 ];
-                } else if (paquete.id === 12) {
+            } else if (paqueteId === 12) {
                 beneficios = [
                     '5 puntos por cada $1.000 en compras propias',
                     '6 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -674,7 +675,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 12)'
                 ];
-                } else if (paquete.id === 13) {
+            } else if (paqueteId === 13) {
                 beneficios = [
                     '6 puntos por cada $1.000 en compras propias',
                     '7 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -698,7 +699,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 13)'
                 ];
-                } else if (paquete.id === 14) {
+            } else if (paqueteId === 14) {
                 beneficios = [
                     '7 puntos por cada $1.000 en compras propias',
                     '8 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -723,7 +724,7 @@
                     '- 25% de quinta línea',
                     '(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete 14)'
                 ];
-                } else if (paquete.id === 15) {
+            } else if (paqueteId === 15) {
                 beneficios = [
                     '10 puntos por cada $1.000 en compras propias',
                     '10 puntos por cada $1.000 en compras de primera línea de referidos',
@@ -748,22 +749,8 @@
                     '- 10% de cuarta línea',
                     '- 25% de quinta línea',
                 ];
-                } else {
-                beneficios = [
-                    '1 punto por cada $1.000 en compras propias',
-                    `1 punto por cada $1.000 en compras de primera a ${paquete.id} línea de referidos`,
-                    'Bonificaciones por compra de paquetes:',
-                    '- 50% de primera línea',
-                    '- 5% de segunda línea',
-                    '- 7% de tercera línea',
-                    '- 10% de cuarta línea',
-                    '- 25% de quinta línea',
-                    `(si el referido compra un paquete mayor, recibes bonificaciones como si comprara el paquete ${paquete.id})`,
-                    'Acceso a todos los productos',
-                    `Beneficios exclusivos del paquete ${paquete.id}`
-                ];
-            }
-            return [];
+            } else ('');
+            return beneficios;
         }
 
         function cargarPaquetes() {
@@ -777,7 +764,7 @@
         }
 
         function seleccionarPaquete(paqueteId) {
-            const paquete = paquetes.find(p => p.id === paqueteId);
+            const paquete = paquetes.find(p => p.id === paquete.id);
             if (!paquete) return;
 
             paqueteSeleccionado = paquete;
@@ -789,7 +776,7 @@
         }
 
         function comprarPaquete(paqueteId) {
-            const paquete = paquetes.find(p => p.id === paqueteId);
+            const paquete = paquetes.find(p => p.id === paquete.id);
             if (!paquete) return;
 
             if (!usuario) {
@@ -797,7 +784,7 @@
                 return;
             }
 
-            if (usuario.paquete && usuario.paquete > paqueteId) {
+            if (usuario.paquete && usuario.paquete > paquete.id) {
                 Swal.fire('Error', 'No puedes comprar un paquete menor al que ya tienes', 'error');
                 return;
             }
@@ -826,7 +813,7 @@
                         // Guardar la fecha de compra para calcular el período de espera
                         const fechaCompra = new Date();
                         const usuarioActual = JSON.parse(localStorage.getItem('usuarioActual')) || {};
-                        usuarioActual.paquete = paqueteId;
+                        usuarioActual.paquete = paquete.id;
                         usuarioActual.fechaCompraPaquete = fechaCompra.toISOString();
                         usuarioActual.paquetePendiente = true;
                         localStorage.setItem('usuarioActual', JSON.stringify(usuarioActual));
@@ -874,7 +861,7 @@
                                     <p><strong>Cuenta Corriente:</strong> 12345678</p>
                                     <p><strong>RUT:</strong> 12.345.678-9</p>
                                     <p><strong>Monto a Consignar:</strong> $${paquete.precio.toLocaleString('es-CO')} COP</p>
-                                    <p><strong>Asunto:</strong> Compra Paquete ${paqueteId}</p>
+                                    <p><strong>Asunto:</strong> Compra Paquete ${paquet.id}</p>
                                 </div>
                                 <p class="nota-consignacion">Una vez realizada la consignación, envíanos el comprobante para activar tu paquete.</p>
                                 <div class="aviso-espera" style="margin-top: 15px;">

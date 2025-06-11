@@ -1,79 +1,90 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Fidelidad</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        background: #f4f8fb;
-        margin: 0;
-        padding: 0;
-      }
-      .container {
-        max-width: 1200px;
-        margin: 30px auto;
-        background: #fff;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px #0001;
-        padding: 30px;
-      }
-      h1 {
-        color: #229cb2;
-        text-align: center;
-      }
-      .piramide {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 40px;
-      }
-      .nivel {
-        margin: 2px 0;
-      }
-      .usuario {
-        display: inline-block;
-        background: #ffe4e1;
-        color: #229cb2;
-        border-radius: 50%;
-        width: 36px;
-        height: 36px;
-        text-align: center;
-        line-height: 36px;
-        font-weight: bold;
-        margin: 0 3px;
-        border: 2px solid #229cb2;
-        cursor: pointer;
-        transition: background 0.2s, color 0.2s;
-      }
-      .usuario.seleccionado {
-        background: #229cb2;
-        color: #fff;
-      }
-      .explicacion {
-        background: #ffe4e1;
-        border-radius: 6px;
-        padding: 15px;
-        margin-bottom: 20px;
-        margin-top: 30px;
-      }
-      .reset-btn {
-        margin: 20px 0 0 0;
-        padding: 8px 18px;
-        background: #229cb2;
-        color: #fff;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 16px;
-      }
-      .reset-btn:hover {
-        background: #1c91a1;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container" style="display:flex;gap:40px;">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Fidelidad</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f8fb;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 30px auto;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px #0001;
+      padding: 30px;
+    }
+
+    h1 {
+      color: #229cb2;
+      text-align: center;
+    }
+
+    .red {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 40px;
+    }
+
+    .nivel {
+      margin: 2px 0;
+    }
+
+    .usuario {
+      display: inline-block;
+      background: #ffe4e1;
+      color: #229cb2;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      text-align: center;
+      line-height: 36px;
+      font-weight: bold;
+      margin: 0 3px;
+      border: 2px solid #229cb2;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .usuario.seleccionado {
+      background: #229cb2;
+      color: #fff;
+    }
+
+    .explicacion {
+      background: #e1fcff;
+      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 20px;
+      margin-top: 30px;
+    }
+
+    .reset-btn {
+      margin: 20px 0 0 0;
+      padding: 8px 18px;
+      background: #229cb2;
+      color: #ffffff;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .reset-btn:hover {
+      background: #1c91a1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container" style="display:flex;gap:40px;">
     <div style="flex:2;">
       <h1>Fidelización por puntos extendidos</h1>
       <div class="explicacion">
@@ -81,179 +92,208 @@
           Haz clic en cualquier usuario para ver solo sus referidos directos e
           indirectos.<br />
           Usa el botón "Mostrar toda la red" para restablecer la vista.<br />
-          <strong>Advertencia:</strong> Sistema Ponzi: Es una operación de
-          inversión fraudulenta que implica el pago de intereses prometidos a
-          los inversores con el dinero aportado por nuevos inversores, en lugar
-          de hacerlo con las ganancias generadas por la actividad real del
-          negocio. El sistema colapsa cuando el flujo de nuevos inversores no es
-          suficiente para cubrir los pagos a los inversores existentes. Pirámide
-          (Esquema Piramidal): Es un modelo de negocio no sostenible donde los
-          participantes ganan dinero principalmente reclutando a nuevos
-          miembros, en lugar de vender productos o servicios reales. Los nuevos
-          reclutas pagan una cuota para unirse, y ese dinero se utiliza para
-          pagar a los que están en niveles superiores de la pirámide. Al igual
-          que los esquemas Ponzi, colapsan cuando se agota el reclutamiento de
-          nuevos miembros. Multinivel (Marketing Multinivel - MLM): Es una
-          estrategia de marketing en la que la fuerza de ventas es compensada no
-          solo por las ventas que generan personalmente, sino también por las
-          ventas de las personas que reclutan (su "línea descendente" o
-          "downline"). Si el énfasis principal está en la venta de productos o
-          servicios a consumidores finales, puede ser un negocio legítimo. Sin
-          embargo, si el ingreso principal proviene del reclutamiento de nuevos
-          miembros y la venta de inventario inicial a ellos, puede operar de
-          manera similar a un esquema piramidal ilegal. Una "fidelización por
-          puntos extendido" es un tipo de programa de lealtad donde los
-          participantes acumulan puntos o recompensas no solo por sus propias
-          acciones (como compras directas), sino también a través de las
-          acciones de una red de personas que han referido al programa. La
-          característica "extendido" se refiere a que esta red de referidos
-          puede tener múltiples niveles de profundidad. Es decir, un
-          participante puede ganar puntos por las acciones de sus referidos
-          directos (primer nivel), por las acciones de los referidos de sus
-          referidos (segundo nivel), y así sucesivamente, hasta un límite de
-          niveles predefinido por el programa. En esencia, combina un sistema de
-          recompensas por puntos tradicional con una estructura de referidos en
-          cascada o jerárquica, permitiendo que los beneficios se distribuyan o
-          acumulen a lo largo de múltiples capas de la red de participantes.
+          <strong>Definiciones:</strong>
+        <ul>
+          <li>
+            Sistema Ponzi: Es una operación de
+            inversión fraudulenta que implica el pago de intereses prometidos a
+            los inversores con el dinero aportado por nuevos inversores, en lugar
+            de hacerlo con las ganancias generadas por la actividad real del
+            negocio. El sistema colapsa cuando el flujo de nuevos inversores no es
+            suficiente para cubrir los pagos a los inversores existentes.
+          </li>
+          <li>
+            Pirámide (Esquema Piramidal): Es un modelo de negocio no sostenible donde los
+            participantes ganan dinero principalmente reclutando a nuevos
+            miembros, en lugar de vender productos o servicios reales. Los nuevos
+            reclutas pagan una cuota para unirse, y ese dinero se utiliza para
+            pagar a los que están en niveles superiores de la pirámide. Al igual
+            que los esquemas Ponzi, colapsan cuando se agota el reclutamiento de
+            nuevos miembros.
+          </li>
+          <li>
+            Multinivel (Marketing Multinivel - MLM): Es una
+            estrategia de marketing en la que la fuerza de ventas es compensada no
+            solo por las ventas que generan personalmente, sino también por las
+            ventas de las personas que reclutan (su "línea descendente" o
+            "downline"). Si el énfasis principal está en la venta de productos o
+            servicios a consumidores finales, puede ser un negocio legítimo. Sin
+            embargo, si el ingreso principal proviene del reclutamiento de nuevos
+            miembros y la venta de inventario inicial a ellos, puede operar de
+            manera similar a un esquema piramidal ilegal.
+          </li>
+          <li>
+            Una "fidelización por
+            puntos extendido" es un tipo de programa de lealtad donde los
+            participantes acumulan puntos o recompensas no solo por sus propias
+            acciones (como compras directas), sino también a través de las
+            acciones de una red de personas que han referido al programa. La
+            característica "extendido" se refiere a que esta red de referidos
+            puede tener múltiples niveles de profundidad. Es decir, un
+            participante puede ganar puntos por las acciones de sus referidos
+            directos (primer nivel), por las acciones de los referidos de sus
+            referidos (segundo nivel), y así sucesivamente, hasta un límite de
+            niveles predefinido por el programa. En esencia, combina un sistema de
+            recompensas por puntos tradicional con una estructura de referidos en
+            cascada o jerárquica, permitiendo que los beneficios se distribuyan o
+            acumulen a lo largo de múltiples capas de la red de participantes.
+          </li>
+        </ul>
         </p>
       </div>
-        <button class="reset-btn" onclick="mostrarTodaLaPiramide()">Mostrar toda la pirámide</button>
-        <div class="piramide" id="piramide"></div>
+      <button class="reset-btn" onclick="mostrarTodaLaRed()">Mostrar toda la Red</button>
+      <div class="red" id="red"></div>
     </div>
     <div id="panel-beneficios" style="flex:1;min-width:280px;max-width:350px;display:none;">
-        <h2 style="color:#b22222;">Beneficios por referidos</h2>
-        <label for="paqueteSelect"><b>Selecciona tu paquete:</b></label>
-        <select id="paqueteSelect"></select>
-        <div id="infoUsuario" style="margin-top:18px;"></div>
+      <h2 style="color:#41b222;">Beneficios por referidos</h2>
+      <label for="paqueteSelect"><b>Selecciona tu paquete:</b></label>
+      <select id="paqueteSelect"></select>
+      <div id="infoUsuario" style="margin-top:18px;"></div>
     </div>
-</div>
-<script>
+  </div>
+  <script>
     // Estructura de la pirámide: cada usuario tiene un ID único y referencia a su padre
     const base = 2;
     const niveles = 15;
-    const piramide = document.getElementById('piramide');
-    let usuariosData = [{ id: 1, nivel: 1, padre: null }];
+    const red = document.getElementById('red');
+
+    // Agrega el referente (número 0)
+    let usuariosData = [{ id: 0, nivel: 0, padre: null }, { id: 1, nivel: 1, padre: 0 }];
 
     // Generar todos los usuarios con su referente
     let idActual = 2;
     for (let nivel = 2; nivel <= niveles; nivel++) {
-        const padres = usuariosData.filter(u => u.nivel === nivel - 1);
-        for (const padre of padres) {
-            for (let b = 0; b < base; b++) {
-                usuariosData.push({ id: idActual, nivel: nivel, padre: padre.id });
-                idActual++;
-            }
+      const padres = usuariosData.filter(u => u.nivel === nivel - 1);
+      for (const padre of padres) {
+        for (let b = 0; b < base; b++) {
+          usuariosData.push({ id: idActual, nivel: nivel, padre: padre.id });
+          idActual++;
         }
+      }
     }
 
     // Paquetes y puntos por nivel (según tu lógica)
     const puntosPorNivel = [
-        [], // Paquete 0
-        [2], // Paquete 1
-        [2,3], // Paquete 2
-        [2,3,4], // Paquete 3
-        [2,3,4,5], // Paquete 4
-        [2,3,4,5,6], // Paquete 5
-        [2,3,4,5,6,7], // Paquete 6
-        [2,3,4,5,6,7,8], // Paquete 7
-        [2,3,4,5,6,7,8,9], // Paquete 8
-        [2,3,4,5,6,7,8,9,10], // Paquete 9
-        [2,3,4,5,6,7,8,9,10,10], // Paquete 10
-        [2,3,4,5,6,7,8,9,10,10,10], // Paquete 11
-        [2,3,4,5,6,7,8,9,10,10,10,10], // Paquete 12
-        [2,3,4,5,6,7,8,9,10,10,10,10,10], // Paquete 13
-        [2,3,4,5,6,7,8,9,10,10,10,10,10,10], // Paquete 14
-        [2,3,4,5,6,7,8,9,10,10,10,10,10,10,10] // Paquete 15
+      [1], // Paquete 0
+      [1, 2], // Paquete 1
+      [1, 2, 3], // Paquete 2
+      [1, 2, 3, 4], // Paquete 3
+      [1, 2, 3, 4, 5], // Paquete 4
+      [1, 2, 3, 4, 5, 6], // Paquete 5
+      [1, 2, 3, 4, 5, 6, 7], // Paquete 6
+      [1, 2, 3, 4, 5, 6, 7, 8], // Paquete 7
+      [1, 2, 3, 4, 5, 6, 7, 8, 9], // Paquete 8
+      [2, 3, 4, 5, 6, 7, 8, 9, 10, 10], // Paquete 9
+      [3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10], // Paquete 10
+      [4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10], // Paquete 11
+      [5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10, 10, 10], // Paquete 12
+      [6, 7, 8, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], // Paquete 13
+      [7, 8, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10], // Paquete 14
+      [10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10] // Paquete 15
     ];
     const nombresNiveles = [
-        "primera", "segunda", "tercera", "cuarta", "quinta",
-        "sexta", "séptima", "octava", "novena", "décima",
-        "décimo primera", "décimo segunda", "décimo tercera", "décimo cuarta", "décimo quinta"
+      "primera", "segunda", "tercera", "cuarta", "quinta",
+      "sexta", "séptima", "octava", "novena", "décima",
+      "décimo primera", "décimo segunda", "décimo tercera", "décimo cuarta", "décimo quinta"
     ];
 
     // Renderizar la pirámide completa o filtrada
-    function renderPiramide(filtrarDesdeId = null, usuarioSeleccionado = null) {
-        piramide.innerHTML = '';
-        let idsVisibles = null;
+    function renderRed(filtrarDesdeId = null, usuarioSeleccionado = null) {
+      red.innerHTML = '';
+      let idsVisibles = null;
 
-        if (filtrarDesdeId) {
-            // Buscar todos los descendientes del usuario seleccionado
-            idsVisibles = new Set();
-            function agregarDescendientes(id) {
-                idsVisibles.add(id);
-                usuariosData.filter(u => u.padre === id).forEach(hijo => agregarDescendientes(hijo.id));
+      if (filtrarDesdeId) {
+        // Buscar todos los descendientes del usuario seleccionado
+        idsVisibles = new Set();
+        function agregarDescendientes(id) {
+          idsVisibles.add(id);
+          usuariosData.filter(u => u.padre === id).forEach(hijo => agregarDescendientes(hijo.id));
+        }
+        agregarDescendientes(filtrarDesdeId);
+      }
+
+      for (let nivel = 0; nivel <= niveles; nivel++) {
+        const fila = document.createElement('div');
+        fila.className = 'nivel';
+        usuariosData.filter(u => u.nivel === nivel).forEach(usuario => {
+          if (!idsVisibles || idsVisibles.has(usuario.id)) {
+            const span = document.createElement('span');
+            span.className = 'usuario';
+            span.textContent = usuario.id;
+            span.title = `ID: ${usuario.id} | Nivel: ${usuario.nivel}` + (usuario.padre ? ` | Referente: ${usuario.padre}` : '');
+            span.onclick = function () {
+              document.querySelectorAll('.usuario').forEach(el => el.classList.remove('seleccionado'));
+              span.classList.add('seleccionado');
+              mostrarPanelBeneficios(usuario.id);
+              render(usuario.id, usuario.id);
+            };
+            if (usuarioSeleccionado && usuario.id === usuarioSeleccionado) {
+              span.classList.add('seleccionado');
             }
-            agregarDescendientes(filtrarDesdeId);
-        }
-
-        for (let nivel = 1; nivel <= niveles; nivel++) {
-            const fila = document.createElement('div');
-            fila.className = 'nivel';
-            usuariosData.filter(u => u.nivel === nivel).forEach(usuario => {
-                if (!idsVisibles || idsVisibles.has(usuario.id)) {
-                    const span = document.createElement('span');
-                    span.className = 'usuario';
-                    span.textContent = usuario.id;
-                    span.title = `ID: ${usuario.id} | Nivel: ${usuario.nivel}` + (usuario.padre ? ` | Referente: ${usuario.padre}` : '');
-                    span.onclick = function() {
-                        document.querySelectorAll('.usuario').forEach(el => el.classList.remove('seleccionado'));
-                        span.classList.add('seleccionado');
-                        mostrarPanelBeneficios(usuario.id);
-                        renderPiramide(usuario.id, usuario.id);
-                    };
-                    if (usuarioSeleccionado && usuario.id === usuarioSeleccionado) {
-                        span.classList.add('seleccionado');
-                    }
-                    fila.appendChild(span);
-                }
-            });
-            piramide.appendChild(fila);
-        }
+            fila.appendChild(span);
+          }
+        });
+        red.appendChild(fila);
+      }
     }
 
-    function mostrarTodaLaPiramide() {
-        document.querySelectorAll('.usuario').forEach(el => el.classList.remove('seleccionado'));
-        document.getElementById('panel-beneficios').style.display = 'none';
-        renderPiramide();
+    function mostrarTodaLaRed() {
+      document.querySelectorAll('.usuario').forEach(el => el.classList.remove('seleccionado'));
+      document.getElementById('panel-beneficios').style.display = 'none';
+      renderRed();
     }
 
     // Panel de beneficios
     function mostrarPanelBeneficios(usuarioId) {
-        const panel = document.getElementById('panel-beneficios');
-        panel.style.display = 'block';
-        const select = document.getElementById('paqueteSelect');
-        if (!select.innerHTML) {
-            for (let i = 1; i <= 15; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.textContent = `Paquete ${i}`;
-                select.appendChild(option);
-            }
+      const panel = document.getElementById('panel-beneficios');
+      panel.style.display = 'block';
+      const select = document.getElementById('paqueteSelect');
+      if (!select.innerHTML) {
+        for (let i = 0; i <= 15; i++) {
+          const option = document.createElement('option');
+          option.value = i;
+          option.textContent = `Paquete ${i}`;
+          select.appendChild(option);
         }
-        select.onchange = () => actualizarInfoUsuario(usuarioId);
-        actualizarInfoUsuario(usuarioId);
+      }
+      select.onchange = () => actualizarInfoUsuario(usuarioId);
+      actualizarInfoUsuario(usuarioId);
     }
 
     function actualizarInfoUsuario(usuarioId) {
-        const paquete = parseInt(document.getElementById('paqueteSelect').value);
-        const usuario = usuariosData.find(u => u.id === usuarioId);
-        let html = `<b>Usuario ID:</b> ${usuario.id}<br><b>Nivel:</b> ${usuario.nivel}<br><br>`;
-        html += `<b>Referidos por nivel:</b><br><ul style="margin-left:-10px;">`;
-        // Contar referidos por cada nivel descendente
-        let idsNivel = [usuarioId];
-        for (let nivel = 1; nivel <= 15; nivel++) {
-            let hijos = usuariosData.filter(u => idsNivel.includes(u.padre));
-            html += `<li>${nivel} (${nombresNiveles[nivel-1]}): <b>${hijos.length}</b>`;
-            if (puntosPorNivel[paquete][nivel-1]) {
-                html += ` <span style="color:#b22222;">→ ${puntosPorNivel[paquete][nivel-1]} puntos x $1.000</span>`;
-            }
-            html += `</li>`;
-            idsNivel = hijos.map(h => h.id);
+      const paquete = parseInt(document.getElementById('paqueteSelect').value);
+      const usuario = usuariosData.find(u => u.id === usuarioId);
+      let html = `<b>Usuario ID:</b> ${usuario.id}<br><b>Línea:</b> ${usuario.nivel}<br><br>`;
+      html += `<b>Referidos por nivel:</b><br><ul style="margin-left:-10px;">`;
+
+      let total = 0;
+
+      // Compra propia
+      if (puntosPorNivel[paquete] && puntosPorNivel[paquete][0]) {
+        total += puntosPorNivel[paquete][0];
+        html += `<li>Propia compra: <span style="color:#229cb2;"><b>${puntosPorNivel[paquete][0]}</b> puntos por cada $1.000</span> 
+      <span style="color:#888;">(Subtotal: <b>$${puntosPorNivel[paquete][0]}</b>)</span></li>`;
+      }
+
+      // Contar referidos por cada nivel descendente y multiplicar puntos x usuarios
+      let idsNivel = [usuarioId];
+      for (let nivel = 1; nivel <= 15; nivel++) {
+        let hijos = usuariosData.filter(u => idsNivel.includes(u.padre));
+        let subtotal = hijos.length * (puntosPorNivel[paquete][nivel] || 0);
+        total += subtotal;
+        html += `<li>${nivel} (${nombresNiveles[nivel - 1]}): <b>${hijos.length}</b>`;
+        if (puntosPorNivel[paquete][nivel]) {
+          html += ` <span style="color:#41b222;">→ ${puntosPorNivel[paquete][nivel]} puntos por cada $1.000</span>`;
+          html += ` <span style="color:#888;">(Subtotal: <b>$${subtotal}</b>)</span>`;
         }
-        html += `</ul>`;
-        document.getElementById('infoUsuario').innerHTML = html;
+        html += `</li>`;
+        idsNivel = hijos.map(h => h.id);
+      }
+      html += `</ul>`;
+      html += `<div style="margin-top:10px;font-size:18px;"><b>TOTAL: <span style="color:#23a000;">$${total}</span></b></div>`;
+      document.getElementById('infoUsuario').innerHTML = html;
     }
 
     // Inicializar
-    renderPiramide();
-</script>
+    renderRed();
+  </script>

@@ -23,11 +23,11 @@ router.post('/comprar-paquete', verificarAuth, async (req, res) => {
         }
 
         // Actualizar paquete del usuario
-        usuario.paquete = paqueteId;
+        usuario.paquete = paquete.id;
         usuario.puntos -= puntos;
 
         // Si es el paquete 1 o superior, calcular puntos de bonificación
-        if (paqueteId >= 1) {
+        if (paquete.id >= 1) {
             // 50% del paquete 1 como bonificación
             const puntosBonificacion = Math.floor(1000 * 0.5); // 1000 es el precio del paquete 1
             usuario.puntos += puntosBonificacion;
