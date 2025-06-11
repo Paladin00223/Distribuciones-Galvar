@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Términos y Condiciones - Distribuciones Galvar</title>
-    <link rel="stylesheet" href="../css/styles.css">
     <style>
         .terminos-container {
             max-width: 800px;
@@ -166,8 +165,8 @@
         </div>
 
         <div class="terminos-botones">
-            <button id="aceptarTerminos" class="btn-terminos btn-aceptar">Aceptar Términos</button>
-            <button id="rechazarTerminos" class="btn-terminos btn-rechazar">Rechazar</button>
+            <button id="aceptarTerminos" type="button" class="btn-terminos btn-aceptar">Aceptar Términos</button>
+            <button id="rechazarTerminos" type="button" class="btn-terminos btn-rechazar">Rechazar</button>
         </div>
     </div>
 
@@ -186,7 +185,7 @@
         });
 
         document.getElementById('rechazarTerminos').addEventListener('click', function() {
-            window.location.href = 'login.html';
+            window.location.href = '../index.html';
         });
     </script>
 </body>

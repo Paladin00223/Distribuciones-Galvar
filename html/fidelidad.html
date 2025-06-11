@@ -1,490 +1,259 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Red de Referidos - Distribuciones Galvar</title>
-    <link rel="stylesheet" href="../css/styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pirámide Ponzi hasta Nivel 15</title>
     <style>
-        .referidos-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .referidos-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .referidos-header h1 {
-            color: #333;
-            margin: 0;
-        }
-
-        .estadisticas {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .estadistica-card {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        .estadistica-card i {
-            font-size: 24px;
-            color: #3498db;
-            margin-bottom: 10px;
-        }
-
-        .estadistica-card h3 {
-            margin: 0;
-            color: #2c3e50;
-        }
-
-        .estadistica-card p {
-            margin: 5px 0 0 0;
-            font-size: 1.5em;
-            color: #27ae60;
-        }
-
-        .referidos-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .referido-card {
-            background-color: #fff;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .referido-card h3 {
-            margin: 0 0 10px 0;
-            color: #2c3e50;
-        }
-
-        .referido-info {
-            margin: 15px 0;
-        }
-
-        .referido-info p {
-            margin: 5px 0;
-            color: #7f8c8d;
-        }
-
-        .referido-info strong {
-            color: #2c3e50;
-        }
-
-        .btn-referir {
-            background-color: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-referir:hover {
-            background-color: #2980b9;
-        }
-
-        .filtros {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .filtros select {
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 1000;
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 10% auto;
-            padding: 20px;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 8px;
-            position: relative;
-        }
-
-        .close {
-            position: absolute;
-            right: 20px;
-            top: 10px;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .close:hover {
-            color: #333;
-        }
-
-        .link-referido {
-            background-color: #f8f9fa;
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-            word-break: break-all;
-        }
-
-        .btn-copiar {
-            background-color: #27ae60;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-
-        .btn-copiar:hover {
-            background-color: #219a52;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 30px;
-        }
-
-        .info-section {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .lineas-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .linea-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #dee2e6;
-        }
-
-        .linea-card h3 {
-            color: #2c3e50;
-            margin-top: 0;
-        }
-
-        .linea-card ul {
-            padding-left: 20px;
-        }
-
-        .linea-card li {
-            margin-bottom: 10px;
-        }
-
-        .aviso-puntos {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-            text-align: center;
-        }
-
-        .aviso-puntos p {
-            margin: 0;
-            font-size: 1.1em;
-        }
+      body {
+        font-family: Arial, sans-serif;
+        background: #f4f8fb;
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        max-width: 1200px;
+        margin: 30px auto;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px #0001;
+        padding: 30px;
+      }
+      h1 {
+        color: #b22222;
+        text-align: center;
+      }
+      .piramide {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+      }
+      .nivel {
+        margin: 2px 0;
+      }
+      .usuario {
+        display: inline-block;
+        background: #ffe4e1;
+        color: #b22222;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        text-align: center;
+        line-height: 36px;
+        font-weight: bold;
+        margin: 0 3px;
+        border: 2px solid #b22222;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s;
+      }
+      .usuario.seleccionado {
+        background: #b22222;
+        color: #fff;
+      }
+      .explicacion {
+        background: #ffe4e1;
+        border-radius: 6px;
+        padding: 15px;
+        margin-bottom: 20px;
+        margin-top: 30px;
+      }
+      .reset-btn {
+        margin: 20px 0 0 0;
+        padding: 8px 18px;
+        background: #b22222;
+        color: #fff;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      .reset-btn:hover {
+        background: #a11c1c;
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Programa de Fidelidad</h1>
-        
-        <div class="aviso-puntos">
-            <p>⚠️ Importante: No todos los productos generan puntos. Revisa la descripción de cada producto para ver si aplica.</p>
-        </div>
-
-        <div class="info-section">
-            <h2>Líneas de Referidos</h2>
-            <div class="aviso-puntos">
-                <p>⚠️ Importante: Las bonificaciones por compra de paquetes se calculan según tu paquete actual si el referido compra un paquete mayor, o según el paquete que compró si es menor. Por ejemplo, si tienes el paquete 15 y tu referido compra el paquete 3, recibirás la bonificación como si hubiera comprado el paquete 3.</p>
-            </div>
-            <div class="lineas-container">
-                <div class="linea-card">
-                    <h3>Bonificaciones por Compra de Paquetes</h3>
-                    <p>Las bonificaciones se calculan de la siguiente manera:</p>
-                    <ul>
-                        <li>Si tu referido compra un paquete mayor al tuyo: Recibes bonificaciones según tu paquete actual</li>
-                        <li>Si tu referido compra un paquete menor al tuyo: Recibes bonificaciones según el paquete que compró</li>
-                    </ul>
-                    <p>Ejemplos:</p>
-                    <ul>
-                        <li>Si tienes el paquete 1 y tu referido compra el paquete 15: Recibes bonificaciones como si comprara el paquete 1</li>
-                        <li>Si tienes el paquete 15 y tu referido compra el paquete 3: Recibes bonificaciones como si comprara el paquete 3</li>
-                    </ul>
-                    <p class="nota">Nota: Esto aplica para las 5 primeras líneas de referidos.</p>
-                </div>
-                <div class="linea-card">
-                    <h3>Paquete 1</h3>
-                    <p>Recibe puntos solo de la primera línea de referidos</p>
-                    <ul>
-                        <li>1 punto por cada $1.000 en compras</li>
-                    </ul>
-                </div>
-                <div class="linea-card">
-                    <h3>Paquete 2</h3>
-                    <p>Recibe puntos desde la primera hasta la segunda línea</p>
-                    <ul>
-                        <li>1 punto por cada $1.000 en compras</li>
-                    </ul>
-                </div>
-                <div class="linea-card">
-                    <h3>Paquete 3</h3>
-                    <p>Recibe puntos desde la primera hasta la tercera línea</p>
-                    <ul>
-                        <li>1 punto por cada $1.000 en compras</li>
-                    </ul>
-                </div>
-                <div class="linea-card">
-                    <h3>Paquetes 4-14</h3>
-                    <p>Reciben puntos progresivamente desde la primera línea hasta su nivel</p>
-                    <ul>
-                        <li>1 punto por cada $1.000 en compras</li>
-                        <li>Ejemplo: Paquete 7 recibe desde primera hasta séptima línea</li>
-                    </ul>
-                </div>
-                <div class="linea-card">
-                    <h3>Paquete 15</h3>
-                    <p>Recibe puntos de todas las líneas de referidos</p>
-                    <ul>
-                        <li>1 punto por cada $1.000 en compras</li>
-                        <li>Acceso a todas las líneas (1-15)</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="info-section">
-            <h2>Puntos por Compras Propias</h2>
-            <p>Ganas 1 punto por cada $1.000 en compras de productos que generen puntos.</p>
-        </div>
-
-        <div class="info-section">
-            <h2>Canje de Puntos</h2>
-            <p>Los puntos pueden ser canjeados por:</p>
-            <ul>
-                <li>Descuentos en futuras compras</li>
-                <li>Productos exclusivos</li>
-                <li>Beneficios especiales</li>
-            </ul>
-        </div>
+  </head>
+  <body>
+    <div class="container" style="display:flex;gap:40px;">
+    <div style="flex:2;">
+      <h1>Fidelización por puntos extendidos</h1>
+      <div class="explicacion">
+        <p>
+          Haz clic en cualquier usuario para ver solo sus referidos directos e
+          indirectos.<br />
+          Usa el botón "Mostrar toda la red" para restablecer la vista.<br />
+          <strong>Advertencia:</strong> Sistema Ponzi: Es una operación de
+          inversión fraudulenta que implica el pago de intereses prometidos a
+          los inversores con el dinero aportado por nuevos inversores, en lugar
+          de hacerlo con las ganancias generadas por la actividad real del
+          negocio. El sistema colapsa cuando el flujo de nuevos inversores no es
+          suficiente para cubrir los pagos a los inversores existentes. Pirámide
+          (Esquema Piramidal): Es un modelo de negocio no sostenible donde los
+          participantes ganan dinero principalmente reclutando a nuevos
+          miembros, en lugar de vender productos o servicios reales. Los nuevos
+          reclutas pagan una cuota para unirse, y ese dinero se utiliza para
+          pagar a los que están en niveles superiores de la pirámide. Al igual
+          que los esquemas Ponzi, colapsan cuando se agota el reclutamiento de
+          nuevos miembros. Multinivel (Marketing Multinivel - MLM): Es una
+          estrategia de marketing en la que la fuerza de ventas es compensada no
+          solo por las ventas que generan personalmente, sino también por las
+          ventas de las personas que reclutan (su "línea descendente" o
+          "downline"). Si el énfasis principal está en la venta de productos o
+          servicios a consumidores finales, puede ser un negocio legítimo. Sin
+          embargo, si el ingreso principal proviene del reclutamiento de nuevos
+          miembros y la venta de inventario inicial a ellos, puede operar de
+          manera similar a un esquema piramidal ilegal. Una "fidelización por
+          puntos extendido" es un tipo de programa de lealtad donde los
+          participantes acumulan puntos o recompensas no solo por sus propias
+          acciones (como compras directas), sino también a través de las
+          acciones de una red de personas que han referido al programa. La
+          característica "extendido" se refiere a que esta red de referidos
+          puede tener múltiples niveles de profundidad. Es decir, un
+          participante puede ganar puntos por las acciones de sus referidos
+          directos (primer nivel), por las acciones de los referidos de sus
+          referidos (segundo nivel), y así sucesivamente, hasta un límite de
+          niveles predefinido por el programa. En esencia, combina un sistema de
+          recompensas por puntos tradicional con una estructura de referidos en
+          cascada o jerárquica, permitiendo que los beneficios se distribuyan o
+          acumulen a lo largo de múltiples capas de la red de participantes.
+        </p>
+      </div>
+        <button class="reset-btn" onclick="mostrarTodaLaPiramide()">Mostrar toda la pirámide</button>
+        <div class="piramide" id="piramide"></div>
     </div>
-
-    <div class="referidos-container">
-        <div class="referidos-header">
-            <h1>Mi Red de Referidos</h1>
-            <button class="btn-referir" onclick="mostrarModalReferido()">
-                <i class="fas fa-user-plus"></i> Referir Amigo
-            </button>
-        </div>
-
-        <div class="estadisticas">
-            <div class="estadistica-card">
-                <i class="fas fa-users"></i>
-                <h3>Total Referidos</h3>
-                <p id="totalReferidos">0</p>
-            </div>
-            <div class="estadistica-card">
-                <i class="fas fa-coins"></i>
-                <h3>Ganancias Totales</h3>
-                <p id="gananciasTotales">$0</p>
-            </div>
-            <div class="estadistica-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>Nivel Actual</h3>
-                <p id="nivelActual">Bronce</p>
-            </div>
-        </div>
-
-        <div class="filtros">
-            <select id="filtroNivel">
-                <option value="todos">Todos los niveles</option>
-                <option value="1">Nivel 1</option>
-                <option value="2">Nivel 2</option>
-                <option value="3">Nivel 3</option>
-            </select>
-            <select id="filtroEstado">
-                <option value="todos">Todos los estados</option>
-                <option value="activo">Activos</option>
-                <option value="inactivo">Inactivos</option>
-            </select>
-        </div>
-
-        <div class="referidos-grid" id="referidosGrid">
-            <!-- Los referidos se cargarán dinámicamente -->
-        </div>
+    <div id="panel-beneficios" style="flex:1;min-width:280px;max-width:350px;display:none;">
+        <h2 style="color:#b22222;">Beneficios por referidos</h2>
+        <label for="paqueteSelect"><b>Selecciona tu paquete:</b></label>
+        <select id="paqueteSelect"></select>
+        <div id="infoUsuario" style="margin-top:18px;"></div>
     </div>
+</div>
+<script>
+    // Estructura de la pirámide: cada usuario tiene un ID único y referencia a su padre
+    const base = 2;
+    const niveles = 15;
+    const piramide = document.getElementById('piramide');
+    let usuariosData = [{ id: 1, nivel: 1, padre: null }];
 
-    <!-- Modal para referir amigo -->
-    <div id="referidoModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="cerrarModalReferido()">&times;</span>
-            <h2>Referir Amigo</h2>
-            <p>Comparte este enlace con tus amigos para que se unan a tu red:</p>
-            <div class="link-referido" id="linkReferido">
-                https://distribucionesgalvar.com/registro?ref=USER123
-            </div>
-            <button class="btn-copiar" onclick="copiarLink()">
-                <i class="fas fa-copy"></i> Copiar Enlace
-            </button>
-            <div style="margin-top: 20px;">
-                <h3>Beneficios por Referir:</h3>
-                <ul>
-                    <li>5% de comisión por cada compra de nivel 1</li>
-                    <li>3% de comisión por cada compra de nivel 2</li>
-                    <li>1% de comisión por cada compra de nivel 3</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Datos de ejemplo (esto vendría de tu backend)
-        const referidos = [];
-        const ganancias = [];
-
-        function formatearFecha(fecha) {
-            // ... existing code ...
-        }
-
-        function cargarEstadisticas() {
-            const totalReferidos = referidos.length;
-            const gananciasTotales = ganancias.reduce((sum, g) => sum + g, 0);
-            
-            document.getElementById('totalReferidos').textContent = totalReferidos;
-            document.getElementById('gananciasTotales').textContent = `$${gananciasTotales.toLocaleString('es-CO')}`;
-        }
-
-        function crearReferidoCard(referido) {
-            const card = document.createElement('div');
-            card.className = 'referido-card';
-            
-            card.innerHTML = `
-                <h3>${referido.nombre}</h3>
-                <div class="referido-info">
-                    <p><strong>Nivel:</strong> ${referido.nivel}</p>
-                    <p><strong>Estado:</strong> ${referido.estado}</p>
-                    <p><strong>Fecha de ingreso:</strong> ${new Date(referido.fecha).toLocaleDateString()}</p>
-                    <p><strong>Compras realizadas:</strong> ${referido.compras}</p>
-                    <p><strong>Ganancias generadas:</strong> $${referido.ganancias.toLocaleString('es-CO')}</p>
-                </div>
-            `;
-
-            return card;
-        }
-
-        function cargarReferidos() {
-            const grid = document.getElementById('referidosGrid');
-            const filtroNivel = document.getElementById('filtroNivel').value;
-            const filtroEstado = document.getElementById('filtroEstado').value;
-            
-            let referidosFiltrados = referidos;
-            
-            if (filtroNivel !== 'todos') {
-                referidosFiltrados = referidosFiltrados.filter(r => r.nivel === parseInt(filtroNivel));
+    // Generar todos los usuarios con su referente
+    let idActual = 2;
+    for (let nivel = 2; nivel <= niveles; nivel++) {
+        const padres = usuariosData.filter(u => u.nivel === nivel - 1);
+        for (const padre of padres) {
+            for (let b = 0; b < base; b++) {
+                usuariosData.push({ id: idActual, nivel: nivel, padre: padre.id });
+                idActual++;
             }
-            
-            if (filtroEstado !== 'todos') {
-                referidosFiltrados = referidosFiltrados.filter(r => r.estado === filtroEstado);
+        }
+    }
+
+    // Paquetes y puntos por nivel (según tu lógica)
+    const puntosPorNivel = [
+        [], // Paquete 0
+        [2], // Paquete 1
+        [2,3], // Paquete 2
+        [2,3,4], // Paquete 3
+        [2,3,4,5], // Paquete 4
+        [2,3,4,5,6], // Paquete 5
+        [2,3,4,5,6,7], // Paquete 6
+        [2,3,4,5,6,7,8], // Paquete 7
+        [2,3,4,5,6,7,8,9], // Paquete 8
+        [2,3,4,5,6,7,8,9,10], // Paquete 9
+        [2,3,4,5,6,7,8,9,10,10], // Paquete 10
+        [2,3,4,5,6,7,8,9,10,10,10], // Paquete 11
+        [2,3,4,5,6,7,8,9,10,10,10,10], // Paquete 12
+        [2,3,4,5,6,7,8,9,10,10,10,10,10], // Paquete 13
+        [2,3,4,5,6,7,8,9,10,10,10,10,10,10], // Paquete 14
+        [2,3,4,5,6,7,8,9,10,10,10,10,10,10,10] // Paquete 15
+    ];
+    const nombresNiveles = [
+        "primera", "segunda", "tercera", "cuarta", "quinta",
+        "sexta", "séptima", "octava", "novena", "décima",
+        "décimo primera", "décimo segunda", "décimo tercera", "décimo cuarta", "décimo quinta"
+    ];
+
+    // Renderizar la pirámide completa o filtrada
+    function renderPiramide(filtrarDesdeId = null, usuarioSeleccionado = null) {
+        piramide.innerHTML = '';
+        let idsVisibles = null;
+
+        if (filtrarDesdeId) {
+            // Buscar todos los descendientes del usuario seleccionado
+            idsVisibles = new Set();
+            function agregarDescendientes(id) {
+                idsVisibles.add(id);
+                usuariosData.filter(u => u.padre === id).forEach(hijo => agregarDescendientes(hijo.id));
             }
-            
-            grid.innerHTML = '';
-            referidosFiltrados.forEach(referido => {
-                grid.appendChild(crearReferidoCard(referido));
+            agregarDescendientes(filtrarDesdeId);
+        }
+
+        for (let nivel = 1; nivel <= niveles; nivel++) {
+            const fila = document.createElement('div');
+            fila.className = 'nivel';
+            usuariosData.filter(u => u.nivel === nivel).forEach(usuario => {
+                if (!idsVisibles || idsVisibles.has(usuario.id)) {
+                    const span = document.createElement('span');
+                    span.className = 'usuario';
+                    span.textContent = usuario.id;
+                    span.title = `ID: ${usuario.id} | Nivel: ${usuario.nivel}` + (usuario.padre ? ` | Referente: ${usuario.padre}` : '');
+                    span.onclick = function() {
+                        document.querySelectorAll('.usuario').forEach(el => el.classList.remove('seleccionado'));
+                        span.classList.add('seleccionado');
+                        mostrarPanelBeneficios(usuario.id);
+                        renderPiramide(usuario.id, usuario.id);
+                    };
+                    if (usuarioSeleccionado && usuario.id === usuarioSeleccionado) {
+                        span.classList.add('seleccionado');
+                    }
+                    fila.appendChild(span);
+                }
             });
+            piramide.appendChild(fila);
         }
+    }
 
-        function mostrarModalReferido() {
-            document.getElementById('referidoModal').style.display = 'block';
-        }
+    function mostrarTodaLaPiramide() {
+        document.querySelectorAll('.usuario').forEach(el => el.classList.remove('seleccionado'));
+        document.getElementById('panel-beneficios').style.display = 'none';
+        renderPiramide();
+    }
 
-        function cerrarModalReferido() {
-            document.getElementById('referidoModal').style.display = 'none';
-        }
-
-        function copiarLink() {
-            const link = document.getElementById('linkReferido').textContent;
-            navigator.clipboard.writeText(link).then(() => {
-                alert('Enlace copiado al portapapeles');
-            });
-        }
-
-        // Event Listeners
-        document.getElementById('filtroNivel').addEventListener('change', cargarReferidos);
-        document.getElementById('filtroEstado').addEventListener('change', cargarReferidos);
-
-        // Cerrar modal al hacer clic fuera
-        window.onclick = function(event) {
-            const modal = document.getElementById('referidoModal');
-            if (event.target == modal) {
-                modal.style.display = 'none';
+    // Panel de beneficios
+    function mostrarPanelBeneficios(usuarioId) {
+        const panel = document.getElementById('panel-beneficios');
+        panel.style.display = 'block';
+        const select = document.getElementById('paqueteSelect');
+        if (!select.innerHTML) {
+            for (let i = 1; i <= 15; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = `Paquete ${i}`;
+                select.appendChild(option);
             }
         }
+        select.onchange = () => actualizarInfoUsuario(usuarioId);
+        actualizarInfoUsuario(usuarioId);
+    }
 
-        // Cargar datos al iniciar
-        window.onload = function() {
-            cargarEstadisticas();
-            cargarReferidos();
-        };
-    </script>
-</body>
-</html>
+    function actualizarInfoUsuario(usuarioId) {
+        const paquete = parseInt(document.getElementById('paqueteSelect').value);
+        const usuario = usuariosData.find(u => u.id === usuarioId);
+        let html = `<b>Usuario ID:</b> ${usuario.id}<br><b>Nivel:</b> ${usuario.nivel}<br><br>`;
+        html += `<b>Referidos por nivel:</b><br><ul style="margin-left:-10px;">`;
+        // Contar referidos por cada nivel descendente
+        let idsNivel = [usuarioId];
+        for (let nivel = 1; nivel <= 15; nivel++) {
+            let hijos = usuariosData.filter(u => idsNivel.includes(u.padre));
+            html += `<li>${nivel} (${nombresNiveles[nivel-1]}): <b>${hijos.length}</b>`;
+            if (puntosPorNivel[paquete][nivel-1]) {
+                html += ` <span style="color:#b22222;">→ ${puntosPorNivel[paquete][nivel-1]} puntos x $1.000</span>`;
+            }
+            html += `</li>`;
+            idsNivel = hijos.map(h => h.id);
+        }
+        html += `</ul>`;
+        document.getElementById('infoUsuario').innerHTML = html;
+    }
+
+    // Inicializar
+    renderPiramide();
+</script>
