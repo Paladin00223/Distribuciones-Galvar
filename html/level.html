@@ -387,7 +387,7 @@
         // Verificación de términos y condiciones
         document.addEventListener('DOMContentLoaded', function() {
             const usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (!usuario || !usuario.terminosAceptados) {
+            if (!usuario || !terminosAceptados) {
                 // Redirigir a la página de términos y condiciones
                 window.location.href = 'terminos.html';
                 return;
