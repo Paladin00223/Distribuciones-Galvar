@@ -3,9 +3,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const inputs = form.querySelectorAll('input');
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
-    const confirmPasswordInput = document.getElementById('confirmar');
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const confirmPassword = confirmPasswordInput ? confirmPasswordInput.value : '';
     const nombreInput = document.getElementById('nombre');
-    const telefonoInput = document.getElementById('telefono');
+    // const telefonoInput = document.getElementById('telefono');
 
     // Función para mostrar mensajes de error
     function showError(input, message) {
@@ -103,10 +104,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Validar teléfono
-        if (!validatePhone(telefonoInput.value)) {
-            showError(telefonoInput, 'Ingresa un número de teléfono válido de 10 dígitos');
-            isValid = false;
-        }
+        // if (!validatePhone(telefonoInput.value)) {
+        //     showError(telefonoInput, 'Ingresa un número de teléfono válido de 10 dígitos');
+        //     isValid = false;
+        // }
 
         if (isValid) {
             // Aquí iría la lógica para enviar los datos al servidor
@@ -125,7 +126,8 @@ document.addEventListener('DOMContentLoaded', function () {
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
-        const referido = document.getElementById('referido').value.trim();
+        const referidoInput = document.getElementById('referido');
+        const referido = referidoInput ? referidoInput.value.trim() : '';
 
         // Validaciones básicas
         if (!nombre || !email || !password || !confirmPassword) {
@@ -203,16 +205,38 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-document.getElementById('togglePassword').addEventListener('click', function () {
+document.addEventListener('DOMContentLoaded', () => {
+    // Mostrar/ocultar contraseña principal
     const passwordInput = document.getElementById('password');
-    const iconoOjo = document.getElementById('icono-ojo');
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        iconoOjo.classList.remove('fa-eye');
-        iconoOjo.classList.add('fa-eye-slash');
-    } else {
-        passwordInput.type = 'password';
-        iconoOjo.classList.remove('fa-eye-slash');
-        iconoOjo.classList.add('fa-eye');
-    }
+    const togglePassword = document.getElementById('togglePassword');
+    const iconoOjo = document.getElementById('icono-ojo-password');
+
+    togglePassword.addEventListener('click', function () {
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            iconoOjo.classList.remove('fa-eye');
+            iconoOjo.classList.add('fa-eye-slash');
+        } else {
+            passwordInput.type = 'password';
+            iconoOjo.classList.remove('fa-eye-slash');
+            iconoOjo.classList.add('fa-eye');
+        }
+    });
+
+    // Mostrar/ocultar confirmar contraseña
+    const confirmPasswordInput = document.getElementById('confirmPassword');
+    const toggleConfirmPassword = document.getElementById('toggleConfirmPassword');
+    const iconoOjoConfirm = document.getElementById('icono-ojo-confirm');
+
+    toggleConfirmPassword.addEventListener('click', function () {
+        if (confirmPasswordInput.type === 'password') {
+            confirmPasswordInput.type = 'text';
+            iconoOjoConfirm.classList.remove('fa-eye');
+            iconoOjoConfirm.classList.add('fa-eye-slash');
+        } else {
+            confirmPasswordInput.type = 'password';
+            iconoOjoConfirm.classList.remove('fa-eye-slash');
+            iconoOjoConfirm.classList.add('fa-eye');
+        }
+    });
 });
