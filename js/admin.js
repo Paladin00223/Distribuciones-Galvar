@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const usuarioActualStr = sessionStorage.getItem('usuarioActual');
     if (!usuarioActualStr) {
-        // window.location.href = 'login.html'; // Redirección desactivada
+        window.location.href = 'login.html';
         return;
     }
     const usuarioActual = JSON.parse(usuarioActualStr);
@@ -11,10 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(usuarios => {
         const usuario = Array.isArray(usuarios) ? usuarios[0] : usuarios;
         console.log('Usuario obtenido del backend:', usuario);
-        // if (!usuario || !usuario.esAdmin) {
-        //     window.location.href = 'login.html'; // Redirección desactivada
-        //     return;
-        // }
+
+        // Permitir acceso si el email es el del admin, aunque no tenga esAdmin en la base de datos
+        if (!usuario || !(usuario.esAdmin || usuario.email === 'jdvargas223@gmail.com')) {
+            window.location.href = 'login.html';
+            return;
+        }
 
         // Mostrar nombre del administrador
         document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${usuario.nombre}`;
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => {
         console.error('Error al obtener usuarios:', error);
-        // window.location.href = 'login.html'; // Redirección desactivada
+        window.location.href = 'login.html';
     });
 });
 
