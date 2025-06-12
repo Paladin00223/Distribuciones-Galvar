@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const usuarioActualStr = sessionStorage.getItem('usuarioActual');
     if (!usuarioActualStr) {
-        window.location.href = 'login.html';
+        // window.location.href = 'login.html'; // Redirección desactivada
         return;
     }
     const usuarioActual = JSON.parse(usuarioActualStr);
@@ -10,27 +10,27 @@ document.addEventListener('DOMContentLoaded', function () {
     .then(response => response.json())
     .then(usuarios => {
         const usuario = Array.isArray(usuarios) ? usuarios[0] : usuarios;
-        console.log('Usuario obtenido del backend:', usuario); // <-- Agrega esto
+        console.log('Usuario obtenido del backend:', usuario);
         // if (!usuario || !usuario.esAdmin) {
-        //     window.location.href = 'login.html';
+        //     window.location.href = 'login.html'; // Redirección desactivada
         //     return;
         // }
 
-            // Mostrar nombre del administrador
-            document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${usuario.nombre}`;
+        // Mostrar nombre del administrador
+        document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${usuario.nombre}`;
 
-            // Cargar pedidos y usuarios
-            cargarPedidos();
-            cargarUsuarios();
+        // Cargar pedidos y usuarios
+        cargarPedidos();
+        cargarUsuarios();
 
-            // Agregar event listeners para los filtros
-            document.getElementById('buscarPedido').addEventListener('input', filtrarPedidos);
-            document.getElementById('filtroEstado').addEventListener('change', filtrarPedidos);
-        })
-        .catch(error => {
-            console.error('Error al obtener usuarios:', error);
-            window.location.href = 'login.html';
-        });
+        // Agregar event listeners para los filtros
+        document.getElementById('buscarPedido').addEventListener('input', filtrarPedidos);
+        document.getElementById('filtroEstado').addEventListener('change', filtrarPedidos);
+    })
+    .catch(error => {
+        console.error('Error al obtener usuarios:', error);
+        // window.location.href = 'login.html'; // Redirección desactivada
+    });
 });
 
 // Función para cargar los usuarios
