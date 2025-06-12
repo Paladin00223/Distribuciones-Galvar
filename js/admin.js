@@ -1,20 +1,23 @@
-// Verificación de acceso de administrador
 document.addEventListener('DOMContentLoaded', function () {
-    // Pide al backend la lista de usuarios
-    fetch('http://localhost:5000/usuarios')
-        .then(response => response.json())
-        .then(usuarios => {
-            // Busca el usuario administrador por email (ajusta el email según tu sistema)
-            const admin = usuarios.find(u => u.email === 'jdvargas223@gmail.com' && u.esAdmin);
+    const usuarioActualStr = sessionStorage.getItem('usuarioActual');
+    if (!usuarioActualStr) {
+        window.location.href = 'login.html';
+        return;
+    }
+    const usuarioActual = JSON.parse(usuarioActualStr);
 
-            if (!admin) {
-                // Si no hay admin, redirige al login
-                window.location.href = 'login.html';
-                return;
-            }
+    fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(usuarioActual.email)}`)
+    .then(response => response.json())
+    .then(usuarios => {
+        const usuario = Array.isArray(usuarios) ? usuarios[0] : usuarios;
+        console.log('Usuario obtenido del backend:', usuario); // <-- Agrega esto
+        // if (!usuario || !usuario.esAdmin) {
+        //     window.location.href = 'login.html';
+        //     return;
+        // }
 
             // Mostrar nombre del administrador
-            document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${admin.nombre}`;
+            document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${usuario.nombre}`;
 
             // Cargar pedidos y usuarios
             cargarPedidos();

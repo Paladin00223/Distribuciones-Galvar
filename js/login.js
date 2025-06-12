@@ -20,16 +20,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Validación de administrador
         if (email === 'jdvargas223@gmail.com' && password === 'JDv@rgA$223#') {
-            // Si quieres guardar el admin en sessionStorage:
             sessionStorage.setItem('usuarioActual', JSON.stringify({
-                email: email,
+                email: 'jdvargas223@gmail.com',
                 nombre: 'Administrador',
                 esAdmin: true
             }));
             window.location.href = 'admin.html';
             return;
         }
-
         // Validación de usuario normal usando el backend
         fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(email)}`)
             .then(response => response.json())
