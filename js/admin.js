@@ -283,3 +283,45 @@ document.querySelectorAll('.admin-tab').forEach(tab => {
         document.getElementById(`${tab.dataset.tab}-content`).style.display = 'block';
     });
 });
+function cargarRetirosAdmin() {
+    fetch('http://localhost:5000/retiros')
+        .then(response => response.json())
+        .then(retiros => {
+            const tbody = document.getElementById('retiros-body');
+            if (!tbody) return;
+
+            if (!retiros || retiros.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6">
+                            <div class="no-retiros">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <p>No hay retiros registrados</p>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            tbody.innerHTML = '';
+            retiros.forEach(retiro => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${retiro.id}</td>
+                    <td>${retiro.usuario || retiro.email || ''}</td>
+                    <td>${retiro.fecha ? new Date(retiro.fecha).toLocaleDateString() : ''}</td>
+                    <td>${retiro.puntos || 0}</td>
+                    <td class="estado-${retiro.estado ? retiro.estado.toLowerCase() : ''}">${retiro.estado || ''}</td>
+                    <td>
+                        <button onclick="updateStatus('${retiro.id}', 'Aprobado')">Aprobar</button>
+                        <button onclick="updateStatus('${retiro.id}', 'Rechazado')">Rechazar</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        })
+        .catch(error => {
+            console.error('Error al cargar los retiros:', error);
+        });
+}

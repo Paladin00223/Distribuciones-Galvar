@@ -22,6 +22,7 @@
         <div class="admin-tabs">
             <button class="admin-tab activo" data-tab="usuarios">Usuarios</button>
             <button class="admin-tab" data-tab="pedidos">Pedidos</button>
+            <button class="admin-tab" data-tab="retiros">Retiros</button>
         </div>
 
         <div class="admin-content">
@@ -80,6 +81,24 @@
                     </tbody>
                 </table>
             </div>
+            <div id="retiros-content" class="tab-content" style="display: none;">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Puntos</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="retiros-body">
+                        <!-- Los retiros se cargarán dinámicamente -->
+                    </tbody>
+                </table>
+            </div>
+
         </div>
     </div>
     <script src="../js/admin.js"></script>
