@@ -32,10 +32,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Validación de contraseña
     function validatePassword(password) {
-        return password.length >= 8 && 
-               /[A-Z]/.test(password) && 
-               /[a-z]/.test(password) && 
-               /[0-9]/.test(password);
+        return password.length >= 8 &&
+            /[A-Z]/.test(password) &&
+            /[a-z]/.test(password) &&
+            /[0-9]/.test(password);
     }
 
     // Validación de teléfono
@@ -114,4 +114,92 @@ document.addEventListener('DOMContentLoaded', () => {
             window.location.href = 'login.html';
         }
     });
-}); 
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const registerForm = document.getElementById('registerForm');
+
+    registerForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const nombre = document.getElementById('nombre').value.trim();
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirmPassword').value;
+        const referido = document.getElementById('referido').value.trim();
+
+        // Validaciones básicas
+        if (!nombre || !email || !password || !confirmPassword) {
+            alert('Por favor complete todos los campos obligatorios');
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert('Las contraseñas no coinciden');
+            return;
+        }
+
+        if (password.length < 6) {
+            alert('La contraseña debe tener al menos 6 caracteres');
+            return;
+        }
+
+        // Validar formato de email
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Por favor ingrese un correo electrónico válido');
+            return;
+        }
+
+        try {
+            // Obtener usuarios existentes
+            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+            // Verificar si el email ya está registrado
+            if (usuarios.some(u => u.email === email)) {
+                alert('Este correo electrónico ya está registrado');
+                return;
+            }
+
+            // Crear nuevo usuario
+            const nuevoUsuario = {
+                nombre,
+                email,
+                password,
+                referido: referido || null,
+                puntos: 0,
+                estado: 'activo',
+                fechaRegistro: new Date().toISOString()
+            };
+
+            // Agregar usuario a la lista
+            usuarios.push(nuevoUsuario);
+
+            fetch('http://localhost:5000/usuarios', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    nombre,
+                    email,
+                    puntos: 0,
+                    estado: 'activo'
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        alert('¡Registro exitoso! Será redirigido a la página de inicio de sesión.');
+                        window.location.href = 'login.html';
+                    } else {
+                        alert('Hubo un error al registrar el usuario.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en el registro:', error);
+                    alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
+                });
+        } catch (error) {
+            console.error('Error en el registro:', error);
+            alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
+        }
+    });
+});

@@ -95,4 +95,74 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-}); 
+});
+document.addEventListener('DOMContentLoaded', function () {
+    const loginForm = document.getElementById('loginForm');
+
+    loginForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value;
+
+        // Validaciones básicas
+        if (!email || !password) {
+            alert('Por favor complete todos los campos');
+            return;
+        }
+
+        try {
+            // Obtener usuarios
+            fetch('http://localhost:5000/usuarios')
+                .then(response => response.json())
+                .then(usuarios => {
+                    const usuario = usuarios.find(u => u.email === email && u.password === password);
+                    if (usuario) {
+                        sessionStorage.setItem('usuarioActual', JSON.stringify({
+                            nombre: usuario.nombre,
+                            email: usuario.email,
+                            puntos: usuario.puntos
+                        }));
+                        alert('¡Inicio de sesión exitoso!');
+                        window.location.href = '../index.html';
+                    } else {
+                        alert('Correo electrónico o contraseña incorrectos');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error en el inicio de sesión:', error);
+                    alert('Hubo un error al iniciar sesión. Por favor intente nuevamente.');
+                });
+
+            if (usuario) {
+                // Guardar sesión
+                sessionStorage.setItem('usuarioActual', JSON.stringify({
+                    nombre: usuario.nombre,
+                    email: usuario.email,
+                    puntos: usuario.puntos
+                }));
+
+                // Mostrar mensaje de éxito
+                alert('¡Inicio de sesión exitoso!');
+
+                // Redirigir a la página principal
+                window.location.href = '../index.html';
+            } else {
+                alert('Correo electrónico o contraseña incorrectos');
+            }
+        } catch (error) {
+            console.error('Error en el inicio de sesión:', error);
+            alert('Hubo un error al iniciar sesión. Por favor intente nuevamente.');
+        }
+        // Validación de administrador
+        if (email === 'jdvargas223@gmail.com' && password === 'JDv@rgA$223#') {
+            localStorage.setItem('usuario', JSON.stringify({
+                email: email,
+                nombre: 'Administrador',
+                esAdmin: true
+            }));
+            window.location.href = 'admin.html';
+            return;
+        }
+    });
+});
