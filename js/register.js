@@ -59,19 +59,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    confirmPasswordInput.addEventListener('input', () => {
-        clearError(confirmPasswordInput);
-        if (passwordInput.value !== confirmPasswordInput.value) {
-            showError(confirmPasswordInput, 'Las contraseñas no coinciden');
-        }
-    });
+    // confirmPasswordInput.addEventListener('input', () => {
+    //     clearError(confirmPasswordInput);
+    //     if (passwordInput.value !== confirmPasswordInput.value) {
+    //         showError(confirmPasswordInput, 'Las contraseñas no coinciden');
+    //     }
+    // });
 
-    telefonoInput.addEventListener('input', () => {
-        clearError(telefonoInput);
-        if (!validatePhone(telefonoInput.value)) {
-            showError(telefonoInput, 'Ingresa un número de teléfono válido de 10 dígitos');
-        }
-    });
+    // telefonoInput.addEventListener('input', () => {
+    //     clearError(telefonoInput);
+    //     if (!validatePhone(telefonoInput.value)) {
+    //         showError(telefonoInput, 'Ingresa un número de teléfono válido de 10 dígitos');
+    //     }
+    // });
 
     // Validación del formulario al enviar
     form.addEventListener('submit', (e) => {

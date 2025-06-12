@@ -23,14 +23,17 @@
             <div class="form-group">
                 <label for="nombre">Nombre completo</label>
                 <input type="text" id="nombre" name="nombre" required>
+                <span class="error-message" style="display:none"></span>
             </div>
             <div class="form-group">
                 <label for="email">Correo electrónico</label>
                 <input type="email" id="email" name="email" required>
+                <span class="error-message" style="display:none"></span>
             </div>
             <div class="form-group">
                 <label>Contraseña:<br>
                     <input type="password" id="password" required>
+                    <span class="error-message" style="display:none"></span>
                     <button type="button" id="togglePassword" tabindex="-1"
                         style="background:none;border:none;cursor:pointer;">
                         <i class="fas fa-eye" id="icono-ojo"></i>
@@ -40,10 +43,12 @@
             <div class="form-group">
                 <label for="confirmPassword">Confirmar contraseña</label>
                 <input type="password" id="confirmPassword" name="confirmPassword" required>
+                <span class="error-message" style="display:none"></span>
             </div>
             <div class="form-group">
                 <label for="referido">Código de referido (opcional)</label>
                 <input type="text" id="referido" name="referido">
+                <span class="error-message" style="display:none"></span>
             </div>
             <button type="submit" class="btn-register">Registrarse</button>
         </form>
