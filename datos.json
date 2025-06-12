@@ -520,7 +520,7 @@
         "unidad": 130000,
         "inventario": 1,
         "categoria": "cosmeticos",
-        "puntos": true,
+        "puntos": false,
         "vendedor": {
             "nombre": "L'BEL",
             "telefono": ""
