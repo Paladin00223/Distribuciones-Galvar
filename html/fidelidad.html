@@ -151,6 +151,11 @@
     </div>
     <div style="margin-top:30px;">
       <button class="reset-btn" onclick="mostrarTodaLaRed()">Mostrar toda la Red</button>
+      <div style="margin-bottom:18px;">
+        <input type="number" id="buscarUsuarioInput" placeholder="Buscar usuario por ID"
+          style="padding:6px 12px; border-radius:5px; border:1px solid #ccc; width:180px;">
+        <button class="reset-btn" onclick="buscarUsuario()">Buscar</button>
+      </div>
       <div class="red" id="red"></div>
     </div>
   </div>
@@ -237,6 +242,11 @@
           }
         });
         red.appendChild(fila);
+        // Agrega una línea horizontal después de cada nivel para separar visualmente
+        const hr = document.createElement('hr');
+        hr.style.border = "2px solid #e1fcff";
+        hr.style.width = "90%";
+        red.appendChild(hr);
       }
     }
 
@@ -295,6 +305,24 @@
       html += `</ul>`;
       html += `<div style="margin-top:10px;font-size:18px;"><b>TOTAL: <span style="color:#23a000;">$${total}</span></b></div>`;
       document.getElementById('infoUsuario').innerHTML = html;
+    }
+
+    function buscarUsuario() {
+      const id = parseInt(document.getElementById('buscarUsuarioInput').value);
+      if (isNaN(id)) return;
+      const usuario = usuariosData.find(u => u.id === id);
+      if (!usuario) {
+        alert('Usuario no encontrado');
+        return;
+      }
+      mostrarPanelBeneficios(usuario.id);
+      renderRed(usuario.id, usuario.id);
+      // Resalta el usuario buscado
+      setTimeout(() => {
+        document.querySelectorAll('.usuario').forEach(el => {
+          if (el.textContent == id) el.classList.add('seleccionado');
+        });
+      }, 50);
     }
 
     // Inicializar
