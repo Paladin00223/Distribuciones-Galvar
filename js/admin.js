@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     const usuarioActualStr = sessionStorage.getItem('usuarioActual');
     if (!usuarioActualStr) {
-        window.location.href = 'login.html';
+        // window.location.href = 'login.html'; // Comenta esta línea temporalmente
         return;
     }
     const usuarioActual = JSON.parse(usuarioActualStr);
@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
             );
 
         if (!esAdmin) {
-            window.location.href = 'login.html';
+            // window.location.href = 'login.html'; // Comenta esta línea temporalmente
             return;
         }
 
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
     })
     .catch(error => {
         console.error('Error al obtener usuarios:', error);
-        window.location.href = 'login.html';
+        // window.location.href = 'login.html'; // Comenta esta línea temporalmente
     });
 });
 

@@ -1,13 +1,18 @@
 CREATE TABLE IF NOT EXISTS usuarios (
-    id INT AUTOINCREMENT PRIMARY KEY,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    tipo ENUM('admin', 'usuario') NOT NULL,
-    cedula VARCHAR(20) NULL,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL,
+    esAdmin INTEGER DEFAULT 0,
+    puntos INTEGER DEFAULT 0,
+    estado TEXT DEFAULT 'pendiente',
+    cedula TEXT,
     ultimo_acceso DATETIME DEFAULT CURRENT_TIMESTAMP,
     fecha_creacion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Insertar usuario administrador (la contraseña está hasheada con bcrypt)
-INSERT INTO usuarios (email, password, tipo) VALUES 
-('jdvargas223@gmail.com', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+-- Insertar usuario administrador (contraseña en texto plano para pruebas)
+INSERT INTO usuarios (nombre, email, password, esAdmin, puntos, estado)
+VALUES ('Administrador', 'jdvargas223@gmail.com', 'JDv@rgA$223#', 1, 0, 'activo');
+
+SELECT * FROM usuarios WHERE email = 'jdvargas223@gmail.com';
