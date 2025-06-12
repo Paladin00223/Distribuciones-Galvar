@@ -11,6 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Cargar pedidos al iniciar
     cargarPedidos();
+    // Cargar usuarios. Si la pestaña de usuarios es la activa por defecto (como parece ser),
+    // tiene sentido cargarlos al inicio.
+    cargarUsuarios(); 
 
     // Agregar event listeners para los filtros
     document.getElementById('buscarPedido').addEventListener('input', filtrarPedidos);
@@ -63,13 +66,6 @@ function aprobarUsuario(id) {
             }
         });
 }
-document.addEventListener('DOMContentLoaded', function () {
-    cargarUsuarios();
-});
-// Llama a cargarUsuarios al cargar la página
-document.addEventListener('DOMContentLoaded', function () {
-    cargarUsuarios();
-});
 
 
 // Función para cargar los pedidos
