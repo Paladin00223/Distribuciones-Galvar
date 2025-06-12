@@ -203,3 +203,16 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
+document.getElementById('togglePassword').addEventListener('click', function () {
+    const passwordInput = document.getElementById('password');
+    const iconoOjo = document.getElementById('icono-ojo');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        iconoOjo.classList.remove('fa-eye');
+        iconoOjo.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        iconoOjo.classList.remove('fa-eye-slash');
+        iconoOjo.classList.add('fa-eye');
+    }
+});
