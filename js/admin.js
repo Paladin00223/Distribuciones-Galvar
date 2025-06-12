@@ -12,8 +12,17 @@ document.addEventListener('DOMContentLoaded', function () {
         const usuario = Array.isArray(usuarios) ? usuarios[0] : usuarios;
         console.log('Usuario obtenido del backend:', usuario);
 
-        // Permitir acceso si el email es el del admin, aunque no tenga esAdmin en la base de datos
-        if (!usuario || !(usuario.esAdmin || usuario.email === 'jdvargas223@gmail.com')) {
+        // Validación robusta para admin
+        const esAdmin = usuario &&
+            (
+                usuario.esAdmin === true ||
+                usuario.esAdmin === 1 ||
+                usuario.esAdmin === "1" ||
+                usuario.tipo === "admin" ||
+                usuario.email === 'jdvargas223@gmail.com'
+            );
+
+        if (!esAdmin) {
             window.location.href = 'login.html';
             return;
         }
