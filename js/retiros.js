@@ -1,42 +1,33 @@
 // Cargar todos los retiros
-        function loadRetiros() {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            let allRetiros = [];
-
-            // Recolectar retiros de todos los usuarios
-            users.forEach(user => {
-                if (user.retiros && user.retiros.length > 0) {
-                    user.retiros.forEach(retiro => {
-                        allRetiros.push({
-                            ...retiro,
-                            usuario: user.nombre,
-                            email: user.email
-                        });
-                    });
-                }
-            });
-
+function loadRetiros() {
+    fetch('http://localhost:5000/retiros')
+        .then(response => response.json())
+        .then(allRetiros => {
             // Ordenar por fecha (más reciente primero)
             allRetiros.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
-
             displayRetiros(allRetiros);
-        }
+        })
+        .catch(error => {
+            console.error('Error al cargar los retiros:', error);
+            displayRetiros([]);
+        });
+}
 
-        // Mostrar retiros en la tabla
-        function displayRetiros(retiros) {
-            const container = document.getElementById('retiros-table-container');
-            
-            if (retiros.length === 0) {
-                container.innerHTML = `
+// Mostrar retiros en la tabla
+function displayRetiros(retiros) {
+    const container = document.getElementById('retiros-table-container');
+
+    if (retiros.length === 0) {
+        container.innerHTML = `
                     <div class="no-retiros">
                         <i class="fas fa-history"></i>
                         <p>No hay retiros registrados</p>
                     </div>
                 `;
-                return;
-            }
+        return;
+    }
 
-            const table = `
+    const table = `
                 <table class="retiros-table">
                     <thead>
                         <tr>
@@ -78,61 +69,53 @@
                 </table>
             `;
 
-            container.innerHTML = table;
-        }
+    container.innerHTML = table;
+}
 
-        // Aplicar filtros
-        function applyFilters() {
-            const statusFilter = document.getElementById('status-filter').value;
-            const dateFilter = document.getElementById('date-filter').value;
+// Aplicar filtros
+function applyFilters() {
+    const statusFilter = document.getElementById('status-filter').value;
+    const dateFilter = document.getElementById('date-filter').value;
 
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            let filteredRetiros = [];
-
-            users.forEach(user => {
-                if (user.retiros && user.retiros.length > 0) {
-                    user.retiros.forEach(retiro => {
-                        const retiroDate = new Date(retiro.fecha).toLocaleDateString();
-                        const matchesStatus = statusFilter === 'todos' || retiro.estado === statusFilter;
-                        const matchesDate = !dateFilter || retiroDate === new Date(dateFilter).toLocaleDateString();
-
-                        if (matchesStatus && matchesDate) {
-                            filteredRetiros.push({
-                                ...retiro,
-                                usuario: user.nombre,
-                                email: user.email
-                            });
-                        }
-                    });
-                }
+    fetch('http://localhost:5000/retiros')
+        .then(response => response.json())
+        .then(retiros => {
+            let filteredRetiros = retiros.filter(retiro => {
+                const retiroDate = new Date(retiro.fecha).toLocaleDateString();
+                const matchesStatus = statusFilter === 'todos' || retiro.estado === statusFilter;
+                const matchesDate = !dateFilter || retiroDate === new Date(dateFilter).toLocaleDateString();
+                return matchesStatus && matchesDate;
             });
 
             filteredRetiros.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
             displayRetiros(filteredRetiros);
+        })
+        .catch(error => {
+            console.error('Error al filtrar los retiros:', error);
+            displayRetiros([]);
+        });
+}
+// Actualizar estado de un retiro
+function updateStatus(retiroId, newStatus) {
+    fetch(`http://localhost:5000/retiros/${retiroId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ estado: newStatus })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            loadRetiros();
+            alert(`Estado actualizado a: ${newStatus}`);
+        } else {
+            alert('No se pudo actualizar el estado del retiro');
         }
+    })
+    .catch(error => {
+        console.error('Error al actualizar el estado del retiro:', error);
+        alert('Error al actualizar el estado del retiro');
+    });
+}
 
-        // Actualizar estado de un retiro
-        function updateStatus(retiroId, newStatus) {
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            let updated = false;
-
-            users.forEach(user => {
-                if (user.retiros) {
-                    user.retiros.forEach(retiro => {
-                        if (retiro.id === retiroId) {
-                            retiro.estado = newStatus;
-                            updated = true;
-                        }
-                    });
-                }
-            });
-
-            if (updated) {
-                localStorage.setItem('users', JSON.stringify(users));
-                loadRetiros();
-                alert(`Estado actualizado a: ${newStatus}`);
-            }
-        }
-
-        // Cargar retiros al iniciar la página
-        window.onload = loadRetiros;
+// Cargar retiros al iniciar la página
+window.onload = loadRetiros;

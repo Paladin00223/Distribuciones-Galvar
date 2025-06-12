@@ -1,39 +1,59 @@
 // Cargar puntos disponibles
-function loadPoints() {
-    const user = JSON.parse(localStorage.getItem('currentUser')) || {};
-    const points = user.puntos || 0;
-    document.getElementById('available-points').textContent = points;
+function loadPoints(emailUsuario) {
+    fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(emailUsuario)}`)
+        .then(response => response.json())
+        .then(usuarios => {
+            const user = Array.isArray(usuarios) ? usuarios[0] : usuarios || {};
+            const points = user.puntos || 0;
+            document.getElementById('available-points').textContent = points;
+        })
+        .catch(error => {
+            console.error('Error al cargar los puntos:', error);
+            document.getElementById('available-points').textContent = '0';
+        });
 }
 
 // Cargar historial de retiros
-function loadWithdrawHistory() {
-    const user = JSON.parse(localStorage.getItem('currentUser')) || {};
-    const history = user.retiros || [];
+function loadWithdrawHistory(emailUsuario) {
     const historyContainer = document.getElementById('withdraw-history');
 
-    if (history.length === 0) {
-        historyContainer.innerHTML = `
+    fetch(`http://localhost:5000/retiros?email=${encodeURIComponent(emailUsuario)}`)
+        .then(response => response.json())
+        .then(history => {
+            if (!history || history.length === 0) {
+                historyContainer.innerHTML = `
                     <tr>
                         <td colspan="4" style="text-align: center; padding: 20px;">
                             No hay historial de retiros
                         </td>
                     </tr>
                 `;
-        return;
-    }
+                return;
+            }
 
-    historyContainer.innerHTML = history.map(retiro => `
+            historyContainer.innerHTML = history.map(retiro => `
                 <tr>
-                    <td>${new Date(retiro.fecha).toLocaleDateString()}</td>
-                    <td>${retiro.puntos}</td>
-                    <td>$${retiro.puntos.toLocaleString('es-CO')}</td>
-                    <td class="status-${retiro.estado.toLowerCase()}">${retiro.estado}</td>
+                    <td>${retiro.fecha ? new Date(retiro.fecha).toLocaleDateString() : ''}</td>
+                    <td>${retiro.puntos || 0}</td>
+                    <td>$${retiro.puntos ? retiro.puntos.toLocaleString('es-CO') : '0'}</td>
+                    <td class="status-${retiro.estado ? retiro.estado.toLowerCase() : ''}">${retiro.estado || ''}</td>
                 </tr>
             `).join('');
+        })
+        .catch(error => {
+            console.error('Error al cargar el historial de retiros:', error);
+            historyContainer.innerHTML = `
+                <tr>
+                    <td colspan="4" style="text-align: center; padding: 20px;">
+                        Error al cargar el historial de retiros
+                    </td>
+                </tr>
+            `;
+        });
 }
 
 // Solicitar retiro
-function requestWithdraw() {
+function requestWithdraw(emailUsuario) {
     const points = parseInt(document.getElementById('points').value);
     const bank = document.getElementById('bank').value;
     const account = document.getElementById('account').value;
@@ -44,44 +64,71 @@ function requestWithdraw() {
         return;
     }
 
-    const user = JSON.parse(localStorage.getItem('currentUser')) || {};
-    if (points > user.puntos) {
-        alert('No tiene suficientes puntos para realizar este retiro');
-        return;
-    }
+    // Obtener usuario actual del backend
+    fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(emailUsuario)}`)
+        .then(response => response.json())
+        .then(usuarios => {
+            const user = Array.isArray(usuarios) ? usuarios[0] : usuarios;
+            if (!user) {
+                alert('No se encontró el usuario');
+                return;
+            }
 
-    const retiro = {
-        id: 'RET-' + Date.now(),
-        fecha: new Date().toISOString(),
-        puntos: points,
-        valor: points,
-        estado: 'Pendiente',
-        banco: bank,
-        cuenta: account,
-        tipoCuenta: accountType
-    };
+            if (points > user.puntos) {
+                alert('No tiene suficientes puntos para realizar este retiro');
+                return;
+            }
 
-    // Actualizar historial de retiros
-    user.retiros = user.retiros || [];
-    user.retiros.push(retiro);
+            const retiro = {
+                id: 'RET-' + Date.now(),
+                fecha: new Date().toISOString(),
+                puntos: points,
+                valor: points,
+                estado: 'Pendiente',
+                banco: bank,
+                cuenta: account,
+                tipoCuenta: accountType,
+                usuarioId: user.id
+            };
 
-    // Actualizar puntos disponibles
-    user.puntos -= points;
+            // Registrar el retiro en el backend
+            fetch('http://localhost:5000/retiros', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(retiro)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    // Actualizar puntos del usuario en el backend
+                    fetch(`http://localhost:5000/usuarios/${user.id}`, {
+                        method: 'PUT',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ puntos: user.puntos - points })
+                    })
+                    .then(() => {
+                        loadPoints(emailUsuario);
+                        loadWithdrawHistory(emailUsuario);
 
-    // Guardar cambios
-    localStorage.setItem('currentUser', JSON.stringify(user));
+                        // Limpiar formulario
+                        document.getElementById('points').value = '';
+                        document.getElementById('bank').value = '';
+                        document.getElementById('account').value = '';
+                        document.getElementById('account-type').value = 'ahorros';
 
-    // Actualizar interfaz
-    loadPoints();
-    loadWithdrawHistory();
-
-    // Limpiar formulario
-    document.getElementById('points').value = '';
-    document.getElementById('bank').value = '';
-    document.getElementById('account').value = '';
-    document.getElementById('account-type').value = 'ahorros';
-
-    alert('Solicitud de retiro enviada correctamente');
+                        alert('Solicitud de retiro enviada correctamente');
+                    });
+                } else {
+                    alert('No se pudo registrar el retiro');
+                }
+            })
+            .catch(() => {
+                alert('Error al registrar el retiro');
+            });
+        })
+        .catch(() => {
+            alert('Error al obtener el usuario');
+        });
 }
 
 // Cargar datos al iniciar la página
@@ -99,12 +146,20 @@ function actualizarPuntosUsuario() {
 }
 
 // Función para cargar el usuario
-function cargarUsuario() {
-    const usuarioStr = localStorage.getItem('usuario');
-    if (usuarioStr) {
-        usuario = JSON.parse(usuarioStr);
-        actualizarPuntosUsuario(); // Actualizar puntos al cargar usuario
-    }
+function cargarUsuario(emailUsuario) {
+    if (!emailUsuario) return;
+
+    fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(emailUsuario)}`)
+        .then(response => response.json())
+        .then(usuarios => {
+            const usuario = Array.isArray(usuarios) ? usuarios[0] : usuarios;
+            if (usuario) {
+                actualizarPuntosUsuario(emailUsuario); // Actualizar puntos al cargar usuario
+            }
+        })
+        .catch(error => {
+            console.error('Error al cargar el usuario:', error);
+        });
 }
 
 // Inicializar

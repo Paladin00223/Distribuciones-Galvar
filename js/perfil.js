@@ -1,60 +1,82 @@
 // Cargar datos del usuario
-function cargarDatosUsuario() {
-    const usuario = JSON.parse(localStorage.getItem('usuario')) || {
-        nombre: 'Usuario',
-        email: 'usuario@ejemplo.com',
-        telefono: 'No especificado',
-        direccion: 'No especificada',
-        puntos: 0,
-        nivel: 'Bronce'
-    };
+function cargarDatosUsuario(emailUsuario) {
+    fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(emailUsuario)}`)
+        .then(response => response.json())
+        .then(usuarios => {
+            const usuario = Array.isArray(usuarios) ? usuarios[0] : usuarios || {
+                nombre: 'Usuario',
+                email: 'usuario@ejemplo.com',
+                telefono: 'No especificado',
+                direccion: 'No especificada',
+                puntos: 0,
+                nivel: 'Bronce'
+            };
 
-    // Actualizar información en el perfil
-    document.getElementById('nombre-usuario').textContent = usuario.nombre;
-    document.getElementById('email-usuario').textContent = usuario.email;
-    document.getElementById('telefono-usuario').textContent = usuario.telefono;
+            // Actualizar información en el perfil
+            document.getElementById('nombre-usuario').textContent = usuario.nombre || 'Usuario';
+            document.getElementById('email-usuario').textContent = usuario.email || 'usuario@ejemplo.com';
+            document.getElementById('telefono-usuario').textContent = usuario.telefono || 'No especificado';
 
-    // Actualizar formulario
-    document.getElementById('nombre').value = usuario.nombre;
-    document.getElementById('email').value = usuario.email;
-    document.getElementById('telefono').value = usuario.telefono;
-    document.getElementById('direccion').value = usuario.direccion;
+            // Actualizar formulario
+            document.getElementById('nombre').value = usuario.nombre || '';
+            document.getElementById('email').value = usuario.email || '';
+            document.getElementById('telefono').value = usuario.telefono || '';
+            document.getElementById('direccion').value = usuario.direccion || '';
 
-    // Actualizar estadísticas
-    document.getElementById('puntos-acumulados').textContent = usuario.puntos;
-    document.getElementById('nivel-fidelidad').textContent = usuario.nivel;
+            // Actualizar estadísticas
+            document.getElementById('puntos-acumulados').textContent = usuario.puntos || 0;
+            document.getElementById('nivel-fidelidad').textContent = usuario.nivel || 'Bronce';
+        })
+        .catch(error => {
+            console.error('Error al cargar los datos del usuario:', error);
+            // Opcional: puedes mostrar valores por defecto o un mensaje de error aquí
+        });
 }
 
 // Cargar compras recientes
-function cargarComprasRecientes() {
-    const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
+function cargarComprasRecientes(emailUsuario) {
     const contenedor = document.getElementById('compras-recientes');
 
-    if (compras.length === 0) {
-        contenedor.innerHTML = '<p>No hay compras recientes</p>';
-        return;
-    }
+    fetch(`http://localhost:5000/pedidos?email=${encodeURIComponent(emailUsuario)}`)
+        .then(response => response.json())
+        .then(compras => {
+            if (!compras || compras.length === 0) {
+                contenedor.innerHTML = '<p>No hay compras recientes</p>';
+                return;
+            }
 
-    // Ordenar compras por fecha (más recientes primero)
-    compras.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
+            // Ordenar compras por fecha (más recientes primero)
+            compras.sort((a, b) => new Date(b.fecha) - new Date(a.fecha));
 
-    // Mostrar las 5 compras más recientes
-    const comprasRecientes = compras.slice(0, 5);
+            // Mostrar las 5 compras más recientes
+            const comprasRecientes = compras.slice(0, 5);
 
-    contenedor.innerHTML = comprasRecientes.map(compra => `
+            contenedor.innerHTML = comprasRecientes.map(compra => `
                 <div class="historial-item">
                     <h4>Compra ${compra.id}</h4>
-                    <p>Fecha: ${new Date(compra.fecha).toLocaleDateString()}</p>
-                    <p>Total: $${compra.total.toLocaleString('es-CO')}</p>
-                    <span class="estado-badge estado-${compra.estado.toLowerCase()}">${compra.estado}</span>
+                    <p>Fecha: ${compra.fecha ? new Date(compra.fecha).toLocaleDateString() : ''}</p>
+                    <p>Total: $${compra.total ? compra.total.toLocaleString('es-CO') : '0'}</p>
+                    <span class="estado-badge estado-${compra.estado ? compra.estado.toLowerCase() : ''}">${compra.estado || ''}</span>
                 </div>
             `).join('');
+        })
+        .catch(error => {
+            console.error('Error al cargar las compras recientes:', error);
+            contenedor.innerHTML = '<p>Error al cargar las compras recientes</p>';
+        });
 }
 
 // Actualizar total de compras
-function actualizarTotalCompras() {
-    const compras = JSON.parse(localStorage.getItem('historialCompras')) || [];
-    document.getElementById('total-compras').textContent = compras.length;
+function actualizarTotalCompras(emailUsuario) {
+    fetch(`http://localhost:5000/pedidos?email=${encodeURIComponent(emailUsuario)}`)
+        .then(response => response.json())
+        .then(compras => {
+            document.getElementById('total-compras').textContent = compras.length;
+        })
+        .catch(error => {
+            console.error('Error al obtener las compras:', error);
+            document.getElementById('total-compras').textContent = '0';
+        });
 }
 
 // Manejar cambio de foto de perfil
@@ -89,9 +111,34 @@ document.getElementById('form-info-personal').addEventListener('submit', (e) => 
         nivel: document.getElementById('nivel-fidelidad').textContent
     };
 
-    localStorage.setItem('usuario', JSON.stringify(usuario));
-    cargarDatosUsuario();
-    alert('Información actualizada correctamente');
+    // Obtener el usuario actual del backend para obtener su ID
+    fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(usuario.email)}`)
+        .then(response => response.json())
+        .then(usuarios => {
+            const usuarioActual = Array.isArray(usuarios) ? usuarios[0] : usuarios;
+            if (!usuarioActual) {
+                alert('No se encontró el usuario');
+                return;
+            }
+
+            // Actualizar la información personal en el backend
+            fetch(`http://localhost:5000/usuarios/${usuarioActual.id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(usuario)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'ok') {
+                    cargarDatosUsuario(usuario.email);
+                    alert('Información actualizada correctamente');
+                } else {
+                    alert('Error al actualizar la información');
+                }
+            })
+            .catch(() => alert('Error de conexión con el servidor'));
+        })
+        .catch(() => alert('Error al obtener el usuario'));
 });
 
 // Manejar formulario de cambio de contraseña

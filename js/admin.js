@@ -1,23 +1,33 @@
 // Verificación de acceso de administrador
 document.addEventListener('DOMContentLoaded', function () {
-    const usuario = JSON.parse(localStorage.getItem('usuario'));
-    if (!usuario || !usuario.esAdmin) {
-        window.location.href = 'login.html';
-        return;
-    }
+    // Pide al backend la lista de usuarios
+    fetch('http://localhost:5000/usuarios')
+        .then(response => response.json())
+        .then(usuarios => {
+            // Busca el usuario administrador por email (ajusta el email según tu sistema)
+            const admin = usuarios.find(u => u.email === 'jdvargas223@gmail.com' && u.esAdmin);
 
-    // Mostrar nombre del administrador
-    document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${usuario.nombre}`;
+            if (!admin) {
+                // Si no hay admin, redirige al login
+                window.location.href = 'login.html';
+                return;
+            }
 
-    // Cargar pedidos al iniciar
-    cargarPedidos();
-    // Cargar usuarios. Si la pestaña de usuarios es la activa por defecto (como parece ser),
-    // tiene sentido cargarlos al inicio.
-    cargarUsuarios(); 
+            // Mostrar nombre del administrador
+            document.querySelector('.admin-titulo').textContent = `Panel de Administración - ${admin.nombre}`;
 
-    // Agregar event listeners para los filtros
-    document.getElementById('buscarPedido').addEventListener('input', filtrarPedidos);
-    document.getElementById('filtroEstado').addEventListener('change', filtrarPedidos);
+            // Cargar pedidos y usuarios
+            cargarPedidos();
+            cargarUsuarios();
+
+            // Agregar event listeners para los filtros
+            document.getElementById('buscarPedido').addEventListener('input', filtrarPedidos);
+            document.getElementById('filtroEstado').addEventListener('change', filtrarPedidos);
+        })
+        .catch(error => {
+            console.error('Error al obtener usuarios:', error);
+            window.location.href = 'login.html';
+        });
 });
 
 // Función para cargar los usuarios
@@ -70,8 +80,15 @@ function aprobarUsuario(id) {
 
 // Función para cargar los pedidos
 function cargarPedidos() {
-    const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
-    mostrarPedidos(pedidos);
+    fetch('http://localhost:5000/pedidos')
+        .then(response => response.json())
+        .then(pedidos => {
+            mostrarPedidos(pedidos);
+        })
+        .catch(error => {
+            console.error('Error al obtener pedidos:', error);
+            mostrarPedidos([]); // Opcional: muestra vacío si hay error
+        });
 }
 
 // Función para mostrar los pedidos en la tabla
@@ -115,95 +132,131 @@ function mostrarPedidos(pedidos) {
 function filtrarPedidos() {
     const busqueda = document.getElementById('buscarPedido').value.toLowerCase();
     const estadoFiltro = document.getElementById('filtroEstado').value;
-    const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
 
-    const pedidosFiltrados = pedidos.filter(pedido => {
-        const coincideBusqueda = pedido.id.toLowerCase().includes(busqueda) ||
-            pedido.cliente.nombre.toLowerCase().includes(busqueda);
-        const coincideEstado = estadoFiltro === 'todos' || pedido.estado === estadoFiltro;
+    fetch('http://localhost:5000/pedidos')
+        .then(response => response.json())
+        .then(pedidos => {
+            const pedidosFiltrados = pedidos.filter(pedido => {
+                const coincideBusqueda =
+                    pedido.id.toString().toLowerCase().includes(busqueda) ||
+                    (pedido.cliente && pedido.cliente.nombre && pedido.cliente.nombre.toLowerCase().includes(busqueda));
+                const coincideEstado = estadoFiltro === 'todos' || pedido.estado === estadoFiltro;
+                return coincideBusqueda && coincideEstado;
+            });
 
-        return coincideBusqueda && coincideEstado;
-    });
-
-    mostrarPedidos(pedidosFiltrados);
+            mostrarPedidos(pedidosFiltrados);
+        })
+        .catch(error => {
+            console.error('Error al filtrar pedidos:', error);
+            mostrarPedidos([]);
+        });
 }
 
 // Función para procesar un pedido
 function procesarPedido(idPedido) {
-    const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
-    const pedidoIndex = pedidos.findIndex(p => p.id === idPedido);
-
-    if (pedidoIndex !== -1) {
-        pedidos[pedidoIndex].estado = 'Procesado';
-        localStorage.setItem('historialCompras', JSON.stringify(pedidos));
-        cargarPedidos();
-        alert('Pedido procesado exitosamente');
-    }
+    fetch(`http://localhost:5000/pedidos/${idPedido}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ estado: 'Procesado' })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'ok') {
+            cargarPedidos();
+            alert('Pedido procesado exitosamente');
+        } else {
+            alert('No se pudo procesar el pedido');
+        }
+    })
+    .catch(error => {
+        console.error('Error al procesar el pedido:', error);
+        alert('Error al procesar el pedido');
+    });
 }
 
 // Función para cancelar un pedido
 function cancelarPedido(idPedido) {
     if (confirm('¿Está seguro de que desea cancelar este pedido?')) {
-        const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
-        const pedidoIndex = pedidos.findIndex(p => p.id === idPedido);
-
-        if (pedidoIndex !== -1) {
-            pedidos[pedidoIndex].estado = 'Cancelado';
-            localStorage.setItem('historialCompras', JSON.stringify(pedidos));
-            cargarPedidos();
-            alert('Pedido cancelado exitosamente');
-        }
+        fetch(`http://localhost:5000/pedidos/${idPedido}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ estado: 'Cancelado' })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'ok') {
+                cargarPedidos();
+                alert('Pedido cancelado exitosamente');
+            } else {
+                alert('No se pudo cancelar el pedido');
+            }
+        })
+        .catch(error => {
+            console.error('Error al cancelar el pedido:', error);
+            alert('Error al cancelar el pedido');
+        });
     }
 }
 
 // Función para ver detalles de productos
 function verDetallesProductos(idPedido) {
     console.log('verDetallesProductos llamado con idPedido:', idPedido); // Debug log
-    const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
-    console.log('Historial de compras cargado:', pedidos); // Debug log
-    const pedido = pedidos.find(p => p.id === idPedido);
-    console.log('Pedido encontrado:', pedido); // Debug log
 
-    if (pedido) {
-        if (pedido.productos && Array.isArray(pedido.productos) && pedido.productos.length > 0) {
-            const detalles = pedido.productos.map(p =>
-                // Usar p.price en lugar de p.precio y verificar que sea un número
-                `${p.name} - Cantidad: ${p.quantity} - Precio: $${(typeof p.price === 'number' ? p.price.toLocaleString('es-CO') : 'N/A')}`
-            ).join('\n');
+    fetch(`http://localhost:5000/pedidos/${idPedido}`)
+        .then(response => response.json())
+        .then(pedido => {
+            console.log('Pedido encontrado:', pedido); // Debug log
 
-            console.log('Detalles generados:', detalles); // Debug log
-            alert(`Detalles del pedido ${idPedido}:\n\n${detalles}`);
-        } else {
-            console.warn('Pedido encontrado pero sin productos:', pedido); // Debug log
-            alert(`El pedido ${idPedido} no tiene productos registrados.`);
-        }
-    } else {
-        console.error('Pedido no encontrado con ID:', idPedido); // Debug log
-        alert(`No se encontró el pedido con ID ${idPedido}.`);
-    }
+            if (pedido) {
+                if (pedido.productos && Array.isArray(pedido.productos) && pedido.productos.length > 0) {
+                    const detalles = pedido.productos.map(p =>
+                        `${p.name} - Cantidad: ${p.quantity} - Precio: $${(typeof p.price === 'number' ? p.price.toLocaleString('es-CO') : 'N/A')}`
+                    ).join('\n');
+
+                    console.log('Detalles generados:', detalles); // Debug log
+                    alert(`Detalles del pedido ${idPedido}:\n\n${detalles}`);
+                } else {
+                    console.warn('Pedido encontrado pero sin productos:', pedido); // Debug log
+                    alert(`El pedido ${idPedido} no tiene productos registrados.`);
+                }
+            } else {
+                console.error('Pedido no encontrado con ID:', idPedido); // Debug log
+                alert(`No se encontró el pedido con ID ${idPedido}.`);
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener el pedido:', error);
+            alert('Error al obtener los detalles del pedido.');
+        });
 }
 
 
 // Función para ver detalles completos del pedido
 function verPedido(idPedido) {
-    const pedidos = JSON.parse(localStorage.getItem('historialCompras')) || [];
-    const pedido = pedidos.find(p => p.id === idPedido);
-
-    if (pedido) {
-        const detalles = `
-                    ID: ${pedido.id}
-                    Cliente: ${pedido.cliente.nombre}
-                    Email: ${pedido.cliente.email}
-                    Teléfono: ${pedido.cliente.telefono}
-                    Dirección: ${pedido.cliente.direccion}
-                    Fecha: ${new Date(pedido.fecha).toLocaleString('es-CO')}
-                    Estado: ${pedido.estado}
-                    Total: $${pedido.total.toLocaleString('es-CO')}
-                    Puntos ganados: ${pedido.puntosGanados}
+    fetch(`http://localhost:5000/pedidos/${idPedido}`)
+        .then(response => response.json())
+        .then(pedido => {
+            if (pedido) {
+                const detalles = `
+ID: ${pedido.id}
+Cliente: ${pedido.cliente?.nombre || ''}
+Email: ${pedido.cliente?.email || ''}
+Teléfono: ${pedido.cliente?.telefono || ''}
+Dirección: ${pedido.cliente?.direccion || ''}
+Fecha: ${pedido.fecha ? new Date(pedido.fecha).toLocaleString('es-CO') : ''}
+Estado: ${pedido.estado}
+Total: $${pedido.total ? pedido.total.toLocaleString('es-CO') : '0'}
+Puntos ganados: ${pedido.puntosGanados || 0}
                 `;
-
-        alert(detalles);
-    }
+                alert(detalles);
+            } else {
+                alert('No se encontró el pedido con ese ID.');
+            }
+        })
+        .catch(error => {
+            console.error('Error al obtener el pedido:', error);
+            alert('Error al obtener los detalles del pedido.');
+        });
 }
 
 // Función para obtener la clase CSS según el estado

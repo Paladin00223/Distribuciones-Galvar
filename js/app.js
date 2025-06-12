@@ -1,3 +1,49 @@
+// Verificación de inicio de sesión
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('http://localhost:5000/usuarios')
+    .then(response => response.json())
+    .then(usuarios => {
+      // usuarios es un array de objetos usuario
+      console.log(usuarios);
+
+      // Si no hay usuarios registrados, redirige al login
+      if (!usuarios || usuarios.length === 0) {
+        window.location.href = 'html/login.html';
+        return;
+      }
+
+      // Obtener usuario actual de sessionStorage
+      const usuario = JSON.parse(sessionStorage.getItem('usuarioActual'));
+      if (!usuario) {
+        window.location.href = 'html/login.html';
+        return;
+      }
+
+      // Actualizar nombre del usuario
+      const nombreElement = document.getElementById('nombre-usuario');
+      if (nombreElement && usuario.nombre) {
+        nombreElement.textContent = usuario.nombre;
+      }
+
+      // Si el usuario está logueado, continuar con la carga normal
+      actualizarPuntosUsuario(usuario);
+      // Actualizar puntos cada 30 segundos
+      setInterval(() => actualizarPuntosUsuario(usuario), 30000);
+    })
+    .catch(error => {
+      console.error('Error al obtener usuarios:', error);
+      // Opcional: redirigir o mostrar mensaje de error
+    });
+
+  // Función para actualizar los puntos del usuario
+  function actualizarPuntosUsuario(usuario) {
+    const puntosElement = document.getElementById('puntos-usuario');
+    if (puntosElement && usuario) {
+      puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
+    }
+  }
+});
+
 //HECHO EN CLASE
 
 const contenedor = document.getElementById('contenedor');
@@ -23,17 +69,17 @@ const validarDatos = (datos) => {
     if (item.imagen && !item.imagen.startsWith('img/')) {
       item.imagen = `img/${item.imagen}`;
     }
-    
+
     // Asegurar que los precios sean números
     if (item.unidad) {
       item.unidad = Number(item.unidad);
     }
-    
+
     // Asegurar que el inventario sea un número
     if (item.inventario) {
       item.inventario = Number(item.inventario);
     }
-    
+
     return item;
   });
 };
@@ -41,7 +87,7 @@ const validarDatos = (datos) => {
 //trae los datos de datos.json
 const llenar_contenedor = (datos) => {
   console.log('Intentando llenar contenedor con datos:', datos);
-  
+
   if (!datos || !Array.isArray(datos) || datos.length === 0) {
     mostrarError('No hay productos disponibles en este momento.');
     return;
@@ -122,7 +168,7 @@ const llenar_contenedor = (datos) => {
       const cantidad = parseInt(cantidadInput.value, 10) || 0;
       const total = precio * cantidad;
       totalSpan.textContent = `$${total.toLocaleString('es-CO')}`;
-      
+
       // Calcular puntos en COP si el producto tiene puntos habilitados
       if (tienePuntos) {
         const puntos = Math.floor(total / 1000);
@@ -151,14 +197,14 @@ const traer_datos = async () => {
     console.log('Intentando cargar datos.json...');
     const respuesta = await fetch('./datos.json');
     console.log('Respuesta recibida:', respuesta);
-    
+
     if (!respuesta.ok) {
       throw new Error(`Error HTTP: ${respuesta.status}`);
     }
 
     const datos = await respuesta.json();
     console.log('Datos cargados:', datos);
-    
+
     if (!datos || !Array.isArray(datos)) {
       throw new Error('Formato de datos inválido');
     }
@@ -198,39 +244,74 @@ buscarInput.addEventListener('input', aplicarFiltros);
 
 // Función para añadir al carrito
 function addToCart(button) {
-    const article = button.closest('article');
-    const nombre = article.querySelector('h3').textContent;
-    const select = article.querySelector('.precio');
-    const precio = parseFloat(select.value);
-    const cantidad = parseInt(article.querySelector('input[name="cantidad"]').value) || 1;
+  const article = button.closest('article');
+  const nombre = article.querySelector('h3').textContent;
+  const select = article.querySelector('.precio');
+  const precio = parseFloat(select.value);
+  const cantidad = parseInt(article.querySelector('input[name="cantidad"]').value) || 1;
 
-    if (cantidad < 1) {
-        alert('Por favor, seleccione una cantidad válida');
-        return;
-    }
+  if (cantidad < 1) {
+    alert('Por favor, seleccione una cantidad válida');
+    return;
+  }
+  // Obtener el carrito actual del backend
+  fetch('http://localhost:5000/cart')
+    .then(response => response.json())
+    .then(cart => {
+      // Verificar si el producto ya está en el carrito
+      const existingProductIndex = cart.findIndex(item => item.name === nombre);
 
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
-    // Verificar si el producto ya está en el carrito
-    const existingProductIndex = cart.findIndex(item => item.name === nombre);
-    
-    if (existingProductIndex !== -1) {
+      if (existingProductIndex !== -1) {
         // Si el producto ya existe, actualizar la cantidad
         cart[existingProductIndex].quantity += cantidad;
-    } else {
+      } else {
         // Si es un producto nuevo, añadirlo al carrito
         cart.push({
-        name: nombre,
-        price: precio, // Se guarda como 'price'
-        quantity: cantidad
-});
-    }
+          name: nombre,
+          price: precio,
+          quantity: cantidad
+        });
+      }
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    
-    // Mostrar confirmación con un mensaje más visible
-    const mensaje = document.createElement('div');
-    mensaje.style.cssText = `
+      // Guardar el carrito actualizado en el backend
+      return fetch('http://localhost:5000/cart', {
+        method: 'PUT', // O 'POST' según tu API
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(cart)
+      });
+    })
+    .then(response => {
+      if (response && response.ok) {
+        alert('Producto agregado al carrito');
+      } else {
+        alert('No se pudo actualizar el carrito');
+      }
+    })
+    .catch(error => {
+      console.error('Error al actualizar el carrito:', error);
+      alert('Error al actualizar el carrito');
+    });
+
+
+fetch('http://localhost:5000/cart', {
+    method: 'PUT', // O 'POST' según tu API
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(cart)
+})
+.then(response => {
+    if (response.ok) {
+        console.log('Carrito actualizado en el backend');
+    } else {
+        console.error('No se pudo actualizar el carrito en el backend');
+    }
+})
+.catch(error => {
+    console.error('Error al actualizar el carrito en el backend:', error);
+});
+
+// Mostrar confirmación con un mensaje más visible
+const mensaje = document.createElement('div');
+mensaje.style.cssText = `
         position: fixed;
         top: 20px;
         right: 20px;
@@ -241,34 +322,36 @@ function addToCart(button) {
         z-index: 1000;
         box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     `;
-    mensaje.textContent = `¡${cantidad} ${nombre} añadido(s) al carrito!`;
-    document.body.appendChild(mensaje);
+mensaje.textContent = `¡${cantidad} ${nombre} añadido(s) al carrito!`;
+document.body.appendChild(mensaje);
 
-    // Eliminar el mensaje después de 3 segundos
-    setTimeout(() => {
-        mensaje.remove();
-    }, 3000);
+// Eliminar el mensaje después de 3 segundos
+setTimeout(() => {
+  mensaje.remove();
+}, 3000);
 
-    // Actualizar el contador del carrito si existe
-    updateCartCount();
+// Actualizar el contador del carrito si existe
+updateCartCount();
 
 
 }
 
 // Función para actualizar el contador del carrito
 function updateCartCount() {
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    
-    // Buscar el botón del carrito y actualizar su contador
-    const cartButton = document.querySelector('a[href="html/buy.html"] button');
-    if (cartButton) {
+  fetch('http://localhost:5000/cart')
+    .then(response => response.json())
+    .then(cart => {
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+
+      // Buscar el botón del carrito y actualizar su contador
+      const cartButton = document.querySelector('a[href="html/buy.html"] button');
+      if (cartButton) {
         // Crear o actualizar el contador
         let counter = cartButton.querySelector('.cart-counter');
         if (!counter) {
-            counter = document.createElement('span');
-            counter.className = 'cart-counter';
-            counter.style.cssText = `
+          counter = document.createElement('span');
+          counter.className = 'cart-counter';
+          counter.style.cssText = `
                 position: absolute;
                 top: -8px;
                 right: -8px;
@@ -280,16 +363,20 @@ function updateCartCount() {
                 min-width: 18px;
                 text-align: center;
             `;
-            cartButton.style.position = 'relative';
-            cartButton.appendChild(counter);
+          cartButton.style.position = 'relative';
+          cartButton.appendChild(counter);
         }
         counter.textContent = totalItems;
-    }
+      }
+    })
+    .catch(error => {
+      console.error('Error al obtener el carrito:', error);
+    });
 }
 
 // Llamar a updateCartCount cuando se carga la página
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM cargado, iniciando aplicación...');
-    traer_datos();
-    updateCartCount();
+  console.log('DOM cargado, iniciando aplicación...');
+  traer_datos();
+  updateCartCount();
 });

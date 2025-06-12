@@ -152,57 +152,50 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        try {
-            // Obtener usuarios existentes
-            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+        // Verificar si el email ya está registrado en el backend
+        fetch(`http://localhost:5000/usuarios?email=${encodeURIComponent(email)}`)
+            .then(response => response.json())
+            .then(usuarios => {
+                if ((Array.isArray(usuarios) && usuarios.length > 0) || (usuarios && usuarios.email === email)) {
+                    alert('Este correo electrónico ya está registrado');
+                    return;
+                }
 
-            // Verificar si el email ya está registrado
-            if (usuarios.some(u => u.email === email)) {
-                alert('Este correo electrónico ya está registrado');
-                return;
-            }
-
-            // Crear nuevo usuario
-            const nuevoUsuario = {
-                nombre,
-                email,
-                password,
-                referido: referido || null,
-                puntos: 0,
-                estado: 'activo',
-                fechaRegistro: new Date().toISOString()
-            };
-
-            // Agregar usuario a la lista
-            usuarios.push(nuevoUsuario);
-
-            fetch('http://localhost:5000/usuarios', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
+                // Crear nuevo usuario
+                const nuevoUsuario = {
                     nombre,
                     email,
+                    password,
+                    referido: referido || null,
                     puntos: 0,
-                    estado: 'activo'
+                    estado: 'activo',
+                    fechaRegistro: new Date().toISOString()
+                };
+
+                // Registrar usuario en el backend
+                fetch('http://localhost:5000/usuarios', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(nuevoUsuario)
                 })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'ok') {
+                            alert('¡Registro exitoso! Será redirigido a la página de inicio de sesión.');
+                            window.location.href = 'login.html';
+                        } else {
+                            alert('Hubo un error al registrar el usuario.');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error en el registro:', error);
+                        alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
+                    });
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'ok') {
-                        alert('¡Registro exitoso! Será redirigido a la página de inicio de sesión.');
-                        window.location.href = 'login.html';
-                    } else {
-                        alert('Hubo un error al registrar el usuario.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error en el registro:', error);
-                    alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
-                });
-        } catch (error) {
-            console.error('Error en el registro:', error);
-            alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
-        }
+            .catch(error => {
+                console.error('Error al verificar el email:', error);
+                alert('Hubo un error al verificar el correo electrónico. Por favor intente nuevamente.');
+            });
     });
 });
 document.addEventListener('DOMContentLoaded', () => {
