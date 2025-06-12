@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrarse a Distribuciones Galvar</title>
     <link rel="stylesheet" href="../css/register.css">
 </head>
+
 <body>
     <nav>
         <h1>¡Tu Lugar Está Esperando Por Ti!</h1>
@@ -60,17 +62,17 @@
 
             .file-preview img {
                 border-radius: 4px;
-                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             }
         </style>
 
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 const registerForm = document.getElementById('registerForm');
-                
-                registerForm.addEventListener('submit', function(e) {
+
+                registerForm.addEventListener('submit', function (e) {
                     e.preventDefault();
-                    
+
                     const nombre = document.getElementById('nombre').value.trim();
                     const email = document.getElementById('email').value.trim();
                     const password = document.getElementById('password').value;
@@ -124,14 +126,29 @@
                         // Agregar usuario a la lista
                         usuarios.push(nuevoUsuario);
 
-                        // Guardar en localStorage
-                        localStorage.setItem('usuarios', JSON.stringify(usuarios));
-
-                        // Mostrar mensaje de éxito
-                        alert('¡Registro exitoso! Será redirigido a la página de inicio de sesión.');
-                        
-                        // Redirigir a login
-                        window.location.href = 'login.html';
+                        fetch('http://localhost:5000/usuarios', {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                nombre,
+                                email,
+                                puntos: 0,
+                                estado: 'activo'
+                            })
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'ok') {
+                                    alert('¡Registro exitoso! Será redirigido a la página de inicio de sesión.');
+                                    window.location.href = 'login.html';
+                                } else {
+                                    alert('Hubo un error al registrar el usuario.');
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Error en el registro:', error);
+                                alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
+                            });
                     } catch (error) {
                         console.error('Error en el registro:', error);
                         alert('Hubo un error al registrar el usuario. Por favor intente nuevamente.');
@@ -148,11 +165,12 @@
     <footer>
 
         <button class="contact-button">Contacto: 320 818 6026</button>
-            <br>
-            &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+        <br>
+        &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
 
     </footer>
     <script src="../js/register.js"></script>
     <script src="../js/contacto.js"></script>
 </body>
+
 </html>

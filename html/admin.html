@@ -299,29 +299,53 @@
 
         // Función para cargar los usuarios
         function cargarUsuarios() {
-            const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-            const tbody = document.getElementById('usuarios-tabla');
-            if (!tbody) return;
-            if (usuarios.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="9" class="sin-registros">No hay usuarios registrados.</td></tr>`;
-                return;
-            }
-            tbody.innerHTML = usuarios.map(usuario => `
-        <tr>
-            <td>${usuario.id || ''}</td>
-            <td>${usuario.nombre || ''}</td>
-            <td>${usuario.email || ''}</td>
-            <td>${usuario.cedula || ''}</td>
-            <td>${usuario.documento || ''}</td>
-            <td>${usuario.paquete || ''}</td>
-            <td>${usuario.puntos != null ? usuario.puntos : ''}</td>
-            <td>${usuario.estado || ''}</td>
-            <td>
-                <!-- Aquí puedes agregar botones de acción si lo deseas -->
-            </td>
-        </tr>
-    `).join('');
+            fetch('http://localhost:5000/usuarios')
+                .then(response => response.json())
+                .then(usuarios => {
+                    const tbody = document.getElementById('usuarios-tabla');
+                    if (!tbody) return;
+                    if (usuarios.length === 0) {
+                        tbody.innerHTML = `<tr><td colspan="9" class="sin-registros">No hay usuarios registrados.</td></tr>`;
+                        return;
+                    }
+                    tbody.innerHTML = usuarios.map(usuario => `
+                <tr>
+                    <td>${usuario.id || ''}</td>
+                    <td>${usuario.nombre || ''}</td>
+                    <td>${usuario.email || ''}</td>
+                    <td>${usuario.cedula || ''}</td>
+                    <td>
+                        ${usuario.documento ? `<a href="${usuario.documento}" target="_blank">Ver documento</a>` : ''}
+                    </td>
+                    <td>${usuario.paquete || ''}</td>
+                    <td>${usuario.puntos != null ? usuario.puntos : ''}</td>
+                    <td>${usuario.estado || ''}</td>
+                    <td>
+                        ${usuario.estado !== 'aprobado' ? `<button onclick="aprobarUsuario(${usuario.id})">Aprobar</button>` : ''}
+                    </td>
+                </tr>
+            `).join('');
+                });
         }
+        function aprobarUsuario(id) {
+            fetch(`http://localhost:5000/usuarios/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ estado: 'aprobado' })
+            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'ok') {
+                        alert('Usuario aprobado');
+                        cargarUsuarios();
+                    } else {
+                        alert('Error al aprobar usuario');
+                    }
+                });
+        }
+        document.addEventListener('DOMContentLoaded', function () {
+            cargarUsuarios();
+        });
         // Llama a cargarUsuarios al cargar la página
         document.addEventListener('DOMContentLoaded', function () {
             cargarUsuarios();

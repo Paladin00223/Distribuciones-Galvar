@@ -343,6 +343,18 @@
             </div>
 
             <div class="paquete-actual">
+                <div class="datos-extra" style="margin: 2rem 0;">
+                    <h2>Completa tus datos antes de comprar un paquete</h2>
+                    <form id="formDatosExtra">
+                        <label>Cédula:<br>
+                            <input type="text" id="cedula" required>
+                        </label><br><br>
+                        <label>Foto del documento:<br>
+                            <input type="file" id="fotoDocumento" accept="image/*" required>
+                        </label><br><br>
+                        <button type="submit" class="btn-comprar">Guardar datos</button>
+                    </form>
+                </div>
                 <div class="paquete-info">
                     <div class="paquete-icon">
                         <i class="fas fa-box"></i>
@@ -379,6 +391,10 @@
     </div>
 
     <script>
+        function datosExtraCompletosYAprobados() {
+            const usuario = JSON.parse(localStorage.getItem('usuario')) || {};
+            return usuario.cedula && usuario.documento && usuario.estado === 'aprobado';
+        }
         const paquetes = [
             { id: 0, nombre: 'Gratis', precio: 0, tipo: 'basico' },
             { id: 1, nombre: 'Paquete 1', precio: 1000, tipo: 'basico' },
@@ -451,23 +467,25 @@
         }
 
         function crearPaqueteCard(paquete) {
-            const usuario = JSON.parse(localStorage.getItem('usuarioActual')) || { paquete: 0 };
+            const usuario = JSON.parse(localStorage.getItem('usuario')) || { paquete: 0 };
             const esActivo = paquete.id === usuario.paquete;
             const esBloqueado = paquete.id < usuario.paquete;
+            const datosCompletosYAprobados = datosExtraCompletosYAprobados();
 
             const card = document.createElement('div');
             card.className = `paquete-card ${esActivo ? 'activo' : ''} ${esBloqueado ? 'deshabilitado' : ''}`;
 
-            // Título y precio
             card.innerHTML = `
-                <h3>${paquete.nombre}</h3>
-                <div class="precio">$${paquete.precio.toLocaleString('es-CO')}</div>
-                <ul class="beneficios">
-                    ${(obtenerBeneficios(paquete.id).map(b => `<li>${b}</li>`)).join('')}
-                </ul>
-                <button class="btn-comprar" ${esActivo || esBloqueado ? 'disabled' : ''} onclick="comprarPaquete(${paquete.id})">
-                    ${esActivo ? 'Activo' : esBloqueado ? 'No disponible' : 'Comprar'}
-                </button>`;
+        <h3>${paquete.nombre}</h3>
+        <div class="precio">$${paquete.precio.toLocaleString('es-CO')}</div>
+        <ul class="beneficios">
+            ${(obtenerBeneficios(paquete.id).map(b => `<li>${b}</li>`)).join('')}
+        </ul>
+        <button class="btn-comprar" 
+            ${esActivo || esBloqueado || !datosCompletosYAprobados ? 'disabled' : ''} 
+            onclick="comprarPaquete(${paquete.id})">
+            ${!datosCompletosYAprobados ? 'Esperando aprobación' : esActivo ? 'Activo' : esBloqueado ? 'No disponible' : 'Comprar'}
+        </button>`;
             return card;
         }
 
@@ -844,6 +862,45 @@
             cargarPaquetes();
             verificarEstadoPaquete();
         };
+        document.getElementById('formDatosExtra').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const cedula = document.getElementById('cedula').value.trim();
+            const paquete = document.getElementById('paqueteSeleccionado').value;
+            const fotoInput = document.getElementById('fotoDocumento');
+            const usuario = JSON.parse(localStorage.getItem('usuario')) || {};
+
+            if (!cedula || !paquete || !fotoInput.files[0]) {
+                alert('Completa todos los campos');
+                return;
+            }
+
+            // Convertir la imagen a base64
+            const reader = new FileReader();
+            reader.onload = function (event) {
+                const fotoBase64 = event.target.result;
+
+                fetch(`http://localhost:5000/usuarios/${usuario.id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        cedula: cedula,
+                        documento: fotoBase64,
+                        paquete: paquete
+                    })
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.status === 'ok') {
+                            alert('Datos actualizados correctamente');
+                        } else {
+                            alert('Error al actualizar datos');
+                        }
+                    })
+                    .catch(() => alert('Error de conexión con el servidor'));
+            };
+            reader.readAsDataURL(fotoInput.files[0]);
+        });
     </script>
 </body>
 

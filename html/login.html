@@ -1,127 +1,143 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <head>
+<head>
 
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Iniciar Sesión - Distribuciones Galvar</title>
-        <link rel="stylesheet" href="../css/login.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión - Distribuciones Galvar</title>
+    <link rel="stylesheet" href="../css/login.css">
 
-    </head>
+</head>
 
-    <body>
+<body>
 
-        <header>
+    <header>
 
-            <h1>¡Que alegría tenerte de vuelta en Distribuciones Galvar!</h1>
+        <h1>¡Que alegría tenerte de vuelta en Distribuciones Galvar!</h1>
 
-        </header>
+    </header>
 
-        <main>
+    <main>
 
-            <h2>Recuerda iniciar sesión frecuentemente</h2>
+        <h2>Recuerda iniciar sesión frecuentemente</h2>
 
-            <div class="form-container">
-                <form id="loginForm">
-                    <div class="form-group">
-                        <label for="email">Correo electrónico</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña</label>
-                        <input type="password" id="password" name="password" required>
-                    </div>
-                    <button type="submit">Iniciar Sesión</button>
+        <div class="form-container">
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Correo electrónico</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Contraseña</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Iniciar Sesión</button>
 
-                    <div class="login-links">
-                        <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
-                    </div>
-                </form>
-            </div>
-        </main>
+                <div class="login-links">
+                    <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+                </div>
+            </form>
+        </div>
+    </main>
 
-        <footer>
-            <button class="contact-button"><i class="fab fa-whatsapp"></i> Contacto: 320 818 6026</button>
-            <br>
-            &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
-        </footer>
+    <footer>
+        <button class="contact-button"><i class="fab fa-whatsapp"></i> Contacto: 320 818 6026</button>
+        <br>
+        &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+    </footer>
 
-        <script src="../js/login.js"></script>
-        <script src="../js/contacto.js"></script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const loginForm = document.getElementById('loginForm');
-                
-                loginForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const email = document.getElementById('email').value.trim();
-                    const password = document.getElementById('password').value;
+    <script src="../js/login.js"></script>
+    <script src="../js/contacto.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const loginForm = document.getElementById('loginForm');
 
-                    // Validaciones básicas
-                    if (!email || !password) {
-                        alert('Por favor complete todos los campos');
-                        return;
+            loginForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+
+                // Validaciones básicas
+                if (!email || !password) {
+                    alert('Por favor complete todos los campos');
+                    return;
+                }
+
+                try {
+                    // Obtener usuarios
+                    fetch('http://localhost:5000/usuarios')
+                        .then(response => response.json())
+                        .then(usuarios => {
+                            const usuario = usuarios.find(u => u.email === email && u.password === password);
+                            if (usuario) {
+                                sessionStorage.setItem('usuarioActual', JSON.stringify({
+                                    nombre: usuario.nombre,
+                                    email: usuario.email,
+                                    puntos: usuario.puntos
+                                }));
+                                alert('¡Inicio de sesión exitoso!');
+                                window.location.href = '../index.html';
+                            } else {
+                                alert('Correo electrónico o contraseña incorrectos');
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error en el inicio de sesión:', error);
+                            alert('Hubo un error al iniciar sesión. Por favor intente nuevamente.');
+                        });
+
+                    if (usuario) {
+                        // Guardar sesión
+                        sessionStorage.setItem('usuarioActual', JSON.stringify({
+                            nombre: usuario.nombre,
+                            email: usuario.email,
+                            puntos: usuario.puntos
+                        }));
+
+                        // Mostrar mensaje de éxito
+                        alert('¡Inicio de sesión exitoso!');
+
+                        // Redirigir a la página principal
+                        window.location.href = '../index.html';
+                    } else {
+                        alert('Correo electrónico o contraseña incorrectos');
                     }
-
-                    try {
-                        // Obtener usuarios
-                        const usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
-                        
-                        // Buscar usuario
-                        const usuario = usuarios.find(u => u.email === email && u.password === password);
-                        
-                        if (usuario) {
-                            // Guardar sesión
-                            sessionStorage.setItem('usuarioActual', JSON.stringify({
-                                nombre: usuario.nombre,
-                                email: usuario.email,
-                                puntos: usuario.puntos
-                            }));
-
-                            // Mostrar mensaje de éxito
-                            alert('¡Inicio de sesión exitoso!');
-                            
-                            // Redirigir a la página principal
-                            window.location.href = '../index.html';
-                        } else {
-                            alert('Correo electrónico o contraseña incorrectos');
-                        }
-                    } catch (error) {
-                        console.error('Error en el inicio de sesión:', error);
-                        alert('Hubo un error al iniciar sesión. Por favor intente nuevamente.');
-                    }
-                        // Validación de administrador
-                    if (email === 'jdvargas223@gmail.com' && password === 'JDv@rgA$223#') {
-                        localStorage.setItem('usuario', JSON.stringify({
-                            email: email,
-                            nombre: 'Administrador',
-                            esAdmin: true
+                } catch (error) {
+                    console.error('Error en el inicio de sesión:', error);
+                    alert('Hubo un error al iniciar sesión. Por favor intente nuevamente.');
+                }
+                // Validación de administrador
+                if (email === 'jdvargas223@gmail.com' && password === 'JDv@rgA$223#') {
+                    localStorage.setItem('usuario', JSON.stringify({
+                        email: email,
+                        nombre: 'Administrador',
+                        esAdmin: true
                     }));
                     window.location.href = 'admin.html';
                     return;
                 }
-                });
             });
-        </script>
+        });
+    </script>
 
-        <style>
-            .login-links {
-                text-align: center;
-                margin-top: 1rem;
-            }
+    <style>
+        .login-links {
+            text-align: center;
+            margin-top: 1rem;
+        }
 
-            .login-links a {
-                color: #007bff;
-                text-decoration: none;
-            }
+        .login-links a {
+            color: #007bff;
+            text-decoration: none;
+        }
 
-            .login-links a:hover {
-                text-decoration: underline;
-            }
-        </style>
+        .login-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
 
-    </body>
+</body>
 
 </html>
