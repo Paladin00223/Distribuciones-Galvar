@@ -281,9 +281,11 @@
                 return;
             }
 
-            // Calcular el total y los puntos
+            // Calcular el total y los puntos SOLO de productos que otorgan puntos
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            const puntosGanados = Math.floor(total / 1000);
+            const puntosGanados = cart
+                .filter(item => item.otorgaPuntos)
+                .reduce((sum, item) => sum + Math.floor((item.price * item.quantity) / 1000), 0);
 
             // Crear el registro de compra
             const compra = {
