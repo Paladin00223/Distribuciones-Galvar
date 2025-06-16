@@ -69,7 +69,7 @@
     },
     {
         "nombre": "Bloqueador Solar",
-        "categoría": "Cosmetico"
+        "categoría": "cosmetico"
     },
     {
         "nombre": "Bolígrafo",
@@ -344,6 +344,575 @@
         "categoría": "papeleria"
     },
     {
-        "nombre": ""
+        "nombre": "Cosedora Corona ST-207",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Crayón Estandar GS-0065",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Crema Manos Sacha Inchi",
+        "categoría": "cosmetico"
+    },
+    {
+        "nombre": "Cristaflex 50mt del Bueno",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cristaflex amarillo x 20mt",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cristaflex amarillo x 50mt",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cristaflex amarillo x 100mt",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cristaflex amarillo x 200mt",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cristaflex negro x 50mt",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cuaderno 50 hojas",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cuaderno 100 hojas",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cuchara fresh",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cuchara grande x 100u del Bueno",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cuchara pequeña x 100u Europea",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cuchara Metálica Grande",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Cuchara Metálica Pequeña",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Delantal",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Delineador de Ojos",
+        "categoría": "cosmetico"
+    },
+    {
+        "nombre": "Ega en Barra",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Ega sipega 125gm",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Ega sipega 20gm",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Escuadra Rapid 45°",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Escuadra Rapid 60°",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Espejo de Bolsillo",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Espuma Aeromat",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Exprimidor de Limón",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Flores",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Flores con Peluche",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Fomi 1/8",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Fomi Escarchado 1/8",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Fomi Lámina escarchado naranja",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Ganchos para Cosedora",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Globos Pequeños",
+        "categoría": "pinateria"
+    },
+    {
+        "nombre": "Guantes Manipulación de alimentos x100",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Jarra Kendy",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Jarra Persal",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Jarra Royal",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Juego de Ollas Aluntol 14-22",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Juego de Olla Braines x5",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Juego de Ollas Joal x5",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Juego de Escalera",
+        "categoría": "juego"
+    },
+    {
+        "nombre": "Lana Escolar",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Lápiz Artesco Rojo",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Lápiz Grafito",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Lápiz Mirado",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Lápiz Mirado 2",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Lápiz Negro",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "´Lápiz Parchesito HB2",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Lapiz Rojo",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Libreta Niña",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Maletín 13 bolsillos importado KT-170",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Marcador Permanente Duricolor",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Marcador Borrable Duricolor",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Marcador permanente Primavera Flower",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Marcador Sharpie Negro",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Matamoscas Mano",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Matera",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Mechera con Linterna",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Mezcladores x500",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Molde de Aluminio 8oz",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Monedero",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Muestras cropológicas",
+        "categoría": ""
+    },
+    {
+        "nombre": "Ositos",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Palillo 180",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Palo para Pincho El Sol 25cm",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Papel Aluminio 16mt",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Papel Aluminio 7mt TUC",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Papel Aluminio 16mt caja del Bueno",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Papel Aluminio 40mt Alux",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Papel Aluminio 7mt House",
+        "categoría": "descechable"
+    },  
+    {
+        "nombre": "Papel Aluminio 16mt House",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Papel Aluminio 40mt House",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Papel Cristal",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Papel Regalo",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Papel Seda",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Pegante Instantaneo",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Peine Pequeño",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Peine para Piojos",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Peineta Mojarra Larga",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Peineta Trincho",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Perfume adrenaline",
+        "categoría": "fragancia"
+    },
+    {
+        "nombre": "Pincel Chino 10",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Pincel Chino 12",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Pinceles pequeños",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Pinza de Kasa",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Pinza India",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Pitillos Envueltos",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Plastilina Grande",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Plastilina Pequeña",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Plato Chocolatero Melanina",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Plato cuadrado Melanina",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Plato Espumado Pando 15.5cm x20",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Plato Espumado Pando 18cm x20",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Plato Espumado Pando 23cm x20",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Plato Espumado Pando 26cm x20",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Plato Espumado Hondo 25oz x20",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Plato Espumado Hondo 30oz x20",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Plato Hondo",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Plato Melanina Hondo",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Plato Melanina Tortero",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Plato Pando"
+    },
+    {
+        "nombre": "Platon 30",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Pocillo Chocolatero",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Pocillo mug",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Pocillos con Platos",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Porta Hamburguesa x50",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Porta Pizza x100",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Portacomida biodegradable J1M",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Portacomida Espumado C1",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Portacomida Espumado J1",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Portacomida Espumado J2",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Portas",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Rayador Lámina",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Rayador",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Recibo Grande con Talón",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Recibo Pequeño con Talón",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Recibo de Caja Menor",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Regla de Palo",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Resaltador Pelikan Mark 2",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Servilleta del Bueno x300",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Servilleta Favorita x300",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Silicona en Barra Gruesa",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Silicona Líquida Mediana",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Silicona Líquida Pequeña",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Sobre Manila Carta",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Sobre Sticker",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Sobrebase Espumada Circular 16.5cm x50",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Sobrebase Espumada Circular 22cm x50",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Sobrebase Espumada Circular 24.8cm x50",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Sombrilla Automática",
+        "categoría": "cacharro"
+    },
+    {
+        "nombre": "Sombrilla Manual",
+        "categoría": "cacharro"
+    }
+    {
+        sombrillas niña
+sombrillas pequeñas
+splash
+suero antimancha
+tacos pedidos
+talonario letras de cambio
+tapa 1 oz x 100 troformas
+tarro agua grande
+tarro agua pequeño
+taza agua
+tazas agua grande
+tazas agua pequeño
+temperas
+tenedor fresh
+tenedor grande x 100 del bueno
+tenedor pequeño x 100 del bueno
+teteros
+tijera peluqueria forro amarillo
+tijera punta roma ha royal
+vaso 10 oz transparente x 50 marplast
+vaso 10 oz transparente x 50 vacan
+vaso 10 oz transparente x 50 wau
+vaso 12 oz transparente x 50 vacan
+vaso 12 oz transparente x 50 wau
+vaso 14 oz transparente x 50 wau
+vaso 3.3 oz x 50 mix
+vaso 5 oz x 50 lider
+vaso 5 oz x 50 wau
+vaso 7 oz transparente x 50 tuc
+vaso 7 oz transparente x 50 vacan
+vaso 7 oz transparente x 50 vacan
+vaso flores
+vasos metálicos
+vinilo parchesito azul celeste
+vinilo parchesito café
+vinilo quirond amarillo
+vinilo quirond azul
+vinilo quirond café
+vinilo quirond naranja
+vinilo quirond negro
+vinilo quirond neon amarillo
+vinilo quirond neon naranja
+vinilo quirond neon verde
+vinilo quirond piel
+vinilo quirond rojo
+vinilo quirond rosado
+
     }
 ]
