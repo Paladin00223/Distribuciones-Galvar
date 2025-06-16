@@ -133,18 +133,16 @@ const llenar_contenedor = (datos) => {
     const puntosIniciales = item.puntos ? Math.floor(precioInicial / 1000) : 0;
 
     let html = `
-    <article data-categoria="${item.categoria || ''}" data-puntos="${item.puntos || false}">
-      <img src="${item.imagen}" alt="${item.nombre}" onerror="this.src='img/placeholder.jpg'">
-      <h3>${nombre}</h3>
+    <article data-categoria="" data-puntos="">
+      <img src="" alt="" onerror="this.src='img/placeholder.jpg'">
+      <h3></h3>
       <select class="precio">
-        ${opciones}
       </select>
-      <b>Valor: <span>$${(precioInicial ?? 0).toLocaleString('es-CO')}</span></b><br>
+      <b>Valor: <span>$</span></b><br>
       <label><b>Cantidad</b></label>
       <input name="cantidad" type="number" min="1" step="1" value="1" placeholder="Cantidad">
       <br>
       <b>Total = <span>$0.00</span></b>
-      <b>Acumulas = <span>$${puntosIniciales.toLocaleString('es-CO')}</span></b>
       <button onclick="addToCart(this)">Añadir al carrito</button>
     </article>`;
     productos += html;

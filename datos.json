@@ -1,662 +1,349 @@
 [
     {
+        "nombre": "Afiches",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "AZ Carta Fabrifolder",
+        "categoría": "papeleria"
+    },
+    {
         "nombre": "Bandeja Kendy",
-        "imagen": "img/Bandeja-Kendy.jpg",
-        "unidad": 800,
-        "inventario": 6,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
+        "categoría": "hogar"
     },
     {
         "nombre": "Bandeja Persal",
-        "imagen": "img/Bandeja-Persal.jpg",
-        "unidad": 4900,
-        "inventario": 4,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
+        "categoría": "hogar"
     },
     {
         "nombre": "Bandeja Royal",
-        "imagen": "img/Bandeja-Royal",
-        "unidad": 1900,
-        "inventario": 6,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
+        "categoría": "hogar"
     },
     {
-        "nombre": "Bisturí Grande",
-        "imagen": "img/Bisturí-Grande.jpg",
-        "unidad": 3000,
-        "inventario": 5,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Bisturí Ha Royal Grande",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Bisturí Pequeño",
-        "imagen": "img/Bisturí-Pequeño.webp",
-        "unidad": 2000,
-        "inventario": 5,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Bisturí Offiesco Grande",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Block Bond Octavo",
-        "imagen": "img/Block-Bond-Octavo.jpg",
-        "unidad": 3000,
-        "inventario": 5,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Bisturí Offiesco Pequeño",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Block Iris",
-        "imagen": "img/Block-Iris.jpg",
-        "unidad": 2000,
-        "inventario": 2,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Blok Blanco",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Bolsa Aluminio L-17 x Paquete",
-        "imagen": "img/Bolsa-Aluminio.jpg",
-        "unidad": 1700,
-        "inventario": 10,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono": ""
-        }
+        "nombre": "Blok Bond 28 1/8",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Bolsa Manigueta 1.5kl x100 Blanco",
-        "imagen": "img/Bolsa-Manigueta-1,5kl-Blanco.webp",
-        "unidad": 2500,
-        "inventario": 8,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono": ""
-        }
+        "nombre": "Block Bond 28 cuadrado",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Bolsa Manigueta 1.5kl x100 Negro",
-        "imagen": "img/Bolsa-Manigueta-1,5kl-Negro.webp",
-        "unidad": 2500,
-        "inventario": 10,
-        "categoria":"descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono": ""
-        }
+        "nombre": "Block Carta Blanco Fabrifolder",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Bolsa Manigueta 3kl x100 Blanco",
-        "imagen": "img/Bolsa-Manigueta-3kl-Blanco.webp",
-        "unidad": 3500,
-        "inventario": 10,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono": ""
-        }
+        "nombre": "Block Carta Cuadros Fabrifolder",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Bolsa Manigueta 3kl x100 Negro",
-        "imagen": "img/Bolsa-Manigueta-3kl-Negro.webp",
-        "unidad": 3500,
-        "inventario": 10,
-        "categoria":"descechable",
-        "puntos": false,
-        "vendedor":{
-            "nombre":"Todoplásticos",
-            "telefono": ""
-        }
+        "nombre": "Block Iris Carta",
+        "categoría": "papeleria"
     },
     {
-        "nombre":"Bolsa Manigueta 3kl x100 Azul",
-        "imagen":"img/Bolsa-Manigueta-3kl-Azul.webp",
-        "unidad": 3500,
-        "inventario": 2,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono":""
-        }
+        "nombre": "Block Milimetrado",
+        "categoría": "papeleria"
     },
     {
-        "nombre":"Bolsa Manigueta 5kl x100 Blanco",
-        "imagen":"Bolsa-Manigueta-5kl-Blanco.webp",
-        "unidad": 4800,
-        "inventario": 10,
-        "categoria":"descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono":""
-        }
+        "nombre": "Block Rayado",
+        "categoría": "papeleria"
     },
     {
-        "nombre":"Bolsa Manigueta 5kl x100 Negro",
-        "imagen":"img/Bolsa-Manigueta-5kl-Negro.webp",
-        "unidad": 4800,
-        "inventario": 10,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono":""
-        }
+        "nombre": "Block Silueta",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Bolsa Manigueta 10kl x100 Blanco",
-        "imagen": "img/Bolsa-Manigueta-10kl-Blanco.webp",
-        "unidad": 6300,
-        "inventario": 7,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono":""
-        }
+        "nombre": "Bloqueador Solar",
+        "categoría": "Cosmetico"
     },
     {
-        "nombre": "Bolsa Manigueta 10kl x100 Negro",
-        "imagen": "img/Bolsa-Manigueta-10kl-Negro.webp",
-        "unidad": 6300,
-        "inventario": 10,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono": ""
-        }
+        "nombre": "Bolígrafo",
+        "categoría": "papeleria"
     },
     {
-        "nombre":"Carpteta de Hilo Carta",
-        "imagen": "img/Carpeta-Hilo.jpg",
-        "unidad": 3000,
-        "inventario": 6,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Bolígrafo Offiesco",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Cinta Enmascarar 20m 3/4''",
-        "imagen": "img/Cinta-Enmascarar.jpg",
-        "unidad": 3000,
-        "inventario": 2,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Todoplásticos",
-            "telefono":""
-        }
+        "nombre": "Bolígrafo Piano Smooth PT-177 JB31-1",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Colador Pequeño",
-        "imagen": "img/Colador-Pequeño.webp",
-        "unidad": 3500,
-        "inventario": 2,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Plastired",
-            "telefono": "601 534 3861"
-        }
+        "nombre": "Bolinillo NP",
+        "categoría": "hogar"
     },
     {
-        "nombre": "Colador Mediano",
-        "imagen": "img/Colador-Mediano.jpg",
-        "unidad": 4500,
-        "inventario": 2,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Plastired",
-            "telefono":"601 534 3861"
-        }
+        "nombre": "Bolinillo Persal",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Bolsa Aluminizada L-17 Arepa",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Aluminizada L-19 Hamburguesa",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Basura Apartamento Negra (19x25)",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Basura Casera Negra (24x32)",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Basura Industrial Negra (28x40)",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Lechoza 1kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Manigueta 1.5kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Manigueta 3kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Manigueta 5kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Manigueta 10kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Manigueta 15kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Manigueta 25kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Manigueta 50kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Papel 1/2lb",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Papel 1lb",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Papel 2lb",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Papel 3lb",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Papel 4lb",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Pastillera Ref.112 Blanca",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Regalo Grande",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Bolsa Regalo Mediano",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Bolsa Transparente 1 Arroba Económico (14x23.5x1.2) Kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Transparente 1lb (5x9.5x0.7)kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Transparente 3lb",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Transparente Hielo Económico (14x23.5x1.2) Kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Transparente 1kl Ancho (7x10x0.7) Kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Bolsa Transparente 1kl Largo (6x10.5x0.7) Kg",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Cabuya x 130mt - Atafácil",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Canasta para Baño",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Canasta para Ropa",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Carpa Adulto con 150 x 2mt",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Carpa",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Carpeta con Hilo",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Carpeta con Hilo Transparente",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Carpeta para Hoja de Vida",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Carpetas Folder",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cartón Escarchado Studmark",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cartón Paja 1/8",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cartulina 1/8",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cartulina Negra 1/8",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cartulina Pliego",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cepillo Lavar Económico",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Cepillo Lavar Vaniplast",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Cinta Enmascarar",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cinta Papel Rollo",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cinta Pequeña",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Cinta transparente 2'' x 50mt",
+        "categoría": "papeleria"
     },
     {
         "nombre": "Colador Grande",
-        "imagen": "img/Colador-Grande",
-        "unidad": 6500,
-        "inventario": 2,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Plastired",
-            "telefono":"601 534 3861"
-        }
+        "categoría": "hogar"
     },
     {
-        "nombre": "Compas 2506",
-        "imagen": "img/Compas-2506.jpg",
-        "unidad": 2000,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Colador Mediano",
+        "categoría": "hogar"
     },
     {
-        "nombre":"Contenedor 8oz x50",
-        "imagen": "img/Contenedor-8oz.jpg",
-        "unidad": 7500,
-        "inventario": 22,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
+        "nombre": "Colador Pequeño",
+        "categoría": "hogar"
     },
     {
-        "nombre": "Contenedor 12oz x50",
-        "imagen": "img/Contenedor-12oz.jpg",
-        "unidad": 7600,
-        "inventario": 9,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
+        "nombre": "Colores Norma Largo 13+2 4mm nuevo",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Contenedor 16oz x50",
-        "imagen": "img/Contenedor-16oz.jpg",
-        "unidad": 7500,
-        "inventario": 1521,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
+        "nombre": "Colores Paper Mate DP 12x24 3mm",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Contenedor 24oz x50",
-        "imagen": "img/Contenedor-24oz.jpg",
-        "unidad": 7800,
-        "inventario": 1,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
+        "nombre": "Colores Parchesito x 14 3mm",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Corrector Lápiz 8ml",
-        "imagen": "img/Corrector.jpg",
-        "unidad": 1500,
-        "inventario": 7,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Colores Berol x24",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Crayón Estandar x12 GIGO GS-0065",
-        "imagen": "img/Crayones.jpg",
-        "unidad": 3500,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Compás AOSDU 2506",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Cuchara 6-PP x100",
-        "imagen": "img/Cuchara-6-PP.jpg",
-        "unidad": 4900,
-        "inventario": 1,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
+        "nombre": "Contenedor Espumado 8oz con Tapa",
+        "categoría": "descechable"
     },
     {
-        "nombre": "Cyzone Girlink Colonia 50ml",
-        "imagen": "img/Cyzone-Girlink.jpg",
-        "unidad": 30000,
-        "inventario": 1,
-        "categoria": "cosmeticos",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Cyzone",
-            "telefono": ""
-        }
+        "nombre": "Contenedor Espumado 12oz con Tapa",
+        "categoría": "descechable"
     },
     {
-        "nombre": "Cyzone InLove Colonia 50ml",
-        "imagen": "img/Cyzone-InLove.jpg",
-        "unidad": 30000,
-        "inventario": 1,
-        "categoria": "cosmeticos",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Cyzone",
-            "telefono": ""
-        }
+        "nombre": "Contenedor Espumado 16oz con Tapa",
+        "categoría": "descechable"
     },
     {
-        "nombre": "Cyzone Sweet Black Perfume 50ml",
-        "imagen": "img/Cyzone-Sweet-Black.jpg",
-        "unidad": 30000,
-        "inventario": 1,
-        "categoria": "cosmeticos",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Cyzone",
-            "telefono": ""
-        }
+        "nombre": "Contenedor Espumado 24oz con Tapa",
+        "categoría": "descechable"
     },
     {
-        "nombre": "Escuadra 45 grados",
-        "imagen": "img/Escuadra-45.jpg",
-        "unidad": 2100,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Copa 1oz Transparente x50 Lider",
+        "categoría": "descechable"
     },
     {
-        "nombre": "Escuadra 60 grados",
-        "imagen": "img/Escuadra-65.jpg",
-        "unidad": 1800,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
+        "nombre": "Copa 1oz x50 Troformas",
+        "categoría": "descechable"
     },
     {
-        "nombre": "Ésika Desodorante Roll On Expression",
-        "imagen": "img/Esika-Desodorante.jpg",
-        "unidad": 4000,
-        "inventario": 1,
-        "categoria": "cosmeticos",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Ésika",
-            "telefono": ""
-        }
+        "nombre": "Cornetas pequeñas",
+        "categoría": "cacharro"
     },
     {
-        "nombre": "Espejo de bolsillo",
-        "imagen": "img/Espejo.jpg",
-        "unidad": 1000,
-        "inventario": 1,
-        "categoria": "cacharro",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
+        "nombre": "Corrector Lápiz 8ml Marfil",
+        "categoría": "papeleria"
     },
     {
-        "nombre": "Jarra Kendy",
-        "imagen": "img/Jarra-Kendy.jpg",
-        "unidad": 7900,
-        "inventario": 2,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Jarra Persal",
-        "imagen": "img/Jarra-Persal.jpg",
-        "unidad": 5900,
-        "inventario": 6,
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Jarra Royal",
-        "imagen": "img/Jarra-Royal.jpg",
-        "unidad": 5500,
-        "inventario": 6,
-        "categoria": "hogar",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Grapadora Corona ST207",
-        "imagen": "img/Grapadora-Corona-ST-207.webp",
-        "unidad": 0,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Juego de Escalera",
-        "imagen": "img/Juego-Escalera.jpg",
-        "unidad": 1000,
-        "inventario": 1,
-        "categoria": "juego",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "L'BEL Perfume Mithyka 50ml",
-        "imagen": "img/L'Bel-Mithyka.jpg",
-        "unidad": 50000,
-        "inventario": 1,
-        "categoria": "cosmeticos",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "L'BEL",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "L'BEL Perfume Fleur 50ml",
-        "imagen": "img/L'Bel-Perfume-Fleur.jpg",
-        "unidad": 130000,
-        "inventario": 1,
-        "categoria": "cosmeticos",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "L'BEL",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Lápiz HB caja x 12",
-        "imagen": "img/Lápiz-HB.jpg",
-        "unidad": 10000,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Lápiz HB2 caja x 12",
-        "imagen": "img/Lápiz-HB2.webp",
-        "unidad": 10000,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Lápiz HB Negro x12",
-        "imagen": "img/Lápiz-Negro.webp",
-        "unidad": 10000,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Letra Cambio Libreta",
-        "imagen": "img/Libreta.jpg",
-        "unidad": 0,
-        "inventario": 1,
-        "categoria": "papeleria",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Papelería Medellín",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Matamoscas en forma de Mano",
-        "imagen": "img/Matamoscas-Mano.jpg",
-        "unidad": 2500,
-        "inventario": 2,
-        "categoria": "cacharro",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Mechera Macao con Linterna",
-        "imagen": "img/Mechera-Macao.jpg",
-        "unidad": 1000,
-        "inventario": 20,
-        "categoria": "cacharro",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Colventas",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Mezcladores Colombianito x100",
-        "imagen": "img/Mezcladores-Colombianito.jpg",
-        "unidad": 1200,
-        "inventario": 1,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Molde de Aluminio x125",
-        "imagen": "img/Molde-Aluminio.jpg",
-        "unidad": 27800,
-        "inventario": 3,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Palillos El Sol",
-        "imagen": "img/Palillos-Sol.png",
-        "unidad": 1000,
-        "inventario": 1,
-        "categoria": "descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre":"Portacomida J1 x20 Paca x200",
-        "imagen":"img/Portacomida-J1.jpg",
-        "precios":{
-            "unidad": 7800,
-            "paca": 77000
-        },
-        "inventario": 30,
-        "categoria":"descechable",
-        "puntos": false,
-        "vendedor": {
-            "nombre": "Darnel",
-            "telefono": ""
-        }
-    },
-    {
-        "nombre": "Tazas para Agua",
-        "imagen": "img.Tazas-Agua.jpg",
-        "unidad": 2500,
-        "puntos": false,
-        "vendedor": {
-            "nombre": "",
-            "telefono": ""
-        }
+        "nombre": ""
     }
 ]
