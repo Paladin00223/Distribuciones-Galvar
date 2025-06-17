@@ -867,9 +867,14 @@
         "categoría": "cacharro"
     }
     {
-        sombrillas niña
-sombrillas pequeñas
-splash
+        "nombre": "Sombrilla Niña",
+        "categoría": "cacharro"
+    },
+    {   "nombre": "Sombrilla Pequeña",
+        "categoría": "cacharro"
+    },
+    { 
+        "nombre": 
 suero antimancha
 tacos pedidos
 talonario letras de cambio
