@@ -328,6 +328,10 @@
         "categoría": "descechable"
     },
     {
+        "nombre": "contenedor Triangular Resq Altura 5 Cristal",
+        "categoría": "descechable"
+    },
+    {
         "nombre": "Copa 1oz Transparente x50 Lider",
         "categoría": "descechable"
     },
@@ -584,6 +588,10 @@
         "categoría": "descechable"
     },
     {
+        "nombre": "Molde de Aluminio 16oz",
+        "categoría": "descechable"
+    },
+    {
         "nombre": "Monedero",
         "categoría": "cacharro"
     },
@@ -819,6 +827,18 @@
         "categoría": "papeleria"
     },
     {
+        "nombre": "Selloplus Resq 8oz Cristal Tapa Alta",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Selloplus Resq 8oz Cristal Tapa Media",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Selloplus Resq 12oz Cristal Tapa  Media",
+        "categoría": "descechable"
+    },
+    {
         "nombre": "Servilleta del Bueno x300",
         "categoría": "descechable"
     },
@@ -865,7 +885,7 @@
     {
         "nombre": "Sombrilla Manual",
         "categoría": "cacharro"
-    }
+    },
     {
         "nombre": "Sombrilla Niña",
         "categoría": "cacharro"
@@ -940,38 +960,53 @@
     {
         "nombre": "Vaso 10oz transparente x50 Wau",
         "categoría": "descechable"
-    }
-    
-vaso 10 oz transparente x 50 wau
-vaso 12 oz transparente x 50 vacan
-vaso 12 oz transparente x 50 wau
-vaso 14 oz transparente x 50 wau
-vaso 3.3 oz x 50 mix
-vaso 5 oz x 50 lider
-vaso 5 oz x 50 wau
-vaso 7 oz transparente x 50 tuc
-vaso 7 oz transparente x 50 vacan
-vaso 7 oz transparente x 50 vacan
-vaso flores
-vasos metálicos
-vinilo parchesito azul celeste
-vinilo parchesito café
-vinilo quirond amarillo
-vinilo quirond azul
-vinilo quirond café
-vinilo quirond naranja
-vinilo quirond negro
-vinilo quirond neon amarillo
-vinilo quirond neon naranja
-vinilo quirond neon verde
-vinilo quirond piel
-vinilo quirond rojo
-vinilo quirond rosado
-selloplus resq 8oz cristal tapa alta
-selloplus resq 8oz cristal tapa media
-selloplus resq 12oz cristal tapa  media
-molde aluminio 16oz
-contenedor triangular resq altura 5 cristal
-
-    }
+    },
+    {
+        "nombre": "Vaso 12 oz Transparente x50 Vacan",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 12oz Transparente x50 Wau",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 14oz transparente x50 Wau",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 3.3oz Transparente x50 Mix",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 5oz Transparente x50 Lider",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 5oz x50 Wau",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 7oz Transparente x50 Tuc",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 7oz Transparente x50 Vacan",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso Flores",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Vasos Metálicos",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Vinilo Parchesito",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Vinilo Quirond",
+        "categoría": "papeleria"
+    } 
 ]
