@@ -1,39 +1,49 @@
 [
     {
         "nombre": "Afiches",
-        "categoría": "detalle"
+        "categoría": "detalle",
+        "precio": 1500
     },
     {
         "nombre": "AZ Carta Fabrifolder",
-        "categoría": "papeleria"
+        "categoría": "papeleria",
+        "precio": 7450
     },
     {
         "nombre": "Bandeja Kendy",
-        "categoría": "hogar"
+        "categoría": "hogar",
+        "precio": 3750
     },
     {
         "nombre": "Bandeja Persal",
-        "categoría": "hogar"
+        "categoría": "hogar",
+        "precio": 5700
     },
     {
         "nombre": "Bandeja Royal",
-        "categoría": "hogar"
+        "categoría": "hogar",
+        "precio": 2250
     },
     {
         "nombre": "Bisturí Ha Royal Grande",
-        "categoría": "papeleria"
+        "categoría": "papeleria",
+        "precio": 900
     },
     {
         "nombre": "Bisturí Offiesco Grande",
-        "categoría": "papeleria"
+        "categoría": "papeleria",
+        "precio": 3000
     },
     {
         "nombre": "Bisturí Offiesco Pequeño",
-        "categoría": "papeleria"
+        "categoría": "papeleria",
+        "precio": 1900
     },
     {
         "nombre": "Blok Blanco",
-        "categoría": "papeleria"
+        "categoría": "papeleria",
+        "precio": 4500
+        
     },
     {
         "nombre": "Blok Bond 28 1/8",
