@@ -874,25 +874,74 @@
         "categoría": "cacharro"
     },
     { 
-        "nombre": 
-suero antimancha
-tacos pedidos
-talonario letras de cambio
-tapa 1 oz x 100 troformas
-tarro agua grande
-tarro agua pequeño
-taza agua
-tazas agua grande
-tazas agua pequeño
-temperas
-tenedor fresh
-tenedor grande x 100 del bueno
-tenedor pequeño x 100 del bueno
-teteros
-tijera peluqueria forro amarillo
-tijera punta roma ha royal
-vaso 10 oz transparente x 50 marplast
-vaso 10 oz transparente x 50 vacan
+        "nombre": "Suero Antimancha",
+        "categoría": "cosmetico"
+    },
+    {
+        "nombre": "Tacos para Notas",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Talonario Letra de Cambio",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Tapa 1oz x 100 Troformas",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Tarro de Agua Grande",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Tarro de Agua Pequeño",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Taza de Agua",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Tempera",
+        "categoría": "papeleria"
+    },
+    {
+        "nombre": "Tenedor Fresh",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Tenedor Grande",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Tenedor Pequeño",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Tetero",
+        "categoría": "hogar"
+    },
+    {
+        "nombre": "Tijera Peluqueria de Forro Amarillo",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Tijera Punta Roma Ha Royal",
+        "categoría": "detalle"
+    },
+    {
+        "nombre": "Vaso 10oz Transparente x50 Marplast",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 10oz Transparente x50 Vacan",
+        "categoría": "descechable"
+    },
+    {
+        "nombre": "Vaso 10oz transparente x50 Wau",
+        "categoría": "descechable"
+    }
+    
 vaso 10 oz transparente x 50 wau
 vaso 12 oz transparente x 50 vacan
 vaso 12 oz transparente x 50 wau
@@ -918,6 +967,11 @@ vinilo quirond neon verde
 vinilo quirond piel
 vinilo quirond rojo
 vinilo quirond rosado
+selloplus resq 8oz cristal tapa alta
+selloplus resq 8oz cristal tapa media
+selloplus resq 12oz cristal tapa  media
+molde aluminio 16oz
+contenedor triangular resq altura 5 cristal
 
     }
 ]
