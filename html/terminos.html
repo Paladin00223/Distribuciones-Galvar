@@ -4,80 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Términos y Condiciones - Distribuciones Galvar</title>
-    <style>
-        .terminos-container {
-            max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: white;
-            border-radius: 1rem;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .terminos-titulo {
-            text-align: center;
-            color: #333;
-            margin-bottom: 2rem;
-        }
-
-        .terminos-seccion {
-            margin-bottom: 2rem;
-        }
-
-        .terminos-seccion h2 {
-            color: #333;
-            margin-bottom: 1rem;
-        }
-
-        .terminos-seccion p, .terminos-seccion li {
-            color: #666;
-            line-height: 1.6;
-        }
-
-        .terminos-seccion ul {
-            list-style-type: disc;
-            padding-left: 2rem;
-        }
-
-        .importante {
-            background-color: #fff3cd;
-            border: 1px solid #ffeeba;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin: 1rem 0;
-        }
-
-        .terminos-botones {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .btn-terminos {
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 0.5rem;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .btn-aceptar {
-            background-color: #28a745;
-            color: white;
-        }
-
-        .btn-rechazar {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .btn-terminos:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-    </style>
+    <link rel="stylesheet" href="../css/terminos.css">
 </head>
 <body>
     <div class="terminos-container">
@@ -170,23 +97,6 @@
         </div>
     </div>
 
-    <script>
-        document.getElementById('aceptarTerminos').addEventListener('click', function() {
-            // Marcar que los términos han sido aceptados en localStorage
-            const usuario = JSON.parse(localStorage.getItem('usuario'));
-            if (usuario) {
-                usuario.terminosAceptados = true;
-                localStorage.setItem('usuario', JSON.stringify(usuario));
-            } else {
-                // Opcional: manejar el caso donde no hay usuario logueado aún.
-                // Podrías crear un objeto temporal o simplemente confiar en que login.html lo creará.
-            }
-            window.location.href = 'level.html'; // Redirigir a level.html
-        });
-
-        document.getElementById('rechazarTerminos').addEventListener('click', function() {
-            window.location.href = '../index.html';
-        });
-    </script>
+    <script src="../js/terminos.js"></script>
 </body>
 </html> 

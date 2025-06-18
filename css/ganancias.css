@@ -1,0 +1,125 @@
+.historial-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.historial-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.historial-titulo {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+.historial-filtros {
+    display: flex;
+    gap: 1rem;
+}
+
+.filtro-select {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.historial-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.historial-tabla th {
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.historial-tabla td {
+    padding: 1rem;
+    border-bottom: 1px solid #dee2e6;
+    color: #6c757d;
+}
+
+.historial-tabla tr:last-child td {
+    border-bottom: none;
+}
+
+.historial-tabla tr:hover {
+    background-color: #f8f9fa;
+}
+
+.tipo-ganancia {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.tipo-compra {
+    background-color: #e3f2fd;
+    color: #1976d2;
+}
+
+.tipo-paquete {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+}
+
+.tipo-referido {
+    background-color: #fff3e0;
+    color: #f57c00;
+}
+
+.monto-positivo {
+    color: #2e7d32;
+    font-weight: 500;
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+}
+
+.btn-pagina {
+    padding: 0.5rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background-color: white;
+    color: #495057;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-pagina:hover {
+    background-color: #f8f9fa;
+}
+
+.btn-pagina.activo {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.sin-registros {
+    text-align: center;
+    padding: 2rem;
+    color: #6c757d;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

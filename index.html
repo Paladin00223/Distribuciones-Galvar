@@ -1,138 +1,98 @@
 <!DOCTYPE html>
 <html lang="es">
 
-  <head>
+<head>
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Distribuciones Galvar</title>
+  <title>Distribuciones Galvar</title>
 
-    <link rel="stylesheet" href="css/index.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/index.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-  </head>
+</head>
 
-  <body>
+<body>
 
-    <nav>
+  <nav>
 
-      <div class="nav-buttons">
-        <a href="html/buy.html"><button><i class="fas fa-shopping-cart"></i> Comprar</button></a>
-        <a href="html/level.html"><button><i class="fas fa-chart-line"></i> Nivelar</button></a>
-        <a href="html/refer.html"><button><i class="fas fa-user-plus"></i> Referir</button></a>
-        <a href="html/withdraw.html"><button><i class="fas fa-money-bill-wave"></i> Retirar</button></a>
-      </div>
-      <a href="html/login.html"><button class="cerrar"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></a>
+    <div class="nav-buttons">
+      <a href="html/buy.html"><button><i class="fas fa-shopping-cart"></i> Comprar</button></a>
+    </div>
+    <a href="html/login.html"><button class="cerrar"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></a>
 
-    </nav>
-    <aside>
+  </nav>
+  <aside>
 
-      <a href="html/compras.html"><button><i class="fas fa-shopping-bag"></i> Compras</button></a>
-      <a href="html/ganancias.html"><button><i class="fas fa-coins"></i> Ganancias</button></a>
-      <a href="html/retiros.html"><button><i class="fas fa-wallet"></i> Retiros</button></a>
-      <a href="html/fidelidad.html"><button><i class="fas fa-star"></i> Fidelidad</button></a>
-      <a href="html/perfil.html"><button><i class="fas fa-user"></i> Perfil</button></a>
-      <a href="#top"><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a>
+    <a href="html/compras.html"><button><i class="fas fa-shopping-bag"></i> Compras</button></a>
+    <a href="html/perfil.html"><button><i class="fas fa-user"></i> Perfil</button></a>
+    <a href="#top"><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a>
 
-    </aside>
-    <header>
-      <section>
-        <h1>¡Nos alegra volver a darte la bienvenida, <span id="nombre-usuario">Usuario</span>!</h1>
-        <div class="puntos-info">
-          <b class="cabeza">Puntos acumulados: <span id="puntos-usuario">0</span></b>
-          <p class="nota-puntos">Estos puntos son generados por tus compras de productos y paquetes</p>
-        </div>
-      </section>
+  </aside>
+  <header>
+    <section>
+      <h1>¡Nos alegra volver a darte la bienvenida, <span id="nombre-usuario">Usuario</span>!</h1>
+    </section>
 
-      <div>
+    <div>
 
-        <h2>DISTRIBUCIONES GALVAR</h2>
-        <p class="cabeza">Invierte desde cero y haz crecer tu capital.</p>
+      <h2>DISTRIBUCIONES GALVAR</h2>
 
-      </div>
+    </div>
 
-    </header>
+  </header>
 
-    <main>
+  <main>
 
-      <div class="search-container">
+    <div class="search-container">
 
-        <select id="productos">
+      <select id="productos">
 
-          <option value="todo">Todos los productos</option>
-          <option value="aseo">Aseo</option>
-          <option value="cacharro">Cacharrería</option>
-          <option value="cosmeticos">Cosméticos</option>
-          <option value="descechable">Descechables</option>
-          <option value="detalle">Detalles</option>
-          <option value="ferreteria">Ferretería</option>
-          <option value="hogar">Hogar</option>
-          <option value="juego">Juegos</option>
-          <option value="papeleria">Papelería</option>
-          
+        <option value="todo">Todos los productos</option>
+        <option value="aseo">Aseo</option>
+        <option value="cacharro">Cacharrería</option>
+        <option value="cosmeticos">Cosméticos</option>
+        <option value="descechable">Descechables</option>
+        <option value="detalle">Detalles</option>
+        <option value="ferreteria">Ferretería</option>
+        <option value="hogar">Hogar</option>
+        <option value="juego">Juegos</option>
+        <option value="papeleria">Papelería</option>
 
-        </select>
 
-        <div class="search-box">
-          <input type="search" id="buscar" placeholder="Buscar Producto" />
-          <button type="button" onclick="aplicarFiltros()">
-            <i class="fas fa-search"></i> Buscar
-          </button>
-        </div>
+      </select>
 
+      <div class="search-box">
+        <input type="search" id="buscar" placeholder="Buscar Producto" />
+        <button type="button" onclick="aplicarFiltros()">
+          <i class="fas fa-search"></i> Buscar
+        </button>
       </div>
 
-      <section id="contenedor">
-        <!-- Los artículos se llenan dinámicamente con JS -->
-      </section>
-    </main>
+    </div>
 
-    <footer>
+    <section id="contenedor">
+      <!-- Los artículos se llenan dinámicamente con JS -->
+    </section>
+  </main>
 
-      <h2 class="center">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
-      <p class="maintenance-message">
-        <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está en mantenimiento!<br>
-        ¡Muy Pronto!
-      </p>
-      <button class="contact-button">
-        <i class="fab fa-whatsapp"></i> Contacto: 320 818 6026
-      </button>
-      <br>
-      &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
-    </footer>
+  <footer>
 
-    <script src="js/app.js"></script>
-    <script src="js/contacto.js"></script>
-    <script>
-      // Verificación de inicio de sesión
-      document.addEventListener('DOMContentLoaded', function() {
-          const usuario = JSON.parse(localStorage.getItem('usuario'));
-          if (!usuario) {
-              window.location.href = 'html/login.html';
-              return;
-          }
+    <h2 class="center">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
+    <p class="maintenance-message">
+      <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está en mantenimiento!<br>
+      ¡Muy Pronto!
+    </p>
+    <button class="contact-button">
+      <i class="fab fa-whatsapp"></i> Contacto: 320 818 6026
+    </button>
+    <br>
+    &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+  </footer>
 
-          // Actualizar nombre del usuario
-          const nombreElement = document.getElementById('nombre-usuario');
-          if (nombreElement && usuario.nombre) {
-              nombreElement.textContent = usuario.nombre;
-          }
-
-          // Si el usuario está logueado, continuar con la carga normal
-          actualizarPuntosUsuario();
-          // Actualizar puntos cada 30 segundos
-          setInterval(actualizarPuntosUsuario, 30000);
-      });
-
-      // Función para actualizar los puntos del usuario
-      function actualizarPuntosUsuario() {
-          const puntosElement = document.getElementById('puntos-usuario');
-          if (puntosElement && usuario) {
-              puntosElement.textContent = usuario.puntos.toLocaleString('es-CO');
-          }
-      }
-    </script>
-  </body>
+  <script src="js/app.js"></script>
+  <script src="js/contacto.js"></script>
+</body>
 
 </html>

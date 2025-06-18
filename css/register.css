@@ -163,4 +163,25 @@ footer {
     button {
         padding: 0.8rem;
     }
-} 
+}
+
+.file-upload {
+    position: relative;
+    margin-bottom: 1rem;
+}
+.file-upload input[type="file"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.file-preview {
+    margin-top: 0.5rem;
+}
+
+.file-preview img {
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

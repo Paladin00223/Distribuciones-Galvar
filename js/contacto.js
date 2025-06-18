@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const contactButtons = document.querySelectorAll('button:contains("Contacto")');
+    const contactButtons = document.querySelectorAll('.contact-button');
     
     contactButtons.forEach(button => {
         button.addEventListener('click', () => {
