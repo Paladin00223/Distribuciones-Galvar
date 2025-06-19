@@ -1,16 +1,19 @@
 [
     {
         "nombre": "Afiches",
+        "img": "",
         "categoría": "detalle",
         "precio": 1500
     },
     {
         "nombre": "AZ Carta Fabrifolder",
+        "img": "",
         "categoría": "papeleria",
         "precio": 7450
     },
     {
         "nombre": "Bandeja Kendy",
+        "img": "",
         "categoría": "hogar",
         "precio": 3750
     },
