@@ -1,98 +1,124 @@
 <!DOCTYPE html>
 <html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
+    <title>Distribuciones Galvar</title>
 
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/index.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
 
-  <title>Distribuciones Galvar</title>
-
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css')}}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-</head>
-
-<body>
-
-  <nav>
-
-    <div class="nav-buttons">
-      <a href="html/buy.html"><button><i class="fas fa-shopping-cart"></i> Comprar</button></a>
-    </div>
-    <a href="html/login.html"><button class="cerrar"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></a>
-
-  </nav>
-  <aside>
-
-    <a href="html/compras.html"><button><i class="fas fa-shopping-bag"></i> Compras</button></a>
-    <a href="html/perfil.html"><button><i class="fas fa-user"></i> Perfil</button></a>
-    <a href="#top"><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a>
-
-  </aside>
-  <header>
-    <section>
-      <h1>¡Nos alegra volver a darte la bienvenida <span id="nombre-usuario">{{ cuenta }}</span>!</h1>
-    </section>
-
-    <div>
-
-      <h2>DISTRIBUCIONES GALVAR</h2>
-
-    </div>
-
-  </header>
-
-  <main>
-
-    <div class="search-container">
-
-      <select id="productos">
-
-        <option value="todo">Todos los productos</option>
-        <option value="aseo">Aseo</option>
-        <option value="cacharro">Cacharrería</option>
-        <option value="cosmeticos">Cosméticos</option>
-        <option value="descechable">Descechables</option>
-        <option value="detalle">Detalles</option>
-        <option value="ferreteria">Ferretería</option>
-        <option value="hogar">Hogar</option>
-        <option value="juego">Juegos</option>
-        <option value="papeleria">Papelería</option>
-
-
-      </select>
-
-      <div class="search-box">
-        <input type="search" id="buscar" placeholder="Buscar Producto" />
-        <button type="button" onclick="aplicarFiltros()">
-          <i class="fas fa-search"></i> Buscar
-        </button>
+  <body>
+    <nav>
+      <div class="nav-buttons">
+        <a href="html/buy.html"
+          ><button><i class="fas fa-shopping-cart"></i> Comprar</button></a
+        >
       </div>
+      <a href="html/login.html"
+        ><button class="cerrar">
+          <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button></a
+      >
+    </nav>
+    <aside>
+      <a href="html/compras.html"
+        ><button><i class="fas fa-shopping-bag"></i> Compras</button></a
+      >
+      <a href="html/perfil.html"
+        ><button><i class="fas fa-user"></i> Perfil</button></a
+      >
+      <a href="#top"
+        ><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a
+      >
+    </aside>
+    <header>
+      <section>
+        <h1>
+          ¡Nos alegra volver a darte la bienvenida
+          <span id="nombre-usuario">{{ cuenta }}</span>!
+        </h1>
+      </section>
 
-    </div>
+      <div>
+        <h2>DISTRIBUCIONES GALVAR</h2>
+      </div>
+    </header>
 
-    <section id="contenedor">
-      <!-- Los artículos se llenan dinámicamente con JS -->
-    </section>
-  </main>
+    <main>
+      <div class="search-container">
+        <select id="productos">
+          <option value="todo">Todos los productos</option>
+          <option value="aseo">Aseo</option>
+          <option value="cacharro">Cacharrería</option>
+          <option value="cosmeticos">Cosméticos</option>
+          <option value="descechable">Descechables</option>
+          <option value="detalle">Detalles</option>
+          <option value="ferreteria">Ferretería</option>
+          <option value="hogar">Hogar</option>
+          <option value="juego">Juegos</option>
+          <option value="papeleria">Papelería</option>
+        </select>
 
-  <footer>
+        <div class="search-box">
+          <input type="search" id="buscar" placeholder="Buscar Producto" />
+          <button type="button" onclick="aplicarFiltros()">
+            <i class="fas fa-search"></i> Buscar
+          </button>
+        </div>
+      </div>
+      <section id="contenedor">
+        {% for ca in categorias%}
 
-    <h2 class="center">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
-    <p class="maintenance-message">
-      <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está en mantenimiento!<br>
-      ¡Muy Pronto!
-    </p>
-    <button class="contact-button">
-      <i class="fab fa-whatsapp"></i> Contacto: 320 818 6026
-    </button>
-    <br>
-    &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
-  </footer>
+        <article data-categoria="{{data-categoria}}">
+          <img src=" " />
 
-  <script src="js/app.js"></script>
-  <script src="js/contacto.js"></script>
-</body>
+          <h3></h3>
+          <select class="precio">
+            <option value="unidad">Unidad</option>
+          </select>
+          <b>Valor: <span> </span></b><br />
+          <label for="cant-C1"><b>Cantidad</b></label>
+          <input
+            id="cant-C1"
+            name="cantidad"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="Cantidad"
+          />
+          <br />
+          <b>Total = <span>$0.00</span></b>
+          <b>Acumulas = <span>$0.00</span></b>
+          <button>Añadir al carrito</button>
+        </article>
+        ` {% endfor %}
+      </section>
+    </main>
 
+    <footer>
+      <h2 class="center">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
+      <p class="maintenance-message">
+        <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está en
+        mantenimiento!<br />
+        ¡Muy Pronto!
+      </p>
+      <button class="contact-button">
+        <i class="fab fa-whatsapp"></i> Contacto: 320 818 6026
+      </button>
+      <br />
+      &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+    </footer>
+
+    <script src="js/app.js"></script>
+    <script src="js/contacto.js"></script>
+  </body>
 </html>
