@@ -43,7 +43,7 @@
     <header>
       <section>
         <h1>
-          ¡Nos alegra volver a darte la bienvenida
+          ¡Aquí podrás encontrar toda clase de productos
           <span id="nombre-usuario">{{ cuenta }}</span>!
         </h1>
       </section>
@@ -54,18 +54,52 @@
     </header>
 
     <main>
-      <div class="search-container">
-        
-      </div>
-      <section id="contenedor">
 
-        {% for ca in categorias%}
-        <article onclick="{{ url_for('static', filename=productos.html)}}">
-          <img src="{{ url_for('static', filename=ca.imagen) }}">
-          <h3>{{ca.nombre}}</h3>
+      <div class="search-box">
+              <select id="categoria">
+        <option value="todo">Todas las categorias</option>
+        <option value="aseo">Aseo</option>
+        <option value="cacharro">Cacharrería</option>
+        <option value="cosmeticos">Cosméticos</option>
+        <option value="descechable">Descechables</option>
+        <option value="detalle">Detalles</option>
+        <option value="ferreteria">Ferretería</option>
+        <option value="hogar">Hogar</option>
+        <option value="juego">Juegos</option>
+        <option value="papeleria">Papelería</option>
+      </select>
+
+        <input type="search" id="buscar" placeholder="Buscar Producto" />
+        <button type="button" onclick="aplicarFiltros()">
+          <i class="fas fa-search"></i> Buscar
+        </button>
+      </div>
+
+      <div class="search-container"></div>
+      <section id="contenedor">
+        {% for pr in productos %}
+        <article data-categoria="{{pr.categoria}}">
+          <img src="{{ url_for('static', filename=pr.imagen) }}" />
+          
+          <h3>{{pr.nombre}}</h3>
+          <p>{{pr.descripcion}}</p>
+          <select class="precio">
+            <option value="unidad">Unidad</option>
+          </select>
+          <b>Valor: <span>{{pr.precio}}</span></b><br />
+          <label for=""><b>Cantidad</b></label>
+          <input
+            name="cantidad"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="Cantidad"
+          />
+          <br />
+          <b>Total = <span>$0.00</span></b>
+          <button>Añadir al carrito</button>
         </article>
         {% endfor %}
-
       </section>
     </main>
 
@@ -82,6 +116,5 @@
       <br />
       &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
     </footer>
-
   </body>
 </html>

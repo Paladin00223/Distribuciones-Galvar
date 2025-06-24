@@ -33,7 +33,7 @@ def principal():
     # Enviamos la lista de videos al archivo html
     return render_template("index.html", categorias=categorias)
 
-@app.route ("/products", methods=["GET"])
+@app.route ("/productos", methods=["GET"])
 def productos():
     #Consultamos las categorias en la coleccion
     productos = list(coleccion_productos.find()) #find: listar todos
@@ -42,7 +42,7 @@ def productos():
         item["_id"] = str(item["_id"])
 
     # Enviamos la lista de videos al archivo html
-    return render_template("products.html", productos=productos)
+    return render_template("productos.html", productos=productos)
 
 
 

@@ -1,307 +1,119 @@
 [
   {
-    "nombre": "",
+    "nombre": "Aseo",
+    "imagen": "/img/imgCategorias/aseo.jpg"
+  },
+  {
+    "nombre": "Accesorio",
+    "imagen": "/img/imgCategorias/accesorio.png"
+  },
+  {
+    "nombre": "Arte",
+    "imagen": "/img/imgCategorias/arte.png"
+  },
+  {
+    "nombre": "Calzado",
+    "imagen": "/img/imgCategorias/calzado.png"
+  },
+  {
+    "nombre": "Cosmetico",
+    "imagen": "/img/imgCategorias/cosmético.png"
+  },
+  {
+    "nombre": "Decoracion",
+    "imagen": "/img/imgCategorias/decoración.png"
+  },
+  {
+    "nombre": "Descechable",
+    "imagen": "/img/imgCategorias/desechables.jpg"
+  },
+  {
+    "nombre": "Detalle",
+    "imagen": "/img/imgCategorias/detalle.jpg"
+  },
+  {
+    "nombre": "Electrodomestico",
+    "imagen": "/img/imgCategorias/electrodomésticos.webp"
+  },
+  {
+    "nombre": "Ferreteria",
     "imagen": ""
   },
   {
-    "nombre": "Afiches",
-    "descripcion": "Un lindo detalle para celebrar el día de las madres con un afiche al gusto de tu madre",
-    "categoria": "detalle",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Afiche Gracias Madre",
-          "img": "../img/Afiche-Gracias-Madre.jpg",
-          "cantidad": 1
-        }
-      },
-      {
-        "img2": {
-          "nameimg": "Afiche Madre María",
-          "img": "../img/Afiche-Madre-María.jpg",
-          "cantidad": 1
-        }
-      },
-      {
-        "img3": {
-          "nameimg": "Afiche Madre",
-          "img": "../img/Afiche-Madre.jpg",
-          "cantidad": 1
-        }
-      },
-      {
-        "img4": {
-          "nameimg": "Afiche Mamita Linda",
-          "img": "../img/Afiche-Mamita-Linda.jpg",
-          "cantidad": 1
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 1000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "gigio",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Fragancia",
+    "imagen": ""
   },
   {
-    "nombre": "Balaca de Tela",
-    "descripcion": "Un buen accesorio para mantener sujetado tu pelo y que se vea bonito",
-    "categoria": "accesorio",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Balaca de Tela Azul",
-          "img": "../img/Balacas-Tela.jpg",
-          "cantidad": 1
-        }
-      },
-      {
-        "img2": {
-          "nameimg": "Balaca de Tela Blanco",
-          "img": "../img/Balacas-Tela.jpg",
-          "cantidad": 1
-        }
-      },
-      {
-        "img3": {
-          "nameimg": "Balaca de Tela Negro",
-          "img": "../img/Balacas-Tela.jpg",
-          "cantidad": 1
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 1000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "gigio",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Herramienta",
+    "imagen": ""
   },
   {
-    "nombre": "Base Cartón Hamburguesa",
-    "descripcion": "Paquete de envases de cartón para hamburguesas x50 para tu negocio",
-    "categoria": "descechable",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Base Cartón Hamburguesa",
-          "img": "../img/Base-Hamburguesa.jpg",
-          "cantidad": 1
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 4800,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "salsamentaria",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Hogar",
+    "imagen": ""
   },
   {
-    "nombre": "Base Cartón Pizza",
-    "descripcion": "Paquete de envases de cartón para pizzas x100 para tu negocio",
-    "categoria": "descechable",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Base Cartón Pizza",
-          "img": "../img/Base-Pizza.jpg",
-          "cantidad": 1
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 7000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "salsamentaria",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Jardin",
+    "imagen": ""
   },
   {
-    "nombre": "Bisturí Grande Offiesco",
-    "descripcion": "Bisturí perfecto para cortar cartón y otros materiales",
-    "categoria": "herramienta",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Bisturí Grande Offiesco",
-          "img": "../img/Bisturí-Grande.jpg",
-          "cantidad": 12
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 3000,
-          "puntos": true,
-          "venta": true
-        }
-      },
-      {
-        "decena": {
-          "valor": 28000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "salsamentaria",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Juego",
+    "imagen": ""
   },
   {
-    "nombre": "Bisturí Pequeño Offiesco",
-    "descripcion": "Bisturí perfecto para cortar cartón y otros materiales",
-    "categoria": "herramienta",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Bisturí Pequeño Offiesco",
-          "img": "../img/Bisturí-Pequeño.webp",
-          "cantidad": 12
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 3000,
-          "puntos": true,
-          "venta": true
-        }
-      },
-      {
-        "decena": {
-          "valor": 28000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "salsamentaria",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Mascota",
+    "imagen": "/img/imgCategorias/mascota.webp"
   },
   {
-    "nombre": "Block Bond Octavo",
-    "descripcion": "Block perfecto para hacer dibujos",
-    "categoria": "papeleria",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Block Bond por Octavo",
-          "img": "../img/Block-Bond-Octavo.jpg",
-          "cantidad": 6
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 3000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "Papelería Medellín",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Oficina",
+    "imagen": ""
   },
   {
-    "nombre": "Block Iris",
-    "descripcion": "Block perfecto para hacer figuras de origami y otras manualidades",
-    "categoria": "papeleria",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "Block Iris",
-          "img": "../img/.jpg",
-          "cantidad": 6
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 3000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "Papelería Medellín",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Papeleria",
+    "imagen": ""
   },
   {
-    "nombre": "",
-    "descripcion": "",
-    "categoria": "",
-    "imagen": [
-      {
-        "img1": {
-          "nameimg": "",
-          "img": "../img/.jpg",
-          "cantidad": 6
-        }
-      }
-    ],
-    "precios": [
-      {
-        "unidad": {
-          "valor": 3000,
-          "puntos": true,
-          "venta": true
-        }
-      }
-    ],
-    "vendedor": {
-      "nombre": "",
-      "telefono": "+57",
-      "dirección": ""
-    }
+    "nombre": "Peluqueria",
+    "imagen": ""
+  },
+  {
+    "nombre": "Pinturas",
+    "imagen": ""
+  },
+  {
+    "nombre": "Piñateria",
+    "imagen": ""
+  },
+  {
+    "nombre": "Ropa",
+    "imagen": ""
+  },
+  {
+    "nombre": "Salud",
+    "imagen": ""
+  },
+  {
+    "nombre": "Seguridad",
+    "imagen": ""
+  },
+  {
+    "nombre": "Tecnologia",
+    "imagen": ""
+  },
+  {
+    "nombre": "Transporte",
+    "imagen": ""
+  },
+  {
+    "nombre": "VideoJuegos",
+    "imagen": ""
+  },
+  {
+    "nombre": "Video",
+    "imagen": ""
+  },
+  {
+    "nombre": "Otros",
+    "imagen": ""
   }
 ]
+  
