@@ -4,7 +4,7 @@
         "categoria": "papeleria",
         "precio": 8000,
         "descripcion": "",
-        "imagen":"/img/az-carta-fabrifolder.jpg"
+        "imagen":""
     },
     {
         "nombre": "Bandeja Kendy",
@@ -1244,29 +1244,5 @@
     {
         "nombre": "Vinilo Quirond",
         "categoría": "papeleria"
-    },
-    {
-        "nombre": "",
-        "descripcion": "",
-        "categoria": "",
-        "imagen": [
-            {"img1": {
-                "nameimg": "",
-                "img": "../img/.jpg",
-                "cantidad": 6
-            }}
-        ],
-        "precios": [
-            {"unidad": {
-                "valor": 3000,
-                "puntos": true,
-                "venta": true
-            }}
-        ],
-        "vendedor": {
-            "nombre": "",
-            "telefono": "+57",
-            "dirección": ""
-        }
     }
 ]

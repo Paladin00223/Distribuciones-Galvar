@@ -55,9 +55,9 @@
 
         {% for categoria in categorias %}
         {# Cada categoría es un enlace a la página de sus productos #}
-        <a href="{{ url_for('productos_por_categoria', id_categoria=categoria._id) }}">
+        <a href="{{ categoria_id=categoria._id }}">
           <article>
-            <img src="{{ url_for('static', filename=categoria.imagen) }}" alt="Imagen de {{ categoria.nombre }}">
+            <img src="{{ filename=categoria.imagen }}" alt="Imagen de {{ categoria.nombre }}">
             <h3>{{ categoria.nombre }}</h3>
           </article>
         </a>
@@ -83,7 +83,7 @@
   <script>
     const productos = {{ productos|tojson }};
   </script>
-  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/contacto.js') }}"></script>
+  <script src="{{ filename='js/app.js' }}"></script>
+  <script src="{{ 'static', filename='js/contacto.js' }}"></script>
   </body>
 </html>

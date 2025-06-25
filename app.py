@@ -61,36 +61,29 @@ def principal():
     # Enviamos la lista de videos al archivo html
     return render_template("index.html", categorias=categorias, productos=productos)
 
-@app.route ("/productos", methods=["GET"])
+@app.route("/productos", methods=["GET"])
 def productos():
-    #Consultamos las categorias en la coleccion
-    productos = list(coleccion_productos.find()) #find: listar todos
-    #Convertimos los ids a cadena de caracteres
-    for item in productos:
-        item["_id"] = str(item["_id"])
-
-    # Enviamos la lista de videos al archivo html
-    return render_template("productos.html", productos=productos)
-
-@app.route("/categoria/<id_categoria>/productos")
-def productos_por_categoria(id_categoria):
-    # Buscamos los productos que pertenecen a la categoría especificada.
-    # Asumo que cada producto en tu base de datos tiene un campo 'categoria_id'.
-    try:
-        # Filtramos los productos por el ObjectId de la categoría
-        productos_filtrados = list(coleccion_productos.find({'categoria_id': ObjectId(id_categoria)}))
-    except InvalidId:
-        return "ID de categoría inválido", 400
-
-    # Convertimos los _id a cadena para que no den problemas en la plantilla
-    for item in productos_filtrados:
+    # Obtener category_id de los parámetros de consulta (query parameters)
+    id_categoria = request.args.get('categoria_id')
+    
+    productos_a_mostrar = []
+    
+    if id_categoria: # Si se proporciona un ID de categoría, filtramos los productos
+        try:
+            productos_a_mostrar = list(coleccion_productos.find({'categoria_id': ObjectId(id_categoria)}))
+        except InvalidId:
+            return "ID de categoría inválido", 400
+    else: # Si no hay ID de categoría, mostramos todos los productos
+        # Si no hay ID de categoría, mostramos todos los productos
+        productos_a_mostrar = list(coleccion_productos.find())
+    
+    # Convertimos los _id a cadena para que no den problemas en la plantilla y para JSON (este bloque se ejecuta siempre)
+    for item in productos_a_mostrar:
         item["_id"] = str(item["_id"])
         if 'categoria_id' in item and isinstance(item['categoria_id'], ObjectId):
             item['categoria_id'] = str(item['categoria_id'])
-
-    # Reutilizamos la plantilla 'productos.html' para mostrar los productos filtrados
-    # y le pasamos la lista de productos que encontramos.
-    return render_template("productos.html", productos=productos_filtrados)
+    
+    return render_template("productos.html", productos=productos_a_mostrar)
 
 @app.route("/producto/<id>", methods=["GET"])
 def producto(id):
