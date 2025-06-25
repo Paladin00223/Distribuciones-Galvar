@@ -1,6 +1,10 @@
 from flask import Flask, render_template, jsonify
 # Importamos la librería pymongo para con
 from pymongo import MongoClient
+# Importamos ObjectId para poder buscar por _id en MongoDB
+from bson.objectid import ObjectId
+# Importamos errors
+from bson.errors import InvalidId
 # Importamos flask_cors para poder enviar
 from flask_cors import CORS #CORS: Inter
 
@@ -30,8 +34,14 @@ def principal():
     for item in categorias:
         item["_id"] = str(item["_id"])
 
+    # También consultamos los productos para que estén disponibles en la página principal
+    productos = list(coleccion_productos.find())
+    # Convertimos los ids a cadena de caracteres
+    for item in productos:
+        item["_id"] = str(item["_id"])
+
     # Enviamos la lista de videos al archivo html
-    return render_template("index.html", categorias=categorias)
+    return render_template("index.html", categorias=categorias, productos=productos)
 
 @app.route ("/productos", methods=["GET"])
 def productos():
@@ -44,8 +54,40 @@ def productos():
     # Enviamos la lista de videos al archivo html
     return render_template("productos.html", productos=productos)
 
+@app.route("/categoria/<id_categoria>/productos")
+def productos_por_categoria(id_categoria):
+    # Buscamos los productos que pertenecen a la categoría especificada.
+    # Asumo que cada producto en tu base de datos tiene un campo 'categoria_id'.
+    try:
+        # Filtramos los productos por el ObjectId de la categoría
+        productos_filtrados = list(coleccion_productos.find({'categoria_id': ObjectId(id_categoria)}))
+    except InvalidId:
+        return "ID de categoría inválido", 400
 
+    # Convertimos los _id a cadena para que no den problemas en la plantilla
+    for item in productos_filtrados:
+        item["_id"] = str(item["_id"])
+        if 'categoria_id' in item and isinstance(item['categoria_id'], ObjectId):
+            item['categoria_id'] = str(item['categoria_id'])
 
+    # Reutilizamos la plantilla 'productos.html' para mostrar los productos filtrados
+    # y le pasamos la lista de productos que encontramos.
+    return render_template("productos.html", productos=productos_filtrados)
+
+@app.route("/producto/<id>", methods=["GET"])
+def producto(id):
+    # Buscamos el producto específico por su ID
+    producto = coleccion_productos.find_one({'_id': ObjectId(id)})
+
+    # Si el producto no se encuentra, podrías mostrar una página de error 404
+    if not producto:
+        return "Producto no encontrado", 404
+
+    # Convertimos el _id a una cadena para evitar problemas en la plantilla
+    producto["_id"] = str(producto["_id"])
+
+    # Renderizamos una nueva plantilla para mostrar los detalles del producto
+    return render_template("producto.html", producto=producto)
 
 # Ejecuta la aplicación principal
 if __name__ == "__main__":

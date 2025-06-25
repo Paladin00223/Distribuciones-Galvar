@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Distribuciones Galvar</title>
+    <link rel="stylesheet" href="../css/buy.css">
+</head>
+
+<body>
+    <div class="buy-container">
+        <h1>Carrito de Compras</h1>
+
+        <!--<div class="puntos-info">
+            <h2>Puntos disponibles: <span id="puntos-usuario">0</span></h2>
+        </div>-->
+
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="cart-items">
+                <!-- Los items del carrito se cargarán dinámicamente -->
+            </tbody>
+        </table>
+
+        <div class="total-section">
+            <p>Total: $<span id="total-amount">0</span></p>
+        </div>
+
+        <div class="shipping-form">
+            <h2>Información de Envío</h2>
+            <div class="form-group">
+                <label for="name">Nombre completo:</label>
+                <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Dirección:</label>
+                <input type="text" id="address" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono:</label>
+                <input type="tel" id="phone" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Correo electrónico:</label>
+                <input type="email" id="email" required>
+            </div>
+        </div>
+
+        <!--<button class="checkout-btn" onclick="processCheckout()">Confirmar Compra</button>-->
+    </div>
+    <script src="../js/buy.js"></script>
+</body>
+
+</html>

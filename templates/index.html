@@ -6,14 +6,8 @@
 
     <title>Distribuciones Galvar</title>
 
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/index.css')}}"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   </head>
 
   <body>
@@ -59,11 +53,14 @@
       </div>
       <section id="contenedor">
 
-        {% for ca in categorias%}
-        <article onclick="{{ url_for('static', filename=productos.html)}}">
-          <img src="{{ url_for('static', filename=ca.imagen) }}">
-          <h3>{{ca.nombre}}</h3>
-        </article>
+        {% for categoria in categorias %}
+        {# Cada categoría es un enlace a la página de sus productos #}
+        <a href="{{ url_for('productos_por_categoria', id_categoria=categoria._id) }}">
+          <article>
+            <img src="{{ url_for('static', filename=categoria.imagen) }}" alt="Imagen de {{ categoria.nombre }}">
+            <h3>{{ categoria.nombre }}</h3>
+          </article>
+        </a>
         {% endfor %}
 
       </section>
@@ -82,6 +79,11 @@
       <br />
       &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
     </footer>
-
+    <!-- Pasa la variable 'productos' a JavaScript si es necesario, como habíamos visto antes -->
+  <script>
+    const productos = {{ productos|tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/contacto.js') }}"></script>
   </body>
 </html>

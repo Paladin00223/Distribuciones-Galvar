@@ -1,39 +1,39 @@
 [
   {
     "nombre": "Aseo",
-    "imagen": "/img/imgCategorias/aseo.jpg"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/aseo.jpg?v=1750812406958"
   },
   {
     "nombre": "Accesorio",
-    "imagen": "/img/imgCategorias/accesorio.png"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/accesorio.png?v=1750811523962"
   },
   {
     "nombre": "Arte",
-    "imagen": "/img/imgCategorias/arte.png"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/arte.png?v=1750812416015"
   },
   {
     "nombre": "Calzado",
-    "imagen": "/img/imgCategorias/calzado.png"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/calzado.png?v=1750812418125"
   },
   {
     "nombre": "Cosmetico",
-    "imagen": "/img/imgCategorias/cosmético.png"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/cosm%C3%A9tico.png?v=1750812422386"
   },
   {
     "nombre": "Decoracion",
-    "imagen": "/img/imgCategorias/decoración.png"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/decoraci%C3%B3n.png?v=1750812431290"
   },
   {
     "nombre": "Descechable",
-    "imagen": "/img/imgCategorias/desechables.jpg"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/desechables.jpg?v=1750812431998"
   },
   {
     "nombre": "Detalle",
-    "imagen": "/img/imgCategorias/detalle.jpg"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/detalle.jpg?v=1750812436736"
   },
   {
     "nombre": "Electrodomestico",
-    "imagen": "/img/imgCategorias/electrodomésticos.webp"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/electrodom%C3%A9sticos.webp?v=1750812440762"
   },
   {
     "nombre": "Ferreteria",
@@ -61,7 +61,7 @@
   },
   {
     "nombre": "Mascota",
-    "imagen": "/img/imgCategorias/mascota.webp"
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/mascota.webp?v=1750812444895"
   },
   {
     "nombre": "Oficina",
