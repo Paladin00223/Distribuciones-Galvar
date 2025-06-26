@@ -1,55 +1,55 @@
 [
   {
     "nombre": "Papelería",
-    "imagen": ""
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/papeler%C3%ADa.webp?v=1750895275252"
   },
   {
-    "nombre": "Hogar",
-    "imagen": ""
+    "nombre": "Utensilios",
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/utensilios.png?v=1750896082235"
   },
   {
     "nombre": "Juego",
-    "imagen": ""
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/juguetes.jpg?v=1750896904016"
   },
   {
     "nombre": "Ropa",
-    "imagen": ""
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/ropa.avif?v=1750897607893"
   },
   {
-    "nombre": "Cosmético",
-    "imagen": ""
+    "nombre": "Cosméticos",
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/cosm%C3%A9tico.png?v=1750812422386"
   },
   {
-    "nombre": "Accesorio",
-    "imagen": ""
+    "nombre": "Accesorios",
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/accesorio.png?v=1750811523962"
   },
   {
-    "nombre": "Descechable",
-    "imagen": ""
+    "nombre": "Descechables",
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/desechables.jpg?v=1750812431998"
   },
   {
-    "nombre": "Pinateria",
-    "imagen": ""
+    "nombre": "Piñatería",
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/pi%C3%B1ater%C3%ADa.jpg?v=1750897341383"
   },
   {
-    "nombre": "Detalle",
-    "imagen": ""
+    "nombre": "Detalles",
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/detalle.jpg?v=1750812436736"
   },
   {
     "nombre": "Peluquería",
-    "imagen": ""
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/peluquer%C3%ADa.jpeg?v=1750897341688"
   },
   {
     "nombre": "Decoración",
-    "imagen": ""
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/arte.png?v=1750812416015"
   },
   {
-    "nombre": "Fragancia",
-    "imagen": ""
+    "nombre": "Fragancias",
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/fragancia.avif?v=1750897539447"
   },
   {
     "nombre": "Otros",
-    "imagen": ""
+    "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/otros.jpg?v=1750897708589"
   }
 ]
   

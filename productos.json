@@ -1,1248 +1,1495 @@
 [
     {
         "nombre": "AZ carta Fabrifolder",
-        "categoria": "papeleria",
+        "categoria": "Papelería",
         "precio": 8000,
-        "descripcion": "",
-        "imagen":""
+        "descripcion": "Es la solución ideal para mantener tus documentos organizados, seguros y accesibles.",
+        "imagen":"https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/az-carta-fabrifolder.jpg?v=1750812469484"
     },
     {
         "nombre": "Bandeja Kendy",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/bandeja-kendy.webp"
+        "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/bandeja-kendy.webp?v=1750812480499"
     },
     {
         "nombre": "Bandeja Persal",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 4800,
         "descripcion": "",
-        "imagen": "/img/bandeja-persal.png"
+        "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/bandeja-persal.png?v=1750812483090"
 
     },
     {
         "nombre": "Bandeja Royal",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/"
+        "imagen": ""
     },
     {
-        "nombre": "Bisturí Ha Royal",
-        "categoría": "papeleria",
+        "nombre": "Bisturí Feitong Tool",
+        "categoría": "Papelería",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/Bisturí-Grande.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bisturí Offiesco Grande",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3000,
         "descripcion": "",
-        "imagen": "/img/Bisturí-Grande.jpg"
+        "imagen": "https://cdn.glitch.global/db3d244e-1c24-41b4-97d6-51a76d0b3f5c/Bistur%C3%AD-Grande.jpg?v=1750812486601"
     },
     {
         "nombre": "Bisturí Offiesco Pequeño",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/Bisturí-Pequeño.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Blok Bond 28 1/8",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/Block-Bond-Octavo.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Block Bond 28 cuadrado",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/Block-Bond-Octavo.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Block Carta Blanco Fabrifolder",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/block-carta-fabrifolder.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Block Carta Cuadros Fabrifolder",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/block-carta-fabrifolder.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Block Milimetrado",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 2500,
         "descripcion": "",
-        "imagen": "/img/block-milimetrado.webp"
+        "imagen": ""
     },
     {
         "nombre": "Block Rayado",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 4800,
         "descripcion": "",
-        "imagen": "/img/block-carta-fabrifolder.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Block Silueta",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 1500,
         "descripcion": "",
-        "imagen": "/img/block-silueta.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bloqueador Solar",
-        "categoría": "cosmetico",
+        "categoría": "Cosméticos",
         "precio": 50000,
         "descripcion": "",
-        "imagen": "/img/Yanbal-Total-Block.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Boligrafo Kilométrico",
-        "categoria": "papeleria",
+        "categoria": "Papelería",
         "precio": 1000,
         "descripcion": "",
-        "imagen": "/img/boligrafo-kilometrico.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolígrafo Offiesco",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 1500,
         "descripcion": "",
-        "imagen": "/img/bolígrafo-offiesco.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolígrafo Piano Smooth PT-177 JB31-1",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/bolígrafo-piano.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Aluminizada L-17 Arepa",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Aluminio.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Aluminizada L-19 Hamburguesa",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 3200,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Aluminio.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Basura Apartamento Negra (19x25)",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Basura.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Basura Casera Negra (24x32)",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Basura.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Basura Industrial Negra (28x40)",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 3000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Basura.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Lechoza 1kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Lechoza.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 1.5kg Blanco",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-1,5kl-Blanco.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 1.5kg Negro",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-1,5kl-Negro.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 3kg Azul",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-3kl-Azul.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 3kg Blanco",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-3kl-Blanco.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 3kg Negro",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 3500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-3kl-Negro.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 5kg Blanco",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 4800,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-5kl-Blanco.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 5kg Negro",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 4800,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-5kl-Negro.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 10kg Blanco",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 6300,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-10kl-Blanco.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 10kg Negro",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 6300,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-10kl-Negro.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 15kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 7800,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-15kl.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Manigueta 25kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 10500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Manigueta-25kl.webp"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Papel 1/2lb",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2300,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Papel.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Papel 1lb",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 3000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Papel.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Papel 2lb",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 4000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Papel.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Papel 3lb",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 5000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Papel.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Papel 4lb",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 6000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Papel.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Pastillera Ref.112 Blanca",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 5000,
         "descripcion": "",
-        "imagen": "/img/bolsa-pastillera.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Transparente 1 Arroba Económico (14x23.5x1.2) Kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 15700,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Transparente 1lb (5x9.5x0.7)kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Transparente 3lb",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2500,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Transparente Hielo Económico (14x23.5x1.2) Kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 3000,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Transparente 1kl Ancho (7x10x0.7) Kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 1200,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Bolsa Transparente 1kl Largo (6x10.5x0.7) Kg",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 1200,
         "descripcion": "",
-        "imagen": "/img/Bolsa-Transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cabuya x 130mt - Atafácil",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 4500,
         "descripcion": "",
-        "imagen": "/img/cabuya-atafacil.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Canasta para Baño",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 9000,
         "descripcion": "",
-        "imagen": "/img/papelera.avif"
+        "imagen": ""
     },
     {
         "nombre": "Canasta para Ropa",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 21000,
         "descripcion": "",
-        "imagen": "/img/cesta-ropa.webp"
+        "imagen": ""
     },
     {
         "nombre": "Carpeta con Hilo",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/Carpeta-Hilo.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Carpeta con Hilo Transparente",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3000,
         "descripcion": "",
-        "imagen": "/img/Carpeta-Hilo.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Carpeta para Hoja de Vida",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 1000,
         "descripcion": "",
-        "imagen": "/img/Carpeta-HV.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cartón Paja 1/8",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 1000,
         "descripcion": "",
-        "imagen": "/img/Carton-Paja.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cartulina 1/8",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 500,
         "descripcion": "",
-        "imagen": "/img/Cartulina.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cartulina Negra 1/8",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 500,
         "descripcion": "",
-        "imagen": "/img/Cartulina-Negra.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cartulina Pliego",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 1500,
         "descripcion": "",
-        "imagen": "/img/Cartulina.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cepillo Lavar Económico",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 3800,
         "descripcion": "",
-        "imagen": "/img/cepillo-lavar.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cepillo Lavar Vaniplast",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 8300,
         "descripcion": "",
-        "imagen": "/img/cepillo-lavar.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cinta Enmascarar",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3000,
         "descripcion": "",
-        "imagen": "/img/Cinta-Enmascarar.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cinta Papel Rollo",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 5700,
         "descripcion": "",
-        "imagen": "/img/Cinta-Papel.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cinta Pequeña",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 1000,
         "descripcion": "",
-        "imagen": "/img/Cinta-Pequeña.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cinta transparente 2'' x 50mt",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 4000,
         "descripcion": "",
-        "imagen": "/img/Cinta-Transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Colador Grande",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 7500,
         "descripcion": "",
-        "imagen": "/img/colador-grande.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Colador Mediano",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 4800,
         "descripcion": "",
-        "imagen": "/img/colador-mediano.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Colador Pequeño",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 4000,
         "descripcion": "",
-        "imagen": "/img/colador-pequeño.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Colores Norma Largo 13+2 4mm nuevo",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 17000,
         "descripcion": "",
-        "imagen": "/img/colores-largo.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Colores Paper Mate DP 12x24 3mm",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 7200,
         "descripcion": "",
-        "imagen": "/img/colores-paper-mate.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Colores Parchesito x 14 3mm",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 11000,
         "descripcion": "",
-        "imagen": "/img/colores-parchesito.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Colores Berol x24",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 12000,
         "descripcion": "",
-        "imagen": "/img/colores-berol.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Compás AOSDU 2506",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 4000,
         "descripcion": "",
-        "imagen": "/img/compas-aosdu.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Contenedor Espumado 8oz con Tapa",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 7200,
         "descripcion": "",
-        "imagen": "/img/contenedor-espumado.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Contenedor Espumado 12oz con Tapa",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 9200,
         "descripcion": "",
-        "imagen": "/img/contenedor-espumado.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Contenedor Espumado 16oz con Tapa",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 7700,
         "descripcion": "",
-        "imagen": "/img/contenedor-espumado.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Contenedor Espumado 24oz con Tapa",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 9000,
         "descripcion": "",
-        "imagen": "/img/contenedor-espumado.jpg"
+        "imagen": ""
     },
     {
         "nombre": "contenedor Triangular Resq Altura 5 Cristal",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 1000,
         "descripcion": "",
-        "imagen": "/img/contenedor-triangular.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Copa 1oz Transparente x50 Lider",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2200,
         "descripcion": "",
-        "imagen": "/img/copa-transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Copa 1oz x50 Troformas",
-        "categoría": "descechable",
+        "categoría": "Descechables",
         "precio": 2000,
         "descripcion": "",
-        "imagen": "/img/copa-transparente.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cornetas pequeñas",
-        "categoría": "cacharro",
+        "categoría": "Otros",
         "precio": 3000,
         "descripcion": "",
-        "imagen": "/img/cornetas-pequeñas.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Corrector Lápiz 8ml Marfil",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 1500,
         "descripcion": "",
-        "imagen": "/img/corrector-lapiz.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cosedora Corona ST-207",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 6500,
         "descripcion": "",
-        "imagen": "/img/cosedora-corona.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Crayón Estandar GS-0065",
-        "categoría": "papeleria",
+        "categoría": "Papelería",
         "precio": 3900,
         "descripcion": "",
-        "imagen": "/img/crayon-estandar.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Crema Manos Sacha Inchi",
-        "categoría": "cosmetico",
+        "categoría": "Cosméticos",
         "precio": 45000,
         "descripcion":"",
-        "imagen": "/img/crema-manos.jpg"
+        "imagen": ""
     },
     {
         "nombre": "Cristaflex 50mt del Bueno",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Cristaflex amarillo x 20mt",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Cristaflex amarillo x 50mt",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Cristaflex amarillo x 100mt",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Cristaflex amarillo x 200mt",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 11400,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Cristaflex negro x 50mt",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2900,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Cuaderno 50 hojas",
-        "categoría": "papeleria"
+        "nombre": "Cuaderno 50 hojas Cosido",
+        "categoría": "Papelería",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Cuaderno 100 hojas",
-        "categoría": "papeleria"
-    },
-    {
-        "nombre": "Cuchara fresh",
-        "categoría": "descechable"
+        "nombre": "Cuaderno 100 hojas Cosido",
+        "categoría": "Papelería",
+        "precio": 3000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Cuchara grande x 100u del Bueno",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Cuchara pequeña x 100u Europea",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Cuchara Metálica Grande",
-        "categoría": "hogar"
+        "nombre": "Cuchara Metálica Grande x6",
+        "categoría": "Utensilios",
+        "precio": 7500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Cuchara Metálica Pequeña",
-        "categoría": "hogar"
+        "nombre": "Cuchara Metálica Pequeña x6",
+        "categoría": "Utensilios",
+        "precio": 3800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Delantal",
-        "categoría": "hogar"
+        "nombre": "Delantal Económico",
+        "categoría": "Utensilios",
+        "precio": 6000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Delineador de Ojos",
-        "categoría": "cosmetico"
+        "categoría": "Cosméticos",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Ega en Barra",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 4000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Ega sipega 125gm",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Ega sipega 20gm",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 600,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Escuadra Rapid 45°",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2100,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Escuadra Rapid 60°",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2100,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Espejo de Bolsillo",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Espuma Aeromat",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 10000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Exprimidor de Limón",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Flores",
-        "categoría": "detalle"
-    },
-    {
-        "nombre": "Flores con Peluche",
-        "categoría": "detalle"
+        "categoría": "Utensilios",
+        "precio": 7800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Fomi 1/8",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Fomi Escarchado 1/8",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Fomi Lámina escarchado naranja",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 4000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Ganchos para Cosedora",
-        "categoría": "detalle"
+        "categoría": "Otros",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Globos Pequeños",
-        "categoría": "pinateria"
+        "nombre": "Globos feliz dia mamá",
+        "categoría": "Piñatería",
+        "precio": 6000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Guantes Manipulación de alimentos x100",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Jarra Kendy",
-        "categoría": "hogar"
+        "nombre": "Jarra Kendy 1L",
+        "categoría": "Utensilios",
+        "precio": 5800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Jarra Persal",
-        "categoría": "hogar"
+        "nombre": "Jarra Kendy 2L",
+        "categoría": "Utensilios",
+        "precio": 7800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Jarra Royal",
-        "categoría": "hogar"
+        "nombre": "Jarra Royal Abella",
+        "categoría": "Utensilios",
+        "precio": 4800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Juego de Ollas Aluntol 14-22",
-        "categoría": "hogar"
+        "nombre": "Juego de Ollas Alumtol 14-22",
+        "categoría": "Utensilios",
+        "precio": 90000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Juego de Olla Braines x5",
-        "categoría": "hogar"
+        "nombre": "Juego de Olla Brayner x5",
+        "categoría": "Utensilios",
+        "precio": 115000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Juego de Ollas Joal x5",
-        "categoría": "hogar"
+        "categoría": "Utensilios",
+        "precio": 100000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Juego de Escalera",
-        "categoría": "juego"
+        "categoría": "Juego",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lana Escolar",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lápiz Artesco Rojo",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lápiz Grafito",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lápiz Mirado",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lápiz Mirado 2",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lápiz Negro",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lápiz Parchesito HB2",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Lapiz Rojo",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Libreta Niña",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Maletín 13 bolsillos importado KT-170",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 15000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Marcador Permanente Duricolor",
-        "categoría": "papeleria"
+        "nombre": "Marcador Permanente Doricolor",
+        "categoría": "Papelería",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Marcador Borrable Duricolor",
-        "categoría": "papeleria"
+        "nombre": "Marcador Borrable Doricolor",
+        "categoría": "Papelería",
+        "precio": 3000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Marcador permanente Primavera Flower",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Marcador Sharpie Negro",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 4500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Matamoscas Mano",
-        "categoría": "cacharro"
-    },
-    {
-        "nombre": "Matera",
-        "categoría": "hogar"
+        "categoría": "Otros",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Mechera con Linterna",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Mezcladores x500",
-        "categoría": "descechable"
+        "nombre": "Mezcladores x500 Colombianito",
+        "categoría": "Descechables",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Mezcladores x500 El Sol",
+        "categoria": "Descechables",
+        "precio": 5800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Molde de Aluminio 8oz",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 27800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Molde de Aluminio 16oz",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 29600,
+        "descripcion": "",
+        "imagen": ""
     },
-        {
+    {
         "nombre": "Molinillo NP",
-        "categoría": "hogar",
-        "precio": 10200,
+        "categoría": "Utensilios",
+        "precio": 8000,
         "descripcion": "",
         "imagen": "../img/molinillo-np.jpg"
     },
     {
         "nombre": "Molinillo Persal",
-        "categoría": "hogar",
+        "categoría": "Utensilios",
         "precio": 6000,
         "descripcion": "",
         "imagen": "../img/molinillo-persal.jpg"
     },
     {
         "nombre": "Monedero",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Muestras cropológicas",
-        "categoría": ""
-    },
-    {
-        "nombre": "Ositos",
-        "categoría": "detalle"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Palillo 180",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Palo para Pincho El Sol 25cm",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 3000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Papel Aluminio 16mt",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Papel Aluminio 7mt TUC",
-        "categoría": "descechable"
+        "nombre": "Papel Aluminio 16mt House",
+        "categoría": "Descechables",
+        "precio": 6000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Papel Aluminio 16mt caja del Bueno",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Papel Aluminio 40mt Alux",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 10500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Papel Aluminio 7mt House",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 3500,
+        "descripcion": "",
+        "imagen": ""
     },  
     {
         "nombre": "Papel Aluminio 16mt House",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 6000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Papel Aluminio 40mt House",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 7200,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Papel Cristal",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Papel Regalo",
-        "categoría": "detalle"
+        "categoría": "Detalles",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Papel Seda",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 400,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Pegante Instantaneo",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Peine Pequeño",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Peine para Piojos",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Peineta Mojarra Larga",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Peineta Trincho",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Perfume adrenaline",
-        "categoría": "fragancia"
+        "nombre": "Perfume Adrenaline",
+        "categoría": "Fragancias",
+        "precio": 50000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Pincel Chino 10",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Pincel Chino 12",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Pinceles pequeños",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Pinza de Kasa",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 12800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Pinza India",
-        "categoría": "cacharro"
-    },
-    {
-        "nombre": "Pitillos Envueltos",
-        "categoría": "descechable"
+        "categoría": "Otros",
+        "precio": 7800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plastilina Grande",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2300,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plastilina Pequeña",
-        "categoría": "papeleria"
-    },
-    {
-        "nombre": "Plato Chocolatero Melanina",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Plato cuadrado Melanina",
-        "categoría": "hogar"
+        "categoría": "Papelería",
+        "precio": 1500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plato Espumado Pando 15.5cm x20",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plato Espumado Pando 18cm x20",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 3000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plato Espumado Pando 23cm x20",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plato Espumado Pando 26cm x20",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 6200,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plato Espumado Hondo 25oz x20",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 5000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Plato Espumado Hondo 30oz x20",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Plato Hondo",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Plato Melanina Hondo",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Plato Melanina Tortero",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Plato Pando"
-    },
-    {
-        "nombre": "Platon 30",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Pocillo Chocolatero",
-        "categoría": "hogar"
+        "categoría": "Descechables",
+        "precio": 6200,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Pocillo mug",
-        "categoría": "detalle"
-    },
-    {
-        "nombre": "Pocillos con Platos",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Porta Hamburguesa x50",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Porta Pizza x100",
-        "categoría": "descechable"
+        "categoría": "Detalles",
+        "precio": 9000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Portacomida biodegradable J1M",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 93000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Portacomida Espumado C1",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Portacomida Espumado J1",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 75000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Portacomida Espumado J2",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Portas",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Rayador Lámina",
-        "categoría": "cacharro"
-    },
-    {
-        "nombre": "Rayador",
-        "categoría": "cacharro"
-    },
-    {
-        "nombre": "Recibo Grande con Talón",
-        "categoría": "papeleria"
-    },
-    {
-        "nombre": "Recibo Pequeño con Talón",
-        "categoría": "papeleria"
-    },
-    {
-        "nombre": "Recibo de Caja Menor",
-        "categoría": "papeleria"
+        "categoría": "Descechables",
+        "precio": 75000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Regla de Palo",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Resaltador Pelikan Mark 2",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 3000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Selloplus Resq 8oz Cristal Tapa Alta",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 43800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Selloplus Resq 8oz Cristal Tapa Media",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 39800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Selloplus Resq 12oz Cristal Tapa  Media",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 55400,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Servilleta del Bueno x300",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Servilleta Favorita x300",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Silicona en Barra Gruesa",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Silicona Líquida Mediana",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 3800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Silicona Líquida Pequeña",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2300,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Sobre Manila Carta",
-        "categoría": "papeleria"
-    },
-    {
-        "nombre": "Sobre Sticker",
-        "categoría": "cacharro"
+        "categoría": "Papelería",
+        "precio": 400,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Sobrebase Espumada Circular 16.5cm x50",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 6100,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Sobrebase Espumada Circular 22cm x50",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 10800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Sobrebase Espumada Circular 24.8cm x50",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 13700,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Sombrilla Automática",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 25000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Sombrilla Manual",
-        "categoría": "cacharro"
+        "categoría": "Otros",
+        "precio": 20000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Sombrilla Niña",
-        "categoría": "cacharro"
-    },
-    {   "nombre": "Sombrilla Pequeña",
-        "categoría": "cacharro"
-    },
-    { 
-        "nombre": "Suero Antimancha",
-        "categoría": "cosmetico"
+        "categoría": "Otros",
+        "precio": 15000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Tacos para Notas",
-        "categoría": "papeleria"
-    },
-    {
-        "nombre": "Talonario Letra de Cambio",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Tapa 1oz x 100 Troformas",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Tarro de Agua Grande",
-        "categoría": "hogar"
+        "nombre": "Tenedor Grande del Bueno",
+        "categoría": "Descechables",
+        "precio": 4800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
-        "nombre": "Tarro de Agua Pequeño",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Taza de Agua",
-        "categoría": "hogar"
-    },
-    {
-        "nombre": "Tempera",
-        "categoría": "papeleria"
-    },
-    {
-        "nombre": "Tenedor Fresh",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Tenedor Grande",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Tenedor Pequeño",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Tetero",
-        "categoría": "hogar"
+        "nombre": "Tenedor Pequeño del Bueno",
+        "categoría": "Descechables",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Tijera Peluqueria de Forro Amarillo",
-        "categoría": "detalle"
+        "categoría": "Peluquería"
     },
     {
         "nombre": "Tijera Punta Roma Ha Royal",
-        "categoría": "detalle"
+        "categoría": "Papelería"
     },
     {
         "nombre": "Vaso 10oz Transparente x50 Marplast",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Vaso 10oz Transparente x50 Vacan",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 10oz transparente x50 Wau",
-        "categoría": "descechable"
-    },
-    {
-        "nombre": "Vaso 12 oz Transparente x50 Vacan",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4200,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 12oz Transparente x50 Wau",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 14oz transparente x50 Wau",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 4000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 3.3oz Transparente x50 Mix",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 1800,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 5oz Transparente x50 Lider",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2200,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 5oz x50 Wau",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 7oz Transparente x50 Tuc",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2500,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso 7oz Transparente x50 Vacan",
-        "categoría": "descechable"
+        "categoría": "Descechables",
+        "precio": 2200,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vaso Flores",
-        "categoría": "detalle"
+        "categoría": "Detalles",
+        "precio": 8000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vasos Metálicos",
-        "categoría": "hogar"
+        "categoría": "Utensilios",
+        "precio": 3000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vinilo Parchesito",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
     },
     {
         "nombre": "Vinilo Quirond",
-        "categoría": "papeleria"
+        "categoría": "Papelería",
+        "precio": 1000,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Vinilo Quirond Neon",
+        "categoría": "Papelería",
+        "precio": 1500,
+        "descripcion": "",
+        "imagen": ""
     }
 ]

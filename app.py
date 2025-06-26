@@ -61,44 +61,18 @@ def principal():
     # Enviamos la lista de videos al archivo html
     return render_template("index.html", categorias=categorias, productos=productos)
 
-@app.route("/productos", methods=["GET"])
-def productos():
-    # Obtener category_id de los parámetros de consulta (query parameters)
-    id_categoria = request.args.get('categoria_id')
-    
-    productos_a_mostrar = []
-    
-    if id_categoria: # Si se proporciona un ID de categoría, filtramos los productos
-        try:
-            productos_a_mostrar = list(coleccion_productos.find({'categoria_id': ObjectId(id_categoria)}))
-        except InvalidId:
-            return "ID de categoría inválido", 400
-    else: # Si no hay ID de categoría, mostramos todos los productos
-        # Si no hay ID de categoría, mostramos todos los productos
-        productos_a_mostrar = list(coleccion_productos.find())
-    
-    # Convertimos los _id a cadena para que no den problemas en la plantilla y para JSON (este bloque se ejecuta siempre)
-    for item in productos_a_mostrar:
-        item["_id"] = str(item["_id"])
-        if 'categoria_id' in item and isinstance(item['categoria_id'], ObjectId):
-            item['categoria_id'] = str(item['categoria_id'])
-    
-    return render_template("productos.html", productos=productos_a_mostrar)
-
-@app.route("/producto/<id>", methods=["GET"])
-def producto(id):
+@app.route("/productos/<categoria>", methods=["GET"])
+def productos(categoria):
     # Buscamos el producto específico por su ID
-    producto = coleccion_productos.find_one({'_id': ObjectId(id)})
-
-    # Si el producto no se encuentra, podrías mostrar una página de error 404
-    if not producto:
-        return "Producto no encontrado", 404
-
-    # Convertimos el _id a una cadena para evitar problemas en la plantilla
-    producto["_id"] = str(producto["_id"])
+    productos = list(coleccion_productos.find({'categoria': categoria}))
+    
+    # Convertimos los ids a cadena de caracteres
+    for item in productos:
+        item["_id"] = str(item["_id"])
+        print(item["nombre"])
 
     # Renderizamos una nueva plantilla para mostrar los detalles del producto
-    return render_template("producto.html", producto=producto)
+    return render_template("productos.html", productos=productos)
 
 # --- Rutas de Autenticación y Usuarios (SQLite) ---
 
@@ -111,20 +85,26 @@ def register():
     if not email or not password:
         return jsonify({'status': 'error', 'message': 'Email y contraseña son requeridos'}), 400
 
+    # Verificar si el email ya existe en MongoDB
+    if coleccion_usuarios.find_one({'email': email}):
+        return jsonify({'status': 'error', 'message': 'El email ya está registrado'}), 409
+
     hashed_password = generate_password_hash(password)
 
-    conn = get_db_connection()
-    try:
-        conn.execute(
-            'INSERT INTO usuarios (nombre, email, password, cedula, tipo) VALUES (?, ?, ?, ?, ?)',
-            (data.get('nombre'), email, hashed_password, data.get('cedula'), data.get('tipo', 'usuario'))
-        )
-        conn.commit()
-    except sqlite3.IntegrityError:
-        conn.close()
-        return jsonify({'status': 'error', 'message': 'El email ya está registrado'}), 409
-    finally:
-        conn.close()
+    nuevo_usuario = {
+        'nombre': data.get('nombre'),
+        'email': email,
+        'password': hashed_password,
+        'cedula': data.get('cedula'),
+        'documento': data.get('documento'),
+        'paquete': data.get('paquete'),
+        'puntos': 0,
+        'estado': 'activo',
+        'tipo': data.get('tipo', 'usuario'), # Puede ser 'usuario' o 'admin'
+        'ultimo_acceso': datetime.datetime.now(),
+        'fecha_creacion': datetime.datetime.now()
+    }
+    coleccion_usuarios.insert_one(nuevo_usuario)
 
     return jsonify({'status': 'ok', 'message': 'Usuario registrado exitosamente'}), 201
 
@@ -237,6 +217,35 @@ if __name__ == "__main__":
     conn.close()
 
     app.run(debug=True, port=5000)
-    
-# Ejecuta este código en mcd
-# pip install flask pymongo flask_cors
+  
+@app.route('/register', methods=['POST'])
+def register():
+    data = request.json
+    email = data.get('email')
+    password = data.get('password')
+
+    if not email or not password:
+        return jsonify({'status': 'error', 'message': 'Email y contraseña son requeridos'}), 400
+
+    # Verificar si el email ya existe en MongoDB
+    if coleccion_usuarios.find_one({'email': email}):
+        return jsonify({'status': 'error', 'message': 'El email ya está registrado'}), 409
+
+    hashed_password = generate_password_hash(password)
+
+    nuevo_usuario = {
+        'nombre': data.get('nombre'),
+        'email': email,
+        'password': hashed_password,
+        'cedula': data.get('cedula'),
+        'documento': data.get('documento'),
+        'paquete': data.get('paquete'),
+        'puntos': 0,
+        'estado': 'activo',
+        'tipo': data.get('tipo', 'usuario'), # Puede ser 'usuario' o 'admin'
+        'ultimo_acceso': datetime.datetime.now(),
+        'fecha_creacion': datetime.datetime.now()
+    }
+    coleccion_usuarios.insert_one(nuevo_usuario)
+
+    return jsonify({'status': 'ok', 'message': 'Usuario registrado exitosamente'}), 201

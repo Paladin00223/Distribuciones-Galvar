@@ -6,28 +6,28 @@
 
     <title>Distribuciones Galvar</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
   </head>
 
   <body>
     <nav>
       <div class="nav-buttons">
-        <a href="html/buy.html"
+        <a href="{{ url_for('principal') }}html/buy.html"
           ><button><i class="fas fa-shopping-cart"></i> Comprar</button></a
         >
       </div>
-      <a href="html/login.html"
+      <a href="{{ url_for('principal') }}html/login.html"
         ><button class="cerrar">
           <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
         </button></a
       >
     </nav>
     <aside>
-      <a href="html/compras.html"
+      <a href="{{ url_for('principal') }}html/compras.html"
         ><button><i class="fas fa-shopping-bag"></i> Compras</button></a
       >
-      <a href="html/perfil.html"
+      <a href="{{ url_for('principal') }}html/perfil.html"
         ><button><i class="fas fa-user"></i> Perfil</button></a
       >
       <a href="#top"
@@ -54,10 +54,10 @@
       <section id="contenedor">
 
         {% for categoria in categorias %}
-        {# Cada categoría es un enlace a la página de sus productos #}
-        <a href="{{ categoria_id=categoria._id }}">
+
+        <a href="{{ url_for('productos', categoria=categoria.nombre) }}">
           <article>
-            <img src="{{ filename=categoria.imagen }}" alt="Imagen de {{ categoria.nombre }}">
+            <img src="{{ categoria.imagen }}" alt="Imagen de {{ categoria.nombre }}">
             <h3>{{ categoria.nombre }}</h3>
           </article>
         </a>
@@ -79,11 +79,5 @@
       <br />
       &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
     </footer>
-    <!-- Pasa la variable 'productos' a JavaScript si es necesario, como habíamos visto antes -->
-  <script>
-    const productos = {{ productos|tojson }};
-  </script>
-  <script src="{{ filename='js/app.js' }}"></script>
-  <script src="{{ 'static', filename='js/contacto.js' }}"></script>
   </body>
 </html>
