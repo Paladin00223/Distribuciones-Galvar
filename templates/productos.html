@@ -4,30 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title>Distritiendas Galvar</title>
+    <title>Productos</title>
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+    <!-- La ruta al CSS se resuelve a una ruta estática -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
 
   <body>
     <nav>
       <div class="nav-buttons">
-        <a href="{{ url_for('principal') }}html/buy.html"
+        <!-- Estos enlaces apuntarían a tus rutas de Flask -->
+        <a href="#"
           ><button><i class="fas fa-shopping-cart"></i> Comprar</button></a
         >
       </div>
-      <a href="{{ url_for('principal') }}html/login.html"
+      <a href="#"
         ><button class="cerrar">
           <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
         </button></a
       >
     </nav>
     <aside>
-      <a href="{{ url_for('principal') }}html/compras.html"
+      <a href="#"
         ><button><i class="fas fa-shopping-bag"></i> Compras</button></a
       >
-      <a href="{{ url_for('principal') }}html/perfil.html"
+      <a href="#"
         ><button><i class="fas fa-user"></i> Perfil</button></a
       >
       <a href="#top"
@@ -37,8 +42,9 @@
     <header>
       <section>
         <h1>
-          ¡Nos alegra volver a darte la bienvenida
-          <span id="nombre-usuario">{{ cuenta }}</span>!
+          ¡Aquí podrás encontrar toda clase de productos
+          <!-- La variable {{ cuenta }} se reemplaza con datos reales -->
+          <span id="nombre-usuario">Juan</span>!
         </h1>
       </section>
 
@@ -48,20 +54,64 @@
     </header>
 
     <main>
-      <div class="search-container">
-        
+      <div class="search-box">
+        <select id="categoria">
+          <option value="todo">Todas las categorias</option>
+          <option value="aseo">Aseo</option>
+          <option value="cacharro">Cacharrería</option>
+          <option value="cosmeticos">Cosméticos</option>
+          <option value="descechable">Descechables</option>
+          <option value="detalle">Detalles</option>
+          <option value="ferreteria">Ferretería</option>
+          <option value="hogar">Hogar</option>
+          <option value="juego">Juegos</option>
+          <option value="papeleria">Papelería</option>
+        </select>
+
+        <input type="search" id="buscar" placeholder="Buscar Producto" />
+        <button type="button" onclick="aplicarFiltros()">
+          <i class="fas fa-search"></i> Buscar
+        </button>
       </div>
+
+      <div class="search-container"></div>
       <section id="contenedor">
+        
+        {% if productos %}
 
-        {% for categoria in categorias %}
+          {% for producto in productos %}
+        
+          <article data-categoria="">
+            
+            <a  class="product-link">
 
-        <a href="{{ url_for('productos', categoria=categoria.nombre) }}">
-          <article>
-            <img src="{{ categoria.imagen }}" alt="Imagen de {{ categoria.nombre }}">
-            <h3>{{ categoria.nombre }}</h3>
+              <img src="{{ producto.imagen }}" alt="Imagen de {{ producto.nombre }}" />
+              <h3>{{ producto.nombre }}</h3>
+              <p>{{ producto.descripcion }}</p>
+            </a>
+
+            <select class="precio">
+              <option value="unidad">Unidad</option>
+            </select>
+
+            <b>Valor: <span>{{ "%.3f"|format(producto.precio|float) }}</span></b
+            ><br />
+            <label for=""><b>Cantidad</b></label>
+            <input
+              name="cantidad"
+              type="number"
+              min="1"
+              step="1"
+              placeholder="Cantidad"
+            />
+            <br />
+            <b>Total = <span>$0.00</span></b>
+            <button>Añadir al carrito</button>
           </article>
-        </a>
-        {% endfor %}
+          {% endfor %}
+        {% else %}
+          <p class="no-products-message">No se encontraron productos en esta categoría.</p>
+        {% endif %}
 
       </section>
     </main>

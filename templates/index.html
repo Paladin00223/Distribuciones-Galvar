@@ -48,6 +48,25 @@
     </header>
 
     <main>
+      <div class="search-box">
+        <select id="categoria">
+          <option value="todo">Todas las categorias</option>
+          <option value="aseo">Aseo</option>
+          <option value="cacharro">Cacharrería</option>
+          <option value="cosmeticos">Cosméticos</option>
+          <option value="descechable">Descechables</option>
+          <option value="detalle">Detalles</option>
+          <option value="ferreteria">Ferretería</option>
+          <option value="hogar">Hogar</option>
+          <option value="juego">Juegos</option>
+          <option value="papeleria">Papelería</option>
+        </select>
+
+        <input type="search" id="buscar" placeholder="Buscar Producto" />
+        <button type="button" onclick="aplicarFiltros()">
+          <i class="fas fa-search"></i> Buscar
+        </button>
+      </div>
       <div class="search-container">
         
       </div>

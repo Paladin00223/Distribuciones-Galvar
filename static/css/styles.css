@@ -14,8 +14,8 @@ button {
     font-size: 1rem;
 }
 img {
-    width: 10rem;
-    height: 10rem;
+    width: 12rem;
+    height: 12rem;
 }
 body {
     margin: 0;
@@ -101,7 +101,7 @@ main section {
     flex-wrap: wrap;
 }
 article {
-    width: 10rem;
+    width: 12rem;
     padding: 1rem;
     border: 1rem;
     display: flex;
