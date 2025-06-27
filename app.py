@@ -2,7 +2,6 @@ from flask import Flask, render_template, jsonify, request, session, redirect, u
 # Importamos la librería pymongo para con
 from pymongo import MongoClient
 # Importamos ObjectId para poder buscar por _id en MongoDB
-from bson.objectid import ObjectId
 from bson.errors import InvalidId
 from bson.errors import InvalidId
 # Herramientas para contraseñas seguras
@@ -33,6 +32,18 @@ coleccion_categorias = base_datos.categorias
 coleccion_productos = base_datos.productos
 coleccion_pedidos = base_datos.pedidos # Nueva colección para los pedidos
 
+# --- Helper para IDs numéricos de usuario ---
+def get_next_user_id():
+    """
+    Obtiene el siguiente valor de la secuencia para los IDs de usuario numéricos.
+    """
+    sequence_document = base_datos.counters.find_one_and_update(
+        {'_id': 'user_uid'},
+        {'$inc': {'sequence_value': 1}},
+        return_document=ReturnDocument.AFTER,
+        upsert=True # Crea el contador si no existe
+    )
+    return sequence_document['sequence_value']
 # --- Helper function ---
 def sort_categories(category_list):
     """Ordena una lista de diccionarios de categorías para colocar 'Otros' al final."""
@@ -153,6 +164,7 @@ def register():
     hashed_password = generate_password_hash(password)
 
     nuevo_usuario = {
+        'uid': get_next_user_id(), # Asignar nuevo ID numérico
         'nombre_unico': nombre_unico,
         'password': hashed_password,
         'nombre': nombre,
@@ -194,7 +206,7 @@ def login():
             {'$set': {'ultimo_acceso': datetime.datetime.now()}}
         )
 
-        session['user_id'] = str(user['_id'])
+        session['user_id'] = user.get('uid') # Guardar el ID numérico en la sesión
         session['user_email'] = user.get('email') # Puede ser None
         session['user_type'] = user.get('tipo', 'usuario') # Usar .get para evitar KeyError si no existe
 
@@ -357,7 +369,7 @@ def checkout():
 
     # 5. Crear el documento del pedido
     order_document = {
-        'user_id': ObjectId(session['user_id']),
+        'user_uid': session['user_id'], # Guardar el ID numérico del usuario
         'shipping_info': shipping_data,
         'items': items_for_order,
         'total_amount': total_price,
@@ -420,16 +432,16 @@ def compras():
         flash('Debes iniciar sesión para ver tu historial de compras.', 'error')
         return redirect(url_for('login'))
 
-    user_id = ObjectId(session['user_id'])
+    user_uid = session['user_id']
     
     # Obtenemos el nombre del usuario para la plantilla
     nombre_usuario = None
-    usuario = coleccion_usuarios.find_one({'_id': user_id})
+    usuario = coleccion_usuarios.find_one({'uid': user_uid})
     if usuario:
         nombre_usuario = usuario.get('nombre')
 
     # 2. Obtener los pedidos del usuario desde la base de datos, ordenados por fecha descendente
-    pedidos = list(coleccion_pedidos.find({'user_id': user_id}).sort('order_date', -1))
+    pedidos = list(coleccion_pedidos.find({'user_uid': user_uid}).sort('order_date', -1))
     
     # 3. Formatear datos para la plantilla
     for pedido in pedidos:
@@ -448,7 +460,7 @@ def order_details(order_id):
     try:
         pedido = coleccion_pedidos.find_one({
             '_id': ObjectId(order_id),
-            'user_id': ObjectId(session['user_id'])
+            'user_uid': session['user_id']
         })
 
         if not pedido:
@@ -456,7 +468,6 @@ def order_details(order_id):
         
         # Convertir ObjectIds a strings para que sean serializables en JSON
         pedido['_id'] = str(pedido['_id'])
-        pedido['user_id'] = str(pedido['user_id'])
         for item in pedido.get('items', []):
             item['product_id'] = str(item['product_id'])
         
@@ -482,7 +493,7 @@ def cancel_order():
 
     try:
         result = coleccion_pedidos.update_one(
-            {'_id': ObjectId(order_id), 'user_id': ObjectId(session['user_id']), 'status': 'Pendiente'},
+            {'_id': ObjectId(order_id), 'user_uid': session['user_id'], 'status': 'Pendiente'},
             {'$set': {'status': 'Cancelado'}}
         )
 
@@ -504,7 +515,7 @@ def admin_panel():
     if session.get('user_type') != 'admin':
         flash('Acceso no autorizado.', 'error')
         return redirect(url_for('principal'))
-    return render_template('admin.html')
+    return render_template('admin.html', user_id=session.get('user_id'))
 
 @app.route('/api/admin/orders')
 def api_admin_orders():
@@ -518,8 +529,8 @@ def api_admin_orders():
         {
             '$lookup': {
                 'from': 'usuarios',
-                'localField': 'user_id',
-                'foreignField': '_id',
+                'localField': 'user_uid',
+                'foreignField': 'uid',
                 'as': 'customer_info'
             }
         },
@@ -535,78 +546,139 @@ def api_admin_orders():
     # Serializar datos para JSON (convertir ObjectId y fechas)
     for order in all_orders:
         order['_id'] = str(order['_id'])
-        order['user_id'] = str(order['user_id'])
         order['order_date'] = order['order_date'].isoformat()
         if order.get('customer_info'):
             order['customer_info']['_id'] = str(order['customer_info']['_id'])
 
     return jsonify(all_orders)
 
-# --- Rutas para usuarios (MongoDB) ---
+# --- API para Administración (Usuarios) ---
 
-@app.route('/usuarios', methods=['GET'])
-def get_usuarios():
+@app.route('/api/admin/users', methods=['GET'])
+def get_users():
+    if session.get('user_type') != 'admin':
+        return jsonify({'success': False, 'message': 'No autorizado'}), 401
+
     usuarios = list(coleccion_usuarios.find())
     for user in usuarios:
         user['_id'] = str(user['_id']) # Convertir ObjectId a string
     return jsonify(usuarios)
 
-@app.route('/usuarios/<usuario_id>', methods=['PUT'])
-def update_usuario(usuario_id):
-    data = request.json
+@app.route('/api/admin/users/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    if session.get('user_type') != 'admin':
+        return jsonify({'success': False, 'message': 'No autorizado'}), 401
     
-    # Construir el diccionario de campos a actualizar
+    try:
+        user = coleccion_usuarios.find_one({'uid': user_id})
+        if not user:
+            return jsonify({'success': False, 'message': 'Usuario no encontrado'}), 404
+        
+        user['_id'] = str(user['_id']) # Convertir ObjectId a string para JSON
+        # No enviar el hash de la contraseña al frontend
+        user.pop('password', None)
+
+        return jsonify(user)
+    except InvalidId:
+        return jsonify({'success': False, 'message': 'ID de usuario inválido'}), 400
+
+
+@app.route('/api/admin/users/<int:user_id>', methods=['PUT'])
+def update_user(user_id):
+    if session.get('user_type') != 'admin':
+        return jsonify({'success': False, 'message': 'No autorizado'}), 401
+
+    data = request.json
+
     update_fields = {}
     for field in ['nombre', 'email', 'cedula', 'documento', 'paquete', 'puntos', 'estado', 'tipo']:
         if field in data:
             update_fields[field] = data[field]
-    
-    # Si se envía una nueva contraseña, hashearla
+
     if 'password' in data and data['password']:
         update_fields['password'] = generate_password_hash(data['password'])
 
     if not update_fields:
-        return jsonify({'status': 'error', 'message': 'No se proporcionaron campos para actualizar.'}), 400
+        return jsonify({'success': False, 'message': 'No se proporcionaron campos para actualizar.'}), 400
 
     try:
-        # Buscar y actualizar el usuario por su _id
+        # La línea clave: debe usar 'uid' y 'user_id'
         result = coleccion_usuarios.update_one(
-            {'_id': ObjectId(usuario_id)},
+            {'uid': user_id}, # <-- ¡Asegúrate de que sea 'uid': user_id!
             {'$set': update_fields}
         )
 
         if result.matched_count == 0:
-            return jsonify({'status': 'error', 'message': 'Usuario no encontrado.'}), 404
-        
-        return jsonify({'status': 'ok', 'message': 'Usuario actualizado exitosamente.'})
+            return jsonify({'success': False, 'message': 'Usuario no encontrado.'}), 404
+
+        return jsonify({'success': True, 'message': 'Usuario actualizado exitosamente.'})
 
     except InvalidId:
-        return jsonify({'status': 'error', 'message': 'ID de usuario inválido.'}), 400
+        return jsonify({'success': False, 'message': 'ID de usuario inválido.'}), 400
     except Exception as e:
-        return jsonify({'status': 'error', 'message': f'Error al actualizar usuario: {str(e)}'}), 500
+        return jsonify({'success': False, 'message': f'Error al actualizar usuario: {str(e)}'}), 500
+
+@app.route('/api/admin/users/<int:user_id>', methods=['DELETE'])
+def delete_user(user_id):
+    if session.get('user_type') != 'admin':
+        return jsonify({'success': False, 'message': 'No autorizado'}), 401
+
+    # Comprobación de seguridad para evitar la auto-eliminación
+    if user_id == session.get('user_id'):
+        return jsonify({'success': False, 'message': 'No puedes eliminar tu propia cuenta de administrador.'}), 403 # 403 Forbidden
+
+    try:
+        result = coleccion_usuarios.delete_one({'uid': user_id})
+
+        if result.deleted_count == 0:
+            return jsonify({'success': False, 'message': 'Usuario no encontrado.'}), 404
+        
+        return jsonify({'success': True, 'message': 'Usuario eliminado exitosamente.'})
+    except InvalidId:
+        return jsonify({'success': False, 'message': 'ID de usuario inválido.'}), 400
+    except Exception as e:
+        return jsonify({'success': False, 'message': str(e)}), 500
 
 # Ejecuta la aplicación principal
 if __name__ == "__main__":
-    # --- Crear usuario administrador inicial si no existe en MongoDB ---
-    admin_email = 'jdvargas223@gmail.com'
-    admin_user = coleccion_usuarios.find_one({'email': admin_email})
-    if admin_user is None:
-        print(f"Creando usuario administrador inicial: {admin_email}")
-        # ¡IMPORTANTE! Considera obtener esta contraseña de una variable de entorno en producción
-        admin_password = 'JDv@rgA$223#'
-        hashed_password = generate_password_hash(admin_password)
-        coleccion_usuarios.insert_one(
-            {
-                'nombre': 'Administrador',
-                'email': admin_email,
-                'password': hashed_password,
-                'tipo': 'admin',
-                'estado': 'activo',
-                'puntos': 0, # Asegurarse de que los campos existan para evitar errores en otras partes
-                'fecha_creacion': datetime.datetime.now(),
-                'ultimo_acceso': datetime.datetime.now()
-            }
-        )
-        print("Usuario administrador creado.")
+    # --- Migración de datos única para IDs de usuario numéricos ---
+    # Comprueba si el administrador ya tiene un 'uid' para evitar ejecutar esto varias veces.
+    admin_user_check = coleccion_usuarios.find_one({'tipo': 'admin'})
+    if admin_user_check and 'uid' not in admin_user_check:
+        print("Iniciando migración de datos única para IDs de usuario...")
 
-    app.run(debug=True, port=5000)
+        # 1. Asignar UID 0 al primer administrador encontrado
+        coleccion_usuarios.update_one(
+            {'_id': admin_user_check['_id']},
+            {'$set': {'uid': 0}}
+        )
+        print(f"Usuario administrador '{admin_user_check.get('nombre_unico')}' asignado con UID 0.")
+
+        # 2. Inicializar el contador de secuencias en 0
+        base_datos.counters.update_one(
+            {'_id': 'user_uid'},
+            {'$set': {'sequence_value': 0}},
+            upsert=True
+        )
+
+        # 3. Asignar UIDs secuenciales al resto de usuarios
+        other_users = coleccion_usuarios.find({'uid': {'$exists': False}})
+        for user in other_users:
+            next_id = get_next_user_id()
+            coleccion_usuarios.update_one({'_id': user['_id']}, {'$set': {'uid': next_id}})
+            print(f"Usuario '{user.get('nombre_unico')}' asignado con UID {next_id}.")
+
+        # 4. Actualizar todos los pedidos existentes con los nuevos UIDs
+        all_orders = list(coleccion_pedidos.find({'user_uid': {'$exists': False}}))
+        if all_orders:
+            print("Actualizando pedidos con los nuevos UIDs...")
+            for order in all_orders:
+                # Encontrar el usuario al que pertenece el pedido usando el ObjectId original
+                user_of_order = coleccion_usuarios.find_one({'_id': order['user_id']})
+                if user_of_order and 'uid' in user_of_order:
+                    # Si se encuentra el usuario y tiene un uid, actualizar el pedido
+                    coleccion_pedidos.update_one(
+                        {'_id': order['_id']},
+                        {'$set': {'user_uid': user_of_order['uid']}}
+                    )
+    app.run(host='0.0.0.0', port=5000, debug=True)
