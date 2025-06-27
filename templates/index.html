@@ -13,32 +13,20 @@
   <body>
     <nav>
       <div class="nav-buttons">
-        <a href="{{ url_for('principal') }}html/buy.html"
-          ><button><i class="fas fa-shopping-cart"></i> Comprar</button></a
-        >
+        <a href="{{ url_for('buy') }}"><button><i class="fas fa-shopping-cart"></i> Carrito (<span id="nav-cart-count">{{ cart_count }}</span>)</button></a>
       </div>
-      <a href="{{ url_for('principal') }}html/login.html"
-        ><button class="cerrar">
-          <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
-        </button></a
-      >
+      <a href="{{ url_for('logout') }}"><button class="cerrar"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></a>
     </nav>
     <aside>
-      <a href="{{ url_for('principal') }}html/compras.html"
-        ><button><i class="fas fa-shopping-bag"></i> Compras</button></a
-      >
-      <a href="{{ url_for('principal') }}html/perfil.html"
-        ><button><i class="fas fa-user"></i> Perfil</button></a
-      >
-      <a href="#top"
-        ><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a
-      >
+      <a href="{{ url_for('compras') }}"><button><i class="fas fa-shopping-bag"></i> Compras</button></a>
+      <a href="{{ url_for('perfil') }}"><button><i class="fas fa-user"></i> Perfil</button></a>
+      <a href="#top"><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a>
     </aside>
     <header>
       <section>
         <h1>
           ¡Nos alegra volver a darte la bienvenida
-          <span id="nombre-usuario">{{ cuenta }}</span>!
+          <span id="nombre-usuario">{{ cuenta or 'Invitado' }}</span>!
         </h1>
       </section>
 
@@ -48,25 +36,20 @@
     </header>
 
     <main>
-      <div class="search-box">
-        <select id="categoria">
+      <!-- Convertimos el div en un formulario que envía los filtros a la página de productos -->
+      <form class="search-box" method="GET" action="{{ url_for('productos') }}">
+        <select id="categoria" name="categoria">
           <option value="todo">Todas las categorias</option>
-          <option value="aseo">Aseo</option>
-          <option value="cacharro">Cacharrería</option>
-          <option value="cosmeticos">Cosméticos</option>
-          <option value="descechable">Descechables</option>
-          <option value="detalle">Detalles</option>
-          <option value="ferreteria">Ferretería</option>
-          <option value="hogar">Hogar</option>
-          <option value="juego">Juegos</option>
-          <option value="papeleria">Papelería</option>
+          {% for cat in categorias %}
+            <option value="{{ cat.nombre }}">{{ cat.nombre }}</option>
+          {% endfor %}
         </select>
 
-        <input type="search" id="buscar" placeholder="Buscar Producto" />
-        <button type="button" onclick="aplicarFiltros()">
+        <input type="search" id="buscar" name="buscar" placeholder="Buscar Producto" />
+        <button type="submit">
           <i class="fas fa-search"></i> Buscar
         </button>
-      </div>
+      </form>
       <div class="search-container">
         
       </div>
@@ -86,17 +69,15 @@
     </main>
 
     <footer>
-      <h2 class="center">¡PRÓXIMAMENTE MÁS PRODUCTOS!</h2>
       <p class="maintenance-message">
-        <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está en
-        mantenimiento!<br />
+        <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está enmantenimiento!<br/>
         ¡Muy Pronto!
       </p>
       <button class="contact-button">
         <i class="fab fa-whatsapp"></i> Contacto: 320 818 6026
       </button>
       <br />
-      &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+      &copy; 26 mayo 2025 - Distritiendas Galvar. Todos los derechos reservados
     </footer>
   </body>
 </html>

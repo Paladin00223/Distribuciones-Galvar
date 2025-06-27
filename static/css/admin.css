@@ -1,0 +1,156 @@
+/* Estilos para el panel de administración */
+
+.admin-container {
+    max-width: 1600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-ir-tienda {
+    background-color: rgb(138, 102, 211);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-ir-tienda:hover {
+    background-color: rgb(110, 80, 170);
+}
+
+.admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.admin-tab {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background-color: #e9ecef;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.admin-tab.activo {
+    background-color: #4a4a4a;
+    color: white;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* --- Estilos anteriores --- */
+.admin-container {
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Dashboard Widgets */
+.dashboard-widgets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.widget {
+    flex: 1 1 300px; /* Flex-grow, flex-shrink, flex-basis */
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.widget a {
+    display: block;
+    padding: 2rem;
+    text-decoration: none;
+    color: #333;
+    text-align: center;
+}
+
+.widget:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+.widget i {
+    font-size: 3rem;
+    color: rgb(138, 102, 211);
+    margin-bottom: 1rem;
+}
+
+.widget h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Tabla de Pedidos del Admin */
+.admin-orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.admin-orders-table thead {
+    background-color: #4a4a4a; /* Un color más sobrio para el admin */
+    color: white;
+}
+
+.admin-orders-table th, .admin-orders-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-orders-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.status-select {
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+
+.admin-details-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.admin-details-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Modal (reutiliza estilos de compras.css, pero con un ID diferente) */
+#adminDetallesModal .modal-content h2 {
+    color: #4a4a4a;
+}
