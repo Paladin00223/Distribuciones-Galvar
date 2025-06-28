@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Distritiendas Galvar{% endblock %}</title>
+    <!-- Aquí tus enlaces a CSS, como Bootstrap, etc. -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        /* Estilos para las notificaciones flash */
+        .flash-messages {
+            padding: 0;
+            margin: 1rem 0;
+            list-style: none;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            text-align: center;
+            position: relative; /* Para posicionar el botón de cierre */
+            padding-right: 40px; /* Espacio para el botón 'X' */
+        }
+        .alert .close-flash {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            font-size: 22px;
+            font-weight: bold;
+            color: inherit; /* Hereda el color del texto del alert */
+            cursor: pointer;
+            opacity: 0.5;
+        }
+        .alert .close-flash:hover {
+            opacity: 1;
+        }
+        .alert-success { /* Categoría 'success' */
+            color: #155724;
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+        }
+        .alert-error { /* Categoría 'error' */
+            color: #721c24;
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- Tu barra de navegación aquí -->
+    </header>
+
+    <main class="container">
+        {# --- INICIO: Bloque para mostrar mensajes flash --- #}
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <span>{{ message }}</span>
+                        <button type="button" class="close-flash">&times;</button>
+                    </div>
+                {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        {# --- FIN: Bloque para mostrar mensajes flash --- #}
+
+        {% block content %}
+        <!-- El contenido de cada página (login, register, etc.) irá aquí -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <!-- Tu pie de página aquí -->
+    </footer>
+
+    <!-- Tus scripts de JS aquí -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>
+        // Script para hacer que los botones de cierre de las notificaciones flash funcionen
+        document.addEventListener('DOMContentLoaded', function() {
+            const closeButtons = document.querySelectorAll('.alert .close-flash');
+            closeButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    // Oculta el elemento padre (el div.alert)
+                    this.parentElement.style.display = 'none';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

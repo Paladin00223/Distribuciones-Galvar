@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registrarse a Distribuciones Galvar</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+
+  <body class="public-layout">
+    <nav>
+      <div class="nav-buttons">
+        <a href="{{ url_for('main.principal') }}"
+          ><button><i class="fas fa-home"></i> Inicio</button></a
+        >
+      </div>
+      <a href="{{ url_for('main.login') }}"
+        ><button class="cerrar" style="background-color: rgb(121, 255, 121)">
+          <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+        </button></a
+      >
+    </nav>
+
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %} {% if
+      messages %} {% for category, message in messages %}
+      <div class="alert alert-{{ category }}">{{ message }}</div>
+      {% endfor %} {% endif %} {% endwith %}
+      <header>
+        <section>
+          <h1>¡Tu Lugar Está Esperando Por Ti!</h1>
+        </section>
+        <div>
+          <h2>Regístrate</h2>
+        </div>
+      </header>
+      <div class="form-container">
+        <form
+          id="registerForm"
+          class="register-form"
+          method="POST"
+          action="{{ url_for('main.register') }}"
+        >
+          <div class="form-group">
+            <label for="nombre_unico"
+              >Nombre de Usuario (único y obligatorio)</label
+            >
+            <input type="text" id="nombre_unico" name="nombre_unico" required />
+          </div>
+          <div class="form-group password-container">
+            <label for="password">Contraseña (Obligatoria)</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              class="form-control"
+              required
+            />
+            <span class="toggle-password">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </span>
+          </div>
+
+          <!-- Campo de Confirmar Contraseña con icono de ojo -->
+          <div class="form-group password-container">
+            <label for="confirm_password">Confirmar Contraseña (Obligatoria)</label>
+            <input
+              type="password"
+              id="confirm_password"
+              name="confirm_password"
+              class="form-control"
+              required
+            />
+            <span class="toggle-password">
+              <i class="fas fa-eye" aria-hidden="true"></i>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="nombre">Nombre completo (opcional)</label>
+            <input type="text" id="nombre" name="nombre" />
+          </div>
+          <div class="form-group">
+            <label for="phone">Número de celular (opcional)</label>
+            <input type="tel" id="phone" name="phone" />
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico (opcional)</label>
+            <input type="email" id="email" name="email" />
+          </div>
+          <button type="submit" class="btn-register">Registrarse</button>
+        </form>
+      </div>
+      <div class="login-link">
+        <p>
+          ¿Ya tienes cuenta?
+          <a href="{{ url_for('main.login') }}">Inicia sesión aquí</a>
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <a href="https://wa.me/573123456789" target="_blank" rel="noopener noreferrer">
+    <button class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i> Contáctanos por WhatsApp
+    </button>
+</a>
+      <br />
+      &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+    </footer>
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/contacto.js') }}"></script>
+  </body>
+</html>

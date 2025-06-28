@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        h1 { color: #dc3545; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+        .total { font-weight: bold; text-align: right; }
+        .footer { margin-top: 20px; font-size: 0.9em; color: #777; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>¡Nuevo Pedido Recibido!</h1>
+        <p>Se ha realizado un nuevo pedido en la tienda.</p>
+        
+        <p><strong>Número de Pedido:</strong> #{{ order.order_uid }}</p>
+        <p><strong>ID de Referencia:</strong> {{ order._id }}</p>
+        <p><strong>Fecha:</strong> {{ order.order_date.strftime('%d/%m/%Y %H:%M') }}</p>
+
+        <h2>Resumen del Pedido</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in order.items %}
+                <tr>
+                    <td>{{ item.nombre }}</td>
+                    <td>{{ item.cantidad }}</td>
+                    <td>${{ "%.2f"|format(item.precio_compra) }}</td>
+                    <td>${{ "%.2f"|format(item.precio_compra * item.cantidad) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3" class="total">Total:</td>
+                    <td class="total">${{ "%.2f"|format(order.total_amount) }}</td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <h2>Información del Cliente</h2>
+        <p>
+            <strong>Nombre:</strong> {{ order.shipping_info.name }}<br>
+            <strong>Dirección de Envío:</strong> {{ order.shipping_info.address }}<br>
+            <strong>Teléfono:</strong> {{ order.shipping_info.phone }}<br>
+            <strong>Email:</strong> {{ order.shipping_info.email }}
+        </p>
+
+        <div class="footer">
+            <p>Puedes gestionar este pedido en el <a href="{{ url_for('admin_panel', _external=True) }}">panel de administración</a>.</p>
+        </div>
+    </div>
+</body>
+</html>

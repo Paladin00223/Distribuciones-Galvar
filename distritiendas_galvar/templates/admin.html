@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Panel de Administración - Distribuciones Galvar</title>
+    <!-- Estilo principal de la empresa -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <!-- Estilo específico para el panel de administración (tablas, etc.) -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/admin.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+
+  <body data-user-id="{{ user_id }}">
+    <!-- Barra de navegación superior -->
+    <nav>
+      <div class="nav-buttons">
+        <a href="{{ url_for('main.principal') }}">
+          <button><i class="fas fa-home"></i> Ir al Inicio</button>
+        </a>
+      </div>
+      <a href="{{ url_for('main.logout') }}"
+        ><button class="cerrar">
+          <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button></a
+      >
+    </nav>
+
+    <!-- Barra lateral de navegación del panel -->
+    <aside>
+      <!-- Los antiguos tabs ahora son botones de navegación en la barra lateral -->
+      <button class="admin-tab activo" data-tab="dashboard">
+        <i class="fas fa-tachometer-alt"></i> Dashboard
+      </button>
+      <button class="admin-tab" data-tab="usuarios">
+        <i class="fas fa-users"></i> Usuarios
+      </button>
+      <button class="admin-tab" data-tab="pedidos">
+        <i class="fas fa-box-open"></i> Pedidos
+      </button>
+      <button class="admin-tab" data-tab="productos">
+        <i class="fas fa-shopping-basket"></i> Productos
+      </button>
+      <button class="admin-tab" data-tab="retiros">
+        <i class="fas fa-hand-holding-usd"></i> Retiros
+      </button>
+    </aside>
+
+    <!-- Encabezado principal -->
+    <header>
+      <section>
+        <h1>Panel de Administración</h1>
+      </section>
+      <div>
+        <h2>Distritiendas Galvar</h2>
+      </div>
+    </header>
+
+    <main>
+        <!-- Sección de Dashboard -->
+      <div id="dashboard-content" class="tab-content">
+        <div class="stats-container">
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #17a2b8">
+              <i class="fas fa-box-open"></i>
+            </div>
+            <div class="stat-info">
+              <p>Total de Pedidos</p>
+              <h3 id="stat-total-orders">0</h3>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #28a745">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-info">
+              <p>Ingresos Totales (Entregados)</p>
+              <h3 id="stat-total-revenue">$0.00</h3>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #ffc107">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <p>Usuarios Registrados</p>
+              <h3 id="stat-total-users">0</h3>
+            </div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon" style="background-color: #dc3545">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-info">
+              <p>Pedidos (Últimos 30 días)</p>
+              <h3 id="stat-recent-orders">0</h3>
+            </div>
+          </div>
+        </div>
+        <!-- Contenedor para el Gráfico de Ingresos -->
+        <div class="chart-container">
+            <h3>Ingresos Mensuales (Pedidos Entregados)</h3>
+            <div class="chart-filters">
+                <label for="startDate">Desde:</label>
+                <input type="date" id="startDate" class="filtro-input">
+                <label for="endDate">Hasta:</label>
+                <input type="date" id="endDate" class="filtro-input">
+                <button id="applyDateFilter" class="btn-accion">Filtrar</button>
+                <button id="clearDateFilter" class="btn-accion-secondary">Limpiar</button>
+            </div>
+          <div id="revenue-chart-wrapper">
+            <canvas id="revenueChart"></canvas>
+          </div>
+          <div id="revenue-chart-nodata" style="display: none; text-align: center; padding: 40px 20px; color: #6c757d;">
+            No hay datos de ingresos para mostrar. El gráfico aparecerá aquí cuando se completen pedidos.
+          </div>
+        </div>
+      </div>
+      <!-- Sección de Usuarios -->
+      <div id="usuarios-content" class="tab-content" style="display: none">
+        <div class="filtros">
+          <input
+            type="text"
+            id="userSearchInput"
+            class="filtro-input"
+            placeholder="Buscar usuario por nombre, email o ID..."
+          />
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Email</th>
+              <th>Cédula</th>
+              <th>Documento</th>
+              <th>Paquete</th>
+              <th>Puntos</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="usuarios-tabla">
+            <!-- Los usuarios se cargarán dinámicamente -->
+          </tbody>
+        </table>
+        <div class="pagination-container" id="usuarios-pagination"></div>
+      </div>
+
+      <!-- Sección de Pedidos -->
+      <div id="pedidos-content" class="tab-content" style="display: none">
+        <div class="filtros">
+          <input
+            type="text"
+            id="buscarPedido"
+            class="filtro-input"
+            placeholder="Buscar pedido por ID o usuario..."
+          />
+          <select id="filtroEstado" class="filtro-input">
+            <option value="todos">Todos los estados</option>
+            <option value="Pendiente">Pendiente</option>
+            <option value="En espera de pago">En espera de pago</option>
+            <option value="Procesando">Procesando</option>
+            <option value="Enviado">Enviado</option>
+            <option value="Entregado">Entregado</option>
+            <option value="Cancelado">Cancelado</option>
+            <option value="Devuelto">Devuelto</option>
+          </select>
+          <button id="exportCsvBtn" class="btn-accion">Exportar a CSV</button>
+        </div>
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Nº Pedido</th>
+              <th>Usuario</th>
+              <th>Productos</th>
+              <th>Dirección de Envío</th>
+              <th>Monto</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="pedidos-tabla">
+            <!-- Los pedidos se cargarán dinámicamente -->
+          </tbody>
+        </table>
+        <div class="pagination-container" id="pedidos-pagination"></div>
+      </div>
+
+      <!-- Sección de Productos -->
+      <div id="productos-content" class="tab-content" style="display: none">
+        <div class="filtros">
+            <button id="add-product-btn" class="btn-accion ver">Añadir Producto</button>
+        </div>
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Imagen</th>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="productos-tabla">
+                <!-- Los productos se cargarán aquí -->
+            </tbody>
+        </table>
+        <div class="pagination-container" id="productos-pagination"></div>
+      </div>
+
+      <!-- Sección de Retiros -->
+      <div id="retiros-content" class="tab-content" style="display: none">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Usuario</th>
+              <th>Fecha</th>
+              <th>Puntos</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="retiros-body">
+            <!-- Los retiros se cargarán dinámicamente -->
+          </tbody>
+        </table>
+      </div>
+    </main>
+
+    <!-- Modal para Editar Usuario -->
+    <div id="edit-user-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Editar Usuario</h2>
+        <form id="edit-user-form">
+          <input type="hidden" id="edit-user-id" />
+
+          <label for="edit-user-name">Nombre:</label>
+          <input type="text" id="edit-user-name" name="nombre" />
+
+          <label for="edit-user-email">Email:</label>
+          <input type="email" id="edit-user-email" name="email" />
+
+          <label for="edit-user-cedula">Cédula:</label>
+          <input type="text" id="edit-user-cedula" name="cedula" />
+
+          <label for="edit-user-paquete">Paquete:</label>
+          <input type="text" id="edit-user-paquete" name="paquete" />
+
+          <label for="edit-user-puntos">Puntos:</label>
+          <input type="number" id="edit-user-puntos" name="puntos" />
+
+          <label for="edit-user-estado">Estado:</label>
+          <select id="edit-user-estado" name="estado">
+            <option value="activo">Activo</option>
+            <option value="inactivo">Inactivo</option>
+          </select>
+
+          <label for="edit-user-tipo">Tipo de Usuario:</label>
+          <select id="edit-user-tipo" name="tipo">
+            <option value="usuario">Usuario</option>
+            <option value="admin">Admin</option>
+          </select>
+
+          <button type="submit" class="btn-guardar">Guardar Cambios</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Modal para Cambiar Estado del Pedido -->
+    <div id="status-order-modal" class="modal">
+      <div class="modal-content">
+        <span class="close-button status-close-button">&times;</span>
+        <h2>Cambiar Estado del Pedido</h2>
+        <form id="status-order-form">
+          <input type="hidden" id="edit-order-id" />
+
+          <div class="form-group">
+            <label for="edit-order-status">Nuevo Estado:</label>
+            <select id="edit-order-status" name="status" required>
+              <option value="Pendiente">Pendiente</option>
+              <option value="En espera de pago">En espera de pago</option>
+              <option value="Procesando">Procesando</option>
+              <option value="Enviado">Enviado</option>
+              <option value="Entregado">Entregado</option>
+              <option value="Cancelado">Cancelado</option>
+              <option value="Devuelto">Devuelto</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn-guardar">Guardar Cambios</button>
+            <button type="button" class="btn-cancelar status-close-button">
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Modal para Ver Detalles del Pedido -->
+    <div id="order-details-modal" class="modal">
+      <div class="modal-content large">
+        <!-- Añadimos la clase 'large' para un modal más ancho -->
+        <span class="close-button order-details-close">&times;</span>
+        <h2>Detalles del Pedido</h2>
+        <div id="order-details-content">
+          <!-- El contenido se cargará aquí dinámicamente -->
+          <p>Cargando...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal para Añadir/Editar Producto -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button product-close-button">&times;</span>
+            <h2 id="product-modal-title">Añadir Producto</h2>
+            <form id="productForm">
+                <input type="hidden" id="product-id" name="product_id">
+                
+                <div class="form-group">
+                    <label for="product-name">Nombre del Producto:</label>
+                    <input type="text" id="product-name" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-description">Descripción:</label>
+                    <textarea id="product-description" name="descripcion" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="product-category">Categoría:</label>
+                    <select id="product-category" name="categoria" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="product-price">Precio:</label>
+                    <input type="number" id="product-price" name="precio" step="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-stock">Stock:</label>
+                    <input type="number" id="product-stock" name="stock" required>
+                </div>
+                <div class="form-group">
+                    <label for="product-image-input">Imagen:</label>
+                    <input type="file" id="product-image-input" name="imagen" accept="image/*">
+                    <img id="image-preview" src="#" alt="Vista previa" style="display:none; max-width: 100px; margin-top: 10px;">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-guardar">Guardar</button>
+                    <button type="button" class="btn-cancelar product-close-button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+      <p class="maintenance-message">
+        <i class="fas fa-tools"></i> ¡Panel de Administración de Distritiendas
+        Galvar!
+      </p>
+      <br />
+      &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="{{ url_for('static', filename='js/admin.js') }}"></script>
+  </body>
+</html>

@@ -624,7 +624,7 @@
         "imagen": ""
     },
     {
-        "nombre": "Cuaderno 50 hojas Cosido",
+        "nombre": "Cuaderno 50 hojas Cosido Fabrifolder",
         "categoria": "Papelería",
         "precio": 2500,
         "descripcion": "",
@@ -633,7 +633,7 @@
     {
         "nombre": "Cuaderno 100 hojas Cosido",
         "categoria": "Papelería",
-        "precio": 3000,
+        "precio": 3500,
         "descripcion": "",
         "imagen": ""
     },
@@ -1495,6 +1495,69 @@
         "nombre": "Vinilo Quirond Neon",
         "categoria": "Papelería",
         "precio": 1500,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Témpera Parchesito",
+        "categoria": "Papelería",
+        "precio": 3500,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Repuesto de Bisturí Grande Artesco 18mm",
+        "categoria": "Papelería",
+        "precio": 3500,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Limpia  pipa Surtido colores",
+        "categoria": "Utensilios",
+        "precio": 7500,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Vaso Mug Estampado surtido",
+        "categoria": "Detalles",
+        "precio": 8000,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Cinta Enmascarar 24x25 Tesa",
+        "categoria": "Utensilios",
+        "precio": 5500,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Cinta Enmascarar 36x25 Tesa",
+        "categoria": "Utensilios",
+        "precio": 0,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Taco Papel Bond x250 Fabrifolder",
+        "categoria": "Papelería",
+        "precio": 3000,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Taco Papel Bond x500 Fabrifolder",
+        "categoria": "Papelería",
+        "precio": 4800,
+        "descripcion": "",
+        "imagen": ""
+    },
+    {
+        "nombre": "Taco Papel Periódico 8x8 x200",
+        "categoria": "Papelería",
+        "precio": 2000,
         "descripcion": "",
         "imagen": ""
     }

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil - Distribuciones Galvar</title>
+    <!-- Estilo principal de la empresa -->
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <!-- Estilo específico para la página de perfil -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/perfil.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Barra de navegación para usuarios logueados -->
+    <nav>
+        <div class="nav-buttons">
+            <a href="{{ url_for('main.principal') }}"><button><i class="fas fa-home"></i> Inicio</button></a>
+            <a href="{{ url_for('main.productos') }}"><button><i class="fas fa-store"></i> Tienda</button></a>
+            <a href="{{ url_for('user.compras') }}"><button><i class="fas fa-shopping-bag"></i> Mis Compras</button></a>
+        </div>
+        <a href="{{ url_for('main.logout') }}"><button class="cerrar"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></a>
+    </nav>
+
+    <div class="perfil-container">
+        <div class="perfil-header">
+            <div class="perfil-avatar">
+                <i class="fas fa-user"></i>
+                <div class="cambiar-foto">
+                    <i class="fas fa-camera"></i> Cambiar foto
+                </div>
+            </div>
+            <div class="perfil-info">
+                <h1 id="nombre-usuario">{{ user.get('nombre') or user.get('nombre_unico') }}</h1>
+                <p id="email-usuario">{{ user.get('email', 'Email no proporcionado') }}</p>
+                <p id="telefono-usuario">{{ user.get('phone', 'Teléfono no proporcionado') }}</p>
+            </div>
+        </div>
+
+        <div class="perfil-stats">
+            <div class="stat-card">
+                <i class="fas fa-shopping-bag"></i>
+                <h3>Compras Totales</h3>
+                <p id="total-compras">{{ total_compras }}</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-coins"></i>
+                <h3>Puntos Acumulados</h3>
+                <p id="puntos-acumulados">{{ user.get('puntos', 0) }}</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-star"></i>
+                <h3>Nivel de Fidelidad</h3>
+                <p id="nivel-fidelidad">Bronce</p>
+            </div>
+        </div>
+
+        <div class="perfil-secciones">
+            <div class="seccion">
+                <h2>Información Personal</h2>
+                <form id="form-info-personal">
+                    <div class="form-group">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" id="nombre" name="nombre" value="{{ user.get('nombre', '') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" value="{{ user.get('email', '') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="phone" value="{{ user.get('phone', '') }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" id="direccion" name="direccion" value="{{ user.get('direccion', '') }}" required>
+                    </div>
+                    <button type="submit" class="btn-guardar">Guardar Cambios</button>
+                </form>
+            </div>
+
+            <div class="seccion">
+                <h2>Cambiar Contraseña</h2>
+                <form id="form-cambiar-password">
+                    <div class="form-group">
+                        <label for="password-actual">Contraseña Actual</label>
+                        <input type="password" id="password-actual" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-nueva">Nueva Contraseña</label>
+                        <input type="password" id="password-nueva" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-confirmar">Confirmar Nueva Contraseña</label>
+                        <input type="password" id="password-confirmar" required>
+                    </div>
+                    <button type="submit" class="btn-guardar">Cambiar Contraseña</button>
+                </form>
+            </div>
+
+            <div class="seccion">
+                <h2>Compras Recientes</h2>
+                <div class="historial-reciente" id="compras-recientes">
+                    <!-- Las compras recientes se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <a href="https://wa.me/573123456789" target="_blank" rel="noopener noreferrer">
+    <button class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i> Contáctanos por WhatsApp
+    </button>
+</a>
+        <br />
+        &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+    </footer>
+
+    <!-- Corregimos la ruta del script JS también -->
+    <script src="{{ url_for('static', filename='js/perfil.js') }}"></script>
+</body>
+</html>

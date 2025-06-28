@@ -1,0 +1,90 @@
+<!--<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paquetes - Distribuciones Galvar</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="../css/level.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Niveles de Membresía</h1>
+
+        <div class="aviso-puntos">
+            <p>⚠️ Importante: No todos los productos generan puntos. Revisa la descripción de cada producto para ver si
+                aplica.</p>
+        </div>
+
+        <div class="puntos-disponibles">
+            <p>Puntos disponibles: <span id="puntos-usuario">0</span></p>
+        </div>
+
+        <div class="paquetes-container">
+            <div class="paquetes-header">
+                <h1>Paquetes Disponibles</h1>
+            </div>
+            <div class="aviso-riesgo">
+                <strong>⚠️ Compra paquetes bajo tu propio riesgo.</strong>
+            </div>
+            <div class="aviso-espera">
+                <p><strong>Importante:</strong> Los beneficios de los paquetes se entregarán después de un período de
+                    espera de 5 días hábiles, según lo establecido en los términos y condiciones de paquetes y
+                    reembolsos.</p>
+            </div>
+
+            <div class="paquete-actual">
+                <div class="datos-extra" style="margin: 2rem 0;">
+                    <h2>Completa tus datos antes de comprar un paquete</h2>
+                    <form id="formDatosExtra">
+                        <label>Cédula:<br>
+                            <input type="text" id="cedula" required>
+                        </label><br><br>
+                        <label>Foto del documento:<br>
+                            <input type="file" id="fotoDocumento" accept="image/*" required>
+                        </label><br><br>
+                        <button type="submit" class="btn-comprar">Guardar datos</button>
+                    </form>
+                </div>
+                <div class="paquete-info">
+                    <div class="paquete-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="paquete-details">
+                        <h2>Tu Paquete Actual: <span id="paqueteActual">Cargando...</span></h2>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filtros">
+                <select id="filtroPaquete">
+                    <option value="todos">Todos los paquetes</option>
+                    <option value="basico">Básicos</option>
+                    <option value="medio">Medios</option>
+                    <option value="premium">Premium</option>
+                </select>
+            </div>
+
+            <div class="paquetes-grid" id="paquetesGrid">
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de confirmación -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="cerrarModal()">&times;</span>
+            <h2>Confirmar Compra</h2>
+            <p id="modalMensaje"></p>
+            <button class="btn-comprar" onclick="confirmarCompra()">Confirmar Compra</button>
+        </div>
+    </div>
+
+    <script src="../js/level.js"></script>
+</body>
+
+</html>

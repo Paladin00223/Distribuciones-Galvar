@@ -1,0 +1,189 @@
+/* c:/Users/USUARIO/Desktop/GitHub/Distritiendas Galvar/static/css/perfil.css */
+
+/* Contenedor principal del perfil */
+.perfil-container {
+    max-width: 1200px;
+    /* Aumentamos el margen superior para dejar espacio a la barra de navegación fija.
+       La barra de navegación tiene position: fixed, por lo que no ocupa espacio en el flujo normal del documento. */
+    margin: 6rem auto 2rem;
+    padding: 2rem;
+    background-color: #f9f9f9; /* Un fondo ligeramente gris para que resalten las tarjetas */
+    border-radius: 8px;
+}
+
+/* Cabecera del perfil (Avatar e Info) */
+.perfil-header {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid #eee;
+}
+
+.perfil-avatar {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: rgb(138, 102, 211); /* Color principal de la empresa */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 4rem;
+    flex-shrink: 0; /* Evita que el avatar se encoja */
+}
+
+.perfil-avatar .cambiar-foto {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 0.8rem;
+    border-bottom-left-radius: 60px;
+    border-bottom-right-radius: 60px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.perfil-avatar:hover .cambiar-foto {
+    opacity: 1;
+}
+
+.perfil-info h1 {
+    margin: 0 0 0.5rem 0;
+    font-size: 2.5rem;
+    color: #333;
+}
+
+.perfil-info p {
+    margin: 0;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Estadísticas del perfil */
+.perfil-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.stat-card i {
+    font-size: 2.5rem;
+    color: rgb(138, 102, 211); /* Color principal */
+    margin-bottom: 1rem;
+}
+
+.stat-card h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.stat-card p {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Secciones de información y formularios */
+.perfil-secciones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.seccion {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+}
+
+.seccion h2 {
+    font-size: 1.5rem;
+    color: rgb(138, 102, 211);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+/* Historial de compras recientes */
+.historial-reciente {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.historial-reciente .compra-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.historial-reciente .compra-item:last-child {
+    border-bottom: none;
+}
+
+/* --- Media Queries para Responsividad --- */
+@media (max-width: 992px) {
+    .perfil-secciones {
+        grid-template-columns: 1fr; /* Apila las secciones una sobre otra */
+    }
+}
+
+@media (max-width: 768px) {
+    .perfil-header {
+        flex-direction: column; /* Apila el avatar y la info */
+        text-align: center;
+    }
+
+    .perfil-container {
+        padding: 1rem;
+    }
+
+    .perfil-stats {
+        grid-template-columns: 1fr; /* Una sola columna para las estadísticas */
+    }
+}
+.whatsapp-button {
+    background-color: #25D366; /* Color oficial de WhatsApp */
+    color: white;
+    border: none;
+    border-radius: 25px; /* Bordes redondeados */
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px; /* Espacio entre el icono y el texto */
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Quitar subrayado del enlace */
+    width: 10rem;
+}
+
+.whatsapp-button:hover {
+    background-color: #128C7E; /* Un tono más oscuro al pasar el mouse */
+}
+
+.whatsapp-button i {
+    font-size: 20px;
+}

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - Distribuciones Galvar</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/buy.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+<body>
+    <nav>
+        <div class="nav-buttons">
+          <a href="{{ url_for('main.productos') }}"><button><i class="fas fa-store"></i> Seguir Comprando</button></a>
+        </div>
+        <a href="{{ url_for('main.logout') }}"><button class="cerrar"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</button></a>
+    </nav>
+    <aside>
+        <a href="{{ url_for('user.compras') }}"
+          ><button><i class="fas fa-shopping-bag"></i> Compras</button></a
+        >
+        <a href="{{ url_for('user.perfil') }}"
+          ><button><i class="fas fa-user"></i> Perfil</button></a
+        >
+        <a href="#top"
+          ><button><i class="fas fa-arrow-up"></i> Volver Al Inicio</button></a
+        >
+    </aside>
+    <header>
+        <section>
+          <h1>
+            Tu Carrito de Compras,
+            <span id="nombre-usuario">{{ cuenta or 'Invitado' }}</span>
+          </h1>
+        </section>
+  
+        <div>
+          <h2>Finaliza tu pedido</h2>
+        </div>
+    </header>
+    <main>
+        <div class="buy-container">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cart-items">
+                    {% if not items %}
+                    <tr>
+                        <td colspan="5" style="text-align: center; padding: 2rem;">
+                            Tu carrito está vacío. <a href="{{ url_for('main.productos') }}">¡Empieza a comprar!</a>
+                        </td>
+                    </tr>
+                    {% else %}
+                        {% for item in items %}
+                        <tr>
+                            <td class="product-cell">
+                                <img src="{{ item.imagen }}" alt="{{ item.nombre }}" class="product-image">
+                                <span>{{ item.nombre }}</span>
+                            </td>
+                            <td>${{ "%.2f"|format(item.precio) }}</td>
+                            <td>
+                                <input type="number" value="{{ item.cantidad }}" min="1" class="item-quantity" data-id="{{ item.id }}">
+                            </td>
+                            <td>${{ "%.2f"|format(item.subtotal) }}</td>
+                            <td>
+                                <button class="remove-btn" data-id="{{ item.id }}">Eliminar</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% endif %}
+                </tbody>
+            </table>
+    
+            <div class="total-section">
+                <p>Total: $<span id="total-amount">{{ "%.2f"|format(total) }}</span></p>
+            </div>
+    
+            <div class="shipping-form">
+                <h2>Información de Envío</h2>
+                <div class="form-group">
+                    <label for="name">Nombre completo:</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="address">Dirección:</label>
+                    <input type="text" id="address" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono:</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Correo electrónico:</label>
+                    <input type="email" id="email" required>
+                </div>
+            </div>
+    
+            <button class="checkout-btn">Confirmar Compra</button>
+        </div>
+    </main>
+
+    <footer>
+        <p class="maintenance-message">
+          <i class="fas fa-tools"></i> ¡La fidelización por puntos aún está en
+          mantenimiento!<br />
+          ¡Muy Pronto!
+        </p>
+        <a href="https://wa.me/573123456789" target="_blank" rel="noopener noreferrer">
+    <button class="whatsapp-button">
+        <i class="fab fa-whatsapp"></i> Contáctanos por WhatsApp
+    </button>
+</a>
+        <br />
+        &copy; 26 mayo 2025 - Distribuciones Galvar. Todos los derechos reservados
+    </footer>
+    <script src="{{ url_for('static', filename='js/buy.js') }}"></script>
+</body>
+
+</html>
