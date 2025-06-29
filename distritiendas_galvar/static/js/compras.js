@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         order.items.forEach(item => {
             itemsHtml += `<li>
                 <span>${item.nombre} (x${item.cantidad})</span>
-                <span>$${(item.precio_compra * item.cantidad).toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                <span>$${(item.precio_compra * item.cantidad).toFixed(2)}</span>
             </li>`;
         });
         itemsHtml += '</ul>';
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const detailsHtml = `
             <p><strong>ID Pedido:</strong> ${order._id}</p>
             <p><strong>Fecha:</strong> ${new Date(order.order_date).toLocaleString()}</p>
-            <p><strong>Total:</strong> $${order.total_amount.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</p>
+            <p><strong>Total:</strong> $${order.total_amount.toFixed(2)}</p>
             <p><strong>Estado:</strong> ${order.status}</p>
             <hr>
             <h4>Productos</h4>

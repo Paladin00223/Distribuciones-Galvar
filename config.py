@@ -5,7 +5,8 @@ class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY', 'una_clave_secreta_muy_dificil_de_adivinar')
     
     # Configuración de MongoDB
-    MONGO_URI = "mongodb://localhost:27017/distritiendas_galvar"
+    # CORRECCIÓN: Se ha eliminado el texto de ejemplo de la contraseña para usar solo la contraseña válida.
+    MONGO_URI = "mongodb+srv://jdvargas223:wQR6UsJjkBpdACA5@cluster0.u94fmoq.mongodb.net/distritiendasgalvar?retryWrites=true&w=majority&appName=Cluster0"
     
     # Carpeta para subir archivos
     UPLOAD_FOLDER = 'static/uploads'

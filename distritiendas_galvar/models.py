@@ -12,11 +12,10 @@ class User(UserMixin):
     @staticmethod
     def get(user_id):
         # user_id viene como string, lo convertimos a int para buscar por 'uid'
-        try:
-            user_id_int = int(user_id)
-            user_data = mongo.db.users.find_one({'uid': user_id_int})
-            if user_data:
-                return User(user_data)
-        except (ValueError, TypeError):
+        if not user_id or not user_id.isdigit():
             return None
+        
+        user_data = mongo.db.usuarios.find_one({'uid': int(user_id)})
+        if user_data:
+            return User(user_data)
         return None

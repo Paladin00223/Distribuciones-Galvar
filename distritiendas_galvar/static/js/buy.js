@@ -5,11 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Función para formatear el precio
     function formatPrice(value) {
-        const numericValue = parseFloat(value);
-        if (isNaN(numericValue)) {
-            return '0,00'; // Devuelve un string formateado para consistencia
-        }
-        return numericValue.toLocaleString('es-CO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+        return parseFloat(value).toFixed(2);
     }
 
     // Añadir listeners a los botones de eliminar

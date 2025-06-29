@@ -98,24 +98,31 @@ def add_product():
 @admin_bp.route('/products/<product_id>', methods=['PUT'])
 @admin_required
 def update_product(product_id):
-    update_fields = {
-        'nombre': request.form.get('nombre'),
-        'descripcion': request.form.get('descripcion'),
-        'precio': float(request.form.get('precio', 0)),
-        'stock': int(request.form.get('stock', 0)),
-        'categoria': request.form.get('categoria'),
-    }
-
-    if 'imagen' in request.files:
-        file = request.files['imagen']
-        if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
-            filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], 'products', filename)
-            os.makedirs(os.path.dirname(filepath), exist_ok=True)
-            file.save(filepath)
-            update_fields['imagen'] = filename
-
     try:
+        update_fields = {}
+        if 'nombre' in request.form:
+            update_fields['nombre'] = request.form['nombre']
+        if 'descripcion' in request.form:
+            update_fields['descripcion'] = request.form['descripcion']
+        if 'precio' in request.form:
+            update_fields['precio'] = float(request.form['precio'])
+        if 'stock' in request.form:
+            update_fields['stock'] = int(request.form['stock'])
+        if 'categoria' in request.form:
+            update_fields['categoria'] = request.form['categoria']
+
+        if 'imagen' in request.files:
+            file = request.files['imagen']
+            if file and file.filename != '' and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                filepath = os.path.join(current_app.config['UPLOAD_FOLDER'], 'products', filename)
+                os.makedirs(os.path.dirname(filepath), exist_ok=True)
+                file.save(filepath)
+                update_fields['imagen'] = filename
+
+        if not update_fields:
+            return jsonify({'success': False, 'message': 'No se proporcionaron datos para actualizar.'}), 400
+
         result = mongo.db.products.update_one({'_id': ObjectId(product_id)}, {'$set': update_fields})
         if result.matched_count == 0:
             return jsonify({'success': False, 'message': 'Producto no encontrado.'}), 404
@@ -123,6 +130,8 @@ def update_product(product_id):
     except InvalidId:
         return jsonify({'success': False, 'message': 'ID de producto inválido.'}), 400
 
+    except (ValueError, TypeError) as e:
+        return jsonify({'success': False, 'message': f'Error en el formato de los datos: {e}'}), 400
 @admin_bp.route('/products/<product_id>', methods=['DELETE'])
 @admin_required
 def delete_product(product_id):
@@ -159,8 +168,9 @@ def get_users():
             search_conditions.append({'uid': int(search_term)})
         query['$or'] = search_conditions
 
-    users_cursor = mongo.db.users.find(query, {'password': 0}).sort('uid', 1).skip(skip).limit(limit)
-    total_users = mongo.db.users.count_documents(query)
+    # CORRECCIÓN: Usar el nombre de colección correcto 'usuarios'
+    users_cursor = mongo.db.usuarios.find(query, {'password': 0}).sort('uid', 1).skip(skip).limit(limit)
+    total_users = mongo.db.usuarios.count_documents(query)
     total_pages = (total_users + limit - 1) // limit
 
     users = []
@@ -178,7 +188,8 @@ def get_users():
 @admin_bp.route('/users/<int:user_id>', methods=['GET'])
 @admin_required
 def get_user(user_id):
-    user = mongo.db.users.find_one({'uid': user_id}, {'password': 0})
+    # CORRECCIÓN: Usar el nombre de colección correcto 'usuarios'
+    user = mongo.db.usuarios.find_one({'uid': user_id}, {'password': 0})
     if not user:
         return jsonify({'success': False, 'message': 'Usuario no encontrado'}), 404
     user['_id'] = str(user['_id'])
@@ -188,29 +199,42 @@ def get_user(user_id):
 @admin_required
 def update_user(user_id):
     data = request.json
-    update_fields = {k: v for k, v in data.items() if k != 'password'}
+    
+    # MEJORA: Usar una lista blanca de campos para mayor seguridad.
+    allowed_fields = ['nombre', 'nombre_unico', 'email', 'tipo', 'estado', 'puntos', 'cedula', 'paquete']
+    update_fields = {k: v for k, v in data.items() if k in allowed_fields}
 
-    result = mongo.db.users.update_one({'uid': user_id}, {'$set': update_fields})
+    if not update_fields:
+        return jsonify({'success': False, 'message': 'No hay campos válidos para actualizar.'}), 400
+
+    # CORRECCIÓN: Usar el nombre de colección correcto 'usuarios'
+    result = mongo.db.usuarios.update_one({'uid': user_id}, {'$set': update_fields})
     if result.matched_count == 0:
         return jsonify({'success': False, 'message': 'Usuario no encontrado.'}), 404
     return jsonify({'success': True, 'message': 'Usuario actualizado exitosamente.'})
 
-@admin_bp.route('/users/<int:user_id>', methods=['DELETE'])
+@admin_bp.route('/users/<int:user_id>/deactivate', methods=['POST'])
 @admin_required
-def delete_user(user_id):
-    if user_id == current_user.get_id():
-        return jsonify({'success': False, 'message': 'No puedes eliminar tu propia cuenta.'}), 403
+def deactivate_user(user_id):
+    """
+    Desactiva un usuario en lugar de eliminarlo para mantener la integridad de los datos (pedidos).
+    """
+    # CORRECCIÓN: Convertir el id del usuario actual a entero para una comparación correcta.
+    if user_id == int(current_user.get_id()):
+        return jsonify({'success': False, 'message': 'No puedes desactivar tu propia cuenta.'}), 403
 
-    result = mongo.db.users.delete_one({'uid': user_id})
-    if result.deleted_count == 0:
+    # CORRECCIÓN: Usar el nombre de colección correcto 'usuarios'
+    result = mongo.db.usuarios.update_one({'uid': user_id}, {'$set': {'estado': 'inactivo'}})
+    if result.matched_count == 0:
         return jsonify({'success': False, 'message': 'Usuario no encontrado.'}), 404
-    return jsonify({'success': True, 'message': 'Usuario eliminado exitosamente.'})
+    return jsonify({'success': True, 'message': 'Usuario desactivado exitosamente.'})
 
 # --- Pedidos ---
 
 def _build_orders_pipeline(status_filter, search_term):
     pipeline = [
-        {'$lookup': {'from': 'users', 'localField': 'user_uid', 'foreignField': 'uid', 'as': 'customer_info'}},
+        # CORRECCIÓN: Usar el nombre de colección correcto 'usuarios' en el lookup.
+        {'$lookup': {'from': 'usuarios', 'localField': 'user_uid', 'foreignField': 'uid', 'as': 'customer_info'}},
         {'$unwind': {'path': '$customer_info', 'preserveNullAndEmptyArrays': True}}
     ]
     match_stage = {}
@@ -218,14 +242,30 @@ def _build_orders_pipeline(status_filter, search_term):
         match_stage['status'] = {'$regex': f'^{status_filter}$', '$options': 'i'}
     if search_term:
         regex = {'$regex': search_term, '$options': 'i'}
-        match_stage['$or'] = [{'customer_info.nombre': regex}, {'shipping_info.name': regex}]
-        if len(search_term) == 24:
-            try:
-                match_stage['$or'].append({'_id': ObjectId(search_term)})
-            except InvalidId: pass
+        search_conditions = [{'customer_info.nombre': regex}, {'shipping_info.name': regex}]
+        # MEJORA: Búsqueda por ID de pedido más robusta.
+        try:
+            # Intentar convertir el término de búsqueda a ObjectId
+            search_conditions.append({'_id': ObjectId(search_term)})
+        except InvalidId:
+            # Si no es un ObjectId válido, no hacer nada y continuar con la búsqueda de texto
+            pass
+        match_stage['$or'] = search_conditions
     if match_stage:
         pipeline.append({'$match': match_stage})
     return pipeline
+
+def _process_order_for_json(order):
+    """
+    Convierte los campos de un pedido (ObjectId, datetime) a formatos serializables.
+    """
+    order['_id'] = str(order['_id'])
+    if isinstance(order.get('order_date'), datetime.datetime):
+        order['order_date'] = order['order_date'].isoformat()
+    for item in order.get('items', []):
+        if isinstance(item.get('product_id'), ObjectId):
+            item['product_id'] = str(item['product_id'])
+    return order
 
 @admin_bp.route('/orders')
 @admin_required
@@ -246,12 +286,7 @@ def get_orders():
     orders = list(mongo.db.pedidos.aggregate(data_pipeline))
 
     for order in orders:
-        order['_id'] = str(order['_id'])
-        if isinstance(order.get('order_date'), datetime.datetime):
-            order['order_date'] = order['order_date'].isoformat()
-        for item in order.get('items', []):
-            if isinstance(item.get('product_id'), ObjectId):
-                item['product_id'] = str(item['product_id'])
+        _process_order_for_json(order)
 
     return jsonify({'orders': orders, 'total_pages': total_pages, 'current_page': page})
 
@@ -265,13 +300,7 @@ def get_order_details(order_id):
         if not result:
             return jsonify({'success': False, 'message': 'Pedido no encontrado'}), 404
         
-        order = result[0]
-        order['_id'] = str(order['_id'])
-        if isinstance(order.get('order_date'), datetime.datetime):
-            order['order_date'] = order['order_date'].isoformat()
-        for item in order.get('items', []):
-            if isinstance(item.get('product_id'), ObjectId):
-                item['product_id'] = str(item['product_id'])
+        order = _process_order_for_json(result[0])
         
         return jsonify({'success': True, 'order': order})
     except InvalidId:
@@ -332,7 +361,7 @@ def get_dashboard_stats():
         {'$group': {'_id': None, 'total': {'$sum': '$total_amount'}}}
     ]))
     total_revenue = revenue_result[0]['total'] if revenue_result else 0
-    total_users = mongo.db.users.count_documents({})
+    total_users = mongo.db.usuarios.count_documents({})
     one_month_ago = datetime.datetime.utcnow() - datetime.timedelta(days=30)
     recent_orders = mongo.db.pedidos.count_documents({'order_date': {'$gte': one_month_ago}})
 
